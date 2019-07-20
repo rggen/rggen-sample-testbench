@@ -1,0 +1,12 @@
+[submodule "env/tue"]
+	path = env/tue
+	url = git@github.com:taichi-ishitani/tue.git
+[submodule "env/tvip-apb"]
+	path = env/tvip-apb
+	url = git@github.com:taichi-ishitani/tvip-apb.git
+[submodule "ral/rggen-sv-ral"]
+	path = ral/rggen-sv-ral
+	url = git@github.com:rggen/rggen-sv-ral.git
+[submodule "rtl/rggen-sv-rtl"]
+	path = rtl/rggen-sv-rtl
+	url = git@github.com:rggen/rggen-sv-rtl.git
