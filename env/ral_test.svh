@@ -59,3 +59,11 @@ class ral_bit_bash_test extends ral_test_base;
   `tue_component_default_constructor(ral_bit_bash_test)
   `uvm_component_utils(ral_bit_bash_test)
 endclass
+
+class ral_access_test extends ral_test_base;
+  protected virtual function uvm_object_wrapper get_main_sequence();
+    return ral_test_sequence #(uvm_reg_access_seq)::type_id::get();
+  endfunction
+  `tue_component_default_constructor(ral_access_test)
+  `uvm_component_utils(ral_access_test)
+endclass

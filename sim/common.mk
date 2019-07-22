@@ -24,6 +24,7 @@ VCS_ARGS	+= -full64
 VCS_ARGS	+= -sverilog
 VCS_ARGS	+= -l vcs.log
 VCS_ARGS	+= +incdir+$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
+VCS_ARGS	+= +define+RGGEN_ENABLE_BACKDOOR
 VCS_ARGS	+= -timescale=1ns/1ps
 VCS_ARGS	+= -ntb_opts uvm-1.2
 VCS_ARGS	+= -top top
@@ -53,6 +54,7 @@ endif
 
 TEST_LIST	+= ral_hw_reset_test
 TEST_LIST	+= ral_bit_bash_test
+TEST_LIST	+= ral_access_test
 
 .PHONY: all $(TEST_LIST) sim_vcs run_vcs clean clean_all
 
