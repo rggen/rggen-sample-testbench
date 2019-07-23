@@ -1,0 +1,9 @@
+TVIP_AXI_HOME	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/tvip-axi
+export TVIP_AXI_HOME
+
+PROTOCOL	= axi4lite
+
+FILE_LISTS	+= $(TVIP_AXI_HOME)/compile.f
+SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/axi4lite/block_0.sv
+SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/axi4lite_env_pkg.sv
+SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/axi4lite_top.sv
