@@ -10,3 +10,6 @@
 [submodule "rtl/rggen-sv-rtl"]
 	path = rtl/rggen-sv-rtl
 	url = git@github.com:rggen/rggen-sv-rtl.git
+[submodule "env/tvip-axi"]
+	path = env/tvip-axi
+	url = git@github.com:taichi-ishitani/tvip-axi.git
