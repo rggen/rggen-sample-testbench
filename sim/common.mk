@@ -16,6 +16,7 @@ FILE_LISTS	+= $(RGGEN_SV_RAL_ROOT)/compile.f
 FILE_LISTS	+= $(TUE_HOME)/compile.f
 
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_0_ral_pkg.sv
+SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_1_ral_pkg.sv
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/env_pkg.sv
 
 include local.mk

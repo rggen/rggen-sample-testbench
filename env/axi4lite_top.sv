@@ -10,7 +10,7 @@ module top;
 
   logic                       clk;
   logic                       rst_n;
-  rggen_axi4lite_if #(16, 32) axi4lite_if();
+  rggen_axi4lite_if #(16, 32) axi4lite_if[2]();
   logic [3:0]                 register_0_bit_field_0;
   logic [3:0]                 register_0_bit_field_1;
   logic                       register_0_bit_field_2;
@@ -73,14 +73,11 @@ module top;
   assign  register_5_bit_field_4_set    = register_0_bit_field_0;
   assign  register_5_bit_field_6_clear  = register_0_bit_field_1;
   assign  register_5_bit_field_7_clear  = register_0_bit_field_0;
-  assign  register_8_bus_if.ready       = register_8_bus_if.valid;
-  assign  register_8_bus_if.status      = rggen_rtl_pkg::RGGEN_OKAY;
-  assign  register_8_bus_if.read_data   = '0;
 
   block_0 u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
-    .axi4lite_if                        (axi4lite_if                      ),
+    .axi4lite_if                        (axi4lite_if[0]                   ),
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
@@ -118,26 +115,41 @@ module top;
     .register_8_bus_if                  (register_8_bus_if                )
   );
 
+  rggen_axi4lite_bridge u_bridge (
+    .i_clk        (clk                ),
+    .i_rst_n      (rst_n              ),
+    .bus_if       (register_8_bus_if  ),
+    .axi4lite_if  (axi4lite_if[1]     )
+  );
+
+  block_1 u_block_1 (
+    .i_clk                    (clk            ),
+    .i_rst_n                  (rst_n          ),
+    .axi4lite_if              (axi4lite_if[1] ),
+    .o_register_0_bit_field_0 (),
+    .o_register_1_bit_field_1 ()
+  );
+
   tvip_axi_if vip_axi_if(clk, rst_n);
-  assign  axi4lite_if.awvalid = vip_axi_if.awvalid;
-  assign  vip_axi_if.awready  = axi4lite_if.awready;
-  assign  axi4lite_if.awaddr  = vip_axi_if.awaddr;
-  assign  axi4lite_if.awprot  = '0;
-  assign  axi4lite_if.wvalid  = vip_axi_if.wvalid;
-  assign  vip_axi_if.wready   = axi4lite_if.wready;
-  assign  axi4lite_if.wdata   = vip_axi_if.wdata;
-  assign  axi4lite_if.wstrb   = vip_axi_if.wstrb;
-  assign  vip_axi_if.bvalid   = axi4lite_if.bvalid;
-  assign  axi4lite_if.bready  = vip_axi_if.bready;
-  assign  vip_axi_if.bresp    = tvip_axi_response'(axi4lite_if.bresp);
-  assign  axi4lite_if.arvalid = vip_axi_if.arvalid;
-  assign  vip_axi_if.arready  = axi4lite_if.arready;
-  assign  axi4lite_if.araddr  = vip_axi_if.araddr;
-  assign  axi4lite_if.arprot  = '0;
-  assign  vip_axi_if.rvalid   = axi4lite_if.rvalid;
-  assign  axi4lite_if.rready  = vip_axi_if.rready;
-  assign  vip_axi_if.rdata    = axi4lite_if.rdata;
-  assign  vip_axi_if.rresp    = tvip_axi_response'(axi4lite_if.rresp);
+  assign  axi4lite_if[0].awvalid  = vip_axi_if.awvalid;
+  assign  vip_axi_if.awready      = axi4lite_if[0].awready;
+  assign  axi4lite_if[0].awaddr   = vip_axi_if.awaddr;
+  assign  axi4lite_if[0].awprot   = '0;
+  assign  axi4lite_if[0].wvalid   = vip_axi_if.wvalid;
+  assign  vip_axi_if.wready       = axi4lite_if[0].wready;
+  assign  axi4lite_if[0].wdata    = vip_axi_if.wdata;
+  assign  axi4lite_if[0].wstrb    = vip_axi_if.wstrb;
+  assign  vip_axi_if.bvalid       = axi4lite_if[0].bvalid;
+  assign  axi4lite_if[0].bready   = vip_axi_if.bready;
+  assign  vip_axi_if.bresp        = tvip_axi_response'(axi4lite_if[0].bresp);
+  assign  axi4lite_if[0].arvalid  = vip_axi_if.arvalid;
+  assign  vip_axi_if.arready      = axi4lite_if[0].arready;
+  assign  axi4lite_if[0].araddr   = vip_axi_if.araddr;
+  assign  axi4lite_if[0].arprot   = '0;
+  assign  vip_axi_if.rvalid       = axi4lite_if[0].rvalid;
+  assign  axi4lite_if[0].rready   = vip_axi_if.rready;
+  assign  vip_axi_if.rdata        = axi4lite_if[0].rdata;
+  assign  vip_axi_if.rresp        = tvip_axi_response'(axi4lite_if[0].rresp);
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_axi_if axi_vif);
     tvip_axi_configuration      axi4lite_configuration;

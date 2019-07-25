@@ -19,8 +19,13 @@ class env_ral_monitor #(
     predictor = PREDICTOR::type_id::create("predictor", this);
 
     model = env_ral_model::type_id::create("model");
-    model.configure(null, "top.u_block_0");
+    model.configure(null);
     model.build();
+
+    model.set_hdl_path_root("top.u_block_0");
+    model.register_8.set_hdl_path_root("top.u_block_1");
+    model.enable_backdoor();
+
     model.lock_model();
   endfunction
 

@@ -2,6 +2,7 @@ package env_pkg;
   import  uvm_pkg::*;
   import  tue_pkg::*;
   import  block_0_ral_pkg::*;
+  import  block_1_ral_pkg::*;
 
   `include  "uvm_macros.svh"
   `include  "tue_macros.svh"

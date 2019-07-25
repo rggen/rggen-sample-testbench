@@ -9,7 +9,7 @@ module top;
 
   logic                       clk;
   logic                       rst_n;
-  rggen_apb_if #(16, 32)      apb_if();
+  rggen_apb_if #(16, 32)      apb_if[2]();
   logic [3:0]                 register_0_bit_field_0;
   logic [3:0]                 register_0_bit_field_1;
   logic                       register_0_bit_field_2;
@@ -72,14 +72,11 @@ module top;
   assign  register_5_bit_field_4_set    = register_0_bit_field_0;
   assign  register_5_bit_field_6_clear  = register_0_bit_field_1;
   assign  register_5_bit_field_7_clear  = register_0_bit_field_0;
-  assign  register_8_bus_if.ready       = register_8_bus_if.valid;
-  assign  register_8_bus_if.status      = rggen_rtl_pkg::RGGEN_OKAY;
-  assign  register_8_bus_if.read_data   = '0;
 
   block_0 u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
-    .apb_if                             (apb_if                           ),
+    .apb_if                             (apb_if[0]                        ),
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
@@ -117,17 +114,32 @@ module top;
     .register_8_bus_if                  (register_8_bus_if                )
   );
 
+  rggen_apb_bridge u_bridge (
+    .i_clk    (clk                ),
+    .i_rst_n  (rst_n              ),
+    .bus_if   (register_8_bus_if  ),
+    .apb_if   (apb_if[1]          )
+  );
+
+  block_1 u_block_1 (
+    .i_clk                    (clk        ),
+    .i_rst_n                  (rst_n      ),
+    .apb_if                   (apb_if[1]  ),
+    .o_register_0_bit_field_0 (),
+    .o_register_1_bit_field_1 ()
+  );
+
   tvip_apb_if vip_apb_if(clk, rst_n);
-  assign  apb_if.psel         = vip_apb_if.psel;
-  assign  apb_if.penable      = vip_apb_if.penable;
-  assign  apb_if.paddr        = vip_apb_if.paddr;
-  assign  apb_if.pprot        = vip_apb_if.pprot;
-  assign  apb_if.pwrite       = vip_apb_if.pwrite;
-  assign  apb_if.pstrb        = vip_apb_if.pstrb;
-  assign  apb_if.pwdata       = vip_apb_if.pwdata;
-  assign  vip_apb_if.pready   = apb_if.pready;
-  assign  vip_apb_if.prdata   = apb_if.prdata;
-  assign  vip_apb_if.pslverr  = apb_if.pslverr;
+  assign  apb_if[0].psel      = vip_apb_if.psel;
+  assign  apb_if[0].penable   = vip_apb_if.penable;
+  assign  apb_if[0].paddr     = vip_apb_if.paddr;
+  assign  apb_if[0].pprot     = vip_apb_if.pprot;
+  assign  apb_if[0].pwrite    = vip_apb_if.pwrite;
+  assign  apb_if[0].pstrb     = vip_apb_if.pstrb;
+  assign  apb_if[0].pwdata    = vip_apb_if.pwdata;
+  assign  vip_apb_if.pready   = apb_if[0].pready;
+  assign  vip_apb_if.prdata   = apb_if[0].prdata;
+  assign  vip_apb_if.pslverr  = apb_if[0].pslverr;
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_apb_if apb_vif);
     tvip_apb_configuration  apb_configuration;
