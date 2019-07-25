@@ -129,7 +129,7 @@ module block_0
       .OFFSET_ADDRESS (8'h04),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h00000f0f),
+      .VALID_BITS     (32'hffff0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -143,8 +143,6 @@ module block_0
       rggen_bit_field_ro #(
         .WIDTH  (4)
       ) u_bit_field (
-        .i_clk        (i_clk),
-        .i_rst_n      (i_rst_n),
         .bit_field_if (bit_field_sub_if),
         .i_value      (i_register_1_bit_field_0)
       );
@@ -155,10 +153,25 @@ module block_0
       rggen_bit_field_ro #(
         .WIDTH  (4)
       ) u_bit_field (
-        .i_clk        (i_clk),
-        .i_rst_n      (i_rst_n),
         .bit_field_if (bit_field_sub_if),
         .i_value      (i_register_1_bit_field_1)
+      );
+    end
+    if (1) begin : g_bit_field_2
+      rggen_bit_field_if #(8) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 16, 8)
+      rggen_bit_field_ro #(
+        .WIDTH  (8)
+      ) u_bit_field (
+        .bit_field_if (bit_field_sub_if),
+        .i_value      (8'hab)
+      );
+    end
+    if (1) begin : g_bit_field_3
+      rggen_bit_field_if #(8) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 24, 8)
+      rggen_bit_field_reserved u_bit_field (
+        .bit_field_if (bit_field_sub_if)
       );
     end
   end endgenerate
@@ -261,8 +274,6 @@ module block_0
       rggen_bit_field_ro #(
         .WIDTH  (4)
       ) u_bit_field (
-        .i_clk        (i_clk),
-        .i_rst_n      (i_rst_n),
         .bit_field_if (bit_field_sub_if),
         .i_value      (register_if[3].value[8+:4])
       );
@@ -385,8 +396,6 @@ module block_0
       rggen_bit_field_ro #(
         .WIDTH  (4)
       ) u_bit_field (
-        .i_clk        (i_clk),
-        .i_rst_n      (i_rst_n),
         .bit_field_if (bit_field_sub_if),
         .i_value      (register_if[5].value[4+:4])
       );
@@ -431,8 +440,6 @@ module block_0
       rggen_bit_field_ro #(
         .WIDTH  (4)
       ) u_bit_field (
-        .i_clk        (i_clk),
-        .i_rst_n      (i_rst_n),
         .bit_field_if (bit_field_sub_if),
         .i_value      (register_if[5].value[16+:4])
       );
