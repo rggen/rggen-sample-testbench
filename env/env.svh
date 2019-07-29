@@ -30,7 +30,8 @@ class env_param_base #(
     super.connect_phase(phase);
     ral_monitor.connect_sequencer(agent.sequencer);
     agent.item_port.connect(ral_monitor.bus_in);
-    sequencer.model = ral_monitor.model;
+    sequencer.bus_sequencer = agent.sequencer;
+    sequencer.model         = ral_monitor.model;
   endfunction
 
   protected virtual function void create_agent();
