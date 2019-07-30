@@ -2,6 +2,7 @@
 submodules=(
   env/tue
   env/tvip-apb
+  env/tvip-axi
   ral/rggen-sv-ral
   rtl/rggen-sv-rtl
 )
