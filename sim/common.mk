@@ -41,6 +41,7 @@ ifeq ($(strip $(GUI)), verdi)
 	VCS_ARGS	+= -kdb
 	VCS_ARGS	+= +vcs+fsdbon
 	SIMV_ARGS	+= -gui=verdi
+	SIMV_ARGS	+= +UVM_VERDI_TRACE=RAL
 	ifeq ($(strip $(TR_DEBUG)), on)
 		SIMV_ARGS	+= +UVM_VERDI_TRACE
 		SIMV_ARGS	+= +UVM_TR_RECORD
