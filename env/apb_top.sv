@@ -16,7 +16,8 @@ module top;
   logic [3:0]                 register_1_bit_field_0;
   logic [3:0]                 register_1_bit_field_1;
   logic [3:0]                 register_2_bit_field_0;
-  logic [3:0]                 register_2_bit_field_1;
+  logic                       register_2_bit_field_1_trigger;
+  logic                       register_2_bit_field_2_trigger;
   logic [3:0]                 register_3_bit_field_0_set;
   logic [3:0]                 register_3_bit_field_0;
   logic [3:0]                 register_3_bit_field_1_set;
@@ -68,20 +69,20 @@ module top;
     rst_n = 1;
   end
 
-  assign  register_1_bit_field_0        = register_2_bit_field_0;
-  assign  register_1_bit_field_1        = register_2_bit_field_1;
-  assign  register_3_bit_field_0_set    = register_0_bit_field_0;
-  assign  register_3_bit_field_1_set    = register_0_bit_field_1;
-  assign  register_3_bit_field_3_clear  = register_0_bit_field_0;
-  assign  register_4_bit_field_0_clear  = register_0_bit_field_2;
+  assign  register_1_bit_field_0        = register_0_bit_field_0;
+  assign  register_1_bit_field_1        = register_0_bit_field_1;
+  assign  register_3_bit_field_0_set    = register_2_bit_field_2_trigger;
+  assign  register_3_bit_field_1_set    = register_2_bit_field_2_trigger;
+  assign  register_3_bit_field_3_clear  = register_2_bit_field_1_trigger;
+  assign  register_4_bit_field_0_clear  = register_2_bit_field_1_trigger;
   assign  register_4_bit_field_2_enable = register_0_bit_field_2;
   assign  register_4_bit_field_4_lock   = register_0_bit_field_2;
-  assign  register_5_bit_field_0_set    = register_0_bit_field_1;
-  assign  register_5_bit_field_1_set    = register_0_bit_field_0;
-  assign  register_5_bit_field_3_set    = register_0_bit_field_1;
-  assign  register_5_bit_field_4_set    = register_0_bit_field_0;
-  assign  register_5_bit_field_6_clear  = register_0_bit_field_1;
-  assign  register_5_bit_field_7_clear  = register_0_bit_field_0;
+  assign  register_5_bit_field_0_set    = register_2_bit_field_2_trigger;
+  assign  register_5_bit_field_1_set    = register_2_bit_field_2_trigger;
+  assign  register_5_bit_field_3_set    = register_2_bit_field_2_trigger;
+  assign  register_5_bit_field_4_set    = register_2_bit_field_2_trigger;
+  assign  register_5_bit_field_6_clear  = register_2_bit_field_1_trigger;
+  assign  register_5_bit_field_7_clear  = register_2_bit_field_1_trigger;
 
   block_0 u_block_0 (
     .i_clk                              (clk                              ),
@@ -93,7 +94,8 @@ module top;
     .i_register_1_bit_field_0           (register_1_bit_field_0           ),
     .i_register_1_bit_field_1           (register_1_bit_field_1           ),
     .o_register_2_bit_field_0           (register_2_bit_field_0           ),
-    .o_register_2_bit_field_1           (register_2_bit_field_1           ),
+    .o_register_2_bit_field_1_trigger   (register_2_bit_field_1_trigger   ),
+    .o_register_2_bit_field_2_trigger   (register_2_bit_field_2_trigger   ),
     .i_register_3_bit_field_0_set       (register_3_bit_field_0_set       ),
     .o_register_3_bit_field_0           (register_3_bit_field_0           ),
     .i_register_3_bit_field_1_set       (register_3_bit_field_1_set       ),
