@@ -8,10 +8,6 @@ package env_pkg;
   `include  "tue_macros.svh"
   `include  "rggen_ral_macros.svh"
 
-  typedef block_0_block_model #(
-    .INTEGRATE_REGISTER_8 (0  )
-  ) ral_model;
-
   `include  "env_configuration.svh"
   `include  "env_ral_model.svh"
   `include  "env_ral_monitor.svh"

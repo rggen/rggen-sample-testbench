@@ -13,46 +13,49 @@ module top;
   logic [3:0]                 register_0_bit_field_0;
   logic [3:0]                 register_0_bit_field_1;
   logic                       register_0_bit_field_2;
-  logic [3:0]                 register_1_bit_field_0;
-  logic [3:0]                 register_1_bit_field_1;
+  logic                       register_1;
   logic [3:0]                 register_2_bit_field_0;
-  logic [3:0]                 register_2_bit_field_1_trigger;
-  logic [3:0]                 register_2_bit_field_2_trigger;
-  logic [3:0]                 register_3_bit_field_0_set;
+  logic [3:0]                 register_2_bit_field_1;
   logic [3:0]                 register_3_bit_field_0;
-  logic [3:0]                 register_3_bit_field_1_set;
-  logic [3:0]                 register_3_bit_field_1;
-  logic [3:0]                 register_3_bit_field_1_unmasked;
-  logic [3:0]                 register_3_bit_field_3_clear;
-  logic [3:0]                 register_3_bit_field_3;
-  logic                       register_4_bit_field_0_clear;
+  logic [3:0]                 register_3_bit_field_1_trigger;
+  logic [3:0]                 register_3_bit_field_2_trigger;
+  logic [3:0]                 register_4_bit_field_0_set;
   logic [3:0]                 register_4_bit_field_0;
+  logic [3:0]                 register_4_bit_field_1_set;
   logic [3:0]                 register_4_bit_field_1;
-  logic                       register_4_bit_field_2_enable;
-  logic [3:0]                 register_4_bit_field_2;
+  logic [3:0]                 register_4_bit_field_1_unmasked;
+  logic [3:0]                 register_4_bit_field_3_clear;
   logic [3:0]                 register_4_bit_field_3;
-  logic                       register_4_bit_field_4_lock;
-  logic [3:0]                 register_4_bit_field_4;
-  logic [3:0]                 register_4_bit_field_5;
-  logic [3:0]                 register_5_bit_field_0_set;
+  logic                       register_5_bit_field_0_clear;
   logic [3:0]                 register_5_bit_field_0;
-  logic [3:0]                 register_5_bit_field_1_set;
   logic [3:0]                 register_5_bit_field_1;
-  logic [3:0]                 register_5_bit_field_1_unmasked;
-  logic [3:0]                 register_5_bit_field_3_set;
-  logic [3:0]                 register_5_bit_field_3;
-  logic [3:0]                 register_5_bit_field_4_set;
-  logic [3:0]                 register_5_bit_field_4;
-  logic [3:0]                 register_5_bit_field_4_unmasked;
-  logic [3:0]                 register_5_bit_field_6_clear;
-  logic [3:0]                 register_5_bit_field_6;
-  logic [3:0]                 register_5_bit_field_7_clear;
-  logic [3:0]                 register_5_bit_field_7;
-  logic [3:0][3:0][7:0]       register_6_bit_field_0;
-  logic [3:0][3:0][7:0]       register_6_bit_field_1;
-  logic [1:0][3:0][3:0][7:0]  register_7_bit_field_0;
-  logic [1:0][3:0][3:0][7:0]  register_7_bit_field_1;
-  rggen_bus_if #(8, 32)       register_8_bus_if();
+  logic                       register_5_bit_field_2_enable;
+  logic [1:0]                 register_5_bit_field_2;
+  logic [1:0]                 register_5_bit_field_3;
+  logic [1:0]                 register_5_bit_field_4;
+  logic                       register_5_bit_field_5_lock;
+  logic [1:0]                 register_5_bit_field_5;
+  logic [1:0]                 register_5_bit_field_6;
+  logic [1:0]                 register_5_bit_field_7;
+  logic [3:0]                 register_6_bit_field_0_set;
+  logic [3:0]                 register_6_bit_field_0;
+  logic [3:0]                 register_6_bit_field_1_set;
+  logic [3:0]                 register_6_bit_field_1;
+  logic [3:0]                 register_6_bit_field_1_unmasked;
+  logic [3:0]                 register_6_bit_field_3_set;
+  logic [3:0]                 register_6_bit_field_3;
+  logic [3:0]                 register_6_bit_field_4_set;
+  logic [3:0]                 register_6_bit_field_4;
+  logic [3:0]                 register_6_bit_field_4_unmasked;
+  logic [3:0]                 register_6_bit_field_6_clear;
+  logic [3:0]                 register_6_bit_field_6;
+  logic [3:0]                 register_6_bit_field_7_clear;
+  logic [3:0]                 register_6_bit_field_7;
+  logic [3:0][3:0][7:0]       register_7_bit_field_0;
+  logic [3:0][3:0][7:0]       register_7_bit_field_1;
+  logic [1:0][3:0][3:0][7:0]  register_8_bit_field_0;
+  logic [1:0][3:0][3:0][7:0]  register_8_bit_field_1;
+  rggen_bus_if #(8, 32)       register_9_bus_if();
 
   initial begin
     clk = 0;
@@ -69,20 +72,20 @@ module top;
     rst_n = 1;
   end
 
-  assign  register_1_bit_field_0        = register_0_bit_field_0;
-  assign  register_1_bit_field_1        = register_0_bit_field_1;
-  assign  register_3_bit_field_0_set    = register_2_bit_field_2_trigger;
-  assign  register_3_bit_field_1_set    = register_2_bit_field_2_trigger;
-  assign  register_3_bit_field_3_clear  = register_2_bit_field_1_trigger;
-  assign  register_4_bit_field_0_clear  = register_2_bit_field_1_trigger[0];
-  assign  register_4_bit_field_2_enable = register_0_bit_field_2;
-  assign  register_4_bit_field_4_lock   = register_0_bit_field_2;
-  assign  register_5_bit_field_0_set    = register_2_bit_field_2_trigger;
-  assign  register_5_bit_field_1_set    = register_2_bit_field_2_trigger;
-  assign  register_5_bit_field_3_set    = register_2_bit_field_2_trigger;
-  assign  register_5_bit_field_4_set    = register_2_bit_field_2_trigger;
-  assign  register_5_bit_field_6_clear  = register_2_bit_field_1_trigger;
-  assign  register_5_bit_field_7_clear  = register_2_bit_field_1_trigger;
+  assign  register_2_bit_field_0        = register_0_bit_field_0;
+  assign  register_2_bit_field_1        = register_0_bit_field_1;
+  assign  register_4_bit_field_0_set    = register_3_bit_field_2_trigger;
+  assign  register_4_bit_field_1_set    = register_3_bit_field_2_trigger;
+  assign  register_4_bit_field_3_clear  = register_3_bit_field_1_trigger;
+  assign  register_5_bit_field_0_clear  = register_3_bit_field_1_trigger[0];
+  assign  register_5_bit_field_2_enable = register_0_bit_field_2;
+  assign  register_5_bit_field_5_lock   = register_0_bit_field_2;
+  assign  register_6_bit_field_0_set    = register_3_bit_field_2_trigger;
+  assign  register_6_bit_field_1_set    = register_3_bit_field_2_trigger;
+  assign  register_6_bit_field_3_set    = register_3_bit_field_2_trigger;
+  assign  register_6_bit_field_4_set    = register_3_bit_field_2_trigger;
+  assign  register_6_bit_field_6_clear  = register_3_bit_field_1_trigger;
+  assign  register_6_bit_field_7_clear  = register_3_bit_field_1_trigger;
 
   block_0 u_block_0 (
     .i_clk                              (clk                              ),
@@ -91,52 +94,55 @@ module top;
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
-    .i_register_1_bit_field_0           (register_1_bit_field_0           ),
-    .i_register_1_bit_field_1           (register_1_bit_field_1           ),
-    .o_register_2_bit_field_0           (register_2_bit_field_0           ),
-    .o_register_2_bit_field_1_trigger   (register_2_bit_field_1_trigger   ),
-    .o_register_2_bit_field_2_trigger   (register_2_bit_field_2_trigger   ),
-    .i_register_3_bit_field_0_set       (register_3_bit_field_0_set       ),
+    .o_register_1                       (register_1                       ),
+    .i_register_2_bit_field_0           (register_2_bit_field_0           ),
+    .i_register_2_bit_field_1           (register_2_bit_field_1           ),
     .o_register_3_bit_field_0           (register_3_bit_field_0           ),
-    .i_register_3_bit_field_1_set       (register_3_bit_field_1_set       ),
-    .o_register_3_bit_field_1           (register_3_bit_field_1           ),
-    .o_register_3_bit_field_1_unmasked  (register_3_bit_field_1_unmasked  ),
-    .i_register_3_bit_field_3_clear     (register_3_bit_field_3_clear     ),
-    .o_register_3_bit_field_3           (register_3_bit_field_3           ),
-    .i_register_4_bit_field_0_clear     (register_4_bit_field_0_clear     ),
+    .o_register_3_bit_field_1_trigger   (register_3_bit_field_1_trigger   ),
+    .o_register_3_bit_field_2_trigger   (register_3_bit_field_2_trigger   ),
+    .i_register_4_bit_field_0_set       (register_4_bit_field_0_set       ),
     .o_register_4_bit_field_0           (register_4_bit_field_0           ),
+    .i_register_4_bit_field_1_set       (register_4_bit_field_1_set       ),
     .o_register_4_bit_field_1           (register_4_bit_field_1           ),
-    .i_register_4_bit_field_2_enable    (register_4_bit_field_2_enable    ),
-    .o_register_4_bit_field_2           (register_4_bit_field_2           ),
+    .o_register_4_bit_field_1_unmasked  (register_4_bit_field_1_unmasked  ),
+    .i_register_4_bit_field_3_clear     (register_4_bit_field_3_clear     ),
     .o_register_4_bit_field_3           (register_4_bit_field_3           ),
-    .i_register_4_bit_field_4_lock      (register_4_bit_field_4_lock      ),
-    .o_register_4_bit_field_4           (register_4_bit_field_4           ),
-    .o_register_4_bit_field_5           (register_4_bit_field_5           ),
-    .i_register_5_bit_field_0_set       (register_5_bit_field_0_set       ),
+    .i_register_5_bit_field_0_clear     (register_5_bit_field_0_clear     ),
     .o_register_5_bit_field_0           (register_5_bit_field_0           ),
-    .i_register_5_bit_field_1_set       (register_5_bit_field_1_set       ),
     .o_register_5_bit_field_1           (register_5_bit_field_1           ),
-    .o_register_5_bit_field_1_unmasked  (register_5_bit_field_1_unmasked  ),
-    .i_register_5_bit_field_3_set       (register_5_bit_field_3_set       ),
+    .i_register_5_bit_field_2_enable    (register_5_bit_field_2_enable    ),
+    .o_register_5_bit_field_2           (register_5_bit_field_2           ),
     .o_register_5_bit_field_3           (register_5_bit_field_3           ),
-    .i_register_5_bit_field_4_set       (register_5_bit_field_4_set       ),
     .o_register_5_bit_field_4           (register_5_bit_field_4           ),
-    .o_register_5_bit_field_4_unmasked  (register_5_bit_field_4_unmasked  ),
-    .i_register_5_bit_field_6_clear     (register_5_bit_field_6_clear     ),
+    .i_register_5_bit_field_5_lock      (register_5_bit_field_5_lock      ),
+    .o_register_5_bit_field_5           (register_5_bit_field_5           ),
     .o_register_5_bit_field_6           (register_5_bit_field_6           ),
-    .i_register_5_bit_field_7_clear     (register_5_bit_field_7_clear     ),
     .o_register_5_bit_field_7           (register_5_bit_field_7           ),
+    .i_register_6_bit_field_0_set       (register_6_bit_field_0_set       ),
     .o_register_6_bit_field_0           (register_6_bit_field_0           ),
+    .i_register_6_bit_field_1_set       (register_6_bit_field_1_set       ),
     .o_register_6_bit_field_1           (register_6_bit_field_1           ),
+    .o_register_6_bit_field_1_unmasked  (register_6_bit_field_1_unmasked  ),
+    .i_register_6_bit_field_3_set       (register_6_bit_field_3_set       ),
+    .o_register_6_bit_field_3           (register_6_bit_field_3           ),
+    .i_register_6_bit_field_4_set       (register_6_bit_field_4_set       ),
+    .o_register_6_bit_field_4           (register_6_bit_field_4           ),
+    .o_register_6_bit_field_4_unmasked  (register_6_bit_field_4_unmasked  ),
+    .i_register_6_bit_field_6_clear     (register_6_bit_field_6_clear     ),
+    .o_register_6_bit_field_6           (register_6_bit_field_6           ),
+    .i_register_6_bit_field_7_clear     (register_6_bit_field_7_clear     ),
+    .o_register_6_bit_field_7           (register_6_bit_field_7           ),
     .o_register_7_bit_field_0           (register_7_bit_field_0           ),
     .o_register_7_bit_field_1           (register_7_bit_field_1           ),
-    .register_8_bus_if                  (register_8_bus_if                )
+    .o_register_8_bit_field_0           (register_8_bit_field_0           ),
+    .o_register_8_bit_field_1           (register_8_bit_field_1           ),
+    .register_9_bus_if                  (register_9_bus_if                )
   );
 
   rggen_apb_bridge u_bridge (
     .i_clk    (clk                ),
     .i_rst_n  (rst_n              ),
-    .bus_if   (register_8_bus_if  ),
+    .bus_if   (register_9_bus_if  ),
     .apb_if   (apb_if[1]          )
   );
 
