@@ -71,24 +71,28 @@ package block_0_ral_pkg;
   class register_5_reg_model extends rggen_ral_reg;
     rand rggen_ral_field bit_field_0;
     rand rggen_ral_field bit_field_1;
-    rand rggen_ral_rwe_field #("", "") bit_field_2;
-    rand rggen_ral_rwe_field #("register_0", "bit_field_2") bit_field_3;
-    rand rggen_ral_rwe_field #("register_1", "register_1") bit_field_4;
-    rand rggen_ral_rwl_field #("", "") bit_field_5;
-    rand rggen_ral_rwl_field #("register_0", "bit_field_2") bit_field_6;
-    rand rggen_ral_rwl_field #("register_1", "register_1") bit_field_7;
+    rand rggen_ral_field bit_field_2;
+    rand rggen_ral_field bit_field_3;
+    rand rggen_ral_rwe_field #("", "") bit_field_4;
+    rand rggen_ral_rwe_field #("register_0", "bit_field_2") bit_field_5;
+    rand rggen_ral_rwe_field #("register_1", "register_1") bit_field_6;
+    rand rggen_ral_rwl_field #("", "") bit_field_7;
+    rand rggen_ral_rwl_field #("register_0", "bit_field_2") bit_field_8;
+    rand rggen_ral_rwl_field #("register_1", "register_1") bit_field_9;
     function new(string name);
       super.new(name, 32, 0);
     endfunction
     function void build();
-      `rggen_ral_create_field_model(bit_field_0, 0, 4, RW, 1, 4'h0, 1)
-      `rggen_ral_create_field_model(bit_field_1, 4, 4, RW, 1, 4'h0, 1)
-      `rggen_ral_create_field_model(bit_field_2, 8, 2, RWE, 1, 2'h0, 1)
-      `rggen_ral_create_field_model(bit_field_3, 10, 2, RWE, 0, 2'h0, 1)
-      `rggen_ral_create_field_model(bit_field_4, 12, 2, RWE, 0, 2'h0, 1)
-      `rggen_ral_create_field_model(bit_field_5, 16, 2, RWL, 1, 2'h0, 1)
-      `rggen_ral_create_field_model(bit_field_6, 18, 2, RWL, 0, 2'h0, 1)
-      `rggen_ral_create_field_model(bit_field_7, 20, 2, RWL, 0, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_0, 0, 2, RW, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_1, 2, 2, RW, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_2, 4, 2, RW, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_3, 6, 2, RW, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_4, 8, 2, RWE, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_5, 10, 2, RWE, 0, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_6, 12, 2, RWE, 0, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_7, 16, 2, RWL, 1, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_8, 18, 2, RWL, 0, 2'h0, 1)
+      `rggen_ral_create_field_model(bit_field_9, 20, 2, RWL, 0, 2'h0, 1)
     endfunction
   endclass
   class register_6_reg_model extends rggen_ral_reg;

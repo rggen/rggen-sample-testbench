@@ -27,16 +27,19 @@ module top;
   logic [3:0]                 register_4_bit_field_3_clear;
   logic [3:0]                 register_4_bit_field_3;
   logic                       register_5_bit_field_0_clear;
-  logic [3:0]                 register_5_bit_field_0;
-  logic [3:0]                 register_5_bit_field_1;
-  logic                       register_5_bit_field_2_enable;
-  logic [1:0]                 register_5_bit_field_2;
-  logic [1:0]                 register_5_bit_field_3;
+  logic [1:0]                 register_5_bit_field_0;
+  logic [1:0]                 register_5_bit_field_1;
+  logic                       register_5_bit_field_2_set;
+  logic [1:0]                 register_5_bit_field_2[2];
+  logic [1:0]                 register_5_bit_field_3[2];
+  logic                       register_5_bit_field_4_enable;
   logic [1:0]                 register_5_bit_field_4;
-  logic                       register_5_bit_field_5_lock;
   logic [1:0]                 register_5_bit_field_5;
   logic [1:0]                 register_5_bit_field_6;
+  logic                       register_5_bit_field_7_lock;
   logic [1:0]                 register_5_bit_field_7;
+  logic [1:0]                 register_5_bit_field_8;
+  logic [1:0]                 register_5_bit_field_9;
   logic [3:0]                 register_6_bit_field_0_set;
   logic [3:0]                 register_6_bit_field_0;
   logic [3:0]                 register_6_bit_field_1_set;
@@ -78,8 +81,11 @@ module top;
   assign  register_4_bit_field_1_set    = register_3_bit_field_2_trigger;
   assign  register_4_bit_field_3_clear  = register_3_bit_field_1_trigger;
   assign  register_5_bit_field_0_clear  = register_3_bit_field_1_trigger[0];
-  assign  register_5_bit_field_2_enable = register_0_bit_field_2;
-  assign  register_5_bit_field_5_lock   = register_0_bit_field_2;
+  assign  register_5_bit_field_2_set    = register_3_bit_field_2_trigger[0];
+  assign  register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
+  assign  register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
+  assign  register_5_bit_field_4_enable = register_0_bit_field_2;
+  assign  register_5_bit_field_7_lock   = register_0_bit_field_2;
   assign  register_6_bit_field_0_set    = register_3_bit_field_2_trigger;
   assign  register_6_bit_field_1_set    = register_3_bit_field_2_trigger;
   assign  register_6_bit_field_3_set    = register_3_bit_field_2_trigger;
@@ -110,14 +116,19 @@ module top;
     .i_register_5_bit_field_0_clear     (register_5_bit_field_0_clear     ),
     .o_register_5_bit_field_0           (register_5_bit_field_0           ),
     .o_register_5_bit_field_1           (register_5_bit_field_1           ),
-    .i_register_5_bit_field_2_enable    (register_5_bit_field_2_enable    ),
-    .o_register_5_bit_field_2           (register_5_bit_field_2           ),
-    .o_register_5_bit_field_3           (register_5_bit_field_3           ),
+    .i_register_5_bit_field_2_set       (register_5_bit_field_2_set       ),
+    .i_register_5_bit_field_2           (register_5_bit_field_2[0]        ),
+    .o_register_5_bit_field_2           (register_5_bit_field_2[1]        ),
+    .i_register_5_bit_field_3           (register_5_bit_field_3[0]        ),
+    .o_register_5_bit_field_3           (register_5_bit_field_3[1]        ),
+    .i_register_5_bit_field_4_enable    (register_5_bit_field_4_enable    ),
     .o_register_5_bit_field_4           (register_5_bit_field_4           ),
-    .i_register_5_bit_field_5_lock      (register_5_bit_field_5_lock      ),
     .o_register_5_bit_field_5           (register_5_bit_field_5           ),
     .o_register_5_bit_field_6           (register_5_bit_field_6           ),
+    .i_register_5_bit_field_7_lock      (register_5_bit_field_7_lock      ),
     .o_register_5_bit_field_7           (register_5_bit_field_7           ),
+    .o_register_5_bit_field_8           (register_5_bit_field_8           ),
+    .o_register_5_bit_field_9           (register_5_bit_field_9           ),
     .i_register_6_bit_field_0_set       (register_6_bit_field_0_set       ),
     .o_register_6_bit_field_0           (register_6_bit_field_0           ),
     .i_register_6_bit_field_1_set       (register_6_bit_field_1_set       ),
