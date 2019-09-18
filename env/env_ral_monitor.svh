@@ -23,7 +23,7 @@ class env_ral_monitor #(
     model.build();
 
     model.set_hdl_path_root("top.u_block_0");
-    model.register_9.set_hdl_path_root("top.u_block_1");
+    model.register_10.set_hdl_path_root("top.u_block_1");
     model.enable_backdoor();
 
     model.lock_model();

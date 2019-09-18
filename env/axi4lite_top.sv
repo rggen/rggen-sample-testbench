@@ -55,11 +55,15 @@ module top;
   logic [3:0]                 register_6_bit_field_6;
   logic [3:0]                 register_6_bit_field_7_clear;
   logic [3:0]                 register_6_bit_field_7;
-  logic [3:0][3:0][7:0]       register_7_bit_field_0;
-  logic [3:0][3:0][7:0]       register_7_bit_field_1;
-  logic [1:0][3:0][3:0][7:0]  register_8_bit_field_0;
-  logic [1:0][3:0][3:0][7:0]  register_8_bit_field_1;
-  rggen_bus_if #(8, 32)       register_9_bus_if();
+  logic [3:0]                 register_7_bit_field_0;
+  logic [3:0]                 register_7_bit_field_1;
+  logic [3:0]                 register_7_bit_field_2;
+  logic [3:0]                 register_7_bit_field_3;
+  logic [3:0][3:0][7:0]       register_8_bit_field_0;
+  logic [3:0][3:0][7:0]       register_8_bit_field_1;
+  logic [1:0][3:0][3:0][7:0]  register_9_bit_field_0;
+  logic [1:0][3:0][3:0][7:0]  register_9_bit_field_1;
+  rggen_bus_if #(8, 32)       register_10_bus_if();
 
   initial begin
     clk = 0;
@@ -146,15 +150,19 @@ module top;
     .o_register_6_bit_field_7           (register_6_bit_field_7           ),
     .o_register_7_bit_field_0           (register_7_bit_field_0           ),
     .o_register_7_bit_field_1           (register_7_bit_field_1           ),
+    .o_register_7_bit_field_2           (register_7_bit_field_2           ),
+    .o_register_7_bit_field_3           (register_7_bit_field_3           ),
     .o_register_8_bit_field_0           (register_8_bit_field_0           ),
     .o_register_8_bit_field_1           (register_8_bit_field_1           ),
-    .register_9_bus_if                  (register_9_bus_if                )
+    .o_register_9_bit_field_0           (register_9_bit_field_0           ),
+    .o_register_9_bit_field_1           (register_9_bit_field_1           ),
+    .register_10_bus_if                 (register_10_bus_if               )
   );
 
   rggen_axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_9_bus_if  ),
+    .bus_if       (register_10_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
 

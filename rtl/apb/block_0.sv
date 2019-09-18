@@ -59,17 +59,21 @@ module block_0
   output logic [3:0] o_register_6_bit_field_6,
   input logic [3:0] i_register_6_bit_field_7_clear,
   output logic [3:0] o_register_6_bit_field_7,
-  output logic [3:0][3:0][7:0] o_register_7_bit_field_0,
-  output logic [3:0][3:0][7:0] o_register_7_bit_field_1,
-  output logic [1:0][3:0][3:0][7:0] o_register_8_bit_field_0,
-  output logic [1:0][3:0][3:0][7:0] o_register_8_bit_field_1,
-  rggen_bus_if.master register_9_bus_if
+  output logic [3:0] o_register_7_bit_field_0,
+  output logic [3:0] o_register_7_bit_field_1,
+  output logic [3:0] o_register_7_bit_field_2,
+  output logic [3:0] o_register_7_bit_field_3,
+  output logic [3:0][3:0][7:0] o_register_8_bit_field_0,
+  output logic [3:0][3:0][7:0] o_register_8_bit_field_1,
+  output logic [1:0][3:0][3:0][7:0] o_register_9_bit_field_0,
+  output logic [1:0][3:0][3:0][7:0] o_register_9_bit_field_1,
+  rggen_bus_if.master register_10_bus_if
 );
-  rggen_register_if #(8, 32, 64) register_if[20]();
+  rggen_register_if #(8, 32, 64) register_if[21]();
   rggen_apb_adapter #(
     .ADDRESS_WIDTH  (8),
     .BUS_WIDTH      (32),
-    .REGISTERS      (20)
+    .REGISTERS      (21)
   ) u_adapter (
     .i_clk        (i_clk),
     .i_rst_n      (i_rst_n),
@@ -647,6 +651,80 @@ module block_0
     end
   end endgenerate
   generate if (1) begin : g_register_7
+    rggen_bit_field_if #(32) bit_field_if();
+    rggen_default_register #(
+      .READABLE       (1),
+      .WRITABLE       (1),
+      .ADDRESS_WIDTH  (8),
+      .OFFSET_ADDRESS (8'h18),
+      .BUS_WIDTH      (32),
+      .DATA_WIDTH     (32),
+      .VALID_BITS     (32'h0f0f0f0f),
+      .REGISTER_INDEX (0)
+    ) u_register (
+      .i_clk        (i_clk),
+      .i_rst_n      (i_rst_n),
+      .register_if  (register_if[7]),
+      .bit_field_if (bit_field_if)
+    );
+    if (1) begin : g_bit_field_0
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0, 4)
+      rggen_bit_field_w01crs #(
+        .CLEAR_VALUE    (1'b0),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (4'h0)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_7_bit_field_0)
+      );
+    end
+    if (1) begin : g_bit_field_1
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8, 4)
+      rggen_bit_field_w01crs #(
+        .CLEAR_VALUE    (1'b1),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (4'h0)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_7_bit_field_1)
+      );
+    end
+    if (1) begin : g_bit_field_2
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 16, 4)
+      rggen_bit_field_w01src #(
+        .SET_VALUE      (1'b0),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (4'h0)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_7_bit_field_2)
+      );
+    end
+    if (1) begin : g_bit_field_3
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 24, 4)
+      rggen_bit_field_w01src #(
+        .SET_VALUE      (1'b1),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (4'h0)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_7_bit_field_3)
+      );
+    end
+  end endgenerate
+  generate if (1) begin : g_register_8
     genvar i;
     for (i = 0;i < 4;++i) begin : g
       rggen_bit_field_if #(64) bit_field_if();
@@ -662,7 +740,7 @@ module block_0
       ) u_register (
         .i_clk        (i_clk),
         .i_rst_n      (i_rst_n),
-        .register_if  (register_if[7+i]),
+        .register_if  (register_if[8+i]),
         .bit_field_if (bit_field_if)
       );
       if (1) begin : g_bit_field_0
@@ -677,7 +755,7 @@ module block_0
             .i_clk        (i_clk),
             .i_rst_n      (i_rst_n),
             .bit_field_if (bit_field_sub_if),
-            .o_value      (o_register_7_bit_field_0[i][j])
+            .o_value      (o_register_8_bit_field_0[i][j])
           );
         end
       end
@@ -693,13 +771,13 @@ module block_0
             .i_clk        (i_clk),
             .i_rst_n      (i_rst_n),
             .bit_field_if (bit_field_sub_if),
-            .o_value      (o_register_7_bit_field_1[i][j])
+            .o_value      (o_register_8_bit_field_1[i][j])
           );
         end
       end
     end
   end endgenerate
-  generate if (1) begin : g_register_8
+  generate if (1) begin : g_register_9
     genvar i;
     genvar j;
     for (i = 0;i < 2;++i) begin : g
@@ -720,7 +798,7 @@ module block_0
         ) u_register (
           .i_clk            (i_clk),
           .i_rst_n          (i_rst_n),
-          .register_if      (register_if[11+4*i+j]),
+          .register_if      (register_if[12+4*i+j]),
           .i_indirect_index (indirect_index),
           .bit_field_if     (bit_field_if)
         );
@@ -736,7 +814,7 @@ module block_0
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),
               .bit_field_if (bit_field_sub_if),
-              .o_value      (o_register_8_bit_field_0[i][j][k])
+              .o_value      (o_register_9_bit_field_0[i][j][k])
             );
           end
         end
@@ -752,14 +830,14 @@ module block_0
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),
               .bit_field_if (bit_field_sub_if),
-              .o_value      (o_register_8_bit_field_1[i][j][k])
+              .o_value      (o_register_9_bit_field_1[i][j][k])
             );
           end
         end
       end
     end
   end endgenerate
-  generate if (1) begin : g_register_9
+  generate if (1) begin : g_register_10
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
@@ -768,8 +846,8 @@ module block_0
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
-      .register_if  (register_if[19]),
-      .bus_if       (register_9_bus_if)
+      .register_if  (register_if[20]),
+      .bus_if       (register_10_bus_if)
     );
   end endgenerate
 endmodule
