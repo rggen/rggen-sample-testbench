@@ -51,7 +51,7 @@ $ export RGGEN_SV_RTL_ROOT=`pwd`/rggen-sv-ral
 
 ### Run Simulation
 
-This testbench has a `makefile` to use Synopsys VCS simulator. You can run simualtion by using the `makefile`.
+Synopsys VCS simulator and Cadence Xcelium simulator are supported.
 
 1. Move to the work directry
     * for DUT with AMBA APB interfac
@@ -65,7 +65,11 @@ This testbench has a `makefile` to use Synopsys VCS simulator. You can run simua
 $ make
 ```
 
-Then, all sample testcases will be executed on VCS simulator.
+By default, all sample testcases will be execluted by VCS simulator. If you want to use Xcelium simulator, add `SIMULATOR=xcelium` option to `makefile` command.
+
+```
+$ make SIMULATOR=xcelium
+```
 
 If you want to execute an specific testcase then you need to give its name to `make` command like below.
 
@@ -86,6 +90,12 @@ $ make ral_bit_bash_test GUI=dve
 
 ```
 $ make ral_bit_bash_test GUI=verdi
+```
+
+* Frontend: Indago
+
+```
+$ make ral_bit_bash_test SIMULATOR=xcelium GUI=indago
 ```
 
 ## Contact
