@@ -63,7 +63,9 @@ module top;
   logic [3:0][3:0][7:0]       register_8_bit_field_1;
   logic [1:0][3:0][3:0][7:0]  register_9_bit_field_0;
   logic [1:0][3:0][3:0][7:0]  register_9_bit_field_1;
-  rggen_bus_if #(8, 32)       register_10_bus_if();
+  logic                       register_10_bit_field_0;
+  logic                       register_11_bit_field_0;
+  rggen_bus_if #(8, 32)       register_12_bus_if();
 
   initial begin
     clk = 0;
@@ -156,13 +158,15 @@ module top;
     .o_register_8_bit_field_1           (register_8_bit_field_1           ),
     .o_register_9_bit_field_0           (register_9_bit_field_0           ),
     .o_register_9_bit_field_1           (register_9_bit_field_1           ),
-    .register_10_bus_if                 (register_10_bus_if               )
+    .o_register_10_bit_field_0          (register_10_bit_field_0          ),
+    .o_register_11_bit_field_0          (register_11_bit_field_0          ),
+    .register_12_bus_if                 (register_12_bus_if               )
   );
 
   rggen_axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_10_bus_if ),
+    .bus_if       (register_12_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
 

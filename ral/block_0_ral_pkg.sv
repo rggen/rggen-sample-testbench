@@ -170,12 +170,35 @@ package block_0_ral_pkg;
       setup_index_field("register_0", "bit_field_0", array_index[0]);
       setup_index_field("register_0", "bit_field_1", array_index[1]);
       setup_index_field("register_0", "bit_field_2", 1'h0);
-      setup_index_field("register_1", "register_1", 1'h1);
+    endfunction
+  endclass
+  class register_10_reg_model extends rggen_ral_indirect_reg;
+    rand rggen_ral_field bit_field_0;
+    function new(string name);
+      super.new(name, 32, 0);
+    endfunction
+    function void build();
+      `rggen_ral_create_field_model(bit_field_0, 0, 1, RW, 0, 1'h0, 1)
+    endfunction
+    function void setup_index_fields();
+      setup_index_field("register_0", "bit_field_2", 1'h1);
+    endfunction
+  endclass
+  class register_11_reg_model extends rggen_ral_indirect_reg;
+    rand rggen_ral_field bit_field_0;
+    function new(string name);
+      super.new(name, 32, 0);
+    endfunction
+    function void build();
+      `rggen_ral_create_field_model(bit_field_0, 0, 1, RW, 0, 1'h0, 1)
+    endfunction
+    function void setup_index_fields();
+      setup_index_field("register_0", "bit_field_2", 1'h1);
     endfunction
   endclass
   class block_0_block_model #(
-    type REGISTER_10 = rggen_ral_block,
-    bit INTEGRATE_REGISTER_10 = 1
+    type REGISTER_12 = rggen_ral_block,
+    bit INTEGRATE_REGISTER_12 = 1
   ) extends rggen_ral_block;
     rand register_0_reg_model register_0;
     rand register_1_reg_model register_1;
@@ -187,7 +210,9 @@ package block_0_ral_pkg;
     rand register_7_reg_model register_7;
     rand register_8_reg_model register_8[4];
     rand register_9_reg_model register_9[2][4];
-    rand REGISTER_10 register_10;
+    rand register_10_reg_model register_10;
+    rand register_11_reg_model register_11;
+    rand REGISTER_12 register_12;
     function new(string name);
       super.new(name);
     endfunction
@@ -212,7 +237,9 @@ package block_0_ral_pkg;
       `rggen_ral_create_reg_model(register_9[1][1], '{1, 1}, 8'h40, RW, 1, g_register_9.g[1].g[1].u_register)
       `rggen_ral_create_reg_model(register_9[1][2], '{1, 2}, 8'h40, RW, 1, g_register_9.g[1].g[2].u_register)
       `rggen_ral_create_reg_model(register_9[1][3], '{1, 3}, 8'h40, RW, 1, g_register_9.g[1].g[3].u_register)
-      `rggen_ral_create_block_model(register_10, 8'h80, this, INTEGRATE_REGISTER_10)
+      `rggen_ral_create_reg_model(register_10, '{}, 8'h40, RW, 1, g_register_10.u_register)
+      `rggen_ral_create_reg_model(register_11, '{}, 8'h44, RW, 1, g_register_11.u_register)
+      `rggen_ral_create_block_model(register_12, 8'h80, this, INTEGRATE_REGISTER_12)
     endfunction
     function uvm_reg_map create_default_map();
       return create_map("default_map", 0, 4, UVM_LITTLE_ENDIAN, 1);
