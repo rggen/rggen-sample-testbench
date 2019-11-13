@@ -10,6 +10,8 @@
 module block_1
   import rggen_rtl_pkg::*;
 #(
+  parameter bit ERROR_STATUS = 0,
+  parameter bit [31:0] DEFAULT_READ_DATA = 32'h00000000,
   parameter bit WRITE_FIRST = 1
 )(
   input logic i_clk,
@@ -20,10 +22,12 @@ module block_1
 );
   rggen_register_if #(7, 32, 64) register_if[16]();
   rggen_axi4lite_adapter #(
-    .ADDRESS_WIDTH  (7),
-    .BUS_WIDTH      (32),
-    .REGISTERS      (16),
-    .WRITE_FIRST    (WRITE_FIRST)
+    .ADDRESS_WIDTH      (7),
+    .BUS_WIDTH          (32),
+    .REGISTERS          (16),
+    .ERROR_STATUS       (ERROR_STATUS),
+    .DEFAULT_READ_DATA  (DEFAULT_READ_DATA),
+    .WRITE_FIRST        (WRITE_FIRST)
   ) u_adapter (
     .i_clk        (i_clk),
     .i_rst_n      (i_rst_n),
@@ -54,11 +58,12 @@ module block_1
         if (1) begin : g_bit_field_0
           genvar k;
           for (k = 0;k < 4;++k) begin : g
+            localparam bit [7:0] INITIAL_VALUE = 8'h00;
             rggen_bit_field_if #(8) bit_field_sub_if();
             `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0+16*k, 8)
             rggen_bit_field_rw #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (8'h00)
+              .INITIAL_VALUE  (INITIAL_VALUE)
             ) u_bit_field (
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),
@@ -120,11 +125,12 @@ module block_1
         if (1) begin : g_bit_field_1
           genvar k;
           for (k = 0;k < 4;++k) begin : g
+            localparam bit [7:0] INITIAL_VALUE = 8'h00;
             rggen_bit_field_if #(8) bit_field_sub_if();
             `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8+16*k, 8)
             rggen_bit_field_rw #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (8'h00)
+              .INITIAL_VALUE  (INITIAL_VALUE)
             ) u_bit_field (
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),

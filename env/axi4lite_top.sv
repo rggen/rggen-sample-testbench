@@ -59,8 +59,9 @@ module top;
   logic [3:0]                 register_7_bit_field_1;
   logic [3:0]                 register_7_bit_field_2;
   logic [3:0]                 register_7_bit_field_3;
-  logic [3:0][3:0][7:0]       register_8_bit_field_0;
-  logic [3:0][3:0][7:0]       register_8_bit_field_1;
+  logic [3:0][3:0][3:0]       register_8_bit_field_0;
+  logic [3:0][3:0][3:0]       register_8_bit_field_1;
+  logic [3:0][3:0][3:0]       register_8_bit_field_2;
   logic [1:0][3:0][3:0][7:0]  register_9_bit_field_0;
   logic [1:0][3:0][3:0][7:0]  register_9_bit_field_1;
   logic                       register_10_bit_field_0;
@@ -100,7 +101,10 @@ module top;
   assign  register_6_bit_field_6_clear  = register_3_bit_field_1_trigger;
   assign  register_6_bit_field_7_clear  = register_3_bit_field_1_trigger;
 
-  block_0 u_block_0 (
+  block_0 #(
+    .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
+    .REGISTER_8_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
+  ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
     .axi4lite_if                        (axi4lite_if[0]                   ),
@@ -156,6 +160,7 @@ module top;
     .o_register_7_bit_field_3           (register_7_bit_field_3           ),
     .o_register_8_bit_field_0           (register_8_bit_field_0           ),
     .o_register_8_bit_field_1           (register_8_bit_field_1           ),
+    .o_register_8_bit_field_2           (register_8_bit_field_2           ),
     .o_register_9_bit_field_0           (register_9_bit_field_0           ),
     .o_register_9_bit_field_1           (register_9_bit_field_1           ),
     .o_register_10_bit_field_0          (register_10_bit_field_0          ),

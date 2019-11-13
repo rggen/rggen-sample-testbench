@@ -136,18 +136,23 @@ package block_0_ral_pkg;
   class register_8_reg_model extends rggen_ral_reg;
     rand rggen_ral_field bit_field_0[4];
     rand rggen_ral_field bit_field_1[4];
+    rand rggen_ral_field bit_field_2[4];
     function new(string name);
       super.new(name, 64, 0);
     endfunction
     function void build();
-      `rggen_ral_create_field_model(bit_field_0[0], 0, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_0[1], 16, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_0[2], 32, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_0[3], 48, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_1[0], 8, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_1[1], 24, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_1[2], 40, 8, RW, 0, 8'h00, 1)
-      `rggen_ral_create_field_model(bit_field_1[3], 56, 8, RW, 0, 8'h00, 1)
+      `rggen_ral_create_field_model(bit_field_0[0], 0, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_0[1], 16, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_0[2], 32, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_0[3], 48, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_1[0], 4, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_1[1], 20, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_1[2], 36, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_1[3], 52, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_2[0], 8, 4, RW, 0, 4'h0, 1)
+      `rggen_ral_create_field_model(bit_field_2[1], 24, 4, RW, 0, 4'h1, 1)
+      `rggen_ral_create_field_model(bit_field_2[2], 40, 4, RW, 0, 4'h2, 1)
+      `rggen_ral_create_field_model(bit_field_2[3], 56, 4, RW, 0, 4'h3, 1)
     endfunction
   endclass
   class register_9_reg_model extends rggen_ral_indirect_reg;
