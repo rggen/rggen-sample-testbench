@@ -59,9 +59,11 @@ module block_1
             localparam bit [7:0] INITIAL_VALUE = 8'h00;
             rggen_bit_field_if #(8) bit_field_sub_if();
             `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0+16*k, 8)
-            rggen_bit_field_rw #(
+            rggen_bit_field_rw_wo #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (INITIAL_VALUE)
+              .INITIAL_VALUE  (INITIAL_VALUE),
+              .WRITE_ONLY     (0),
+              .WRITE_ONCE     (0)
             ) u_bit_field (
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),
@@ -126,9 +128,11 @@ module block_1
             localparam bit [7:0] INITIAL_VALUE = 8'h00;
             rggen_bit_field_if #(8) bit_field_sub_if();
             `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8+16*k, 8)
-            rggen_bit_field_rw #(
+            rggen_bit_field_rw_wo #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (INITIAL_VALUE)
+              .INITIAL_VALUE  (INITIAL_VALUE),
+              .WRITE_ONLY     (0),
+              .WRITE_ONCE     (0)
             ) u_bit_field (
               .i_clk        (i_clk),
               .i_rst_n      (i_rst_n),

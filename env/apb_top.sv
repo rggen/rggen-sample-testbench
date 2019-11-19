@@ -13,12 +13,14 @@ module top;
   logic [3:0]                 register_0_bit_field_0;
   logic [3:0]                 register_0_bit_field_1;
   logic                       register_0_bit_field_2;
+  logic [1:0]                 register_0_bit_field_3;
   logic                       register_1;
   logic [3:0]                 register_2_bit_field_0;
   logic [3:0]                 register_2_bit_field_1;
   logic [3:0]                 register_3_bit_field_0;
-  logic [3:0]                 register_3_bit_field_1_trigger;
+  logic [3:0]                 register_3_bit_field_1;
   logic [3:0]                 register_3_bit_field_2_trigger;
+  logic [3:0]                 register_3_bit_field_3_trigger;
   logic [3:0]                 register_4_bit_field_0_set;
   logic [3:0]                 register_4_bit_field_0;
   logic [3:0]                 register_4_bit_field_1_set;
@@ -84,21 +86,21 @@ module top;
 
   assign  register_2_bit_field_0        = register_0_bit_field_0;
   assign  register_2_bit_field_1        = register_0_bit_field_1;
-  assign  register_4_bit_field_0_set    = register_3_bit_field_2_trigger;
-  assign  register_4_bit_field_1_set    = register_3_bit_field_2_trigger;
-  assign  register_4_bit_field_3_clear  = register_3_bit_field_1_trigger;
-  assign  register_5_bit_field_0_clear  = register_3_bit_field_1_trigger[0];
-  assign  register_5_bit_field_2_set    = register_3_bit_field_2_trigger[0];
+  assign  register_4_bit_field_0_set    = register_3_bit_field_3_trigger;
+  assign  register_4_bit_field_1_set    = register_3_bit_field_3_trigger;
+  assign  register_4_bit_field_3_clear  = register_3_bit_field_2_trigger;
+  assign  register_5_bit_field_0_clear  = register_3_bit_field_2_trigger[0];
+  assign  register_5_bit_field_2_set    = register_3_bit_field_3_trigger[0];
   assign  register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
   assign  register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
   assign  register_5_bit_field_4_enable = register_0_bit_field_2;
   assign  register_5_bit_field_7_lock   = register_0_bit_field_2;
-  assign  register_6_bit_field_0_set    = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_1_set    = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_3_set    = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_4_set    = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_6_clear  = register_3_bit_field_1_trigger;
-  assign  register_6_bit_field_7_clear  = register_3_bit_field_1_trigger;
+  assign  register_6_bit_field_0_set    = register_3_bit_field_3_trigger;
+  assign  register_6_bit_field_1_set    = register_3_bit_field_3_trigger;
+  assign  register_6_bit_field_3_set    = register_3_bit_field_3_trigger;
+  assign  register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
+  assign  register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
+  assign  register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
 
   block_0 #(
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
@@ -110,12 +112,14 @@ module top;
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
+    .o_register_0_bit_field_3           (register_0_bit_field_3           ),
     .o_register_1                       (register_1                       ),
     .i_register_2_bit_field_0           (register_2_bit_field_0           ),
     .i_register_2_bit_field_1           (register_2_bit_field_1           ),
     .o_register_3_bit_field_0           (register_3_bit_field_0           ),
-    .o_register_3_bit_field_1_trigger   (register_3_bit_field_1_trigger   ),
+    .o_register_3_bit_field_1           (register_3_bit_field_1           ),
     .o_register_3_bit_field_2_trigger   (register_3_bit_field_2_trigger   ),
+    .o_register_3_bit_field_3_trigger   (register_3_bit_field_3_trigger   ),
     .i_register_4_bit_field_0_set       (register_4_bit_field_0_set       ),
     .o_register_4_bit_field_0           (register_4_bit_field_0           ),
     .i_register_4_bit_field_1_set       (register_4_bit_field_1_set       ),
