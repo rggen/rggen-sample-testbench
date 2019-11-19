@@ -7,6 +7,7 @@ VCS_ARGS	+= -sverilog
 VCS_ARGS	+= -l vcs.log
 VCS_ARGS	+= +incdir+$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
 VCS_ARGS	+= +define+RGGEN_ENABLE_BACKDOOR
+VCS_ARGS	+= +define+RGGEN_ENABLE_SVA
 VCS_ARGS	+= -timescale=1ns/1ps
 VCS_ARGS	+= -ntb_opts uvm-1.2
 VCS_ARGS	+= -top top
