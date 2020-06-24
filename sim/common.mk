@@ -12,9 +12,9 @@ SIMULATOR ?= vcs
 GUI	?= off
 TR_DEBUG	?= off
 
+FILE_LISTS	+= $(TUE_HOME)/compile.f
 FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile.f
 FILE_LISTS	+= $(RGGEN_SV_RAL_ROOT)/compile.f
-FILE_LISTS	+= $(TUE_HOME)/compile.f
 
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_0_ral_pkg.sv
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_1_ral_pkg.sv
