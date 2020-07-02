@@ -13,3 +13,6 @@
 [submodule "env/tvip-axi"]
 	path = env/tvip-axi
 	url = git@github.com:taichi-ishitani/tvip-axi.git
+[submodule "env/tvip-common"]
+	path = env/tvip-common
+	url = git@github.com:taichi-ishitani/tvip-common.git

@@ -9,9 +9,9 @@ package axi4lite_env_pkg;
   `include  "tue_macros.svh"
 
   typedef env_ral_monitor #(
-    .ITEM       (tvip_axi_master_item           ),
-    .ADAPTER    (tvip_axi_master_ral_adapter    ),
-    .PREDICTOR  (tvip_axi_master_ral_predictor  )
+    .ITEM       (tvip_axi_item          ),
+    .ADAPTER    (tvip_axi_ral_adapter   ),
+    .PREDICTOR  (tvip_axi_ral_predictor )
   ) axi4lite_env_ral_monitor;
 
   class axi4lite_env_configuration extends env_configuration;
