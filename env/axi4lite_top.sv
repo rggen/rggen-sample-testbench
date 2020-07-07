@@ -180,11 +180,17 @@ module top;
   );
 
   block_1 u_block_1 (
-    .i_clk                    (clk            ),
-    .i_rst_n                  (rst_n          ),
-    .axi4lite_if              (axi4lite_if[1] ),
-    .o_register_0_bit_field_0 (),
-    .o_register_1_bit_field_1 ()
+    .i_clk                                                    (clk            ),
+    .i_rst_n                                                  (rst_n          ),
+    .axi4lite_if                                              (axi4lite_if[1] ),
+    .o_register_file_0_register_0_bit_field_0                 (),
+    .o_register_file_0_register_1_bit_field_0                 (),
+    .o_register_file_1_register_0_bit_field_0                 (),
+    .o_register_file_1_register_1_bit_field_0                 (),
+    .o_register_file_2_register_file_0_register_0_bit_field_0 (),
+    .o_register_file_2_register_file_0_register_0_bit_field_1 (),
+    .o_register_file_2_register_file_0_register_0_bit_field_2 (),
+    .o_register_file_2_register_file_0_register_1_bit_field_0 ()
   );
 
   tvip_axi_if vip_axi_if(clk, rst_n);
