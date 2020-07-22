@@ -20,6 +20,7 @@ class env_ral_monitor #(
 
     model = env_ral_model::type_id::create("model");
     model.configure(null);
+    model.default_map.set_base_addr('h1000);
     model.build();
 
     foreach (model.register_8[i]) begin

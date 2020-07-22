@@ -103,6 +103,9 @@ module top;
   assign  register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
 
   block_0 #(
+    .ADDRESS_WIDTH                        (16                       ),
+    .PRE_DECODE                           (1                        ),
+    .BASE_ADDRESS                         (16'h1000                 ),
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
     .REGISTER_8_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
   ) u_block_0 (

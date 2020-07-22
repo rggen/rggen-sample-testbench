@@ -10,8 +10,11 @@
 module block_1
   import rggen_rtl_pkg::*;
 #(
+  parameter int ADDRESS_WIDTH = 7,
+  parameter bit PRE_DECODE = 0,
+  parameter bit [ADDRESS_WIDTH-1:0] BASE_ADDRESS = '0,
   parameter bit ERROR_STATUS = 0,
-  parameter bit [31:0] DEFAULT_READ_DATA = 32'h00000000,
+  parameter bit [31:0] DEFAULT_READ_DATA = '0,
   parameter bit WRITE_FIRST = 1
 )(
   input logic i_clk,
@@ -28,12 +31,16 @@ module block_1
 );
   rggen_register_if #(7, 32, 32) register_if[20]();
   rggen_axi4lite_adapter #(
-    .ADDRESS_WIDTH      (7),
-    .BUS_WIDTH          (32),
-    .REGISTERS          (20),
-    .ERROR_STATUS       (ERROR_STATUS),
-    .DEFAULT_READ_DATA  (DEFAULT_READ_DATA),
-    .WRITE_FIRST        (WRITE_FIRST)
+    .ADDRESS_WIDTH        (ADDRESS_WIDTH),
+    .LOCAL_ADDRESS_WIDTH  (7),
+    .BUS_WIDTH            (32),
+    .REGISTERS            (20),
+    .PRE_DECODE           (PRE_DECODE),
+    .BASE_ADDRESS         (BASE_ADDRESS),
+    .BYTE_SIZE            (128),
+    .ERROR_STATUS         (ERROR_STATUS),
+    .DEFAULT_READ_DATA    (DEFAULT_READ_DATA),
+    .WRITE_FIRST          (WRITE_FIRST)
   ) u_adapter (
     .i_clk        (i_clk),
     .i_rst_n      (i_rst_n),
