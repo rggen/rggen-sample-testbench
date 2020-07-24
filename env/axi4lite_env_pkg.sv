@@ -8,12 +8,6 @@ package axi4lite_env_pkg;
   `include  "uvm_macros.svh"
   `include  "tue_macros.svh"
 
-  typedef env_ral_monitor #(
-    .ITEM       (tvip_axi_item          ),
-    .ADAPTER    (tvip_axi_ral_adapter   ),
-    .PREDICTOR  (tvip_axi_ral_predictor )
-  ) axi4lite_env_ral_monitor;
-
   class axi4lite_env_configuration extends env_configuration;
     tvip_axi_configuration  axi4lite_configuration;
 
@@ -26,6 +20,20 @@ package axi4lite_env_pkg;
       `uvm_field_object(axi4lite_configuration, UVM_DEFAULT)
     `uvm_object_utils_end
   endclass
+
+  class axi4lite_env_adapter extends tvip_axi_ral_adapter;
+    protected function tvip_axi_id get_axi_id();
+      return $urandom_range(0, 3);
+    endfunction
+    `tue_object_default_constructor(axi4lite_env_adapter)
+    `uvm_object_utils(axi4lite_env_adapter)
+  endclass
+
+  typedef env_ral_monitor #(
+    .ITEM       (tvip_axi_item          ),
+    .ADAPTER    (axi4lite_env_adapter   ),
+    .PREDICTOR  (tvip_axi_ral_predictor )
+  ) axi4lite_env_ral_monitor;
 
   class axi4lite_env extends env_param_base #(
     .AGENT        (tvip_axi_master_agent    ),

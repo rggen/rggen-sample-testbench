@@ -15,6 +15,7 @@ module block_0
   parameter bit [ADDRESS_WIDTH-1:0] BASE_ADDRESS = '0,
   parameter bit ERROR_STATUS = 0,
   parameter bit [31:0] DEFAULT_READ_DATA = '0,
+  parameter int ID_WIDTH = 0,
   parameter bit WRITE_FIRST = 1,
   parameter bit [3:0][3:0] REGISTER_8_BIT_FIELD_1_INITIAL_VALUE = {4{4'h0}}
 )(
@@ -84,6 +85,7 @@ module block_0
 );
   rggen_register_if #(8, 32, 64) register_if[23]();
   rggen_axi4lite_adapter #(
+    .ID_WIDTH             (ID_WIDTH),
     .ADDRESS_WIDTH        (ADDRESS_WIDTH),
     .LOCAL_ADDRESS_WIDTH  (8),
     .BUS_WIDTH            (32),
