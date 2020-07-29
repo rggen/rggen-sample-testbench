@@ -39,6 +39,8 @@ If execution of above commands failed you need to get them from GitHub repositli
 ```
 $ git clone https://github.com/taichi-ishitani/tue.git
 $ export TUE_HOME=`pwd`/tue
+$ git clone https://github.com/taichi-ishitani/tvip-common.git
+$ export TVIP_COMMON_HOME=`pwd`/tvip-common
 $ git clone https://github.com/taichi-ishitani/tvip-apb.git
 $ export TVIP_APB_HOME=`pwd`/tvip-apb
 $ git clone https://github.com/taichi-ishitani/tvip-axi.git
