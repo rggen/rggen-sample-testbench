@@ -1,6 +1,7 @@
 #! /bin/bash -f
 submodules=(
   env/tue
+  env/tvip-common
   env/tvip-apb
   env/tvip-axi
   ral/rggen-sv-ral
