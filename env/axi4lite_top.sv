@@ -57,6 +57,8 @@ module top;
   logic [3:0]                     register_6_bit_field_6;
   logic [3:0]                     register_6_bit_field_7_clear;
   logic [3:0]                     register_6_bit_field_7;
+  logic [3:0]                     register_6_bit_field_8;
+  logic [3:0]                     register_6_bit_field_9;
   logic [3:0]                     register_7_bit_field_0;
   logic [3:0]                     register_7_bit_field_1;
   logic [3:0]                     register_7_bit_field_2;
@@ -162,6 +164,8 @@ module top;
     .o_register_6_bit_field_6           (register_6_bit_field_6           ),
     .i_register_6_bit_field_7_clear     (register_6_bit_field_7_clear     ),
     .o_register_6_bit_field_7           (register_6_bit_field_7           ),
+    .o_register_6_bit_field_8           (register_6_bit_field_8           ),
+    .o_register_6_bit_field_9           (register_6_bit_field_9           ),
     .o_register_7_bit_field_0           (register_7_bit_field_0           ),
     .o_register_7_bit_field_1           (register_7_bit_field_1           ),
     .o_register_7_bit_field_2           (register_7_bit_field_2           ),

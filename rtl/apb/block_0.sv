@@ -68,6 +68,8 @@ module block_0
   output logic [3:0] o_register_6_bit_field_6,
   input logic [3:0] i_register_6_bit_field_7_clear,
   output logic [3:0] o_register_6_bit_field_7,
+  output logic [3:0] o_register_6_bit_field_8,
+  output logic [3:0] o_register_6_bit_field_9,
   output logic [3:0] o_register_7_bit_field_0,
   output logic [3:0] o_register_7_bit_field_1,
   output logic [3:0] o_register_7_bit_field_2,
@@ -594,15 +596,15 @@ module block_0
     end
   end endgenerate
   generate if (1) begin : g_register_6
-    rggen_bit_field_if #(32) bit_field_if();
+    rggen_bit_field_if #(64) bit_field_if();
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h14),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .VALID_BITS     (32'hffffffff),
+      .DATA_WIDTH     (64),
+      .VALID_BITS     (64'h000000ffffffffff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -734,6 +736,36 @@ module block_0
         .o_value      (o_register_6_bit_field_7)
       );
     end
+    if (1) begin : g_bit_field_8
+      localparam bit [3:0] INITIAL_VALUE = 4'h0;
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 32, 4)
+      rggen_bit_field_w01t #(
+        .TOGGLE_VALUE   (1'b0),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (INITIAL_VALUE)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_6_bit_field_8)
+      );
+    end
+    if (1) begin : g_bit_field_9
+      localparam bit [3:0] INITIAL_VALUE = 4'h0;
+      rggen_bit_field_if #(4) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 36, 4)
+      rggen_bit_field_w01t #(
+        .TOGGLE_VALUE   (1'b1),
+        .WIDTH          (4),
+        .INITIAL_VALUE  (INITIAL_VALUE)
+      ) u_bit_field (
+        .i_clk        (i_clk),
+        .i_rst_n      (i_rst_n),
+        .bit_field_if (bit_field_sub_if),
+        .o_value      (o_register_6_bit_field_9)
+      );
+    end
   end endgenerate
   generate if (1) begin : g_register_7
     rggen_bit_field_if #(32) bit_field_if();
@@ -741,7 +773,7 @@ module block_0
       .READABLE       (1),
       .WRITABLE       (1),
       .ADDRESS_WIDTH  (8),
-      .OFFSET_ADDRESS (8'h18),
+      .OFFSET_ADDRESS (8'h1c),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
       .VALID_BITS     (32'h0f0f0f0f),
