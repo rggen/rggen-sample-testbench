@@ -15,6 +15,8 @@ module top;
   logic [3:0]                     register_0_bit_field_1;
   logic                           register_0_bit_field_2;
   logic [1:0]                     register_0_bit_field_3;
+  logic [1:0]                     register_0_bit_field_4;
+  logic [1:0]                     register_0_bit_field_5;
   logic                           register_1;
   logic [3:0]                     register_2_bit_field_0;
   logic [3:0]                     register_2_bit_field_1;
@@ -63,14 +65,24 @@ module top;
   logic [3:0]                     register_7_bit_field_1;
   logic [3:0]                     register_7_bit_field_2;
   logic [3:0]                     register_7_bit_field_3;
-  logic [3:0][3:0][3:0]           register_8_bit_field_0;
-  logic [3:0][3:0][3:0]           register_8_bit_field_1;
-  logic [3:0][3:0][3:0]           register_8_bit_field_2;
-  logic [1:0][3:0][3:0][7:0]      register_9_bit_field_0;
-  logic [1:0][3:0][3:0][7:0]      register_9_bit_field_1;
-  logic                           register_10_bit_field_0;
+  logic [3:0]                     register_8_bit_field_0_set;
+  logic [3:0]                     register_8_bit_field_0;
+  logic [3:0]                     register_8_bit_field_1_clear;
+  logic [3:0]                     register_8_bit_field_1;
+  logic [3:0]                     register_8_bit_field_2_set;
+  logic [3:0]                     register_8_bit_field_2;
+  logic [3:0]                     register_8_bit_field_3_clear;
+  logic [3:0]                     register_8_bit_field_3;
+  logic [3:0]                     register_8_bit_field_4;
+  logic [3:0]                     register_8_bit_field_5;
+  logic [3:0][3:0][3:0]           register_9_bit_field_0;
+  logic [3:0][3:0][3:0]           register_9_bit_field_1;
+  logic [3:0][3:0][3:0]           register_9_bit_field_2;
+  logic [1:0][3:0][3:0][7:0]      register_10_bit_field_0;
+  logic [1:0][3:0][3:0][7:0]      register_10_bit_field_1;
   logic                           register_11_bit_field_0;
-  rggen_bus_if #(8, 32)           register_12_bus_if();
+  logic                           register_12_bit_field_0;
+  rggen_bus_if #(8, 32)           register_13_bus_if();
 
   initial begin
     clk = 0;
@@ -104,6 +116,10 @@ module top;
   assign  register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
   assign  register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
   assign  register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
+  assign  register_8_bit_field_0_set    = register_3_bit_field_3_trigger;
+  assign  register_8_bit_field_1_clear  = register_3_bit_field_2_trigger;
+  assign  register_8_bit_field_2_set    = register_3_bit_field_3_trigger;
+  assign  register_8_bit_field_3_clear  = register_3_bit_field_2_trigger;
 
   block_0 #(
     .ADDRESS_WIDTH                        (16                       ),
@@ -111,7 +127,7 @@ module top;
     .PRE_DECODE                           (1                        ),
     .BASE_ADDRESS                         (16'h1000                 ),
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
-    .REGISTER_8_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
+    .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
@@ -120,6 +136,8 @@ module top;
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
     .o_register_0_bit_field_3           (register_0_bit_field_3           ),
+    .o_register_0_bit_field_4           (register_0_bit_field_4           ),
+    .o_register_0_bit_field_5           (register_0_bit_field_5           ),
     .o_register_1                       (register_1                       ),
     .i_register_2_bit_field_0           (register_2_bit_field_0           ),
     .i_register_2_bit_field_1           (register_2_bit_field_1           ),
@@ -170,20 +188,30 @@ module top;
     .o_register_7_bit_field_1           (register_7_bit_field_1           ),
     .o_register_7_bit_field_2           (register_7_bit_field_2           ),
     .o_register_7_bit_field_3           (register_7_bit_field_3           ),
+    .i_register_8_bit_field_0_set       (register_8_bit_field_0_set       ),
     .o_register_8_bit_field_0           (register_8_bit_field_0           ),
+    .i_register_8_bit_field_1_clear     (register_8_bit_field_1_clear     ),
     .o_register_8_bit_field_1           (register_8_bit_field_1           ),
+    .i_register_8_bit_field_2_set       (register_8_bit_field_2_set       ),
     .o_register_8_bit_field_2           (register_8_bit_field_2           ),
+    .i_register_8_bit_field_3_clear     (register_8_bit_field_3_clear     ),
+    .o_register_8_bit_field_3           (register_8_bit_field_3           ),
+    .o_register_8_bit_field_4           (register_8_bit_field_4           ),
+    .o_register_8_bit_field_5           (register_8_bit_field_5           ),
     .o_register_9_bit_field_0           (register_9_bit_field_0           ),
     .o_register_9_bit_field_1           (register_9_bit_field_1           ),
+    .o_register_9_bit_field_2           (register_9_bit_field_2           ),
     .o_register_10_bit_field_0          (register_10_bit_field_0          ),
+    .o_register_10_bit_field_1          (register_10_bit_field_1          ),
     .o_register_11_bit_field_0          (register_11_bit_field_0          ),
-    .register_12_bus_if                 (register_12_bus_if               )
+    .o_register_12_bit_field_0          (register_12_bit_field_0          ),
+    .register_13_bus_if                 (register_13_bus_if               )
   );
 
   rggen_axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_12_bus_if ),
+    .bus_if       (register_13_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
 

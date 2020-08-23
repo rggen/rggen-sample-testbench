@@ -23,15 +23,15 @@ class env_ral_monitor #(
     model.default_map.set_base_addr('h1000);
     model.build();
 
-    foreach (model.register_8[i]) begin
-      model.register_8[i].bit_field_1[0].set_reset(4'hC);
-      model.register_8[i].bit_field_1[1].set_reset(4'hD);
-      model.register_8[i].bit_field_1[2].set_reset(4'hE);
-      model.register_8[i].bit_field_1[3].set_reset(4'hF);
+    foreach (model.register_9[i]) begin
+      model.register_9[i].bit_field_1[0].set_reset(4'hC);
+      model.register_9[i].bit_field_1[1].set_reset(4'hD);
+      model.register_9[i].bit_field_1[2].set_reset(4'hE);
+      model.register_9[i].bit_field_1[3].set_reset(4'hF);
     end
 
     model.set_hdl_path_root("top.u_block_0");
-    model.register_12.set_hdl_path_root("top.u_block_1");
+    model.register_13.set_hdl_path_root("top.u_block_1");
     model.enable_backdoor();
 
     model.lock_model();
