@@ -49,6 +49,8 @@ $ git clone https://github.com/rggen/rggen-sv-rtl.git
 $ export RGGEN_SV_RTL_ROOT=`pwd`/rggen-sv-rtl
 $ git clone https://github.com/rggen/rggen-sv-ral.git
 $ export RGGEN_SV_RTL_ROOT=`pwd`/rggen-sv-ral
+$ git clone https://github.com/rggen/rggen-verilog-rtl.git
+$ export RGGEN_VERILOG_RTL_ROOT=`pwd`/rggen-verilog-rtl
 ```
 
 ### Run Simulation
@@ -57,9 +59,11 @@ Synopsys VCS simulator and Cadence Xcelium simulator are supported.
 
 1. Move to the work directry
     * for DUT with AMBA APB interfac
-        * `sim/apb`
+        * `sim/systemverilog/apb`
+        * `sim/verilog/apb`
     * for DUT with AMBA AXI4-Lite interface
-        * `sim/axi4lite`
+        * `sim/systemverilog/axi4lite`
+        * `sim/verilog/axi4lite`
 
 2. Hit `make` command on the work directry
 
