@@ -131,7 +131,33 @@ module top;
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
+`ifdef RGGEN_SYSTEMVERILOG
     .axi4lite_if                        (axi4lite_if[0]                   ),
+`else
+    .i_awvalid                          (axi4lite_if[0].awvalid           ),
+    .o_awready                          (axi4lite_if[0].awready           ),
+    .i_awid                             (axi4lite_if[0].awid              ),
+    .i_awaddr                           (axi4lite_if[0].awaddr            ),
+    .i_awprot                           (axi4lite_if[0].awprot            ),
+    .i_wvalid                           (axi4lite_if[0].wvalid            ),
+    .o_wready                           (axi4lite_if[0].wready            ),
+    .i_wdata                            (axi4lite_if[0].wdata             ),
+    .i_wstrb                            (axi4lite_if[0].wstrb             ),
+    .o_bvalid                           (axi4lite_if[0].bvalid            ),
+    .i_bready                           (axi4lite_if[0].bready            ),
+    .o_bid                              (axi4lite_if[0].bid               ),
+    .o_bresp                            (axi4lite_if[0].bresp             ),
+    .i_arvalid                          (axi4lite_if[0].arvalid           ),
+    .o_arready                          (axi4lite_if[0].arready           ),
+    .i_araddr                           (axi4lite_if[0].araddr            ),
+    .i_arid                             (axi4lite_if[0].arid              ),
+    .i_arprot                           (axi4lite_if[0].arprot            ),
+    .o_rvalid                           (axi4lite_if[0].rvalid            ),
+    .i_rready                           (axi4lite_if[0].rready            ),
+    .o_rid                              (axi4lite_if[0].rid               ),
+    .o_rresp                            (axi4lite_if[0].rresp             ),
+    .o_rdata                            (axi4lite_if[0].rdata             ),
+`endif
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
@@ -205,20 +231,98 @@ module top;
     .o_register_10_bit_field_1          (register_10_bit_field_1          ),
     .o_register_11_bit_field_0          (register_11_bit_field_0          ),
     .o_register_12_bit_field_0          (register_12_bit_field_0          ),
+`ifdef RGGEN_SYSTEMVERILOG
     .register_13_bus_if                 (register_13_bus_if               )
+`else
+    .o_register_13_valid                (register_13_bus_if.valid         ),
+    .o_register_13_access               (register_13_bus_if.access        ),
+    .o_register_13_address              (register_13_bus_if.address       ),
+    .o_register_13_data                 (register_13_bus_if.write_data    ),
+    .o_register_13_strobe               (register_13_bus_if.strobe        ),
+    .i_register_13_ready                (register_13_bus_if.ready         ),
+    .i_register_13_status               (register_13_bus_if.status        ),
+    .i_register_13_data                 (register_13_bus_if.read_data     )
+`endif
   );
 
+`ifdef RGGEN_SYSTEMVERILOG
   rggen_axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
     .bus_if       (register_13_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
+`else
+  rggen_axi4lite_bridge #(
+    .ADDRESS_WIDTH  (8  ),
+    .BUS_WIDTH      (32 )
+  ) u_bridge (
+    .i_clk            (clk                            ),
+    .i_rst_n          (rst_n                          ),
+    .i_bus_valid      (register_13_bus_if.valid       ),
+    .i_bus_access     (register_13_bus_if.access      ),
+    .i_bus_address    (register_13_bus_if.address     ),
+    .i_bus_write_data (register_13_bus_if.write_data  ),
+    .i_bus_strobe     (register_13_bus_if.strobe      ),
+    .o_bus_ready      (register_13_bus_if.ready       ),
+    .o_bus_status     (register_13_bus_if.status      ),
+    .o_bus_read_data  (register_13_bus_if.read_data   ),
+    .o_awvalid        (axi4lite_if[1].awvalid         ),
+    .i_awready        (axi4lite_if[1].awready         ),
+    .o_awid           (axi4lite_if[1].awid[0]         ),
+    .o_awaddr         (axi4lite_if[1].awaddr[7:0]     ),
+    .o_awprot         (axi4lite_if[1].awprot          ),
+    .o_wvalid         (axi4lite_if[1].wvalid          ),
+    .i_wready         (axi4lite_if[1].wready          ),
+    .o_wdata          (axi4lite_if[1].wdata           ),
+    .o_wstrb          (axi4lite_if[1].wstrb           ),
+    .i_bvalid         (axi4lite_if[1].bvalid          ),
+    .o_bready         (axi4lite_if[1].bready          ),
+    .i_bid            (axi4lite_if[1].bid[0]          ),
+    .i_bresp          (axi4lite_if[1].bresp           ),
+    .o_arvalid        (axi4lite_if[1].arvalid         ),
+    .i_arready        (axi4lite_if[1].arready         ),
+    .o_araddr         (axi4lite_if[1].araddr[7:0]     ),
+    .o_arid           (axi4lite_if[1].arid[0]         ),
+    .o_arprot         (axi4lite_if[1].arprot          ),
+    .i_rvalid         (axi4lite_if[1].rvalid          ),
+    .o_rready         (axi4lite_if[1].rready          ),
+    .i_rid            (axi4lite_if[1].rid[0]          ),
+    .i_rresp          (axi4lite_if[1].rresp           ),
+    .i_rdata          (axi4lite_if[1].rdata           )
+  );
+`endif
 
   block_1 u_block_1 (
     .i_clk                                                    (clk            ),
     .i_rst_n                                                  (rst_n          ),
-    .axi4lite_if                                              (axi4lite_if[1] ),
+`ifdef RGGEN_SYSTEMVERILOG
+    .axi4lite_if                                              (axi4lite_if[1]                   ),
+`else
+    .i_awvalid                                                (axi4lite_if[1].awvalid           ),
+    .o_awready                                                (axi4lite_if[1].awready           ),
+    .i_awid                                                   (axi4lite_if[1].awid[0]           ),
+    .i_awaddr                                                 (axi4lite_if[1].awaddr[6:0]       ),
+    .i_awprot                                                 (axi4lite_if[1].awprot            ),
+    .i_wvalid                                                 (axi4lite_if[1].wvalid            ),
+    .o_wready                                                 (axi4lite_if[1].wready            ),
+    .i_wdata                                                  (axi4lite_if[1].wdata             ),
+    .i_wstrb                                                  (axi4lite_if[1].wstrb             ),
+    .o_bvalid                                                 (axi4lite_if[1].bvalid            ),
+    .i_bready                                                 (axi4lite_if[1].bready            ),
+    .o_bid                                                    (axi4lite_if[1].bid[0]            ),
+    .o_bresp                                                  (axi4lite_if[1].bresp             ),
+    .i_arvalid                                                (axi4lite_if[1].arvalid           ),
+    .o_arready                                                (axi4lite_if[1].arready           ),
+    .i_araddr                                                 (axi4lite_if[1].araddr[6:0]       ),
+    .i_arid                                                   (axi4lite_if[1].arid[0]           ),
+    .i_arprot                                                 (axi4lite_if[1].arprot            ),
+    .o_rvalid                                                 (axi4lite_if[1].rvalid            ),
+    .i_rready                                                 (axi4lite_if[1].rready            ),
+    .o_rid                                                    (axi4lite_if[1].rid[0]            ),
+    .o_rresp                                                  (axi4lite_if[1].rresp             ),
+    .o_rdata                                                  (axi4lite_if[1].rdata             ),
+`endif
     .o_register_file_0_register_0_bit_field_0                 (),
     .o_register_file_0_register_1_bit_field_0                 (),
     .o_register_file_1_register_0_bit_field_0                 (),

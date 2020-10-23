@@ -2,6 +2,7 @@ TVIP_APB_HOME	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/tvip-apb
 export TVIP_APB_HOME
 
 PROTOCOL	= apb
+LANGURAGE	= systemverilog
 
 FILE_LISTS	+= $(TVIP_APB_HOME)/compile.f
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/apb/block_0.sv

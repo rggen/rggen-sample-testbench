@@ -1,26 +1,41 @@
 RGGEN_SAMPLE_TESTBENCH_ROOT	= $(shell git rev-parse --show-toplevel)
 RGGEN_SV_RTL_ROOT	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/rggen-sv-rtl
 RGGEN_SV_RAL_ROOT	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/rggen-sv-ral
+RGGEN_VERILOG_RTL_ROOT	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/rggen-verilog-rtl
 TUE_HOME	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/tue
 
 export RGGEN_SAMPLE_TESTBENCH_ROOT
 export RGGEN_SV_RTL_ROOT
 export RGGEN_SV_RAL_ROOT
+export RGGEN_VERILOG_RTL_ROOT
 export TUE_HOME
 
+LANGURAGE ?= systemverilog
 SIMULATOR ?= vcs
 GUI	?= off
 TR_DEBUG	?= off
 
 FILE_LISTS	+= $(TUE_HOME)/compile.f
-FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile.f
-FILE_LISTS	+= $(RGGEN_SV_RAL_ROOT)/compile.f
 
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_0_ral_pkg.sv
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/ral/block_1_ral_pkg.sv
 SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/env_pkg.sv
 
 include local.mk
+
+ifeq ($(strip $(LANGURAGE)), systemverilog)
+	FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile.f
+endif
+
+ifeq ($(strip $(LANGURAGE)), verilog)
+	FILE_LISTS	+= $(RGGEN_VERILOG_RTL_ROOT)/compile.f
+	FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile_backdoor.f
+	SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_rtl_pkg.sv
+	SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_$(PROTOCOL)_if.sv
+	SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_bus_if.sv
+endif
+
+FILE_LISTS	+= $(RGGEN_SV_RAL_ROOT)/compile.f
 
 TEST_LIST	+= ral_hw_reset_test
 TEST_LIST	+= ral_bit_bash_test

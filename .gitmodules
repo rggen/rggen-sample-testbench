@@ -16,3 +16,6 @@
 [submodule "env/tvip-common"]
 	path = env/tvip-common
 	url = git@github.com:taichi-ishitani/tvip-common.git
+[submodule "rtl/rggen-verilog-rtl"]
+	path = rtl/rggen-verilog-rtl
+	url = git@github.com:rggen/rggen-verilog-rtl.git

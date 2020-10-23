@@ -129,7 +129,20 @@ module top;
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
+`ifdef RGGEN_SYSTEMVERILOG
     .apb_if                             (apb_if[0]                        ),
+`else
+    .i_psel                             (apb_if[0].psel                   ),
+    .i_penable                          (apb_if[0].penable                ),
+    .i_paddr                            (apb_if[0].paddr                  ),
+    .i_pprot                            (apb_if[0].pprot                  ),
+    .i_pwrite                           (apb_if[0].pwrite                 ),
+    .i_pstrb                            (apb_if[0].pstrb                  ),
+    .i_pwdata                           (apb_if[0].pwdata                 ),
+    .o_pready                           (apb_if[0].pready                 ),
+    .o_prdata                           (apb_if[0].prdata                 ),
+    .o_pslverr                          (apb_if[0].pslverr                ),
+`endif
     .o_register_0_bit_field_0           (register_0_bit_field_0           ),
     .o_register_0_bit_field_1           (register_0_bit_field_1           ),
     .o_register_0_bit_field_2           (register_0_bit_field_2           ),
@@ -203,20 +216,72 @@ module top;
     .o_register_10_bit_field_1          (register_10_bit_field_1          ),
     .o_register_11_bit_field_0          (register_11_bit_field_0          ),
     .o_register_12_bit_field_0          (register_12_bit_field_0          ),
+`ifdef RGGEN_SYSTEMVERILOG
     .register_13_bus_if                 (register_13_bus_if               )
+`else
+    .o_register_13_valid                (register_13_bus_if.valid         ),
+    .o_register_13_access               (register_13_bus_if.access        ),
+    .o_register_13_address              (register_13_bus_if.address       ),
+    .o_register_13_data                 (register_13_bus_if.write_data    ),
+    .o_register_13_strobe               (register_13_bus_if.strobe        ),
+    .i_register_13_ready                (register_13_bus_if.ready         ),
+    .i_register_13_status               (register_13_bus_if.status        ),
+    .i_register_13_data                 (register_13_bus_if.read_data     )
+`endif
   );
 
+`ifdef RGGEN_SYSTEMVERILOG
   rggen_apb_bridge u_bridge (
     .i_clk    (clk                ),
     .i_rst_n  (rst_n              ),
     .bus_if   (register_13_bus_if ),
     .apb_if   (apb_if[1]          )
   );
+`else
+  rggen_apb_bridge #(
+    .ADDRESS_WIDTH  (8  ),
+    .BUS_WIDTH      (32 )
+  ) u_bridge (
+    .i_clk            (clk                            ),
+    .i_rst_n          (rst_n                          ),
+    .i_bus_valid      (register_13_bus_if.valid       ),
+    .i_bus_access     (register_13_bus_if.access      ),
+    .i_bus_address    (register_13_bus_if.address     ),
+    .i_bus_write_data (register_13_bus_if.write_data  ),
+    .i_bus_strobe     (register_13_bus_if.strobe      ),
+    .o_bus_ready      (register_13_bus_if.ready       ),
+    .o_bus_status     (register_13_bus_if.status      ),
+    .o_bus_read_data  (register_13_bus_if.read_data   ),
+    .o_psel           (apb_if[1].psel                 ),
+    .o_penable        (apb_if[1].penable              ),
+    .o_paddr          (apb_if[1].paddr[7:0]           ),
+    .o_pprot          (apb_if[1].pprot                ),
+    .o_pwrite         (apb_if[1].pwrite               ),
+    .o_pstrb          (apb_if[1].pstrb                ),
+    .o_pwdata         (apb_if[1].pwdata               ),
+    .i_pready         (apb_if[1].pready               ),
+    .i_prdata         (apb_if[1].prdata               ),
+    .i_pslverr        (apb_if[1].pslverr              )
+  );
+`endif
 
   block_1 u_block_1 (
-    .i_clk                                                    (clk        ),
-    .i_rst_n                                                  (rst_n      ),
-    .apb_if                                                   (apb_if[1]  ),
+    .i_clk                                                    (clk                  ),
+    .i_rst_n                                                  (rst_n                ),
+`ifdef RGGEN_SYSTEMVERILOG
+    .apb_if                                                   (apb_if[1]            ),
+`else
+    .i_psel                                                   (apb_if[1].psel       ),
+    .i_penable                                                (apb_if[1].penable    ),
+    .i_paddr                                                  (apb_if[1].paddr[6:0] ),
+    .i_pprot                                                  (apb_if[1].pprot      ),
+    .i_pwrite                                                 (apb_if[1].pwrite     ),
+    .i_pstrb                                                  (apb_if[1].pstrb      ),
+    .i_pwdata                                                 (apb_if[1].pwdata     ),
+    .o_pready                                                 (apb_if[1].pready     ),
+    .o_prdata                                                 (apb_if[1].prdata     ),
+    .o_pslverr                                                (apb_if[1].pslverr    ),
+`endif
     .o_register_file_0_register_0_bit_field_0                 (),
     .o_register_file_0_register_1_bit_field_0                 (),
     .o_register_file_1_register_0_bit_field_0                 (),

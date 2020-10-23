@@ -4,11 +4,13 @@ CLEAN_TARGETS	+= vc_hdrs.h
 
 VCS_ARGS	+= -full64
 VCS_ARGS	+= -sverilog
+VCS_ARGS	+= +verilog2001ext+.v
 VCS_ARGS	+= -l vcs.log
 VCS_ARGS	+= +incdir+$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
 VCS_ARGS	+= +define+RGGEN_ENABLE_BACKDOOR
 VCS_ARGS	+= +define+RGGEN_ENABLE_SVA
 VCS_ARGS	+= +define+RGGEN_ENABLE_ENHANCED_RAL
+VCS_ARGS	+= +define+RGGEN_$(shell echo $(LANGURAGE) | tr a-z A-Z)
 VCS_ARGS	+= -timescale=1ns/1ps
 VCS_ARGS	+= -ntb_opts uvm-1.2
 VCS_ARGS	+= -top top
