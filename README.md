@@ -115,4 +115,4 @@ You can post your questions, feedbacks, bug reports, etc. by using following way
 
 ## Copyright & License
 
-Copyright &copy; 2019-2020 Taichi Ishitani. This testbench is licensed under the [MIT License](https://opensource.org/licenses/MIT), see [LICENSE](LICENSE) for futher detils.
+Copyright &copy; 2019-2021 Taichi Ishitani. This testbench is licensed under the [MIT License](https://opensource.org/licenses/MIT), see [LICENSE](LICENSE) for futher detils.
