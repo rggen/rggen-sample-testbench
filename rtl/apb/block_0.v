@@ -1,7 +1,4 @@
-`ifndef rggen_slice
-  `define rggen_slice(EXPRESSION, WIDTH, INDEX) \
-  (((EXPRESSION) >> ((WIDTH) * (INDEX))) & {(WIDTH){1'b1}})
-`endif
+`include "rggen_rtl_macros.vh"
 module block_0 #(
   parameter ADDRESS_WIDTH = 8,
   parameter PRE_DECODE = 0,
@@ -184,107 +181,157 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (4),
         .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .o_value                (o_register_0_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_0_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (4),
         .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[4+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[4+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[4+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[4+:4]),
-        .o_bit_field_value      (w_bit_field_value[4+:4]),
-        .o_value                (o_register_0_bit_field_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[4+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[4+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[4+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[4+:4]),
+        .o_sw_value         (w_bit_field_value[4+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_0_bit_field_1),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (1),
         .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:1]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:1]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:1]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:1]),
-        .o_bit_field_value      (w_bit_field_value[8+:1]),
-        .o_value                (o_register_0_bit_field_2)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:1]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:1]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:1]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:1]),
+        .o_sw_value         (w_bit_field_value[8+:1]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({1{1'b0}}),
+        .i_hw_set           ({1{1'b0}}),
+        .i_hw_clear         ({1{1'b0}}),
+        .i_value            ({1{1'b0}}),
+        .i_mask             ({1{1'b1}}),
+        .o_value            (o_register_0_bit_field_2),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (1)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (1)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[9+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[9+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[9+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[9+:2]),
-        .o_bit_field_value      (w_bit_field_value[9+:2]),
-        .o_value                (o_register_0_bit_field_3)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[9+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[9+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[9+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[9+:2]),
+        .o_sw_value         (w_bit_field_value[9+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_0_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_4
-      rggen_bit_field_wrc #(
+      rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION (`RGGEN_READ_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[11+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[11+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[11+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[11+:2]),
-        .o_bit_field_value      (w_bit_field_value[11+:2]),
-        .o_value                (o_register_0_bit_field_4)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[11+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[11+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[11+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[11+:2]),
+        .o_sw_value         (w_bit_field_value[11+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_0_bit_field_4),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_5
-      rggen_bit_field_wrs #(
+      rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION (`RGGEN_READ_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[13+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[13+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[13+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[13+:2]),
-        .o_bit_field_value      (w_bit_field_value[13+:2]),
-        .o_value                (o_register_0_bit_field_5)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[13+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[13+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[13+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[13+:2]),
+        .o_sw_value         (w_bit_field_value[13+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_0_bit_field_5),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -325,21 +372,29 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_register_1
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (1),
         .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:1]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:1]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:1]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:1]),
-        .o_bit_field_value      (w_bit_field_value[0+:1]),
-        .o_value                (o_register_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:1]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:1]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:1]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:1]),
+        .o_sw_value         (w_bit_field_value[0+:1]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({1{1'b0}}),
+        .i_hw_set           ({1{1'b0}}),
+        .i_hw_clear         ({1{1'b0}}),
+        .i_value            ({1{1'b0}}),
+        .i_mask             ({1{1'b1}}),
+        .o_value            (o_register_1),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -380,54 +435,100 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_ro #(
-        .WIDTH  (4)
+      rggen_bit_field #(
+        .WIDTH    (4),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .i_value                (i_register_2_bit_field_0)
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            (i_register_2_bit_field_0),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_ro #(
-        .WIDTH  (4)
+      rggen_bit_field #(
+        .WIDTH    (4),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:4]),
-        .o_bit_field_value      (w_bit_field_value[8+:4]),
-        .i_value                (i_register_2_bit_field_1)
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
+        .o_sw_value         (w_bit_field_value[8+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            (i_register_2_bit_field_1),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_ro #(
-        .WIDTH  (8)
+      rggen_bit_field #(
+        .WIDTH    (8),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:8]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:8]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:8]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:8]),
-        .o_bit_field_value      (w_bit_field_value[16+:8]),
-        .i_value                (`rggen_slice(8'hab, 8, 0))
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:8]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:8]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:8]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:8]),
+        .o_sw_value         (w_bit_field_value[16+:8]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({8{1'b0}}),
+        .i_hw_set           ({8{1'b0}}),
+        .i_hw_clear         ({8{1'b0}}),
+        .i_value            (`rggen_slice(8'hab, 8, 0)),
+        .i_mask             ({8{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_reserved #(
-        .WIDTH  (8)
+      rggen_bit_field #(
+        .WIDTH          (8),
+        .SW_READ_ACTION (`RGGEN_READ_NONE),
+        .STORAGE        (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[24+:8]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[24+:8]),
-        .i_bit_field_write_data (w_bit_field_write_data[24+:8]),
-        .o_bit_field_read_data  (w_bit_field_read_data[24+:8]),
-        .o_bit_field_value      (w_bit_field_value[24+:8])
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[24+:8]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[24+:8]),
+        .i_sw_write_data    (w_bit_field_write_data[24+:8]),
+        .o_sw_read_data     (w_bit_field_read_data[24+:8]),
+        .o_sw_value         (w_bit_field_value[24+:8]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({8{1'b0}}),
+        .i_hw_set           ({8{1'b0}}),
+        .i_hw_clear         ({8{1'b0}}),
+        .i_value            ({8{1'b0}}),
+        .i_mask             ({8{1'b0}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -468,39 +569,55 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (4),
         .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
-        .WRITE_ONLY     (1),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_NONE),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .o_value                (o_register_3_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_3_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (4),
         .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
-        .WRITE_ONLY     (1),
-        .WRITE_ONCE     (1)
+        .SW_READ_ACTION (`RGGEN_READ_NONE),
+        .SW_WRITE_ONCE  (1)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[4+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[4+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[4+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[4+:4]),
-        .o_bit_field_value      (w_bit_field_value[4+:4]),
-        .o_value                (o_register_3_bit_field_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[4+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[4+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[4+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[4+:4]),
+        .o_sw_value         (w_bit_field_value[4+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_3_bit_field_1),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
@@ -573,71 +690,105 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rc #(
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .i_set                  (i_register_4_bit_field_0_set),
-        .i_mask                 (4'hf),
-        .o_value                (o_register_4_bit_field_0),
-        .o_value_unmasked       ()
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_4_bit_field_0_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_4_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_rc #(
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:4]),
-        .o_bit_field_value      (w_bit_field_value[8+:4]),
-        .i_set                  (i_register_4_bit_field_1_set),
-        .i_mask                 (w_register_value[0+:4]),
-        .o_value                (o_register_4_bit_field_1),
-        .o_value_unmasked       (o_register_4_bit_field_1_unmasked)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
+        .o_sw_value         (w_bit_field_value[8+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_4_bit_field_1_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             (w_register_value[0+:4]),
+        .o_value            (o_register_4_bit_field_1),
+        .o_value_unmasked   (o_register_4_bit_field_1_unmasked)
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_ro #(
-        .WIDTH  (4)
+      rggen_bit_field #(
+        .WIDTH    (4),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[12+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[12+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[12+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[12+:4]),
-        .o_bit_field_value      (w_bit_field_value[12+:4]),
-        .i_value                (w_register_value[264+:4])
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[12+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[12+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[12+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[12+:4]),
+        .o_sw_value         (w_bit_field_value[12+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            (w_register_value[264+:4]),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_rs #(
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_SET),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:4]),
-        .o_bit_field_value      (w_bit_field_value[16+:4]),
-        .i_clear                (i_register_4_bit_field_3_clear),
-        .o_value                (o_register_4_bit_field_3)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:4]),
+        .o_sw_value         (w_bit_field_value[16+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         (i_register_4_bit_field_3_clear),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_4_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -678,175 +829,251 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rwc #(
+      rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:2]),
-        .o_bit_field_value      (w_bit_field_value[0+:2]),
-        .i_clear                (i_register_5_bit_field_0_clear),
-        .o_value                (o_register_5_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:2]),
+        .o_sw_value         (w_bit_field_value[0+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         (i_register_5_bit_field_0_clear),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_rwc #(
+      rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[2+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[2+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[2+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[2+:2]),
-        .o_bit_field_value      (w_bit_field_value[2+:2]),
-        .i_clear                (w_register_value[200+:1]),
-        .o_value                (o_register_5_bit_field_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[2+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[2+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[2+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[2+:2]),
+        .o_sw_value         (w_bit_field_value[2+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         (w_register_value[200+:1]),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_1),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_rws #(
+      rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[4+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[4+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[4+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[4+:2]),
-        .o_bit_field_value      (w_bit_field_value[4+:2]),
-        .i_set                  (i_register_5_bit_field_2_set),
-        .i_value                (i_register_5_bit_field_2),
-        .o_value                (o_register_5_bit_field_2)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[4+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[4+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[4+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[4+:2]),
+        .o_sw_value         (w_bit_field_value[4+:2]),
+        .i_hw_write_enable  (i_register_5_bit_field_2_set),
+        .i_hw_write_data    (i_register_5_bit_field_2),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_2),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_rws #(
+      rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[6+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[6+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[6+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[6+:2]),
-        .o_bit_field_value      (w_bit_field_value[6+:2]),
-        .i_set                  (w_register_value[208+:1]),
-        .i_value                (i_register_5_bit_field_3),
-        .o_value                (o_register_5_bit_field_3)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[6+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[6+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[6+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[6+:2]),
+        .o_sw_value         (w_bit_field_value[6+:2]),
+        .i_hw_write_enable  (w_register_value[208+:1]),
+        .i_hw_write_data    (i_register_5_bit_field_3),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_4
-      rggen_bit_field_rwe #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:2]),
-        .o_bit_field_value      (w_bit_field_value[8+:2]),
-        .i_enable               (i_register_5_bit_field_4_enable),
-        .o_value                (o_register_5_bit_field_4)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:2]),
+        .i_sw_write_enable  (i_register_5_bit_field_4_enable),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:2]),
+        .o_sw_value         (w_bit_field_value[8+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_4),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_5
-      rggen_bit_field_rwe #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[10+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[10+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[10+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[10+:2]),
-        .o_bit_field_value      (w_bit_field_value[10+:2]),
-        .i_enable               (w_register_value[8+:1]),
-        .o_value                (o_register_5_bit_field_5)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[10+:2]),
+        .i_sw_write_enable  (w_register_value[8+:1]),
+        .i_sw_write_mask    (w_bit_field_write_mask[10+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[10+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[10+:2]),
+        .o_sw_value         (w_bit_field_value[10+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_5),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_6
-      rggen_bit_field_rwe #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[12+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[12+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[12+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[12+:2]),
-        .o_bit_field_value      (w_bit_field_value[12+:2]),
-        .i_enable               (w_register_value[64+:1]),
-        .o_value                (o_register_5_bit_field_6)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[12+:2]),
+        .i_sw_write_enable  (w_register_value[64+:1]),
+        .i_sw_write_mask    (w_bit_field_write_mask[12+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[12+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[12+:2]),
+        .o_sw_value         (w_bit_field_value[12+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_6),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_7
-      rggen_bit_field_rwl #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:2]),
-        .o_bit_field_value      (w_bit_field_value[16+:2]),
-        .i_lock                 (i_register_5_bit_field_7_lock),
-        .o_value                (o_register_5_bit_field_7)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:2]),
+        .i_sw_write_enable  (i_register_5_bit_field_7_lock),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:2]),
+        .o_sw_value         (w_bit_field_value[16+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_7),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_8
-      rggen_bit_field_rwl #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[18+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[18+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[18+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[18+:2]),
-        .o_bit_field_value      (w_bit_field_value[18+:2]),
-        .i_lock                 (w_register_value[8+:1]),
-        .o_value                (o_register_5_bit_field_8)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[18+:2]),
+        .i_sw_write_enable  (w_register_value[8+:1]),
+        .i_sw_write_mask    (w_bit_field_write_mask[18+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[18+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[18+:2]),
+        .o_sw_value         (w_bit_field_value[18+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_8),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_9
-      rggen_bit_field_rwl #(
-        .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+      rggen_bit_field #(
+        .WIDTH                    (2),
+        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[20+:2]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[20+:2]),
-        .i_bit_field_write_data (w_bit_field_write_data[20+:2]),
-        .o_bit_field_read_data  (w_bit_field_read_data[20+:2]),
-        .o_bit_field_value      (w_bit_field_value[20+:2]),
-        .i_lock                 (w_register_value[64+:1]),
-        .o_value                (o_register_5_bit_field_9)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[20+:2]),
+        .i_sw_write_enable  (w_register_value[64+:1]),
+        .i_sw_write_mask    (w_bit_field_write_mask[20+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[20+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[20+:2]),
+        .o_sw_value         (w_bit_field_value[20+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_5_bit_field_9),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -887,185 +1114,257 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b00),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .i_set                  (i_register_6_bit_field_0_set),
-        .i_mask                 (4'hf),
-        .o_value                (o_register_6_bit_field_0),
-        .o_value_unmasked       ()
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_6_bit_field_0_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b00),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[4+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[4+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[4+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[4+:4]),
-        .o_bit_field_value      (w_bit_field_value[4+:4]),
-        .i_set                  (i_register_6_bit_field_1_set),
-        .i_mask                 (w_register_value[0+:4]),
-        .o_value                (o_register_6_bit_field_1),
-        .o_value_unmasked       (o_register_6_bit_field_1_unmasked)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[4+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[4+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[4+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[4+:4]),
+        .o_sw_value         (w_bit_field_value[4+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_6_bit_field_1_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             (w_register_value[0+:4]),
+        .o_value            (o_register_6_bit_field_1),
+        .o_value_unmasked   (o_register_6_bit_field_1_unmasked)
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_ro #(
-        .WIDTH  (4)
+      rggen_bit_field #(
+        .WIDTH    (4),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:4]),
-        .o_bit_field_value      (w_bit_field_value[8+:4]),
-        .i_value                (w_register_value[388+:4])
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
+        .o_sw_value         (w_bit_field_value[8+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            (w_register_value[388+:4]),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b01),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[12+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[12+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[12+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[12+:4]),
-        .o_bit_field_value      (w_bit_field_value[12+:4]),
-        .i_set                  (i_register_6_bit_field_3_set),
-        .i_mask                 (4'hf),
-        .o_value                (o_register_6_bit_field_3),
-        .o_value_unmasked       ()
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[12+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[12+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[12+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[12+:4]),
+        .o_sw_value         (w_bit_field_value[12+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_6_bit_field_3_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_4
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b01),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:4]),
-        .o_bit_field_value      (w_bit_field_value[16+:4]),
-        .i_set                  (i_register_6_bit_field_4_set),
-        .i_mask                 (w_register_value[0+:4]),
-        .o_value                (o_register_6_bit_field_4),
-        .o_value_unmasked       (o_register_6_bit_field_4_unmasked)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:4]),
+        .o_sw_value         (w_bit_field_value[16+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_6_bit_field_4_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             (w_register_value[0+:4]),
+        .o_value            (o_register_6_bit_field_4),
+        .o_value_unmasked   (o_register_6_bit_field_4_unmasked)
       );
     end
     if (1) begin : g_bit_field_5
-      rggen_bit_field_ro #(
-        .WIDTH  (4)
+      rggen_bit_field #(
+        .WIDTH    (4),
+        .STORAGE  (0)
       ) u_bit_field (
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[20+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[20+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[20+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[20+:4]),
-        .o_bit_field_value      (w_bit_field_value[20+:4]),
-        .i_value                (w_register_value[400+:4])
+        .i_clk              (1'b0),
+        .i_rst_n            (1'b0),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[20+:4]),
+        .i_sw_write_enable  (1'b0),
+        .i_sw_write_mask    (w_bit_field_write_mask[20+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[20+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[20+:4]),
+        .o_sw_value         (w_bit_field_value[20+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            (w_register_value[400+:4]),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_6
-      rggen_bit_field_w01s_ws_wos #(
-        .SET_VALUE      (2'b00),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[24+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[24+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[24+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[24+:4]),
-        .o_bit_field_value      (w_bit_field_value[24+:4]),
-        .i_clear                (i_register_6_bit_field_6_clear),
-        .o_value                (o_register_6_bit_field_6)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[24+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[24+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[24+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[24+:4]),
+        .o_sw_value         (w_bit_field_value[24+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         (i_register_6_bit_field_6_clear),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_6),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_7
-      rggen_bit_field_w01s_ws_wos #(
-        .SET_VALUE      (2'b01),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[28+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[28+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[28+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[28+:4]),
-        .o_bit_field_value      (w_bit_field_value[28+:4]),
-        .i_clear                (i_register_6_bit_field_7_clear),
-        .o_value                (o_register_6_bit_field_7)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[28+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[28+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[28+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[28+:4]),
+        .o_sw_value         (w_bit_field_value[28+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         (i_register_6_bit_field_7_clear),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_7),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_8
-      rggen_bit_field_w01t #(
-        .TOGGLE_VALUE   (1'b0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_TOGGLE)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[32+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[32+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[32+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[32+:4]),
-        .o_bit_field_value      (w_bit_field_value[32+:4]),
-        .o_value                (o_register_6_bit_field_8)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[32+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[32+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[32+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[32+:4]),
+        .o_sw_value         (w_bit_field_value[32+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_8),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_9
-      rggen_bit_field_w01t #(
-        .TOGGLE_VALUE   (1'b1),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_TOGGLE)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[36+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[36+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[36+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[36+:4]),
-        .o_bit_field_value      (w_bit_field_value[36+:4]),
-        .o_value                (o_register_6_bit_field_9)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[36+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[36+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[36+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[36+:4]),
+        .o_sw_value         (w_bit_field_value[36+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_6_bit_field_9),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -1106,71 +1405,107 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_w01crs_wcrs #(
-        .CLEAR_VALUE    (2'b00),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_SET),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .o_value                (o_register_7_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_7_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_w01crs_wcrs #(
-        .CLEAR_VALUE    (2'b01),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_SET),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:4]),
-        .o_bit_field_value      (w_bit_field_value[8+:4]),
-        .o_value                (o_register_7_bit_field_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
+        .o_sw_value         (w_bit_field_value[8+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_7_bit_field_1),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_w01src_wsrc #(
-        .SET_VALUE      (2'b00),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_0_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:4]),
-        .o_bit_field_value      (w_bit_field_value[16+:4]),
-        .o_value                (o_register_7_bit_field_2)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:4]),
+        .o_sw_value         (w_bit_field_value[16+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_7_bit_field_2),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_w01src_wsrc #(
-        .SET_VALUE      (2'b01),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_1_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[24+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[24+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[24+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[24+:4]),
-        .o_bit_field_value      (w_bit_field_value[24+:4]),
-        .o_value                (o_register_7_bit_field_3)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[24+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[24+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[24+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[24+:4]),
+        .o_sw_value         (w_bit_field_value[24+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_7_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -1211,117 +1546,159 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b10),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:4]),
-        .o_bit_field_value      (w_bit_field_value[0+:4]),
-        .i_set                  (i_register_8_bit_field_0_set),
-        .i_mask                 (4'hf),
-        .o_value                (o_register_8_bit_field_0),
-        .o_value_unmasked       ()
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:4]),
+        .o_sw_value         (w_bit_field_value[0+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_8_bit_field_0_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_1
-      rggen_bit_field_w01s_ws_wos #(
-        .SET_VALUE      (2'b10),
-        .WRITE_ONLY     (0),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[8+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[8+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[8+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[8+:4]),
-        .o_bit_field_value      (w_bit_field_value[8+:4]),
-        .i_clear                (i_register_8_bit_field_1_clear),
-        .o_value                (o_register_8_bit_field_1)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
+        .o_sw_value         (w_bit_field_value[8+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         (i_register_8_bit_field_1_clear),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_1),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_2
-      rggen_bit_field_w01c_wc_woc #(
-        .CLEAR_VALUE    (2'b10),
-        .WRITE_ONLY     (1),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_NONE),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[16+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[16+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[16+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[16+:4]),
-        .o_bit_field_value      (w_bit_field_value[16+:4]),
-        .i_set                  (i_register_8_bit_field_2_set),
-        .i_mask                 (4'hf),
-        .o_value                (o_register_8_bit_field_2),
-        .o_value_unmasked       ()
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:4]),
+        .o_sw_value         (w_bit_field_value[16+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           (i_register_8_bit_field_2_set),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_2),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_3
-      rggen_bit_field_w01s_ws_wos #(
-        .SET_VALUE      (2'b10),
-        .WRITE_ONLY     (1),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_NONE),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[24+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[24+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[24+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[24+:4]),
-        .o_bit_field_value      (w_bit_field_value[24+:4]),
-        .i_clear                (i_register_8_bit_field_3_clear),
-        .o_value                (o_register_8_bit_field_3)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[24+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[24+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[24+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[24+:4]),
+        .o_sw_value         (w_bit_field_value[24+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         (i_register_8_bit_field_3_clear),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_3),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_4
-      rggen_bit_field_w01crs_wcrs #(
-        .CLEAR_VALUE    (2'b10),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_SET),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[32+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[32+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[32+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[32+:4]),
-        .o_bit_field_value      (w_bit_field_value[32+:4]),
-        .o_value                (o_register_8_bit_field_4)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[32+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[32+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[32+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[32+:4]),
+        .o_sw_value         (w_bit_field_value[32+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_4),
+        .o_value_unmasked   ()
       );
     end
     if (1) begin : g_bit_field_5
-      rggen_bit_field_w01src_wsrc #(
-        .SET_VALUE      (2'b10),
-        .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0))
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[40+:4]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[40+:4]),
-        .i_bit_field_write_data (w_bit_field_write_data[40+:4]),
-        .o_bit_field_read_data  (w_bit_field_read_data[40+:4]),
-        .o_bit_field_value      (w_bit_field_value[40+:4]),
-        .o_value                (o_register_8_bit_field_5)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[40+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[40+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[40+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[40+:4]),
+        .o_sw_value         (w_bit_field_value[40+:4]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({4{1'b0}}),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_8_bit_field_5),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -1366,63 +1743,87 @@ module block_0 #(
       if (1) begin : g_bit_field_0
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
-          rggen_bit_field_rw_wo #(
+          rggen_bit_field #(
             .WIDTH          (4),
             .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
-            .WRITE_ONLY     (0),
-            .WRITE_ONCE     (0)
+            .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+            .SW_WRITE_ONCE  (0)
           ) u_bit_field (
-            .i_clk                  (i_clk),
-            .i_rst_n                (i_rst_n),
-            .i_bit_field_valid      (w_bit_field_valid),
-            .i_bit_field_read_mask  (w_bit_field_read_mask[0+16*j+:4]),
-            .i_bit_field_write_mask (w_bit_field_write_mask[0+16*j+:4]),
-            .i_bit_field_write_data (w_bit_field_write_data[0+16*j+:4]),
-            .o_bit_field_read_data  (w_bit_field_read_data[0+16*j+:4]),
-            .o_bit_field_value      (w_bit_field_value[0+16*j+:4]),
-            .o_value                (o_register_9_bit_field_0[4*(4*i+j)+:4])
+            .i_clk              (i_clk),
+            .i_rst_n            (i_rst_n),
+            .i_sw_valid         (w_bit_field_valid),
+            .i_sw_read_mask     (w_bit_field_read_mask[0+16*j+:4]),
+            .i_sw_write_enable  (1'b1),
+            .i_sw_write_mask    (w_bit_field_write_mask[0+16*j+:4]),
+            .i_sw_write_data    (w_bit_field_write_data[0+16*j+:4]),
+            .o_sw_read_data     (w_bit_field_read_data[0+16*j+:4]),
+            .o_sw_value         (w_bit_field_value[0+16*j+:4]),
+            .i_hw_write_enable  (1'b0),
+            .i_hw_write_data    ({4{1'b0}}),
+            .i_hw_set           ({4{1'b0}}),
+            .i_hw_clear         ({4{1'b0}}),
+            .i_value            ({4{1'b0}}),
+            .i_mask             ({4{1'b1}}),
+            .o_value            (o_register_9_bit_field_0[4*(4*i+j)+:4]),
+            .o_value_unmasked   ()
           );
         end
       end
       if (1) begin : g_bit_field_1
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
-          rggen_bit_field_rw_wo #(
+          rggen_bit_field #(
             .WIDTH          (4),
             .INITIAL_VALUE  (`rggen_slice(REGISTER_9_BIT_FIELD_1_INITIAL_VALUE, 4, j)),
-            .WRITE_ONLY     (0),
-            .WRITE_ONCE     (0)
+            .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+            .SW_WRITE_ONCE  (0)
           ) u_bit_field (
-            .i_clk                  (i_clk),
-            .i_rst_n                (i_rst_n),
-            .i_bit_field_valid      (w_bit_field_valid),
-            .i_bit_field_read_mask  (w_bit_field_read_mask[4+16*j+:4]),
-            .i_bit_field_write_mask (w_bit_field_write_mask[4+16*j+:4]),
-            .i_bit_field_write_data (w_bit_field_write_data[4+16*j+:4]),
-            .o_bit_field_read_data  (w_bit_field_read_data[4+16*j+:4]),
-            .o_bit_field_value      (w_bit_field_value[4+16*j+:4]),
-            .o_value                (o_register_9_bit_field_1[4*(4*i+j)+:4])
+            .i_clk              (i_clk),
+            .i_rst_n            (i_rst_n),
+            .i_sw_valid         (w_bit_field_valid),
+            .i_sw_read_mask     (w_bit_field_read_mask[4+16*j+:4]),
+            .i_sw_write_enable  (1'b1),
+            .i_sw_write_mask    (w_bit_field_write_mask[4+16*j+:4]),
+            .i_sw_write_data    (w_bit_field_write_data[4+16*j+:4]),
+            .o_sw_read_data     (w_bit_field_read_data[4+16*j+:4]),
+            .o_sw_value         (w_bit_field_value[4+16*j+:4]),
+            .i_hw_write_enable  (1'b0),
+            .i_hw_write_data    ({4{1'b0}}),
+            .i_hw_set           ({4{1'b0}}),
+            .i_hw_clear         ({4{1'b0}}),
+            .i_value            ({4{1'b0}}),
+            .i_mask             ({4{1'b1}}),
+            .o_value            (o_register_9_bit_field_1[4*(4*i+j)+:4]),
+            .o_value_unmasked   ()
           );
         end
       end
       if (1) begin : g_bit_field_2
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
-          rggen_bit_field_rw_wo #(
+          rggen_bit_field #(
             .WIDTH          (4),
             .INITIAL_VALUE  (`rggen_slice({4'h3, 4'h2, 4'h1, 4'h0}, 4, j)),
-            .WRITE_ONLY     (0),
-            .WRITE_ONCE     (0)
+            .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+            .SW_WRITE_ONCE  (0)
           ) u_bit_field (
-            .i_clk                  (i_clk),
-            .i_rst_n                (i_rst_n),
-            .i_bit_field_valid      (w_bit_field_valid),
-            .i_bit_field_read_mask  (w_bit_field_read_mask[8+16*j+:4]),
-            .i_bit_field_write_mask (w_bit_field_write_mask[8+16*j+:4]),
-            .i_bit_field_write_data (w_bit_field_write_data[8+16*j+:4]),
-            .o_bit_field_read_data  (w_bit_field_read_data[8+16*j+:4]),
-            .o_bit_field_value      (w_bit_field_value[8+16*j+:4]),
-            .o_value                (o_register_9_bit_field_2[4*(4*i+j)+:4])
+            .i_clk              (i_clk),
+            .i_rst_n            (i_rst_n),
+            .i_sw_valid         (w_bit_field_valid),
+            .i_sw_read_mask     (w_bit_field_read_mask[8+16*j+:4]),
+            .i_sw_write_enable  (1'b1),
+            .i_sw_write_mask    (w_bit_field_write_mask[8+16*j+:4]),
+            .i_sw_write_data    (w_bit_field_write_data[8+16*j+:4]),
+            .o_sw_read_data     (w_bit_field_read_data[8+16*j+:4]),
+            .o_sw_value         (w_bit_field_value[8+16*j+:4]),
+            .i_hw_write_enable  (1'b0),
+            .i_hw_write_data    ({4{1'b0}}),
+            .i_hw_set           ({4{1'b0}}),
+            .i_hw_clear         ({4{1'b0}}),
+            .i_value            ({4{1'b0}}),
+            .i_mask             ({4{1'b1}}),
+            .o_value            (o_register_9_bit_field_2[4*(4*i+j)+:4]),
+            .o_value_unmasked   ()
           );
         end
       end
@@ -1475,42 +1876,58 @@ module block_0 #(
         if (1) begin : g_bit_field_0
           genvar k;
           for (k = 0;k < 4;k = k + 1) begin : g
-            rggen_bit_field_rw_wo #(
+            rggen_bit_field #(
               .WIDTH          (8),
               .INITIAL_VALUE  (`rggen_slice(8'h00, 8, 0)),
-              .WRITE_ONLY     (0),
-              .WRITE_ONCE     (0)
+              .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+              .SW_WRITE_ONCE  (0)
             ) u_bit_field (
-              .i_clk                  (i_clk),
-              .i_rst_n                (i_rst_n),
-              .i_bit_field_valid      (w_bit_field_valid),
-              .i_bit_field_read_mask  (w_bit_field_read_mask[0+16*k+:8]),
-              .i_bit_field_write_mask (w_bit_field_write_mask[0+16*k+:8]),
-              .i_bit_field_write_data (w_bit_field_write_data[0+16*k+:8]),
-              .o_bit_field_read_data  (w_bit_field_read_data[0+16*k+:8]),
-              .o_bit_field_value      (w_bit_field_value[0+16*k+:8]),
-              .o_value                (o_register_10_bit_field_0[8*(16*i+4*j+k)+:8])
+              .i_clk              (i_clk),
+              .i_rst_n            (i_rst_n),
+              .i_sw_valid         (w_bit_field_valid),
+              .i_sw_read_mask     (w_bit_field_read_mask[0+16*k+:8]),
+              .i_sw_write_enable  (1'b1),
+              .i_sw_write_mask    (w_bit_field_write_mask[0+16*k+:8]),
+              .i_sw_write_data    (w_bit_field_write_data[0+16*k+:8]),
+              .o_sw_read_data     (w_bit_field_read_data[0+16*k+:8]),
+              .o_sw_value         (w_bit_field_value[0+16*k+:8]),
+              .i_hw_write_enable  (1'b0),
+              .i_hw_write_data    ({8{1'b0}}),
+              .i_hw_set           ({8{1'b0}}),
+              .i_hw_clear         ({8{1'b0}}),
+              .i_value            ({8{1'b0}}),
+              .i_mask             ({8{1'b1}}),
+              .o_value            (o_register_10_bit_field_0[8*(16*i+4*j+k)+:8]),
+              .o_value_unmasked   ()
             );
           end
         end
         if (1) begin : g_bit_field_1
           genvar k;
           for (k = 0;k < 4;k = k + 1) begin : g
-            rggen_bit_field_rw_wo #(
+            rggen_bit_field #(
               .WIDTH          (8),
               .INITIAL_VALUE  (`rggen_slice(8'h00, 8, 0)),
-              .WRITE_ONLY     (0),
-              .WRITE_ONCE     (0)
+              .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+              .SW_WRITE_ONCE  (0)
             ) u_bit_field (
-              .i_clk                  (i_clk),
-              .i_rst_n                (i_rst_n),
-              .i_bit_field_valid      (w_bit_field_valid),
-              .i_bit_field_read_mask  (w_bit_field_read_mask[8+16*k+:8]),
-              .i_bit_field_write_mask (w_bit_field_write_mask[8+16*k+:8]),
-              .i_bit_field_write_data (w_bit_field_write_data[8+16*k+:8]),
-              .o_bit_field_read_data  (w_bit_field_read_data[8+16*k+:8]),
-              .o_bit_field_value      (w_bit_field_value[8+16*k+:8]),
-              .o_value                (o_register_10_bit_field_1[8*(16*i+4*j+k)+:8])
+              .i_clk              (i_clk),
+              .i_rst_n            (i_rst_n),
+              .i_sw_valid         (w_bit_field_valid),
+              .i_sw_read_mask     (w_bit_field_read_mask[8+16*k+:8]),
+              .i_sw_write_enable  (1'b1),
+              .i_sw_write_mask    (w_bit_field_write_mask[8+16*k+:8]),
+              .i_sw_write_data    (w_bit_field_write_data[8+16*k+:8]),
+              .o_sw_read_data     (w_bit_field_read_data[8+16*k+:8]),
+              .o_sw_value         (w_bit_field_value[8+16*k+:8]),
+              .i_hw_write_enable  (1'b0),
+              .i_hw_write_data    ({8{1'b0}}),
+              .i_hw_set           ({8{1'b0}}),
+              .i_hw_clear         ({8{1'b0}}),
+              .i_value            ({8{1'b0}}),
+              .i_mask             ({8{1'b1}}),
+              .o_value            (o_register_10_bit_field_1[8*(16*i+4*j+k)+:8]),
+              .o_value_unmasked   ()
             );
           end
         end
@@ -1558,21 +1975,29 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (1),
         .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:1]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:1]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:1]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:1]),
-        .o_bit_field_value      (w_bit_field_value[0+:1]),
-        .o_value                (o_register_11_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:1]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:1]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:1]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:1]),
+        .o_sw_value         (w_bit_field_value[0+:1]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({1{1'b0}}),
+        .i_hw_set           ({1{1'b0}}),
+        .i_hw_clear         ({1{1'b0}}),
+        .i_value            ({1{1'b0}}),
+        .i_mask             ({1{1'b1}}),
+        .o_value            (o_register_11_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
@@ -1617,21 +2042,29 @@ module block_0 #(
       .i_bit_field_value      (w_bit_field_value)
     );
     if (1) begin : g_bit_field_0
-      rggen_bit_field_rw_wo #(
+      rggen_bit_field #(
         .WIDTH          (1),
         .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
-        .WRITE_ONLY     (0),
-        .WRITE_ONCE     (0)
+        .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ONCE  (0)
       ) u_bit_field (
-        .i_clk                  (i_clk),
-        .i_rst_n                (i_rst_n),
-        .i_bit_field_valid      (w_bit_field_valid),
-        .i_bit_field_read_mask  (w_bit_field_read_mask[0+:1]),
-        .i_bit_field_write_mask (w_bit_field_write_mask[0+:1]),
-        .i_bit_field_write_data (w_bit_field_write_data[0+:1]),
-        .o_bit_field_read_data  (w_bit_field_read_data[0+:1]),
-        .o_bit_field_value      (w_bit_field_value[0+:1]),
-        .o_value                (o_register_12_bit_field_0)
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:1]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:1]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:1]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:1]),
+        .o_sw_value         (w_bit_field_value[0+:1]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({1{1'b0}}),
+        .i_hw_set           ({1{1'b0}}),
+        .i_hw_clear         ({1{1'b0}}),
+        .i_value            ({1{1'b0}}),
+        .i_mask             ({1{1'b1}}),
+        .o_value            (o_register_12_bit_field_0),
+        .o_value_unmasked   ()
       );
     end
   end endgenerate
