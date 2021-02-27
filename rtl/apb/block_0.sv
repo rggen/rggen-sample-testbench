@@ -93,7 +93,7 @@ module block_0
   output logic [1:0][3:0][3:0][7:0] o_register_10_bit_field_1,
   output logic o_register_11_bit_field_0,
   output logic o_register_12_bit_field_0,
-  rggen_bus_if.master register_13_bus_if
+  rggen_bus_if.master register_14_bus_if
 );
   rggen_register_if #(8, 32, 64) register_if[24]();
   rggen_apb_adapter #(
@@ -323,7 +323,7 @@ module block_0
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'hffff0f0f),
+      .VALID_BITS     (32'h00ff0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -391,28 +391,6 @@ module block_0
         .i_hw_clear         ('0),
         .i_value            (INITIAL_VALUE),
         .i_mask             ('1),
-        .o_value            (),
-        .o_value_unmasked   ()
-      );
-    end
-    if (1) begin : g_bit_field_3
-      rggen_bit_field_if #(8) bit_field_sub_if();
-      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 24, 8)
-      rggen_bit_field #(
-        .WIDTH          (8),
-        .SW_READ_ACTION (RGGEN_READ_NONE),
-        .STORAGE        (0)
-      ) u_bit_field (
-        .i_clk              ('0),
-        .i_rst_n            ('0),
-        .bit_field_if       (bit_field_sub_if),
-        .i_sw_write_enable  ('0),
-        .i_hw_write_enable  ('0),
-        .i_hw_write_data    ('0),
-        .i_hw_set           ('0),
-        .i_hw_clear         ('0),
-        .i_value            ('0),
-        .i_mask             ('0),
         .o_value            (),
         .o_value_unmasked   ()
       );
@@ -1668,7 +1646,7 @@ module block_0
       );
     end
   end endgenerate
-  generate if (1) begin : g_register_13
+  generate if (1) begin : g_register_14
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
@@ -1678,7 +1656,7 @@ module block_0
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
       .register_if  (register_if[23]),
-      .bus_if       (register_13_bus_if)
+      .bus_if       (register_14_bus_if)
     );
   end endgenerate
 endmodule

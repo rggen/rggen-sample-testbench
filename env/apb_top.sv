@@ -81,7 +81,7 @@ module top;
   logic [1:0][3:0][3:0][7:0]  register_10_bit_field_1;
   logic                       register_11_bit_field_0;
   logic                       register_12_bit_field_0;
-  rggen_bus_if #(8, 32)       register_13_bus_if();
+  rggen_bus_if #(8, 32)       register_14_bus_if();
 
   initial begin
     clk = 0;
@@ -217,16 +217,16 @@ module top;
     .o_register_11_bit_field_0          (register_11_bit_field_0          ),
     .o_register_12_bit_field_0          (register_12_bit_field_0          ),
 `ifdef RGGEN_SYSTEMVERILOG
-    .register_13_bus_if                 (register_13_bus_if               )
+    .register_14_bus_if                 (register_14_bus_if               )
 `else
-    .o_register_13_valid                (register_13_bus_if.valid         ),
-    .o_register_13_access               (register_13_bus_if.access        ),
-    .o_register_13_address              (register_13_bus_if.address       ),
-    .o_register_13_data                 (register_13_bus_if.write_data    ),
-    .o_register_13_strobe               (register_13_bus_if.strobe        ),
-    .i_register_13_ready                (register_13_bus_if.ready         ),
-    .i_register_13_status               (register_13_bus_if.status        ),
-    .i_register_13_data                 (register_13_bus_if.read_data     )
+    .o_register_14_valid                (register_14_bus_if.valid         ),
+    .o_register_14_access               (register_14_bus_if.access        ),
+    .o_register_14_address              (register_14_bus_if.address       ),
+    .o_register_14_data                 (register_14_bus_if.write_data    ),
+    .o_register_14_strobe               (register_14_bus_if.strobe        ),
+    .i_register_14_ready                (register_14_bus_if.ready         ),
+    .i_register_14_status               (register_14_bus_if.status        ),
+    .i_register_14_data                 (register_14_bus_if.read_data     )
 `endif
   );
 
@@ -234,7 +234,7 @@ module top;
   rggen_apb_bridge u_bridge (
     .i_clk    (clk                ),
     .i_rst_n  (rst_n              ),
-    .bus_if   (register_13_bus_if ),
+    .bus_if   (register_14_bus_if ),
     .apb_if   (apb_if[1]          )
   );
 `else
@@ -244,14 +244,14 @@ module top;
   ) u_bridge (
     .i_clk            (clk                            ),
     .i_rst_n          (rst_n                          ),
-    .i_bus_valid      (register_13_bus_if.valid       ),
-    .i_bus_access     (register_13_bus_if.access      ),
-    .i_bus_address    (register_13_bus_if.address     ),
-    .i_bus_write_data (register_13_bus_if.write_data  ),
-    .i_bus_strobe     (register_13_bus_if.strobe      ),
-    .o_bus_ready      (register_13_bus_if.ready       ),
-    .o_bus_status     (register_13_bus_if.status      ),
-    .o_bus_read_data  (register_13_bus_if.read_data   ),
+    .i_bus_valid      (register_14_bus_if.valid       ),
+    .i_bus_access     (register_14_bus_if.access      ),
+    .i_bus_address    (register_14_bus_if.address     ),
+    .i_bus_write_data (register_14_bus_if.write_data  ),
+    .i_bus_strobe     (register_14_bus_if.strobe      ),
+    .o_bus_ready      (register_14_bus_if.ready       ),
+    .o_bus_status     (register_14_bus_if.status      ),
+    .o_bus_read_data  (register_14_bus_if.read_data   ),
     .o_psel           (apb_if[1].psel                 ),
     .o_penable        (apb_if[1].penable              ),
     .o_paddr          (apb_if[1].paddr[7:0]           ),

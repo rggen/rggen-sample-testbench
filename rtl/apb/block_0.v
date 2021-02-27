@@ -92,14 +92,14 @@ module block_0 #(
   output [255:0] o_register_10_bit_field_1,
   output o_register_11_bit_field_0,
   output o_register_12_bit_field_0,
-  output o_register_13_valid,
-  output [1:0] o_register_13_access,
-  output [7:0] o_register_13_address,
-  output [31:0] o_register_13_data,
-  output [3:0] o_register_13_strobe,
-  input i_register_13_ready,
-  input [1:0] i_register_13_status,
-  input [31:0] i_register_13_data
+  output o_register_14_valid,
+  output [1:0] o_register_14_access,
+  output [7:0] o_register_14_address,
+  output [31:0] o_register_14_data,
+  output [3:0] o_register_14_strobe,
+  input i_register_14_ready,
+  input [1:0] i_register_14_status,
+  input [31:0] i_register_14_data
 );
   wire w_register_valid;
   wire [1:0] w_register_access;
@@ -412,7 +412,7 @@ module block_0 #(
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'hffff0f0f),
+      .VALID_BITS     (32'h00ff0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk                  (i_clk),
@@ -502,31 +502,6 @@ module block_0 #(
         .i_hw_clear         ({8{1'b0}}),
         .i_value            (`rggen_slice(8'hab, 8, 0)),
         .i_mask             ({8{1'b1}}),
-        .o_value            (),
-        .o_value_unmasked   ()
-      );
-    end
-    if (1) begin : g_bit_field_3
-      rggen_bit_field #(
-        .WIDTH          (8),
-        .SW_READ_ACTION (`RGGEN_READ_NONE),
-        .STORAGE        (0)
-      ) u_bit_field (
-        .i_clk              (1'b0),
-        .i_rst_n            (1'b0),
-        .i_sw_valid         (w_bit_field_valid),
-        .i_sw_read_mask     (w_bit_field_read_mask[24+:8]),
-        .i_sw_write_enable  (1'b0),
-        .i_sw_write_mask    (w_bit_field_write_mask[24+:8]),
-        .i_sw_write_data    (w_bit_field_write_data[24+:8]),
-        .o_sw_read_data     (w_bit_field_read_data[24+:8]),
-        .o_sw_value         (w_bit_field_value[24+:8]),
-        .i_hw_write_enable  (1'b0),
-        .i_hw_write_data    ({8{1'b0}}),
-        .i_hw_set           ({8{1'b0}}),
-        .i_hw_clear         ({8{1'b0}}),
-        .i_value            ({8{1'b0}}),
-        .i_mask             ({8{1'b0}}),
         .o_value            (),
         .o_value_unmasked   ()
       );
@@ -2068,7 +2043,7 @@ module block_0 #(
       );
     end
   end endgenerate
-  generate if (1) begin : g_register_13
+  generate if (1) begin : g_register_14
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
@@ -2087,14 +2062,14 @@ module block_0 #(
       .o_register_status      (w_register_status[46+:2]),
       .o_register_read_data   (w_register_read_data[736+:32]),
       .o_register_value       (w_register_value[1472+:32]),
-      .o_external_valid       (o_register_13_valid),
-      .o_external_access      (o_register_13_access),
-      .o_external_address     (o_register_13_address),
-      .o_external_data        (o_register_13_data),
-      .o_external_strobe      (o_register_13_strobe),
-      .i_external_ready       (i_register_13_ready),
-      .i_external_status      (i_register_13_status),
-      .i_external_data        (i_register_13_data)
+      .o_external_valid       (o_register_14_valid),
+      .o_external_access      (o_register_14_access),
+      .o_external_address     (o_register_14_address),
+      .o_external_data        (o_register_14_data),
+      .o_external_strobe      (o_register_14_strobe),
+      .i_external_ready       (i_register_14_ready),
+      .i_external_status      (i_register_14_status),
+      .i_external_data        (i_register_14_data)
     );
   end endgenerate
 endmodule
