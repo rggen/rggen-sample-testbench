@@ -41,8 +41,10 @@ else
 	XRUN_SIMULATION_ARGS	+= -run
 endif
 
-XRUN_COMPILE_ARGS	+= $(addprefix -f , $(FILE_LISTS))
-XRUN_COMPILE_ARGS	+= $(SOURCE_FILES)
+XRUN_COMPILE_ARGS	+= $(addprefix -f , $(DUT_FILE_LISTS))
+XRUN_COMPILE_ARGS	+= $(addprefix -f , $(ENV_FILE_LISTS))
+XRUN_COMPILE_ARGS	+= $(DUT_SOURCE_FILES)
+XRUN_COMPILE_ARGS	+= $(ENV_SOURCE_FILES)
 
 .PHONY: sim_xcelium compile_xcelium
 
