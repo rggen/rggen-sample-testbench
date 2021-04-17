@@ -34,14 +34,13 @@ ifeq ($(strip $(LANGURAGE)), verilog)
 	ENV_FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile_backdoor.f
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_rtl_pkg.sv
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_$(PROTOCOL)_if.sv
-	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_bus_if.sv
 endif
 
 ifeq ($(strip $(LANGURAGE)), vhdl)
 	DUT_FILE_LISTS	+= $(RGGEN_VHDL_RTL_ROOT)/compile.f
+	ENV_FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile_backdoor.f
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_rtl_pkg.sv
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_$(PROTOCOL)_if.sv
-	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_bus_if.sv
 endif
 
 ENV_FILE_LISTS	+= $(RGGEN_SV_RAL_ROOT)/compile.f

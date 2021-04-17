@@ -19,3 +19,6 @@
 [submodule "rtl/rggen-verilog-rtl"]
 	path = rtl/rggen-verilog-rtl
 	url = git@github.com:rggen/rggen-verilog-rtl.git
+[submodule "rtl/rggen-vhdl-rtl"]
+	path = rtl/rggen-vhdl-rtl
+	url = git@github.com:rggen/rggen-vhdl-rtl.git

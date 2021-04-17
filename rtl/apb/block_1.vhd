@@ -480,10 +480,9 @@ begin
                 begin
                   u_bit_field: entity work.rggen_bit_field
                     generic map (
-                      WIDTH           => 4,
-                      INITIAL_VALUE   => slice(INITIAL_VALUE, 4, 0),
-                      SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                      SW_WRITE_ONCE   => false
+                      WIDTH                     => 4,
+                      INITIAL_VALUE             => slice(INITIAL_VALUE, 4, 0),
+                      SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_HIGH
                     )
                     port map (
                       i_clk             => i_clk,
@@ -513,10 +512,9 @@ begin
                 begin
                   u_bit_field: entity work.rggen_bit_field
                     generic map (
-                      WIDTH           => 4,
-                      INITIAL_VALUE   => slice(INITIAL_VALUE, 4, 0),
-                      SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                      SW_WRITE_ONCE   => false
+                      WIDTH                     => 4,
+                      INITIAL_VALUE             => slice(INITIAL_VALUE, 4, 0),
+                      SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_LOW
                     )
                     port map (
                       i_clk             => i_clk,

@@ -424,7 +424,7 @@ begin
           WIDTH           => 1,
           INITIAL_VALUE   => slice(INITIAL_VALUE, 1, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => true
+          SW_WRITE_ONCE   => false
         )
         port map (
           i_clk             => i_clk,
