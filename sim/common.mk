@@ -37,7 +37,7 @@ ifeq ($(strip $(LANGURAGE)), verilog)
 endif
 
 ifeq ($(strip $(LANGURAGE)), vhdl)
-	DUT_FILE_LISTS	+= $(RGGEN_VHDL_RTL_ROOT)/compile.f
+	DUT_FILE_LISTS	+= $(RGGEN_VHDL_RTL_ROOT)/compile_without_backdoor_dummy.f
 	ENV_FILE_LISTS	+= $(RGGEN_SV_RTL_ROOT)/compile_backdoor.f
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_rtl_pkg.sv
 	ENV_SOURCE_FILES	+= $(RGGEN_SV_RTL_ROOT)/rggen_$(PROTOCOL)_if.sv

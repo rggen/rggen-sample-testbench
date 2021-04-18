@@ -31,7 +31,6 @@ VLOGAN_ENV_ARGS	+= -timescale=1ns/1ps
 VLOGAN_ENV_ARGS	+= -ntb_opts uvm-1.2
 VLOGAN_ENV_ARGS	+= +incdir+$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
 VLOGAN_ENV_ARGS	+= +define+RGGEN_ENABLE_BACKDOOR
-VLOGAN_ENV_ARGS	+= +define+RGGEN_ENABLE_SVA
 VLOGAN_ENV_ARGS	+= +define+RGGEN_ENABLE_ENHANCED_RAL
 VLOGAN_ENV_ARGS	+= +define+RGGEN_$(shell echo $(LANGURAGE) | tr a-z A-Z)
 VLOGAN_ENV_ARGS	+= -l vlogan_env.log
