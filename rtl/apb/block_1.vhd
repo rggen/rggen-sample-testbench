@@ -84,8 +84,6 @@ begin
   g_register_file_0: block
   begin
     g_register_0: block
-      constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"00";
-      constant VALID_BITS: unsigned(31 downto 0) := x"000000ff";
       signal bit_field_valid: std_logic;
       signal bit_field_read_mask: std_logic_vector(31 downto 0);
       signal bit_field_write_mask: std_logic_vector(31 downto 0);
@@ -98,10 +96,10 @@ begin
           READABLE        => true,
           WRITABLE        => true,
           ADDRESS_WIDTH   => 7,
-          OFFSET_ADDRESS  => OFFSET_ADDRESS(6 downto 0),
+          OFFSET_ADDRESS  => x"00",
           BUS_WIDTH       => 32,
           DATA_WIDTH      => 32,
-          VALID_BITS      => VALID_BITS(31 downto 0),
+          VALID_BITS      => x"000000ff",
           REGISTER_INDEX  => 0
         )
         port map (
@@ -125,12 +123,11 @@ begin
           i_bit_field_value       => bit_field_value
         );
       g_bit_field_0: block
-        constant INITIAL_VALUE: unsigned(7 downto 0) := x"00";
       begin
         u_bit_field: entity work.rggen_bit_field
           generic map (
             WIDTH           => 8,
-            INITIAL_VALUE   => slice(INITIAL_VALUE, 8, 0),
+            INITIAL_VALUE   => slice(x"00", 8, 0),
             SW_READ_ACTION  => RGGEN_READ_DEFAULT,
             SW_WRITE_ONCE   => false
           )
@@ -156,8 +153,6 @@ begin
       end block;
     end block;
     g_register_1: block
-      constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"04";
-      constant VALID_BITS: unsigned(31 downto 0) := x"000000ff";
       signal bit_field_valid: std_logic;
       signal bit_field_read_mask: std_logic_vector(31 downto 0);
       signal bit_field_write_mask: std_logic_vector(31 downto 0);
@@ -170,10 +165,10 @@ begin
           READABLE        => true,
           WRITABLE        => true,
           ADDRESS_WIDTH   => 7,
-          OFFSET_ADDRESS  => OFFSET_ADDRESS(6 downto 0),
+          OFFSET_ADDRESS  => x"04",
           BUS_WIDTH       => 32,
           DATA_WIDTH      => 32,
-          VALID_BITS      => VALID_BITS(31 downto 0),
+          VALID_BITS      => x"000000ff",
           REGISTER_INDEX  => 0
         )
         port map (
@@ -197,12 +192,11 @@ begin
           i_bit_field_value       => bit_field_value
         );
       g_bit_field_0: block
-        constant INITIAL_VALUE: unsigned(7 downto 0) := x"00";
       begin
         u_bit_field: entity work.rggen_bit_field
           generic map (
             WIDTH           => 8,
-            INITIAL_VALUE   => slice(INITIAL_VALUE, 8, 0),
+            INITIAL_VALUE   => slice(x"00", 8, 0),
             SW_READ_ACTION  => RGGEN_READ_DEFAULT,
             SW_WRITE_ONCE   => false
           )
@@ -233,8 +227,6 @@ begin
     g_register_0: block
     begin
       g: for i in 0 to 1 generate
-        constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"10";
-        constant VALID_BITS: unsigned(31 downto 0) := x"000000ff";
         signal indirect_match: std_logic_vector(1 downto 0);
         signal bit_field_valid: std_logic;
         signal bit_field_read_mask: std_logic_vector(31 downto 0);
@@ -250,10 +242,10 @@ begin
             READABLE              => true,
             WRITABLE              => true,
             ADDRESS_WIDTH         => 7,
-            OFFSET_ADDRESS        => OFFSET_ADDRESS(6 downto 0),
+            OFFSET_ADDRESS        => x"10",
             BUS_WIDTH             => 32,
             DATA_WIDTH            => 32,
-            VALID_BITS            => VALID_BITS(31 downto 0),
+            VALID_BITS            => x"000000ff",
             INDIRECT_MATCH_WIDTH  => 2
           )
           port map (
@@ -278,12 +270,11 @@ begin
             i_bit_field_value       => bit_field_value
           );
         g_bit_field_0: block
-          constant INITIAL_VALUE: unsigned(7 downto 0) := x"00";
         begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
               WIDTH           => 8,
-              INITIAL_VALUE   => slice(INITIAL_VALUE, 8, 0),
+              INITIAL_VALUE   => slice(x"00", 8, 0),
               SW_READ_ACTION  => RGGEN_READ_DEFAULT,
               SW_WRITE_ONCE   => false
             )
@@ -312,8 +303,6 @@ begin
     g_register_1: block
     begin
       g: for i in 0 to 1 generate
-        constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"10";
-        constant VALID_BITS: unsigned(31 downto 0) := x"000000ff";
         signal indirect_match: std_logic_vector(1 downto 0);
         signal bit_field_valid: std_logic;
         signal bit_field_read_mask: std_logic_vector(31 downto 0);
@@ -329,10 +318,10 @@ begin
             READABLE              => true,
             WRITABLE              => true,
             ADDRESS_WIDTH         => 7,
-            OFFSET_ADDRESS        => OFFSET_ADDRESS(6 downto 0),
+            OFFSET_ADDRESS        => x"10",
             BUS_WIDTH             => 32,
             DATA_WIDTH            => 32,
-            VALID_BITS            => VALID_BITS(31 downto 0),
+            VALID_BITS            => x"000000ff",
             INDIRECT_MATCH_WIDTH  => 2
           )
           port map (
@@ -357,12 +346,11 @@ begin
             i_bit_field_value       => bit_field_value
           );
         g_bit_field_0: block
-          constant INITIAL_VALUE: unsigned(7 downto 0) := x"00";
         begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
               WIDTH           => 8,
-              INITIAL_VALUE   => slice(INITIAL_VALUE, 8, 0),
+              INITIAL_VALUE   => slice(x"00", 8, 0),
               SW_READ_ACTION  => RGGEN_READ_DEFAULT,
               SW_WRITE_ONCE   => false
             )
@@ -400,8 +388,6 @@ begin
           g: for j in 0 to 1 generate
           begin
             g: for k in 0 to 2 generate
-              constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"20"+28*(i);
-              constant VALID_BITS: unsigned(31 downto 0) := x"00ffffff";
               signal bit_field_valid: std_logic;
               signal bit_field_read_mask: std_logic_vector(31 downto 0);
               signal bit_field_write_mask: std_logic_vector(31 downto 0);
@@ -414,10 +400,10 @@ begin
                   READABLE        => true,
                   WRITABLE        => true,
                   ADDRESS_WIDTH   => 7,
-                  OFFSET_ADDRESS  => OFFSET_ADDRESS(6 downto 0),
+                  OFFSET_ADDRESS  => x"20"+28*(i),
                   BUS_WIDTH       => 32,
                   DATA_WIDTH      => 32,
-                  VALID_BITS      => VALID_BITS(31 downto 0),
+                  VALID_BITS      => x"00ffffff",
                   REGISTER_INDEX  => 3*j+k
                 )
                 port map (
@@ -443,12 +429,11 @@ begin
               g_bit_field_0: block
               begin
                 g: for l in 0 to 1 generate
-                  constant INITIAL_VALUE: unsigned(3 downto 0) := x"0";
                 begin
                   u_bit_field: entity work.rggen_bit_field
                     generic map (
                       WIDTH           => 4,
-                      INITIAL_VALUE   => slice(INITIAL_VALUE, 4, 0),
+                      INITIAL_VALUE   => slice(x"0", 4, 0),
                       SW_READ_ACTION  => RGGEN_READ_DEFAULT,
                       SW_WRITE_ONCE   => false
                     )
@@ -476,12 +461,11 @@ begin
               g_bit_field_1: block
               begin
                 g: for l in 0 to 1 generate
-                  constant INITIAL_VALUE: unsigned(3 downto 0) := x"0";
                 begin
                   u_bit_field: entity work.rggen_bit_field
                     generic map (
                       WIDTH                     => 4,
-                      INITIAL_VALUE             => slice(INITIAL_VALUE, 4, 0),
+                      INITIAL_VALUE             => slice(x"0", 4, 0),
                       SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_HIGH
                     )
                     port map (
@@ -508,12 +492,11 @@ begin
               g_bit_field_2: block
               begin
                 g: for l in 0 to 1 generate
-                  constant INITIAL_VALUE: unsigned(3 downto 0) := x"0";
                 begin
                   u_bit_field: entity work.rggen_bit_field
                     generic map (
                       WIDTH                     => 4,
-                      INITIAL_VALUE             => slice(INITIAL_VALUE, 4, 0),
+                      INITIAL_VALUE             => slice(x"0", 4, 0),
                       SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_LOW
                     )
                     port map (
@@ -541,8 +524,6 @@ begin
           end generate;
         end block;
         g_register_1: block
-          constant OFFSET_ADDRESS: unsigned(7 downto 0) := x"20"+28*(i)+x"18";
-          constant VALID_BITS: unsigned(31 downto 0) := x"00000003";
           signal bit_field_valid: std_logic;
           signal bit_field_read_mask: std_logic_vector(31 downto 0);
           signal bit_field_write_mask: std_logic_vector(31 downto 0);
@@ -555,10 +536,10 @@ begin
               READABLE        => true,
               WRITABLE        => true,
               ADDRESS_WIDTH   => 7,
-              OFFSET_ADDRESS  => OFFSET_ADDRESS(6 downto 0),
+              OFFSET_ADDRESS  => x"20"+28*(i)+x"18",
               BUS_WIDTH       => 32,
               DATA_WIDTH      => 32,
-              VALID_BITS      => VALID_BITS(31 downto 0),
+              VALID_BITS      => x"00000003",
               REGISTER_INDEX  => 0
             )
             port map (
@@ -584,12 +565,11 @@ begin
           g_bit_field_0: block
           begin
             g: for j in 0 to 1 generate
-              constant INITIAL_VALUE: unsigned(3 downto 0) := x"0";
             begin
               u_bit_field: entity work.rggen_bit_field
                 generic map (
                   WIDTH           => 1,
-                  INITIAL_VALUE   => slice(INITIAL_VALUE, 1, 0),
+                  INITIAL_VALUE   => slice(x"0", 1, 0),
                   SW_READ_ACTION  => RGGEN_READ_DEFAULT,
                   SW_WRITE_ONCE   => false
                 )
