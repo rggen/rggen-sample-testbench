@@ -9,7 +9,7 @@ entity block_0 is
     ADDRESS_WIDTH: positive := 8;
     PRE_DECODE: boolean := false;
     ERROR_STATUS: boolean := false;
-    REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := (others => '0')
+    REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
   );
   port (
     i_clk: in std_logic;
