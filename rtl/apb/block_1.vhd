@@ -8,12 +8,12 @@ entity block_1 is
   generic (
     ADDRESS_WIDTH: positive := 7;
     PRE_DECODE: boolean := false;
+    BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false
   );
   port (
     i_clk: in std_logic;
     i_rst_n: in std_logic;
-    i_base_address: in unsigned(ADDRESS_WIDTH - 1 downto 0);
     i_psel: in std_logic;
     i_penable: in std_logic;
     i_paddr: in std_logic_vector(ADDRESS_WIDTH - 1 downto 0);
@@ -54,13 +54,13 @@ begin
       BUS_WIDTH           => 32,
       REGISTERS           => 20,
       PRE_DECODE          => PRE_DECODE,
+      BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 128,
       ERROR_STATUS        => ERROR_STATUS
     )
     port map (
       i_clk                 => i_clk,
       i_rst_n               => i_rst_n,
-      i_base_address        => i_base_address,
       i_psel                => i_psel,
       i_penable             => i_penable,
       i_paddr               => i_paddr,

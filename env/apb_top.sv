@@ -139,14 +139,12 @@ module top;
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
     .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
 `else
+    .BASE_ADDRESS                         ("0001000000000000"       ),
     .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ("1111111011011100"       )
 `endif
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
-`ifdef RGGEN_VHDL
-    .i_base_address                     (16'h1000                         ),
-`endif
 `ifdef RGGEN_SYSTEMVERILOG
     .apb_if                             (apb_if[0]                        ),
 `else
@@ -286,9 +284,6 @@ module top;
   block_1 u_block_1 (
     .i_clk                                                    (clk                  ),
     .i_rst_n                                                  (rst_n                ),
-`ifdef RGGEN_VHDL
-    .i_base_address                                           (7'h00                ),
-`endif
 `ifdef RGGEN_SYSTEMVERILOG
     .apb_if                                                   (apb_if[1]            ),
 `else

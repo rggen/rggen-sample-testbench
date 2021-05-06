@@ -8,13 +8,13 @@ entity block_0 is
   generic (
     ADDRESS_WIDTH: positive := 8;
     PRE_DECODE: boolean := false;
+    BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
     REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
   );
   port (
     i_clk: in std_logic;
     i_rst_n: in std_logic;
-    i_base_address: in unsigned(ADDRESS_WIDTH - 1 downto 0);
     i_psel: in std_logic;
     i_penable: in std_logic;
     i_paddr: in std_logic_vector(ADDRESS_WIDTH - 1 downto 0);
@@ -128,13 +128,13 @@ begin
       BUS_WIDTH           => 32,
       REGISTERS           => 24,
       PRE_DECODE          => PRE_DECODE,
+      BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
       ERROR_STATUS        => ERROR_STATUS
     )
     port map (
       i_clk                 => i_clk,
       i_rst_n               => i_rst_n,
-      i_base_address        => i_base_address,
       i_psel                => i_psel,
       i_penable             => i_penable,
       i_paddr               => i_paddr,
@@ -513,12 +513,12 @@ begin
           i_clk             => '0',
           i_rst_n           => '0',
           i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 4),
+          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
           i_sw_write_enable => '0',
-          i_sw_write_mask   => bit_field_write_mask(7 downto 4),
-          i_sw_write_data   => bit_field_write_data(7 downto 4),
-          o_sw_read_data    => bit_field_read_data(7 downto 4),
-          o_sw_value        => bit_field_value(7 downto 4),
+          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_write_data   => bit_field_write_data(11 downto 8),
+          o_sw_read_data    => bit_field_read_data(11 downto 8),
+          o_sw_value        => bit_field_value(11 downto 8),
           i_hw_write_enable => '0',
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
