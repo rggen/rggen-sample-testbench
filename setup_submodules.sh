@@ -7,6 +7,7 @@ submodules=(
   ral/rggen-sv-ral
   rtl/rggen-sv-rtl
   rtl/rggen-verilog-rtl
+  rtl/rggen-vhdl-rtl
 )
 
 for submodule in ${submodules[@]} ; do

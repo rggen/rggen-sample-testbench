@@ -82,7 +82,18 @@ module top;
   logic [1:0][3:0][3:0][7:0]      register_10_bit_field_1;
   logic                           register_11_bit_field_0;
   logic                           register_12_bit_field_0;
+`ifdef RGGEN_SYSTEMVERILOG
   rggen_bus_if #(8, 32)           register_14_bus_if();
+`else
+  logic                           register_14_valid;
+  logic [1:0]                     register_14_access;
+  logic [7:0]                     register_14_address;
+  logic [31:0]                    register_14_write_data;
+  logic [3:0]                     register_14_strobe;
+  logic                           register_14_ready;
+  logic [1:0]                     register_14_status;
+  logic [31:0]                    register_14_read_data;
+`endif
 
   initial begin
     clk = 0;
@@ -125,9 +136,14 @@ module top;
     .ADDRESS_WIDTH                        (16                       ),
     .ID_WIDTH                             (2                        ),
     .PRE_DECODE                           (1                        ),
+`ifndef RGGEN_VHDL
     .BASE_ADDRESS                         (16'h1000                 ),
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
     .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
+`else
+    .BASE_ADDRESS                         ("0001000000000000"       ),
+    .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ("1111111011011100"       )
+`endif
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),
@@ -234,14 +250,14 @@ module top;
 `ifdef RGGEN_SYSTEMVERILOG
     .register_14_bus_if                 (register_14_bus_if               )
 `else
-    .o_register_14_valid                (register_14_bus_if.valid         ),
-    .o_register_14_access               (register_14_bus_if.access        ),
-    .o_register_14_address              (register_14_bus_if.address       ),
-    .o_register_14_data                 (register_14_bus_if.write_data    ),
-    .o_register_14_strobe               (register_14_bus_if.strobe        ),
-    .i_register_14_ready                (register_14_bus_if.ready         ),
-    .i_register_14_status               (register_14_bus_if.status        ),
-    .i_register_14_data                 (register_14_bus_if.read_data     )
+    .o_register_14_valid                (register_14_valid                ),
+    .o_register_14_access               (register_14_access               ),
+    .o_register_14_address              (register_14_address              ),
+    .o_register_14_data                 (register_14_write_data           ),
+    .o_register_14_strobe               (register_14_strobe               ),
+    .i_register_14_ready                (register_14_ready                ),
+    .i_register_14_status               (register_14_status               ),
+    .i_register_14_data                 (register_14_read_data            )
 `endif
   );
 
@@ -257,39 +273,39 @@ module top;
     .ADDRESS_WIDTH  (8  ),
     .BUS_WIDTH      (32 )
   ) u_bridge (
-    .i_clk            (clk                            ),
-    .i_rst_n          (rst_n                          ),
-    .i_bus_valid      (register_14_bus_if.valid       ),
-    .i_bus_access     (register_14_bus_if.access      ),
-    .i_bus_address    (register_14_bus_if.address     ),
-    .i_bus_write_data (register_14_bus_if.write_data  ),
-    .i_bus_strobe     (register_14_bus_if.strobe      ),
-    .o_bus_ready      (register_14_bus_if.ready       ),
-    .o_bus_status     (register_14_bus_if.status      ),
-    .o_bus_read_data  (register_14_bus_if.read_data   ),
-    .o_awvalid        (axi4lite_if[1].awvalid         ),
-    .i_awready        (axi4lite_if[1].awready         ),
-    .o_awid           (axi4lite_if[1].awid[0]         ),
-    .o_awaddr         (axi4lite_if[1].awaddr[7:0]     ),
-    .o_awprot         (axi4lite_if[1].awprot          ),
-    .o_wvalid         (axi4lite_if[1].wvalid          ),
-    .i_wready         (axi4lite_if[1].wready          ),
-    .o_wdata          (axi4lite_if[1].wdata           ),
-    .o_wstrb          (axi4lite_if[1].wstrb           ),
-    .i_bvalid         (axi4lite_if[1].bvalid          ),
-    .o_bready         (axi4lite_if[1].bready          ),
-    .i_bid            (axi4lite_if[1].bid[0]          ),
-    .i_bresp          (axi4lite_if[1].bresp           ),
-    .o_arvalid        (axi4lite_if[1].arvalid         ),
-    .i_arready        (axi4lite_if[1].arready         ),
-    .o_araddr         (axi4lite_if[1].araddr[7:0]     ),
-    .o_arid           (axi4lite_if[1].arid[0]         ),
-    .o_arprot         (axi4lite_if[1].arprot          ),
-    .i_rvalid         (axi4lite_if[1].rvalid          ),
-    .o_rready         (axi4lite_if[1].rready          ),
-    .i_rid            (axi4lite_if[1].rid[0]          ),
-    .i_rresp          (axi4lite_if[1].rresp           ),
-    .i_rdata          (axi4lite_if[1].rdata           )
+    .i_clk            (clk                        ),
+    .i_rst_n          (rst_n                      ),
+    .i_bus_valid      (register_14_valid          ),
+    .i_bus_access     (register_14_access         ),
+    .i_bus_address    (register_14_address        ),
+    .i_bus_write_data (register_14_write_data     ),
+    .i_bus_strobe     (register_14_strobe         ),
+    .o_bus_ready      (register_14_ready          ),
+    .o_bus_status     (register_14_status         ),
+    .o_bus_read_data  (register_14_read_data      ),
+    .o_awvalid        (axi4lite_if[1].awvalid     ),
+    .i_awready        (axi4lite_if[1].awready     ),
+    .o_awid           (axi4lite_if[1].awid[0]     ),
+    .o_awaddr         (axi4lite_if[1].awaddr[7:0] ),
+    .o_awprot         (axi4lite_if[1].awprot      ),
+    .o_wvalid         (axi4lite_if[1].wvalid      ),
+    .i_wready         (axi4lite_if[1].wready      ),
+    .o_wdata          (axi4lite_if[1].wdata       ),
+    .o_wstrb          (axi4lite_if[1].wstrb       ),
+    .i_bvalid         (axi4lite_if[1].bvalid      ),
+    .o_bready         (axi4lite_if[1].bready      ),
+    .i_bid            (axi4lite_if[1].bid[0]      ),
+    .i_bresp          (axi4lite_if[1].bresp       ),
+    .o_arvalid        (axi4lite_if[1].arvalid     ),
+    .i_arready        (axi4lite_if[1].arready     ),
+    .o_araddr         (axi4lite_if[1].araddr[7:0] ),
+    .o_arid           (axi4lite_if[1].arid[0]     ),
+    .o_arprot         (axi4lite_if[1].arprot      ),
+    .i_rvalid         (axi4lite_if[1].rvalid      ),
+    .o_rready         (axi4lite_if[1].rready      ),
+    .i_rid            (axi4lite_if[1].rid[0]      ),
+    .i_rresp          (axi4lite_if[1].rresp       ),
+    .i_rdata          (axi4lite_if[1].rdata       )
   );
 `endif
 
