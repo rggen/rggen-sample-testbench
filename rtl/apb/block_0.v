@@ -7,6 +7,8 @@ module block_0 #(
   parameter [31:0] DEFAULT_READ_DATA = 0,
   parameter [15:0] REGISTER_9_BIT_FIELD_1_INITIAL_VALUE = {4{4'h0}}
 )(
+  input i_clk,
+  input i_rst_n,
   input i_psel,
   input i_penable,
   input [ADDRESS_WIDTH-1:0] i_paddr,
@@ -17,8 +19,6 @@ module block_0 #(
   output o_pready,
   output [31:0] o_prdata,
   output o_pslverr,
-  input i_clk,
-  input i_rst_n,
   output [3:0] o_register_0_bit_field_0,
   output [3:0] o_register_0_bit_field_1,
   output o_register_0_bit_field_2,

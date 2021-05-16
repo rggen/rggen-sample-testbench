@@ -13,6 +13,8 @@ entity block_0 is
     REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
   );
   port (
+    i_clk: in std_logic;
+    i_rst_n: in std_logic;
     i_psel: in std_logic;
     i_penable: in std_logic;
     i_paddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
@@ -23,8 +25,6 @@ entity block_0 is
     o_pready: out std_logic;
     o_prdata: out std_logic_vector(31 downto 0);
     o_pslverr: out std_logic;
-    i_clk: in std_logic;
-    i_rst_n: in std_logic;
     o_register_0_bit_field_0: out std_logic_vector(3 downto 0);
     o_register_0_bit_field_1: out std_logic_vector(3 downto 0);
     o_register_0_bit_field_2: out std_logic_vector(0 downto 0);

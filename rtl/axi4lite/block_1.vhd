@@ -14,6 +14,8 @@ entity block_1 is
     WRITE_FIRST: boolean := true
   );
   port (
+    i_clk: in std_logic;
+    i_rst_n: in std_logic;
     i_awvalid: in std_logic;
     o_awready: out std_logic;
     i_awid: in std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
@@ -37,8 +39,6 @@ entity block_1 is
     o_rid: out std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
     o_rdata: out std_logic_vector(31 downto 0);
     o_rresp: out std_logic_vector(1 downto 0);
-    i_clk: in std_logic;
-    i_rst_n: in std_logic;
     o_register_file_0_register_0_bit_field_0: out std_logic_vector(7 downto 0);
     o_register_file_0_register_1_bit_field_0: out std_logic_vector(7 downto 0);
     o_register_file_1_register_0_bit_field_0: out std_logic_vector(15 downto 0);
