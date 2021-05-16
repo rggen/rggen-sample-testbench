@@ -136,9 +136,14 @@ module top;
     .ADDRESS_WIDTH                        (16                       ),
     .ID_WIDTH                             (2                        ),
     .PRE_DECODE                           (1                        ),
+`ifndef RGGEN_VHDL
     .BASE_ADDRESS                         (16'h1000                 ),
     .DEFAULT_READ_DATA                    (32'hDEAD_BEAF            ),
     .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ({4'hF, 4'hE, 4'hD, 4'hC} )
+`else
+    .BASE_ADDRESS                         ("0001000000000000"       ),
+    .REGISTER_9_BIT_FIELD_1_INITIAL_VALUE ("1111111011011100"       )
+`endif
   ) u_block_0 (
     .i_clk                              (clk                              ),
     .i_rst_n                            (rst_n                            ),

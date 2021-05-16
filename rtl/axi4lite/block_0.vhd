@@ -10,19 +10,34 @@ entity block_0 is
     PRE_DECODE: boolean := false;
     BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
+    ID_WIDTH: natural := 0;
+    WRITE_FIRST: boolean := true;
     REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
   );
   port (
-    i_psel: in std_logic;
-    i_penable: in std_logic;
-    i_paddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
-    i_pprot: in std_logic_vector(2 downto 0);
-    i_pwrite: in std_logic;
-    i_pstrb: in std_logic_vector(3 downto 0);
-    i_pwdata: in std_logic_vector(31 downto 0);
-    o_pready: out std_logic;
-    o_prdata: out std_logic_vector(31 downto 0);
-    o_pslverr: out std_logic;
+    i_awvalid: in std_logic;
+    o_awready: out std_logic;
+    i_awid: in std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    i_awaddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
+    i_awprot: in std_logic_vector(2 downto 0);
+    i_wvalid: in std_logic;
+    o_wready: out std_logic;
+    i_wdata: in std_logic_vector(31 downto 0);
+    i_wstrb: in std_logic_vector(3 downto 0);
+    o_bvalid: out std_logic;
+    i_bready: in std_logic;
+    o_bid: out std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    o_bresp: out std_logic_vector(1 downto 0);
+    i_arvalid: in std_logic;
+    o_arready: out std_logic;
+    i_arid: in std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    i_araddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
+    i_arprot: in std_logic_vector(2 downto 0);
+    o_rvalid: out std_logic;
+    i_rready: in std_logic;
+    o_rid: out std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    o_rdata: out std_logic_vector(31 downto 0);
+    o_rresp: out std_logic_vector(1 downto 0);
     i_clk: in std_logic;
     i_rst_n: in std_logic;
     o_register_0_bit_field_0: out std_logic_vector(3 downto 0);
@@ -121,8 +136,9 @@ architecture rtl of block_0 is
   signal register_read_data: std_logic_vector(767 downto 0);
   signal register_value: std_logic_vector(1535 downto 0);
 begin
-  u_adapter: entity work.rggen_apb_adaper
+  u_adapter: entity work.rggen_axi4lite_adapter
     generic map (
+      ID_WIDTH            => ID_WIDTH,
       ADDRESS_WIDTH       => ADDRESS_WIDTH,
       LOCAL_ADDRESS_WIDTH => 8,
       BUS_WIDTH           => 32,
@@ -130,21 +146,35 @@ begin
       PRE_DECODE          => PRE_DECODE,
       BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
-      ERROR_STATUS        => ERROR_STATUS
+      ERROR_STATUS        => ERROR_STATUS,
+      WRITE_FIRST         => WRITE_FIRST
     )
     port map (
       i_clk                 => i_clk,
       i_rst_n               => i_rst_n,
-      i_psel                => i_psel,
-      i_penable             => i_penable,
-      i_paddr               => i_paddr,
-      i_pprot               => i_pprot,
-      i_pwrite              => i_pwrite,
-      i_pstrb               => i_pstrb,
-      i_pwdata              => i_pwdata,
-      o_pready              => o_pready,
-      o_prdata              => o_prdata,
-      o_pslverr             => o_pslverr,
+      i_awvalid             => i_awvalid,
+      o_awready             => o_awready,
+      i_awid                => i_awid,
+      i_awaddr              => i_awaddr,
+      i_awprot              => i_awprot,
+      i_wvalid              => i_wvalid,
+      o_wready              => o_wready,
+      i_wdata               => i_wdata,
+      i_wstrb               => i_wstrb,
+      o_bvalid              => o_bvalid,
+      i_bready              => i_bready,
+      o_bid                 => o_bid,
+      o_bresp               => o_bresp,
+      i_arvalid             => i_arvalid,
+      o_arready             => o_arready,
+      i_arid                => i_arid,
+      i_araddr              => i_araddr,
+      i_arprot              => i_arprot,
+      o_rvalid              => o_rvalid,
+      i_rready              => i_rready,
+      o_rid                 => o_rid,
+      o_rdata               => o_rdata,
+      o_rresp               => o_rresp,
       o_register_valid      => register_valid,
       o_register_access     => register_access,
       o_register_address    => register_address,
