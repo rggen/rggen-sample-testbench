@@ -1778,7 +1778,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (4),
-            .INITIAL_VALUE  (`rggen_slice({4'h3, 4'h2, 4'h1, 4'h0}, 4, j)),
+            .INITIAL_VALUE  (`rggen_slice(16'h3210, 4, j)),
             .SW_READ_ACTION (`RGGEN_READ_DEFAULT),
             .SW_WRITE_ONCE  (0)
           ) u_bit_field (
