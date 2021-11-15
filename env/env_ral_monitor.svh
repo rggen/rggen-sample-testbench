@@ -1,7 +1,7 @@
 class env_ral_monitor #(
   type  ITEM      = uvm_sequence_item,
   type  ADAPTER   = uvm_reg_adapter,
-  type  PREDICTOR = uvm_reg_predictor
+  type  PREDICTOR = uvm_reg_predictor #(uvm_reg_item)
 ) extends tue_component #(
   .CONFIGURATION  (env_configuration  )
 );
