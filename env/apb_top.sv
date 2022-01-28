@@ -16,6 +16,7 @@ module top;
   logic [1:0]                 register_0_bit_field_3;
   logic [1:0]                 register_0_bit_field_4;
   logic [1:0]                 register_0_bit_field_5;
+  logic [1:0]                 register_0_bit_field_6;
   logic                       register_1;
   logic [3:0]                 register_2_bit_field_0;
   logic [3:0]                 register_2_bit_field_1;
@@ -165,6 +166,8 @@ module top;
     .o_register_0_bit_field_3           (register_0_bit_field_3           ),
     .o_register_0_bit_field_4           (register_0_bit_field_4           ),
     .o_register_0_bit_field_5           (register_0_bit_field_5           ),
+    .o_register_0_bit_field_6           (register_0_bit_field_6           ),
+    .i_register_0_bit_field_6           (register_0_bit_field_6           ),
     .o_register_1                       (register_1                       ),
     .i_register_2_bit_field_0           (register_2_bit_field_0           ),
     .i_register_2_bit_field_1           (register_2_bit_field_1           ),

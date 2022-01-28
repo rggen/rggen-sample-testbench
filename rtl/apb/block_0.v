@@ -25,6 +25,8 @@ module block_0 #(
   output [1:0] o_register_0_bit_field_3,
   output [1:0] o_register_0_bit_field_4,
   output [1:0] o_register_0_bit_field_5,
+  output [1:0] o_register_0_bit_field_6,
+  input [1:0] i_register_0_bit_field_6,
   output o_register_1,
   input [3:0] i_register_2_bit_field_0,
   input [3:0] i_register_2_bit_field_1,
@@ -158,7 +160,7 @@ module block_0 #(
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h00007fff),
+      .VALID_BITS     (32'h0001ffff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk                  (i_clk),
@@ -334,6 +336,31 @@ module block_0 #(
         .o_value_unmasked   ()
       );
     end
+    if (1) begin : g_bit_field_6
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .EXTERNAL_READ_DATA (1)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[15+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[15+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[15+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[15+:2]),
+        .o_sw_value         (w_bit_field_value[15+:2]),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            (i_register_0_bit_field_6),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_0_bit_field_6),
+        .o_value_unmasked   ()
+      );
+    end
   end endgenerate
   generate if (1) begin : g_register_1
     wire w_bit_field_valid;
@@ -436,8 +463,9 @@ module block_0 #(
     );
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
@@ -460,8 +488,9 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
@@ -484,8 +513,9 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
-        .WIDTH    (8),
-        .STORAGE  (0)
+        .WIDTH              (8),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
@@ -718,8 +748,9 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
@@ -1142,8 +1173,9 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
@@ -1218,8 +1250,9 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_5
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),

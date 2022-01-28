@@ -31,6 +31,8 @@ entity block_0 is
     o_register_0_bit_field_3: out std_logic_vector(1 downto 0);
     o_register_0_bit_field_4: out std_logic_vector(1 downto 0);
     o_register_0_bit_field_5: out std_logic_vector(1 downto 0);
+    o_register_0_bit_field_6: out std_logic_vector(1 downto 0);
+    i_register_0_bit_field_6: in std_logic_vector(1 downto 0);
     o_register_1: out std_logic_vector(0 downto 0);
     i_register_2_bit_field_0: in std_logic_vector(3 downto 0);
     i_register_2_bit_field_1: in std_logic_vector(3 downto 0);
@@ -171,7 +173,7 @@ begin
         OFFSET_ADDRESS  => x"00",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"00007fff",
+        VALID_BITS      => x"0001ffff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -366,6 +368,34 @@ begin
           o_value_unmasked  => open
         );
     end block;
+    g_bit_field_6: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH               => 2,
+          INITIAL_VALUE       => slice(x"0", 2, 0),
+          EXTERNAL_READ_DATA  => true
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(16 downto 15),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(16 downto 15),
+          i_sw_write_data   => bit_field_write_data(16 downto 15),
+          o_sw_read_data    => bit_field_read_data(16 downto 15),
+          o_sw_value        => bit_field_value(16 downto 15),
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => i_register_0_bit_field_6,
+          i_mask            => (others => '1'),
+          o_value           => o_register_0_bit_field_6,
+          o_value_unmasked  => open
+        );
+    end block;
   end block;
   g_register_1: block
     signal bit_field_valid: std_logic;
@@ -479,8 +509,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 4,
-          STORAGE => false
+          WIDTH               => 4,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',
@@ -506,8 +537,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 4,
-          STORAGE => false
+          WIDTH               => 4,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',
@@ -533,8 +565,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 8,
-          STORAGE => false
+          WIDTH               => 8,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',
@@ -798,8 +831,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 4,
-          STORAGE => false
+          WIDTH               => 4,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',
@@ -1273,8 +1307,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 4,
-          STORAGE => false
+          WIDTH               => 4,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',
@@ -1360,8 +1395,9 @@ begin
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
-          WIDTH   => 4,
-          STORAGE => false
+          WIDTH               => 4,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true
         )
         port map (
           i_clk             => '0',

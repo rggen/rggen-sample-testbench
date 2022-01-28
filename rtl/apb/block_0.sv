@@ -26,6 +26,8 @@ module block_0
   output logic [1:0] o_register_0_bit_field_3,
   output logic [1:0] o_register_0_bit_field_4,
   output logic [1:0] o_register_0_bit_field_5,
+  output logic [1:0] o_register_0_bit_field_6,
+  input logic [1:0] i_register_0_bit_field_6,
   output logic o_register_1,
   input logic [3:0] i_register_2_bit_field_0,
   input logic [3:0] i_register_2_bit_field_1,
@@ -121,7 +123,7 @@ module block_0
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h00007fff),
+      .VALID_BITS     (32'h0001ffff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -271,6 +273,29 @@ module block_0
         .o_value_unmasked   ()
       );
     end
+    if (1) begin : g_bit_field_6
+      localparam bit [1:0] INITIAL_VALUE = 2'h0;
+      rggen_bit_field_if #(2) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 15, 2)
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (INITIAL_VALUE),
+        .EXTERNAL_READ_DATA (1)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .bit_field_if       (bit_field_sub_if),
+        .i_sw_write_enable  ('1),
+        .i_hw_write_enable  ('0),
+        .i_hw_write_data    ('0),
+        .i_hw_set           ('0),
+        .i_hw_clear         ('0),
+        .i_value            (i_register_0_bit_field_6),
+        .i_mask             ('1),
+        .o_value            (o_register_0_bit_field_6),
+        .o_value_unmasked   ()
+      );
+    end
   end endgenerate
   generate if (1) begin : g_register_1
     rggen_bit_field_if #(32) bit_field_if();
@@ -335,8 +360,9 @@ module block_0
       rggen_bit_field_if #(4) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0, 4)
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
@@ -356,8 +382,9 @@ module block_0
       rggen_bit_field_if #(4) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8, 4)
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
@@ -378,8 +405,9 @@ module block_0
       rggen_bit_field_if #(8) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 16, 8)
       rggen_bit_field #(
-        .WIDTH    (8),
-        .STORAGE  (0)
+        .WIDTH              (8),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
@@ -557,8 +585,9 @@ module block_0
       rggen_bit_field_if #(4) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 12, 4)
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
@@ -914,8 +943,9 @@ module block_0
       rggen_bit_field_if #(4) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8, 4)
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
@@ -983,8 +1013,9 @@ module block_0
       rggen_bit_field_if #(4) bit_field_sub_if();
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 20, 4)
       rggen_bit_field #(
-        .WIDTH    (4),
-        .STORAGE  (0)
+        .WIDTH              (4),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1)
       ) u_bit_field (
         .i_clk              ('0),
         .i_rst_n            ('0),
