@@ -128,8 +128,8 @@ begin
           generic map (
             WIDTH           => 8,
             INITIAL_VALUE   => slice(x"00", 8, 0),
-            SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-            SW_WRITE_ONCE   => false
+            SW_WRITE_ONCE   => false,
+            TRIGGER         => false
           )
           port map (
             i_clk             => i_clk,
@@ -141,6 +141,8 @@ begin
             i_sw_write_data   => bit_field_write_data(7 downto 0),
             o_sw_read_data    => bit_field_read_data(7 downto 0),
             o_sw_value        => bit_field_value(7 downto 0),
+            o_write_trigger   => open,
+            o_read_trigger    => open,
             i_hw_write_enable => "0",
             i_hw_write_data   => (others => '0'),
             i_hw_set          => (others => '0'),
@@ -197,8 +199,8 @@ begin
           generic map (
             WIDTH           => 8,
             INITIAL_VALUE   => slice(x"00", 8, 0),
-            SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-            SW_WRITE_ONCE   => false
+            SW_WRITE_ONCE   => false,
+            TRIGGER         => false
           )
           port map (
             i_clk             => i_clk,
@@ -210,6 +212,8 @@ begin
             i_sw_write_data   => bit_field_write_data(7 downto 0),
             o_sw_read_data    => bit_field_read_data(7 downto 0),
             o_sw_value        => bit_field_value(7 downto 0),
+            o_write_trigger   => open,
+            o_read_trigger    => open,
             i_hw_write_enable => "0",
             i_hw_write_data   => (others => '0'),
             i_hw_set          => (others => '0'),
@@ -275,8 +279,8 @@ begin
             generic map (
               WIDTH           => 8,
               INITIAL_VALUE   => slice(x"00", 8, 0),
-              SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-              SW_WRITE_ONCE   => false
+              SW_WRITE_ONCE   => false,
+              TRIGGER         => false
             )
             port map (
               i_clk             => i_clk,
@@ -288,6 +292,8 @@ begin
               i_sw_write_data   => bit_field_write_data(7 downto 0),
               o_sw_read_data    => bit_field_read_data(7 downto 0),
               o_sw_value        => bit_field_value(7 downto 0),
+              o_write_trigger   => open,
+              o_read_trigger    => open,
               i_hw_write_enable => "0",
               i_hw_write_data   => (others => '0'),
               i_hw_set          => (others => '0'),
@@ -351,8 +357,8 @@ begin
             generic map (
               WIDTH           => 8,
               INITIAL_VALUE   => slice(x"00", 8, 0),
-              SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-              SW_WRITE_ONCE   => false
+              SW_WRITE_ONCE   => false,
+              TRIGGER         => false
             )
             port map (
               i_clk             => i_clk,
@@ -364,6 +370,8 @@ begin
               i_sw_write_data   => bit_field_write_data(7 downto 0),
               o_sw_read_data    => bit_field_read_data(7 downto 0),
               o_sw_value        => bit_field_value(7 downto 0),
+              o_write_trigger   => open,
+              o_read_trigger    => open,
               i_hw_write_enable => "0",
               i_hw_write_data   => (others => '0'),
               i_hw_set          => (others => '0'),
@@ -434,8 +442,8 @@ begin
                     generic map (
                       WIDTH           => 4,
                       INITIAL_VALUE   => slice(x"0", 4, 0),
-                      SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                      SW_WRITE_ONCE   => false
+                      SW_WRITE_ONCE   => false,
+                      TRIGGER         => false
                     )
                     port map (
                       i_clk             => i_clk,
@@ -447,6 +455,8 @@ begin
                       i_sw_write_data   => bit_field_write_data(0+4*l+3 downto 0+4*l),
                       o_sw_read_data    => bit_field_read_data(0+4*l+3 downto 0+4*l),
                       o_sw_value        => bit_field_value(0+4*l+3 downto 0+4*l),
+                      o_write_trigger   => open,
+                      o_read_trigger    => open,
                       i_hw_write_enable => "0",
                       i_hw_write_data   => (others => '0'),
                       i_hw_set          => (others => '0'),
@@ -478,6 +488,8 @@ begin
                       i_sw_write_data   => bit_field_write_data(8+4*l+3 downto 8+4*l),
                       o_sw_read_data    => bit_field_read_data(8+4*l+3 downto 8+4*l),
                       o_sw_value        => bit_field_value(8+4*l+3 downto 8+4*l),
+                      o_write_trigger   => open,
+                      o_read_trigger    => open,
                       i_hw_write_enable => "0",
                       i_hw_write_data   => (others => '0'),
                       i_hw_set          => (others => '0'),
@@ -509,6 +521,8 @@ begin
                       i_sw_write_data   => bit_field_write_data(16+4*l+3 downto 16+4*l),
                       o_sw_read_data    => bit_field_read_data(16+4*l+3 downto 16+4*l),
                       o_sw_value        => bit_field_value(16+4*l+3 downto 16+4*l),
+                      o_write_trigger   => open,
+                      o_read_trigger    => open,
                       i_hw_write_enable => "0",
                       i_hw_write_data   => (others => '0'),
                       i_hw_set          => (others => '0'),
@@ -570,8 +584,8 @@ begin
                 generic map (
                   WIDTH           => 1,
                   INITIAL_VALUE   => slice(x"0", 1, 0),
-                  SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                  SW_WRITE_ONCE   => false
+                  SW_WRITE_ONCE   => false,
+                  TRIGGER         => false
                 )
                 port map (
                   i_clk             => i_clk,
@@ -583,6 +597,8 @@ begin
                   i_sw_write_data   => bit_field_write_data(0+1*j+0 downto 0+1*j),
                   o_sw_read_data    => bit_field_read_data(0+1*j+0 downto 0+1*j),
                   o_sw_value        => bit_field_value(0+1*j+0 downto 0+1*j),
+                  o_write_trigger   => open,
+                  o_read_trigger    => open,
                   i_hw_write_enable => "0",
                   i_hw_write_data   => (others => '0'),
                   i_hw_set          => (others => '0'),

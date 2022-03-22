@@ -10,7 +10,7 @@ entity block_0 is
     PRE_DECODE: boolean := false;
     BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
-    REGISTER_9_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
+    REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
   );
   port (
     i_clk: in std_logic;
@@ -93,21 +93,32 @@ entity block_0 is
     o_register_8_bit_field_3: out std_logic_vector(3 downto 0);
     o_register_8_bit_field_4: out std_logic_vector(3 downto 0);
     o_register_8_bit_field_5: out std_logic_vector(3 downto 0);
-    o_register_9_bit_field_0: out std_logic_vector(63 downto 0);
-    o_register_9_bit_field_1: out std_logic_vector(63 downto 0);
-    o_register_9_bit_field_2: out std_logic_vector(63 downto 0);
-    o_register_10_bit_field_0: out std_logic_vector(255 downto 0);
-    o_register_10_bit_field_1: out std_logic_vector(255 downto 0);
-    o_register_11_bit_field_0: out std_logic_vector(0 downto 0);
+    o_register_9_bit_field_0: out std_logic_vector(1 downto 0);
+    o_register_9_bit_field_0_write_trigger: out std_logic_vector(0 downto 0);
+    o_register_9_bit_field_0_read_trigger: out std_logic_vector(0 downto 0);
+    i_register_9_bit_field_1: in std_logic_vector(1 downto 0);
+    o_register_9_bit_field_1_read_trigger: out std_logic_vector(0 downto 0);
+    o_register_9_bit_field_2: out std_logic_vector(1 downto 0);
+    o_register_9_bit_field_2_write_trigger: out std_logic_vector(0 downto 0);
+    o_register_9_bit_field_3: out std_logic_vector(1 downto 0);
+    i_register_9_bit_field_3: in std_logic_vector(1 downto 0);
+    o_register_9_bit_field_3_write_trigger: out std_logic_vector(0 downto 0);
+    o_register_9_bit_field_3_read_trigger: out std_logic_vector(0 downto 0);
+    o_register_10_bit_field_0: out std_logic_vector(63 downto 0);
+    o_register_10_bit_field_1: out std_logic_vector(63 downto 0);
+    o_register_10_bit_field_2: out std_logic_vector(63 downto 0);
+    o_register_11_bit_field_0: out std_logic_vector(255 downto 0);
+    o_register_11_bit_field_1: out std_logic_vector(255 downto 0);
     o_register_12_bit_field_0: out std_logic_vector(0 downto 0);
-    o_register_14_valid: out std_logic;
-    o_register_14_access: out std_logic_vector(1 downto 0);
-    o_register_14_address: out std_logic_vector(7 downto 0);
-    o_register_14_data: out std_logic_vector(31 downto 0);
-    o_register_14_strobe: out std_logic_vector(3 downto 0);
-    i_register_14_ready: in std_logic;
-    i_register_14_status: in std_logic_vector(1 downto 0);
-    i_register_14_data: in std_logic_vector(31 downto 0)
+    o_register_13_bit_field_0: out std_logic_vector(0 downto 0);
+    o_register_15_valid: out std_logic;
+    o_register_15_access: out std_logic_vector(1 downto 0);
+    o_register_15_address: out std_logic_vector(7 downto 0);
+    o_register_15_data: out std_logic_vector(31 downto 0);
+    o_register_15_strobe: out std_logic_vector(3 downto 0);
+    i_register_15_ready: in std_logic;
+    i_register_15_status: in std_logic_vector(1 downto 0);
+    i_register_15_data: in std_logic_vector(31 downto 0)
   );
 end block_0;
 
@@ -117,18 +128,18 @@ architecture rtl of block_0 is
   signal register_address: std_logic_vector(7 downto 0);
   signal register_write_data: std_logic_vector(31 downto 0);
   signal register_strobe: std_logic_vector(3 downto 0);
-  signal register_active: std_logic_vector(23 downto 0);
-  signal register_ready: std_logic_vector(23 downto 0);
-  signal register_status: std_logic_vector(47 downto 0);
-  signal register_read_data: std_logic_vector(767 downto 0);
-  signal register_value: std_logic_vector(1535 downto 0);
+  signal register_active: std_logic_vector(24 downto 0);
+  signal register_ready: std_logic_vector(24 downto 0);
+  signal register_status: std_logic_vector(49 downto 0);
+  signal register_read_data: std_logic_vector(799 downto 0);
+  signal register_value: std_logic_vector(1599 downto 0);
 begin
   u_adapter: entity work.rggen_apb_adaper
     generic map (
       ADDRESS_WIDTH       => ADDRESS_WIDTH,
       LOCAL_ADDRESS_WIDTH => 8,
       BUS_WIDTH           => 32,
-      REGISTERS           => 24,
+      REGISTERS           => 25,
       PRE_DECODE          => PRE_DECODE,
       BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
@@ -202,8 +213,8 @@ begin
         generic map (
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -215,6 +226,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -231,8 +244,8 @@ begin
         generic map (
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -244,6 +257,8 @@ begin
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -260,8 +275,8 @@ begin
         generic map (
           WIDTH           => 1,
           INITIAL_VALUE   => slice(x"0", 1, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -273,6 +288,8 @@ begin
           i_sw_write_data   => bit_field_write_data(8 downto 8),
           o_sw_read_data    => bit_field_read_data(8 downto 8),
           o_sw_value        => bit_field_value(8 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -289,8 +306,8 @@ begin
         generic map (
           WIDTH           => 2,
           INITIAL_VALUE   => slice(x"0", 2, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => true
+          SW_WRITE_ONCE   => true,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -302,6 +319,8 @@ begin
           i_sw_write_data   => bit_field_write_data(10 downto 9),
           o_sw_read_data    => bit_field_read_data(10 downto 9),
           o_sw_value        => bit_field_value(10 downto 9),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -330,6 +349,8 @@ begin
           i_sw_write_data   => bit_field_write_data(12 downto 11),
           o_sw_read_data    => bit_field_read_data(12 downto 11),
           o_sw_value        => bit_field_value(12 downto 11),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -358,6 +379,8 @@ begin
           i_sw_write_data   => bit_field_write_data(14 downto 13),
           o_sw_read_data    => bit_field_read_data(14 downto 13),
           o_sw_value        => bit_field_value(14 downto 13),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -374,7 +397,8 @@ begin
         generic map (
           WIDTH               => 2,
           INITIAL_VALUE       => slice(x"0", 2, 0),
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
           i_clk             => i_clk,
@@ -386,6 +410,8 @@ begin
           i_sw_write_data   => bit_field_write_data(16 downto 15),
           o_sw_read_data    => bit_field_read_data(16 downto 15),
           o_sw_value        => bit_field_value(16 downto 15),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -442,8 +468,8 @@ begin
         generic map (
           WIDTH           => 1,
           INITIAL_VALUE   => slice(x"0", 1, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -455,6 +481,8 @@ begin
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -511,11 +539,12 @@ begin
         generic map (
           WIDTH               => 4,
           STORAGE             => false,
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
-          i_clk             => '0',
-          i_rst_n           => '0',
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
           i_sw_read_mask    => bit_field_read_mask(3 downto 0),
           i_sw_write_enable => "0",
@@ -523,6 +552,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -539,11 +570,12 @@ begin
         generic map (
           WIDTH               => 4,
           STORAGE             => false,
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
-          i_clk             => '0',
-          i_rst_n           => '0',
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
           i_sw_read_mask    => bit_field_read_mask(11 downto 8),
           i_sw_write_enable => "0",
@@ -551,6 +583,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -579,6 +613,8 @@ begin
           i_sw_write_data   => bit_field_write_data(23 downto 16),
           o_sw_read_data    => bit_field_read_data(23 downto 16),
           o_sw_value        => bit_field_value(23 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -636,7 +672,8 @@ begin
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_NONE,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -648,6 +685,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -665,7 +704,8 @@ begin
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_NONE,
-          SW_WRITE_ONCE   => true
+          SW_WRITE_ONCE   => true,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -677,6 +717,8 @@ begin
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -787,6 +829,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_4_bit_field_0_set,
@@ -817,6 +861,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_4_bit_field_1_set,
@@ -833,11 +879,12 @@ begin
         generic map (
           WIDTH               => 4,
           STORAGE             => false,
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
-          i_clk             => '0',
-          i_rst_n           => '0',
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
           i_sw_read_mask    => bit_field_read_mask(15 downto 12),
           i_sw_write_enable => "0",
@@ -845,6 +892,8 @@ begin
           i_sw_write_data   => bit_field_write_data(15 downto 12),
           o_sw_read_data    => bit_field_read_data(15 downto 12),
           o_sw_value        => bit_field_value(15 downto 12),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -875,6 +924,8 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -943,6 +994,8 @@ begin
           i_sw_write_data   => bit_field_write_data(1 downto 0),
           o_sw_read_data    => bit_field_read_data(1 downto 0),
           o_sw_value        => bit_field_value(1 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -971,6 +1024,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 2),
           o_sw_read_data    => bit_field_read_data(3 downto 2),
           o_sw_value        => bit_field_value(3 downto 2),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -998,6 +1053,8 @@ begin
           i_sw_write_data   => bit_field_write_data(5 downto 4),
           o_sw_read_data    => bit_field_read_data(5 downto 4),
           o_sw_value        => bit_field_value(5 downto 4),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => i_register_5_bit_field_2_set,
           i_hw_write_data   => i_register_5_bit_field_2,
           i_hw_set          => (others => '0'),
@@ -1025,6 +1082,8 @@ begin
           i_sw_write_data   => bit_field_write_data(7 downto 6),
           o_sw_read_data    => bit_field_read_data(7 downto 6),
           o_sw_value        => bit_field_value(7 downto 6),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => register_value(208 downto 208),
           i_hw_write_data   => i_register_5_bit_field_3,
           i_hw_set          => (others => '0'),
@@ -1053,6 +1112,8 @@ begin
           i_sw_write_data   => bit_field_write_data(9 downto 8),
           o_sw_read_data    => bit_field_read_data(9 downto 8),
           o_sw_value        => bit_field_value(9 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1081,6 +1142,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 10),
           o_sw_read_data    => bit_field_read_data(11 downto 10),
           o_sw_value        => bit_field_value(11 downto 10),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1109,6 +1172,8 @@ begin
           i_sw_write_data   => bit_field_write_data(13 downto 12),
           o_sw_read_data    => bit_field_read_data(13 downto 12),
           o_sw_value        => bit_field_value(13 downto 12),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1137,6 +1202,8 @@ begin
           i_sw_write_data   => bit_field_write_data(17 downto 16),
           o_sw_read_data    => bit_field_read_data(17 downto 16),
           o_sw_value        => bit_field_value(17 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1165,6 +1232,8 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 18),
           o_sw_read_data    => bit_field_read_data(19 downto 18),
           o_sw_value        => bit_field_value(19 downto 18),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1193,6 +1262,8 @@ begin
           i_sw_write_data   => bit_field_write_data(21 downto 20),
           o_sw_read_data    => bit_field_read_data(21 downto 20),
           o_sw_value        => bit_field_value(21 downto 20),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1263,6 +1334,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_6_bit_field_0_set,
@@ -1293,6 +1366,8 @@ begin
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_6_bit_field_1_set,
@@ -1309,11 +1384,12 @@ begin
         generic map (
           WIDTH               => 4,
           STORAGE             => false,
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
-          i_clk             => '0',
-          i_rst_n           => '0',
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
           i_sw_read_mask    => bit_field_read_mask(11 downto 8),
           i_sw_write_enable => "0",
@@ -1321,6 +1397,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1351,6 +1429,8 @@ begin
           i_sw_write_data   => bit_field_write_data(15 downto 12),
           o_sw_read_data    => bit_field_read_data(15 downto 12),
           o_sw_value        => bit_field_value(15 downto 12),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_6_bit_field_3_set,
@@ -1381,6 +1461,8 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_6_bit_field_4_set,
@@ -1397,11 +1479,12 @@ begin
         generic map (
           WIDTH               => 4,
           STORAGE             => false,
-          EXTERNAL_READ_DATA  => true
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => false
         )
         port map (
-          i_clk             => '0',
-          i_rst_n           => '0',
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
           i_sw_read_mask    => bit_field_read_mask(23 downto 20),
           i_sw_write_enable => "0",
@@ -1409,6 +1492,8 @@ begin
           i_sw_write_data   => bit_field_write_data(23 downto 20),
           o_sw_read_data    => bit_field_read_data(23 downto 20),
           o_sw_value        => bit_field_value(23 downto 20),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1439,6 +1524,8 @@ begin
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1469,6 +1556,8 @@ begin
           i_sw_write_data   => bit_field_write_data(31 downto 28),
           o_sw_read_data    => bit_field_read_data(31 downto 28),
           o_sw_value        => bit_field_value(31 downto 28),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1497,6 +1586,8 @@ begin
           i_sw_write_data   => bit_field_write_data(35 downto 32),
           o_sw_read_data    => bit_field_read_data(35 downto 32),
           o_sw_value        => bit_field_value(35 downto 32),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1525,6 +1616,8 @@ begin
           i_sw_write_data   => bit_field_write_data(39 downto 36),
           o_sw_read_data    => bit_field_read_data(39 downto 36),
           o_sw_value        => bit_field_value(39 downto 36),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1594,6 +1687,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1623,6 +1718,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1652,6 +1749,8 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1681,6 +1780,8 @@ begin
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1751,6 +1852,8 @@ begin
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_8_bit_field_0_set,
@@ -1781,6 +1884,8 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1811,6 +1916,8 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => i_register_8_bit_field_2_set,
@@ -1841,6 +1948,8 @@ begin
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1870,6 +1979,8 @@ begin
           i_sw_write_data   => bit_field_write_data(35 downto 32),
           o_sw_read_data    => bit_field_read_data(35 downto 32),
           o_sw_value        => bit_field_value(35 downto 32),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1899,6 +2010,8 @@ begin
           i_sw_write_data   => bit_field_write_data(43 downto 40),
           o_sw_read_data    => bit_field_read_data(43 downto 40),
           o_sw_value        => bit_field_value(43 downto 40),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -1911,6 +2024,171 @@ begin
     end block;
   end block;
   g_register_9: block
+    signal bit_field_valid: std_logic;
+    signal bit_field_read_mask: std_logic_vector(31 downto 0);
+    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_write_data: std_logic_vector(31 downto 0);
+    signal bit_field_read_data: std_logic_vector(31 downto 0);
+    signal bit_field_value: std_logic_vector(31 downto 0);
+  begin
+    u_register: entity work.rggen_default_register
+      generic map (
+        READABLE        => true,
+        WRITABLE        => true,
+        ADDRESS_WIDTH   => 8,
+        OFFSET_ADDRESS  => x"28",
+        BUS_WIDTH       => 32,
+        DATA_WIDTH      => 32,
+        VALID_BITS      => x"000000ff",
+        REGISTER_INDEX  => 0
+      )
+      port map (
+        i_clk                   => i_clk,
+        i_rst_n                 => i_rst_n,
+        i_register_valid        => register_valid,
+        i_register_access       => register_access,
+        i_register_address      => register_address,
+        i_register_write_data   => register_write_data,
+        i_register_strobe       => register_strobe,
+        o_register_active       => register_active(9),
+        o_register_ready        => register_ready(9),
+        o_register_status       => register_status(19 downto 18),
+        o_register_read_data    => register_read_data(319 downto 288),
+        o_register_value        => register_value(607 downto 576),
+        o_bit_field_valid       => bit_field_valid,
+        o_bit_field_read_mask   => bit_field_read_mask,
+        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_write_data  => bit_field_write_data,
+        i_bit_field_read_data   => bit_field_read_data,
+        i_bit_field_value       => bit_field_value
+      );
+    g_bit_field_0: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH           => 2,
+          INITIAL_VALUE   => slice(x"0", 2, 0),
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => true
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(1 downto 0),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(1 downto 0),
+          i_sw_write_data   => bit_field_write_data(1 downto 0),
+          o_sw_read_data    => bit_field_read_data(1 downto 0),
+          o_sw_value        => bit_field_value(1 downto 0),
+          o_write_trigger   => o_register_9_bit_field_0_write_trigger,
+          o_read_trigger    => o_register_9_bit_field_0_read_trigger,
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => (others => '0'),
+          i_mask            => (others => '1'),
+          o_value           => o_register_9_bit_field_0,
+          o_value_unmasked  => open
+        );
+    end block;
+    g_bit_field_1: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH               => 2,
+          STORAGE             => false,
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => true
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(3 downto 2),
+          i_sw_write_enable => "0",
+          i_sw_write_mask   => bit_field_write_mask(3 downto 2),
+          i_sw_write_data   => bit_field_write_data(3 downto 2),
+          o_sw_read_data    => bit_field_read_data(3 downto 2),
+          o_sw_value        => bit_field_value(3 downto 2),
+          o_write_trigger   => open,
+          o_read_trigger    => o_register_9_bit_field_1_read_trigger,
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => i_register_9_bit_field_1,
+          i_mask            => (others => '1'),
+          o_value           => open,
+          o_value_unmasked  => open
+        );
+    end block;
+    g_bit_field_2: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH           => 2,
+          INITIAL_VALUE   => slice(x"0", 2, 0),
+          SW_READ_ACTION  => RGGEN_READ_NONE,
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => true
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(5 downto 4),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(5 downto 4),
+          i_sw_write_data   => bit_field_write_data(5 downto 4),
+          o_sw_read_data    => bit_field_read_data(5 downto 4),
+          o_sw_value        => bit_field_value(5 downto 4),
+          o_write_trigger   => o_register_9_bit_field_2_write_trigger,
+          o_read_trigger    => open,
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => (others => '0'),
+          i_mask            => (others => '1'),
+          o_value           => o_register_9_bit_field_2,
+          o_value_unmasked  => open
+        );
+    end block;
+    g_bit_field_3: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH               => 2,
+          INITIAL_VALUE       => slice(x"0", 2, 0),
+          EXTERNAL_READ_DATA  => true,
+          TRIGGER             => true
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(7 downto 6),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(7 downto 6),
+          i_sw_write_data   => bit_field_write_data(7 downto 6),
+          o_sw_read_data    => bit_field_read_data(7 downto 6),
+          o_sw_value        => bit_field_value(7 downto 6),
+          o_write_trigger   => o_register_9_bit_field_3_write_trigger,
+          o_read_trigger    => o_register_9_bit_field_3_read_trigger,
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => i_register_9_bit_field_3,
+          i_mask            => (others => '1'),
+          o_value           => o_register_9_bit_field_3,
+          o_value_unmasked  => open
+        );
+    end block;
+  end block;
+  g_register_10: block
   begin
     g: for i in 0 to 3 generate
       signal bit_field_valid: std_logic;
@@ -1939,11 +2217,11 @@ begin
           i_register_address      => register_address,
           i_register_write_data   => register_write_data,
           i_register_strobe       => register_strobe,
-          o_register_active       => register_active(9+i),
-          o_register_ready        => register_ready(9+i),
-          o_register_status       => register_status(2*(9+i)+1 downto 2*(9+i)),
-          o_register_read_data    => register_read_data(32*(9+i)+31 downto 32*(9+i)),
-          o_register_value        => register_value(64*(9+i)+0+63 downto 64*(9+i)+0),
+          o_register_active       => register_active(10+i),
+          o_register_ready        => register_ready(10+i),
+          o_register_status       => register_status(2*(10+i)+1 downto 2*(10+i)),
+          o_register_read_data    => register_read_data(32*(10+i)+31 downto 32*(10+i)),
+          o_register_value        => register_value(64*(10+i)+0+63 downto 64*(10+i)+0),
           o_bit_field_valid       => bit_field_valid,
           o_bit_field_read_mask   => bit_field_read_mask,
           o_bit_field_write_mask  => bit_field_write_mask,
@@ -1959,8 +2237,8 @@ begin
             generic map (
               WIDTH           => 4,
               INITIAL_VALUE   => slice(x"0", 4, 0),
-              SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-              SW_WRITE_ONCE   => false
+              SW_WRITE_ONCE   => false,
+              TRIGGER         => false
             )
             port map (
               i_clk             => i_clk,
@@ -1972,13 +2250,15 @@ begin
               i_sw_write_data   => bit_field_write_data(0+16*j+3 downto 0+16*j),
               o_sw_read_data    => bit_field_read_data(0+16*j+3 downto 0+16*j),
               o_sw_value        => bit_field_value(0+16*j+3 downto 0+16*j),
+              o_write_trigger   => open,
+              o_read_trigger    => open,
               i_hw_write_enable => "0",
               i_hw_write_data   => (others => '0'),
               i_hw_set          => (others => '0'),
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_9_bit_field_0(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_0(4*(4*i+j)+3 downto 4*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
@@ -1990,9 +2270,9 @@ begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
               WIDTH           => 4,
-              INITIAL_VALUE   => slice(REGISTER_9_BIT_FIELD_1_INITIAL_VALUE, 4, j),
-              SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-              SW_WRITE_ONCE   => false
+              INITIAL_VALUE   => slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 4, j),
+              SW_WRITE_ONCE   => false,
+              TRIGGER         => false
             )
             port map (
               i_clk             => i_clk,
@@ -2004,13 +2284,15 @@ begin
               i_sw_write_data   => bit_field_write_data(4+16*j+3 downto 4+16*j),
               o_sw_read_data    => bit_field_read_data(4+16*j+3 downto 4+16*j),
               o_sw_value        => bit_field_value(4+16*j+3 downto 4+16*j),
+              o_write_trigger   => open,
+              o_read_trigger    => open,
               i_hw_write_enable => "0",
               i_hw_write_data   => (others => '0'),
               i_hw_set          => (others => '0'),
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_9_bit_field_1(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_1(4*(4*i+j)+3 downto 4*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
@@ -2023,8 +2305,8 @@ begin
             generic map (
               WIDTH           => 4,
               INITIAL_VALUE   => slice(x"3210", 4, j),
-              SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-              SW_WRITE_ONCE   => false
+              SW_WRITE_ONCE   => false,
+              TRIGGER         => false
             )
             port map (
               i_clk             => i_clk,
@@ -2036,20 +2318,22 @@ begin
               i_sw_write_data   => bit_field_write_data(8+16*j+3 downto 8+16*j),
               o_sw_read_data    => bit_field_read_data(8+16*j+3 downto 8+16*j),
               o_sw_value        => bit_field_value(8+16*j+3 downto 8+16*j),
+              o_write_trigger   => open,
+              o_read_trigger    => open,
               i_hw_write_enable => "0",
               i_hw_write_data   => (others => '0'),
               i_hw_set          => (others => '0'),
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_9_bit_field_2(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_2(4*(4*i+j)+3 downto 4*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
       end block;
     end generate;
   end block;
-  g_register_10: block
+  g_register_11: block
   begin
     g: for i in 0 to 1 generate
     begin
@@ -2084,11 +2368,11 @@ begin
             i_register_address      => register_address,
             i_register_write_data   => register_write_data,
             i_register_strobe       => register_strobe,
-            o_register_active       => register_active(13+4*i+j),
-            o_register_ready        => register_ready(13+4*i+j),
-            o_register_status       => register_status(2*(13+4*i+j)+1 downto 2*(13+4*i+j)),
-            o_register_read_data    => register_read_data(32*(13+4*i+j)+31 downto 32*(13+4*i+j)),
-            o_register_value        => register_value(64*(13+4*i+j)+0+63 downto 64*(13+4*i+j)+0),
+            o_register_active       => register_active(14+4*i+j),
+            o_register_ready        => register_ready(14+4*i+j),
+            o_register_status       => register_status(2*(14+4*i+j)+1 downto 2*(14+4*i+j)),
+            o_register_read_data    => register_read_data(32*(14+4*i+j)+31 downto 32*(14+4*i+j)),
+            o_register_value        => register_value(64*(14+4*i+j)+0+63 downto 64*(14+4*i+j)+0),
             i_indirect_match        => indirect_match,
             o_bit_field_valid       => bit_field_valid,
             o_bit_field_read_mask   => bit_field_read_mask,
@@ -2105,8 +2389,8 @@ begin
               generic map (
                 WIDTH           => 8,
                 INITIAL_VALUE   => slice(x"00", 8, 0),
-                SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                SW_WRITE_ONCE   => false
+                SW_WRITE_ONCE   => false,
+                TRIGGER         => false
               )
               port map (
                 i_clk             => i_clk,
@@ -2118,13 +2402,15 @@ begin
                 i_sw_write_data   => bit_field_write_data(0+16*k+7 downto 0+16*k),
                 o_sw_read_data    => bit_field_read_data(0+16*k+7 downto 0+16*k),
                 o_sw_value        => bit_field_value(0+16*k+7 downto 0+16*k),
+                o_write_trigger   => open,
+                o_read_trigger    => open,
                 i_hw_write_enable => "0",
                 i_hw_write_data   => (others => '0'),
                 i_hw_set          => (others => '0'),
                 i_hw_clear        => (others => '0'),
                 i_value           => (others => '0'),
                 i_mask            => (others => '1'),
-                o_value           => o_register_10_bit_field_0(8*(16*i+4*j+k)+7 downto 8*(16*i+4*j+k)),
+                o_value           => o_register_11_bit_field_0(8*(16*i+4*j+k)+7 downto 8*(16*i+4*j+k)),
                 o_value_unmasked  => open
               );
           end generate;
@@ -2137,8 +2423,8 @@ begin
               generic map (
                 WIDTH           => 8,
                 INITIAL_VALUE   => slice(x"00", 8, 0),
-                SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-                SW_WRITE_ONCE   => false
+                SW_WRITE_ONCE   => false,
+                TRIGGER         => false
               )
               port map (
                 i_clk             => i_clk,
@@ -2150,91 +2436,21 @@ begin
                 i_sw_write_data   => bit_field_write_data(8+16*k+7 downto 8+16*k),
                 o_sw_read_data    => bit_field_read_data(8+16*k+7 downto 8+16*k),
                 o_sw_value        => bit_field_value(8+16*k+7 downto 8+16*k),
+                o_write_trigger   => open,
+                o_read_trigger    => open,
                 i_hw_write_enable => "0",
                 i_hw_write_data   => (others => '0'),
                 i_hw_set          => (others => '0'),
                 i_hw_clear        => (others => '0'),
                 i_value           => (others => '0'),
                 i_mask            => (others => '1'),
-                o_value           => o_register_10_bit_field_1(8*(16*i+4*j+k)+7 downto 8*(16*i+4*j+k)),
+                o_value           => o_register_11_bit_field_1(8*(16*i+4*j+k)+7 downto 8*(16*i+4*j+k)),
                 o_value_unmasked  => open
               );
           end generate;
         end block;
       end generate;
     end generate;
-  end block;
-  g_register_11: block
-    signal indirect_match: std_logic_vector(0 downto 0);
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_data: std_logic_vector(31 downto 0);
-    signal bit_field_read_data: std_logic_vector(31 downto 0);
-    signal bit_field_value: std_logic_vector(31 downto 0);
-  begin
-    indirect_match(0) <= '1' when unsigned(register_value(8 downto 8)) = 1 else '0';
-    u_register: entity work.rggen_indirect_register
-      generic map (
-        READABLE              => true,
-        WRITABLE              => true,
-        ADDRESS_WIDTH         => 8,
-        OFFSET_ADDRESS        => x"50",
-        BUS_WIDTH             => 32,
-        DATA_WIDTH            => 32,
-        VALID_BITS            => x"00000001",
-        INDIRECT_MATCH_WIDTH  => 1
-      )
-      port map (
-        i_clk                   => i_clk,
-        i_rst_n                 => i_rst_n,
-        i_register_valid        => register_valid,
-        i_register_access       => register_access,
-        i_register_address      => register_address,
-        i_register_write_data   => register_write_data,
-        i_register_strobe       => register_strobe,
-        o_register_active       => register_active(21),
-        o_register_ready        => register_ready(21),
-        o_register_status       => register_status(43 downto 42),
-        o_register_read_data    => register_read_data(703 downto 672),
-        o_register_value        => register_value(1375 downto 1344),
-        i_indirect_match        => indirect_match,
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
-        o_bit_field_write_data  => bit_field_write_data,
-        i_bit_field_read_data   => bit_field_read_data,
-        i_bit_field_value       => bit_field_value
-      );
-    g_bit_field_0: block
-    begin
-      u_bit_field: entity work.rggen_bit_field
-        generic map (
-          WIDTH           => 1,
-          INITIAL_VALUE   => slice(x"0", 1, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
-        )
-        port map (
-          i_clk             => i_clk,
-          i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
-          i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
-          i_sw_write_data   => bit_field_write_data(0 downto 0),
-          o_sw_read_data    => bit_field_read_data(0 downto 0),
-          o_sw_value        => bit_field_value(0 downto 0),
-          i_hw_write_enable => "0",
-          i_hw_write_data   => (others => '0'),
-          i_hw_set          => (others => '0'),
-          i_hw_clear        => (others => '0'),
-          i_value           => (others => '0'),
-          i_mask            => (others => '1'),
-          o_value           => o_register_11_bit_field_0,
-          o_value_unmasked  => open
-        );
-    end block;
   end block;
   g_register_12: block
     signal indirect_match: std_logic_vector(0 downto 0);
@@ -2251,7 +2467,7 @@ begin
         READABLE              => true,
         WRITABLE              => true,
         ADDRESS_WIDTH         => 8,
-        OFFSET_ADDRESS        => x"54",
+        OFFSET_ADDRESS        => x"50",
         BUS_WIDTH             => 32,
         DATA_WIDTH            => 32,
         VALID_BITS            => x"00000001",
@@ -2284,8 +2500,8 @@ begin
         generic map (
           WIDTH           => 1,
           INITIAL_VALUE   => slice(x"0", 1, 0),
-          SW_READ_ACTION  => RGGEN_READ_DEFAULT,
-          SW_WRITE_ONCE   => false
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
         )
         port map (
           i_clk             => i_clk,
@@ -2297,6 +2513,8 @@ begin
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
           i_hw_write_enable => "0",
           i_hw_write_data   => (others => '0'),
           i_hw_set          => (others => '0'),
@@ -2308,7 +2526,81 @@ begin
         );
     end block;
   end block;
-  g_register_14: block
+  g_register_13: block
+    signal indirect_match: std_logic_vector(0 downto 0);
+    signal bit_field_valid: std_logic;
+    signal bit_field_read_mask: std_logic_vector(31 downto 0);
+    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_write_data: std_logic_vector(31 downto 0);
+    signal bit_field_read_data: std_logic_vector(31 downto 0);
+    signal bit_field_value: std_logic_vector(31 downto 0);
+  begin
+    indirect_match(0) <= '1' when unsigned(register_value(8 downto 8)) = 1 else '0';
+    u_register: entity work.rggen_indirect_register
+      generic map (
+        READABLE              => true,
+        WRITABLE              => true,
+        ADDRESS_WIDTH         => 8,
+        OFFSET_ADDRESS        => x"54",
+        BUS_WIDTH             => 32,
+        DATA_WIDTH            => 32,
+        VALID_BITS            => x"00000001",
+        INDIRECT_MATCH_WIDTH  => 1
+      )
+      port map (
+        i_clk                   => i_clk,
+        i_rst_n                 => i_rst_n,
+        i_register_valid        => register_valid,
+        i_register_access       => register_access,
+        i_register_address      => register_address,
+        i_register_write_data   => register_write_data,
+        i_register_strobe       => register_strobe,
+        o_register_active       => register_active(23),
+        o_register_ready        => register_ready(23),
+        o_register_status       => register_status(47 downto 46),
+        o_register_read_data    => register_read_data(767 downto 736),
+        o_register_value        => register_value(1503 downto 1472),
+        i_indirect_match        => indirect_match,
+        o_bit_field_valid       => bit_field_valid,
+        o_bit_field_read_mask   => bit_field_read_mask,
+        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_write_data  => bit_field_write_data,
+        i_bit_field_read_data   => bit_field_read_data,
+        i_bit_field_value       => bit_field_value
+      );
+    g_bit_field_0: block
+    begin
+      u_bit_field: entity work.rggen_bit_field
+        generic map (
+          WIDTH           => 1,
+          INITIAL_VALUE   => slice(x"0", 1, 0),
+          SW_WRITE_ONCE   => false,
+          TRIGGER         => false
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
+          i_sw_write_data   => bit_field_write_data(0 downto 0),
+          o_sw_read_data    => bit_field_read_data(0 downto 0),
+          o_sw_value        => bit_field_value(0 downto 0),
+          o_write_trigger   => open,
+          o_read_trigger    => open,
+          i_hw_write_enable => "0",
+          i_hw_write_data   => (others => '0'),
+          i_hw_set          => (others => '0'),
+          i_hw_clear        => (others => '0'),
+          i_value           => (others => '0'),
+          i_mask            => (others => '1'),
+          o_value           => o_register_13_bit_field_0,
+          o_value_unmasked  => open
+        );
+    end block;
+  end block;
+  g_register_15: block
   begin
     u_register: entity work.rggen_external_register
       generic map (
@@ -2325,19 +2617,19 @@ begin
         i_register_address    => register_address,
         i_register_write_data => register_write_data,
         i_register_strobe     => register_strobe,
-        o_register_active     => register_active(23),
-        o_register_ready      => register_ready(23),
-        o_register_status     => register_status(47 downto 46),
-        o_register_read_data  => register_read_data(767 downto 736),
-        o_register_value      => register_value(1503 downto 1472),
-        o_external_valid      => o_register_14_valid,
-        o_external_access     => o_register_14_access,
-        o_external_address    => o_register_14_address,
-        o_external_data       => o_register_14_data,
-        o_external_strobe     => o_register_14_strobe,
-        i_external_ready      => i_register_14_ready,
-        i_external_status     => i_register_14_status,
-        i_external_data       => i_register_14_data
+        o_register_active     => register_active(24),
+        o_register_ready      => register_ready(24),
+        o_register_status     => register_status(49 downto 48),
+        o_register_read_data  => register_read_data(799 downto 768),
+        o_register_value      => register_value(1567 downto 1536),
+        o_external_valid      => o_register_15_valid,
+        o_external_access     => o_register_15_access,
+        o_external_address    => o_register_15_address,
+        o_external_data       => o_register_15_data,
+        o_external_strobe     => o_register_15_strobe,
+        i_external_ready      => i_register_15_ready,
+        i_external_status     => i_register_15_status,
+        i_external_data       => i_register_15_data
       );
   end block;
 end rtl;
