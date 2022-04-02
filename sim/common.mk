@@ -14,6 +14,8 @@ export TUE_HOME
 
 LANGURAGE ?= systemverilog
 SIMULATOR ?= vcs
+PROTOCOL	?= apb
+ENV_TYPE	?= $(PROTOCOL)_env
 GUI	?= off
 TR_DEBUG	?= off
 
