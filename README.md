@@ -80,10 +80,18 @@ Synopsys VCS simulator and Cadence Xcelium simulator are supported.
 $ make
 ```
 
-By default, all sample testcases will be execluted by VCS simulator. If you want to use Xcelium simulator, add `SIMULATOR=xcelium` option to `makefile` command.
+By default, all sample testcases will be execluted by VCS simulator. If you want to use Xcelium or Vivado simulator, add `SIMULATOR` option to `makefile` command.
+
+* For Xcelium:
 
 ```
 $ make SIMULATOR=xcelium
+```
+
+* For Vivado:
+
+```
+$ make SIMULATOR=vivado
 ```
 
 If you want to execute an specific testcase then you need to give its name to `make` command like below.
@@ -111,6 +119,12 @@ $ make ral_bit_bash_test GUI=verdi
 
 ```
 $ make ral_bit_bash_test SIMULATOR=xcelium GUI=indago
+```
+
+* Frontend: Vivado
+
+```
+$ make ral_bit_bash_test SIMULATOR=vivado GUI=on
 ```
 
 ## Contact
