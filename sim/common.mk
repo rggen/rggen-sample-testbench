@@ -68,3 +68,4 @@ clean_all:
 
 include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/vcs.mk
 include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/xcelium.mk
+include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/vivado.mk

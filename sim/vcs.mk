@@ -43,7 +43,6 @@ VCS_ARGS	+= -l vcs.log
 VCS_ARGS	+= -top top
 
 SIMV_ARGS	+= -l simv.log
-SIMV_ARGS	+= +uvm_set_type_override=env_base,$(ENV_TYPE)
 SIMV_ARGS	+= +UVM_TESTNAME=$(TEST)
 
 ifeq ($(strip $(GUI)), verdi)

@@ -14,7 +14,7 @@ class env_base extends tue_env #(
 endclass
 
 class env_param_base #(
-  type  AGENT = uvm_agent,
+  type  AGENT       = uvm_agent,
   type  RAL_MONITOR = uvm_component
 ) extends env_base;
   protected AGENT       agent;

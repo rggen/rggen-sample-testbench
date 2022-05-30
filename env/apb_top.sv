@@ -341,8 +341,12 @@ module top;
   assign  vip_apb_if.pslverr  = apb_if[0].pslverr;
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_apb_if apb_vif);
+    uvm_factory             factory;
     tvip_apb_configuration  apb_configuration;
     apb_env_configuration   configuration;
+
+    factory = uvm_factory::get();
+    factory.set_type_override_by_type(env_base::type_id::get(), apb_env::type_id::get());
 
     apb_configuration     = new("apb_configuration");
     apb_configuration.vif = apb_vif;

@@ -25,7 +25,6 @@ XRUN_SIMULATION_ARGS	+= -R
 XRUN_SIMULATION_ARGS	+= -xmlibdirname ../xcelium.d
 XRUN_SIMULATION_ARGS	+= -xceligen on
 XRUN_SIMULATION_ARGS	+= -uvmhome CDNS-1.2
-XRUN_SIMULATION_ARGS	+= +uvm_set_type_override=env_base,$(ENV_TYPE)
 XRUN_SIMULATION_ARGS	+= +UVM_TESTNAME=$(TEST)
 
 ifeq ($(strip $(GUI)), indago)

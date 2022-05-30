@@ -395,37 +395,19 @@ module top;
   assign  vip_axi_if.rresp        = tvip_axi_response'(axi4lite_if[0].rresp);
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_axi_if axi_vif);
+    uvm_factory                 factory;
     tvip_axi_configuration      axi4lite_configuration;
     axi4lite_env_configuration  configuration;
 
-    axi4lite_configuration      = new("axi4lite_configuration");
-    axi4lite_configuration.vif  = axi_vif;
-    void'(axi4lite_configuration.randomize() with {
-      protocol      == TVIP_AXI4LITE;
-      id_width      == 2;
-      address_width == 16;
-      data_width    == 32;
+    factory = uvm_factory::get();
+    factory.set_type_override_by_type(env_base::type_id::get(), axi4lite_env::type_id::get());
 
-      write_data_delay.min_delay          == 0;
-      write_data_delay.max_delay          == 10;
-      write_data_delay.weight_zero_delay  == 6;
-      write_data_delay.weight_short_delay == 3;
-      write_data_delay.weight_long_delay  == 1;
-
-      bready_delay.min_delay          == 0;
-      bready_delay.max_delay          == 10;
-      bready_delay.weight_zero_delay  == 6;
-      bready_delay.weight_short_delay == 3;
-      bready_delay.weight_long_delay  == 1;
-
-      rready_delay.min_delay          == 0;
-      rready_delay.max_delay          == 10;
-      rready_delay.weight_zero_delay  == 6;
-      rready_delay.weight_short_delay == 3;
-      rready_delay.weight_long_delay  == 1;
-      rready_delay.weight_long_delay  == 1;
-      rready_delay.weight_long_delay  == 1;
-    });
+    axi4lite_configuration                = new("axi4lite_configuration");
+    axi4lite_configuration.vif            = axi_vif;
+    axi4lite_configuration.protocol       = TVIP_AXI4LITE;
+    axi4lite_configuration.id_width       = 2;
+    axi4lite_configuration.address_width  = 16;
+    axi4lite_configuration.data_width     = 32;
 
     configuration                         = new("configuration");
     configuration.reset_event             = reset_event;
