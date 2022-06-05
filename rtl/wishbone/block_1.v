@@ -82,6 +82,7 @@ module block_1 #(
       wire [31:0] w_bit_field_write_data;
       wire [31:0] w_bit_field_read_data;
       wire [31:0] w_bit_field_value;
+      `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
       rggen_default_register #(
         .READABLE       (1),
         .WRITABLE       (1),
@@ -89,7 +90,6 @@ module block_1 #(
         .OFFSET_ADDRESS (7'h00),
         .BUS_WIDTH      (32),
         .DATA_WIDTH     (32),
-        .VALID_BITS     (32'h000000ff),
         .REGISTER_INDEX (0)
       ) u_register (
         .i_clk                  (i_clk),
@@ -147,6 +147,7 @@ module block_1 #(
       wire [31:0] w_bit_field_write_data;
       wire [31:0] w_bit_field_read_data;
       wire [31:0] w_bit_field_value;
+      `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
       rggen_default_register #(
         .READABLE       (1),
         .WRITABLE       (1),
@@ -154,7 +155,6 @@ module block_1 #(
         .OFFSET_ADDRESS (7'h04),
         .BUS_WIDTH      (32),
         .DATA_WIDTH     (32),
-        .VALID_BITS     (32'h000000ff),
         .REGISTER_INDEX (0)
       ) u_register (
         .i_clk                  (i_clk),
@@ -217,6 +217,7 @@ module block_1 #(
         wire [31:0] w_bit_field_write_data;
         wire [31:0] w_bit_field_read_data;
         wire [31:0] w_bit_field_value;
+        `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
         assign w_indirect_index = {w_register_value[0+:8], w_register_value[32+:8]};
         rggen_indirect_register #(
           .READABLE             (1),
@@ -225,7 +226,6 @@ module block_1 #(
           .OFFSET_ADDRESS       (7'h10),
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (32),
-          .VALID_BITS           (32'h000000ff),
           .INDIRECT_INDEX_WIDTH (16),
           .INDIRECT_INDEX_VALUE ({i[0+:8], 8'h00})
         ) u_register (
@@ -289,6 +289,7 @@ module block_1 #(
         wire [31:0] w_bit_field_write_data;
         wire [31:0] w_bit_field_read_data;
         wire [31:0] w_bit_field_value;
+        `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
         assign w_indirect_index = {w_register_value[0+:8], w_register_value[32+:8]};
         rggen_indirect_register #(
           .READABLE             (1),
@@ -297,7 +298,6 @@ module block_1 #(
           .OFFSET_ADDRESS       (7'h10),
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (32),
-          .VALID_BITS           (32'h000000ff),
           .INDIRECT_INDEX_WIDTH (16),
           .INDIRECT_INDEX_VALUE ({i[0+:8], 8'h01})
         ) u_register (
@@ -367,6 +367,7 @@ module block_1 #(
               wire [31:0] w_bit_field_write_data;
               wire [31:0] w_bit_field_read_data;
               wire [31:0] w_bit_field_value;
+              `rggen_tie_off_unused_signals(32, 32'h00ffffff, w_bit_field_read_data, w_bit_field_value)
               rggen_default_register #(
                 .READABLE       (1),
                 .WRITABLE       (1),
@@ -374,7 +375,6 @@ module block_1 #(
                 .OFFSET_ADDRESS (7'h20+28*(i)),
                 .BUS_WIDTH      (32),
                 .DATA_WIDTH     (32),
-                .VALID_BITS     (32'h00ffffff),
                 .REGISTER_INDEX (3*j+k)
               ) u_register (
                 .i_clk                  (i_clk),
@@ -497,6 +497,7 @@ module block_1 #(
           wire [31:0] w_bit_field_write_data;
           wire [31:0] w_bit_field_read_data;
           wire [31:0] w_bit_field_value;
+          `rggen_tie_off_unused_signals(32, 32'h00000003, w_bit_field_read_data, w_bit_field_value)
           rggen_default_register #(
             .READABLE       (1),
             .WRITABLE       (1),
@@ -504,7 +505,6 @@ module block_1 #(
             .OFFSET_ADDRESS (7'h20+28*(i)+7'h18),
             .BUS_WIDTH      (32),
             .DATA_WIDTH     (32),
-            .VALID_BITS     (32'h00000003),
             .REGISTER_INDEX (0)
           ) u_register (
             .i_clk                  (i_clk),

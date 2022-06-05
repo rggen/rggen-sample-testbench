@@ -7,6 +7,18 @@
   assign  RIF.read_data[LSB+:WIDTH] = FIF.read_data; \
   assign  RIF.value[LSB+:WIDTH]     = FIF.value;
 `endif
+`ifndef rggen_tie_off_unused_signals
+  `define rggen_tie_off_unused_signals(WIDTH, VALID_BITS, RIF) \
+  if (1) begin : __g_tie_off \
+    genvar  __i; \
+    for (__i = 0;__i < WIDTH;++__i) begin : g \
+      if (!(((VALID_BITS) >> __i) & 1'b1)) begin : g \
+        assign  RIF.read_data[__i]  = 1'b0; \
+        assign  RIF.value[__i]      = 1'b0; \
+      end \
+    end \
+  end
+`endif
 module block_0
   import rggen_rtl_pkg::*;
 #(
@@ -131,6 +143,7 @@ module block_0
   );
   generate if (1) begin : g_register_0
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h0001ffff, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -138,7 +151,6 @@ module block_0
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h0001ffff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -329,6 +341,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_1
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00000001, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -336,7 +349,6 @@ module block_0
       .OFFSET_ADDRESS (8'h04),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h00000001),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -373,6 +385,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_2
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00ff0f0f, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (0),
@@ -380,7 +393,6 @@ module block_0
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h00ff0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -466,6 +478,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_3
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h000f0fff, bit_field_if)
     rggen_default_register #(
       .READABLE       (0),
       .WRITABLE       (1),
@@ -473,7 +486,6 @@ module block_0
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h000f0fff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -564,6 +576,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_4
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h000fff0f, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (0),
@@ -571,7 +584,6 @@ module block_0
       .OFFSET_ADDRESS (8'h0c),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h000fff0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -685,6 +697,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_5
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h003f3fff, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -692,7 +705,6 @@ module block_0
       .OFFSET_ADDRESS (8'h10),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h003f3fff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -951,6 +963,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_6
     rggen_bit_field_if #(64) bit_field_if();
+    `rggen_tie_off_unused_signals(64, 64'h000000ffffffffff, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -958,7 +971,6 @@ module block_0
       .OFFSET_ADDRESS (8'h14),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (64),
-      .VALID_BITS     (64'h000000ffffffffff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -1225,6 +1237,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_7
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h0f0f0f0f, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -1232,7 +1245,6 @@ module block_0
       .OFFSET_ADDRESS (8'h1c),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h0f0f0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -1347,6 +1359,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_8
     rggen_bit_field_if #(64) bit_field_if();
+    `rggen_tie_off_unused_signals(64, 64'h00000f0f0f0f0f0f, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -1354,7 +1367,6 @@ module block_0
       .OFFSET_ADDRESS (8'h20),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (64),
-      .VALID_BITS     (64'h00000f0f0f0f0f0f),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -1521,6 +1533,7 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_9
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h000000ff, bit_field_if)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (1),
@@ -1528,7 +1541,6 @@ module block_0
       .OFFSET_ADDRESS (8'h28),
       .BUS_WIDTH      (32),
       .DATA_WIDTH     (32),
-      .VALID_BITS     (32'h000000ff),
       .REGISTER_INDEX (0)
     ) u_register (
       .i_clk        (i_clk),
@@ -1645,6 +1657,7 @@ module block_0
     genvar i;
     for (i = 0;i < 4;++i) begin : g
       rggen_bit_field_if #(64) bit_field_if();
+      `rggen_tie_off_unused_signals(64, 64'h0fff0fff0fff0fff, bit_field_if)
       rggen_default_register #(
         .READABLE       (1),
         .WRITABLE       (1),
@@ -1652,7 +1665,6 @@ module block_0
         .OFFSET_ADDRESS (8'h30),
         .BUS_WIDTH      (32),
         .DATA_WIDTH     (64),
-        .VALID_BITS     (64'h0fff0fff0fff0fff),
         .REGISTER_INDEX (i)
       ) u_register (
         .i_clk        (i_clk),
@@ -1755,6 +1767,7 @@ module block_0
       for (j = 0;j < 4;++j) begin : g
         logic [8:0] indirect_index;
         rggen_bit_field_if #(64) bit_field_if();
+        `rggen_tie_off_unused_signals(64, 64'hffffffffffffffff, bit_field_if)
         assign indirect_index = {register_if[0].value[0+:4], register_if[0].value[4+:4], register_if[0].value[8+:1]};
         rggen_indirect_register #(
           .READABLE             (1),
@@ -1763,7 +1776,6 @@ module block_0
           .OFFSET_ADDRESS       (8'h50),
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (64),
-          .VALID_BITS           (64'hffffffffffffffff),
           .INDIRECT_INDEX_WIDTH (9),
           .INDIRECT_INDEX_VALUE ({i[0+:4], j[0+:4], 1'h0})
         ) u_register (
@@ -1837,6 +1849,7 @@ module block_0
   generate if (1) begin : g_register_12
     logic indirect_index;
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00000001, bit_field_if)
     assign indirect_index = {register_if[0].value[8+:1]};
     rggen_indirect_register #(
       .READABLE             (1),
@@ -1845,7 +1858,6 @@ module block_0
       .OFFSET_ADDRESS       (8'h50),
       .BUS_WIDTH            (32),
       .DATA_WIDTH           (32),
-      .VALID_BITS           (32'h00000001),
       .INDIRECT_INDEX_WIDTH (1),
       .INDIRECT_INDEX_VALUE ({1'h1})
     ) u_register (
@@ -1885,6 +1897,7 @@ module block_0
   generate if (1) begin : g_register_13
     logic indirect_index;
     rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00000001, bit_field_if)
     assign indirect_index = {register_if[0].value[8+:1]};
     rggen_indirect_register #(
       .READABLE             (1),
@@ -1893,7 +1906,6 @@ module block_0
       .OFFSET_ADDRESS       (8'h54),
       .BUS_WIDTH            (32),
       .DATA_WIDTH           (32),
-      .VALID_BITS           (32'h00000001),
       .INDIRECT_INDEX_WIDTH (1),
       .INDIRECT_INDEX_VALUE ({1'h1})
     ) u_register (

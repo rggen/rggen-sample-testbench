@@ -176,6 +176,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"0001ffff", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -184,7 +190,6 @@ begin
         OFFSET_ADDRESS  => x"00",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"0001ffff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -431,6 +436,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"00000001", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -439,7 +450,6 @@ begin
         OFFSET_ADDRESS  => x"04",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"00000001",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -502,6 +512,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"00ff0f0f", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -510,7 +526,6 @@ begin
         OFFSET_ADDRESS  => x"08",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"00ff0f0f",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -634,6 +649,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"000f0fff", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => false,
@@ -642,7 +663,6 @@ begin
         OFFSET_ADDRESS  => x"08",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"000f0fff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -778,6 +798,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"000fff0f", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -786,7 +812,6 @@ begin
         OFFSET_ADDRESS  => x"0c",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"000fff0f",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -945,6 +970,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"003f3fff", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -953,7 +984,6 @@ begin
         OFFSET_ADDRESS  => x"10",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"003f3fff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -1283,6 +1313,12 @@ begin
     signal bit_field_read_data: std_logic_vector(63 downto 0);
     signal bit_field_value: std_logic_vector(63 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 63 generate
+      g: if (bit_slice(x"000000ffffffffff", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -1291,7 +1327,6 @@ begin
         OFFSET_ADDRESS  => x"14",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 64,
-        VALID_BITS      => x"000000ffffffffff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -1637,6 +1672,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"0f0f0f0f", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -1645,7 +1686,6 @@ begin
         OFFSET_ADDRESS  => x"1c",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"0f0f0f0f",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -1801,6 +1841,12 @@ begin
     signal bit_field_read_data: std_logic_vector(63 downto 0);
     signal bit_field_value: std_logic_vector(63 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 63 generate
+      g: if (bit_slice(x"00000f0f0f0f0f0f", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -1809,7 +1855,6 @@ begin
         OFFSET_ADDRESS  => x"20",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 64,
-        VALID_BITS      => x"00000f0f0f0f0f0f",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -2031,6 +2076,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"000000ff", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     u_register: entity work.rggen_default_register
       generic map (
         READABLE        => true,
@@ -2039,7 +2090,6 @@ begin
         OFFSET_ADDRESS  => x"28",
         BUS_WIDTH       => 32,
         DATA_WIDTH      => 32,
-        VALID_BITS      => x"000000ff",
         REGISTER_INDEX  => 0
       )
       port map (
@@ -2198,6 +2248,12 @@ begin
       signal bit_field_read_data: std_logic_vector(63 downto 0);
       signal bit_field_value: std_logic_vector(63 downto 0);
     begin
+      \g_tie_off\: for \__i\ in 0 to 63 generate
+        g: if (bit_slice(x"0fff0fff0fff0fff", \__i\) = '0') generate
+          bit_field_read_data(\__i\) <= '0';
+          bit_field_value(\__i\) <= '0';
+        end generate;
+      end generate;
       u_register: entity work.rggen_default_register
         generic map (
           READABLE        => true,
@@ -2206,7 +2262,6 @@ begin
           OFFSET_ADDRESS  => x"30",
           BUS_WIDTH       => 32,
           DATA_WIDTH      => 64,
-          VALID_BITS      => x"0fff0fff0fff0fff",
           REGISTER_INDEX  => i
         )
         port map (
@@ -2346,6 +2401,12 @@ begin
         signal bit_field_read_data: std_logic_vector(63 downto 0);
         signal bit_field_value: std_logic_vector(63 downto 0);
       begin
+        \g_tie_off\: for \__i\ in 0 to 63 generate
+          g: if (bit_slice(x"ffffffffffffffff", \__i\) = '0') generate
+            bit_field_read_data(\__i\) <= '0';
+            bit_field_value(\__i\) <= '0';
+          end generate;
+        end generate;
         indirect_match(0) <= '1' when unsigned(register_value(3 downto 0)) = i else '0';
         indirect_match(1) <= '1' when unsigned(register_value(7 downto 4)) = j else '0';
         indirect_match(2) <= '1' when unsigned(register_value(8 downto 8)) = 0 else '0';
@@ -2357,7 +2418,6 @@ begin
             OFFSET_ADDRESS        => x"50",
             BUS_WIDTH             => 32,
             DATA_WIDTH            => 64,
-            VALID_BITS            => x"ffffffffffffffff",
             INDIRECT_MATCH_WIDTH  => 3
           )
           port map (
@@ -2461,6 +2521,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"00000001", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     indirect_match(0) <= '1' when unsigned(register_value(8 downto 8)) = 1 else '0';
     u_register: entity work.rggen_indirect_register
       generic map (
@@ -2470,7 +2536,6 @@ begin
         OFFSET_ADDRESS        => x"50",
         BUS_WIDTH             => 32,
         DATA_WIDTH            => 32,
-        VALID_BITS            => x"00000001",
         INDIRECT_MATCH_WIDTH  => 1
       )
       port map (
@@ -2535,6 +2600,12 @@ begin
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
+    \g_tie_off\: for \__i\ in 0 to 31 generate
+      g: if (bit_slice(x"00000001", \__i\) = '0') generate
+        bit_field_read_data(\__i\) <= '0';
+        bit_field_value(\__i\) <= '0';
+      end generate;
+    end generate;
     indirect_match(0) <= '1' when unsigned(register_value(8 downto 8)) = 1 else '0';
     u_register: entity work.rggen_indirect_register
       generic map (
@@ -2544,7 +2615,6 @@ begin
         OFFSET_ADDRESS        => x"54",
         BUS_WIDTH             => 32,
         DATA_WIDTH            => 32,
-        VALID_BITS            => x"00000001",
         INDIRECT_MATCH_WIDTH  => 1
       )
       port map (
