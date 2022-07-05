@@ -106,21 +106,25 @@ entity block_0 is
     i_register_9_bit_field_3: in std_logic_vector(1 downto 0);
     o_register_9_bit_field_3_write_trigger: out std_logic_vector(0 downto 0);
     o_register_9_bit_field_3_read_trigger: out std_logic_vector(0 downto 0);
+    i_register_9_bit_field_4: in std_logic_vector(1 downto 0);
+    o_register_9_bit_field_4_trigger: out std_logic_vector(1 downto 0);
+    i_register_9_bit_field_5: in std_logic_vector(1 downto 0);
+    o_register_9_bit_field_5_trigger: out std_logic_vector(1 downto 0);
     o_register_10_bit_field_0: out std_logic_vector(63 downto 0);
     o_register_10_bit_field_1: out std_logic_vector(63 downto 0);
     o_register_10_bit_field_2: out std_logic_vector(63 downto 0);
     o_register_11_bit_field_0: out std_logic_vector(255 downto 0);
     o_register_11_bit_field_1: out std_logic_vector(255 downto 0);
     o_register_12_bit_field_0: out std_logic_vector(0 downto 0);
-    o_register_13_bit_field_0: out std_logic_vector(0 downto 0);
-    o_register_15_valid: out std_logic;
-    o_register_15_access: out std_logic_vector(1 downto 0);
-    o_register_15_address: out std_logic_vector(7 downto 0);
-    o_register_15_data: out std_logic_vector(31 downto 0);
-    o_register_15_strobe: out std_logic_vector(3 downto 0);
-    i_register_15_ready: in std_logic;
-    i_register_15_status: in std_logic_vector(1 downto 0);
-    i_register_15_data: in std_logic_vector(31 downto 0)
+    o_register_12_bit_field_1: out std_logic_vector(0 downto 0);
+    o_register_14_valid: out std_logic;
+    o_register_14_access: out std_logic_vector(1 downto 0);
+    o_register_14_address: out std_logic_vector(7 downto 0);
+    o_register_14_data: out std_logic_vector(31 downto 0);
+    o_register_14_strobe: out std_logic_vector(3 downto 0);
+    i_register_14_ready: in std_logic;
+    i_register_14_status: in std_logic_vector(1 downto 0);
+    i_register_14_data: in std_logic_vector(31 downto 0)
   );
 end block_0;
 
@@ -130,18 +134,18 @@ architecture rtl of block_0 is
   signal register_address: std_logic_vector(7 downto 0);
   signal register_write_data: std_logic_vector(31 downto 0);
   signal register_strobe: std_logic_vector(3 downto 0);
-  signal register_active: std_logic_vector(24 downto 0);
-  signal register_ready: std_logic_vector(24 downto 0);
-  signal register_status: std_logic_vector(49 downto 0);
-  signal register_read_data: std_logic_vector(799 downto 0);
-  signal register_value: std_logic_vector(1599 downto 0);
+  signal register_active: std_logic_vector(23 downto 0);
+  signal register_ready: std_logic_vector(23 downto 0);
+  signal register_status: std_logic_vector(47 downto 0);
+  signal register_read_data: std_logic_vector(767 downto 0);
+  signal register_value: std_logic_vector(1535 downto 0);
 begin
   u_adapter: entity work.rggen_wishbone_adapter
     generic map (
       ADDRESS_WIDTH       => ADDRESS_WIDTH,
       LOCAL_ADDRESS_WIDTH => 8,
       BUS_WIDTH           => 32,
-      REGISTERS           => 25,
+      REGISTERS           => 24,
       PRE_DECODE          => PRE_DECODE,
       BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
@@ -770,6 +774,7 @@ begin
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
+          i_value           => (others => '0'),
           o_trigger         => o_register_3_bit_field_2_trigger
         );
     end block;
@@ -790,6 +795,7 @@ begin
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
+          i_value           => (others => '0'),
           o_trigger         => o_register_3_bit_field_3_trigger
         );
     end block;
@@ -2081,7 +2087,7 @@ begin
     signal bit_field_value: std_logic_vector(31 downto 0);
   begin
     \g_tie_off\: for \__i\ in 0 to 31 generate
-      g: if (bit_slice(x"000000ff", \__i\) = '0') generate
+      g: if (bit_slice(x"00000fff", \__i\) = '0') generate
         bit_field_read_data(\__i\) <= '0';
         bit_field_value(\__i\) <= '0';
       end generate;
@@ -2241,6 +2247,48 @@ begin
           o_value_unmasked  => open
         );
     end block;
+    g_bit_field_4: block
+    begin
+      u_bit_field: entity work.rggen_bit_field_w01trg
+        generic map (
+          WRITE_ONE_TRIGGER => false,
+          WIDTH             => 2
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(9 downto 8),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(9 downto 8),
+          i_sw_write_data   => bit_field_write_data(9 downto 8),
+          o_sw_read_data    => bit_field_read_data(9 downto 8),
+          o_sw_value        => bit_field_value(9 downto 8),
+          i_value           => i_register_9_bit_field_4,
+          o_trigger         => o_register_9_bit_field_4_trigger
+        );
+    end block;
+    g_bit_field_5: block
+    begin
+      u_bit_field: entity work.rggen_bit_field_w01trg
+        generic map (
+          WRITE_ONE_TRIGGER => true,
+          WIDTH             => 2
+        )
+        port map (
+          i_clk             => i_clk,
+          i_rst_n           => i_rst_n,
+          i_sw_valid        => bit_field_valid,
+          i_sw_read_mask    => bit_field_read_mask(11 downto 10),
+          i_sw_write_enable => "1",
+          i_sw_write_mask   => bit_field_write_mask(11 downto 10),
+          i_sw_write_data   => bit_field_write_data(11 downto 10),
+          o_sw_read_data    => bit_field_read_data(11 downto 10),
+          o_sw_value        => bit_field_value(11 downto 10),
+          i_value           => i_register_9_bit_field_5,
+          o_trigger         => o_register_9_bit_field_5_trigger
+        );
+    end block;
   end block;
   g_register_10: block
   begin
@@ -2397,13 +2445,13 @@ begin
     g: for i in 0 to 1 generate
     begin
       g: for j in 0 to 3 generate
-        signal indirect_match: std_logic_vector(2 downto 0);
         signal bit_field_valid: std_logic;
         signal bit_field_read_mask: std_logic_vector(63 downto 0);
         signal bit_field_write_mask: std_logic_vector(63 downto 0);
         signal bit_field_write_data: std_logic_vector(63 downto 0);
         signal bit_field_read_data: std_logic_vector(63 downto 0);
         signal bit_field_value: std_logic_vector(63 downto 0);
+        signal indirect_match: std_logic_vector(2 downto 0);
       begin
         \g_tie_off\: for \__i\ in 0 to 63 generate
           g: if (bit_slice(x"ffffffffffffffff", \__i\) = '0') generate
@@ -2517,16 +2565,16 @@ begin
     end generate;
   end block;
   g_register_12: block
-    signal indirect_match: std_logic_vector(0 downto 0);
     signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_data: std_logic_vector(31 downto 0);
-    signal bit_field_read_data: std_logic_vector(31 downto 0);
-    signal bit_field_value: std_logic_vector(31 downto 0);
+    signal bit_field_read_mask: std_logic_vector(63 downto 0);
+    signal bit_field_write_mask: std_logic_vector(63 downto 0);
+    signal bit_field_write_data: std_logic_vector(63 downto 0);
+    signal bit_field_read_data: std_logic_vector(63 downto 0);
+    signal bit_field_value: std_logic_vector(63 downto 0);
+    signal indirect_match: std_logic_vector(0 downto 0);
   begin
-    \g_tie_off\: for \__i\ in 0 to 31 generate
-      g: if (bit_slice(x"00000001", \__i\) = '0') generate
+    \g_tie_off\: for \__i\ in 0 to 63 generate
+      g: if (bit_slice(x"0000000100000001", \__i\) = '0') generate
         bit_field_read_data(\__i\) <= '0';
         bit_field_value(\__i\) <= '0';
       end generate;
@@ -2539,7 +2587,7 @@ begin
         ADDRESS_WIDTH         => 8,
         OFFSET_ADDRESS        => x"50",
         BUS_WIDTH             => 32,
-        DATA_WIDTH            => 32,
+        DATA_WIDTH            => 64,
         INDIRECT_MATCH_WIDTH  => 1
       )
       port map (
@@ -2554,7 +2602,7 @@ begin
         o_register_ready        => register_ready(22),
         o_register_status       => register_status(45 downto 44),
         o_register_read_data    => register_read_data(735 downto 704),
-        o_register_value        => register_value(1439 downto 1408),
+        o_register_value        => register_value(1471 downto 1408),
         i_indirect_match        => indirect_match,
         o_bit_field_valid       => bit_field_valid,
         o_bit_field_read_mask   => bit_field_read_mask,
@@ -2594,55 +2642,7 @@ begin
           o_value_unmasked  => open
         );
     end block;
-  end block;
-  g_register_13: block
-    signal indirect_match: std_logic_vector(0 downto 0);
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_data: std_logic_vector(31 downto 0);
-    signal bit_field_read_data: std_logic_vector(31 downto 0);
-    signal bit_field_value: std_logic_vector(31 downto 0);
-  begin
-    \g_tie_off\: for \__i\ in 0 to 31 generate
-      g: if (bit_slice(x"00000001", \__i\) = '0') generate
-        bit_field_read_data(\__i\) <= '0';
-        bit_field_value(\__i\) <= '0';
-      end generate;
-    end generate;
-    indirect_match(0) <= '1' when unsigned(register_value(8 downto 8)) = 1 else '0';
-    u_register: entity work.rggen_indirect_register
-      generic map (
-        READABLE              => true,
-        WRITABLE              => true,
-        ADDRESS_WIDTH         => 8,
-        OFFSET_ADDRESS        => x"54",
-        BUS_WIDTH             => 32,
-        DATA_WIDTH            => 32,
-        INDIRECT_MATCH_WIDTH  => 1
-      )
-      port map (
-        i_clk                   => i_clk,
-        i_rst_n                 => i_rst_n,
-        i_register_valid        => register_valid,
-        i_register_access       => register_access,
-        i_register_address      => register_address,
-        i_register_write_data   => register_write_data,
-        i_register_strobe       => register_strobe,
-        o_register_active       => register_active(23),
-        o_register_ready        => register_ready(23),
-        o_register_status       => register_status(47 downto 46),
-        o_register_read_data    => register_read_data(767 downto 736),
-        o_register_value        => register_value(1503 downto 1472),
-        i_indirect_match        => indirect_match,
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
-        o_bit_field_write_data  => bit_field_write_data,
-        i_bit_field_read_data   => bit_field_read_data,
-        i_bit_field_value       => bit_field_value
-      );
-    g_bit_field_0: block
+    g_bit_field_1: block
     begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
@@ -2655,12 +2655,12 @@ begin
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
           i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_read_mask    => bit_field_read_mask(32 downto 32),
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
-          i_sw_write_data   => bit_field_write_data(0 downto 0),
-          o_sw_read_data    => bit_field_read_data(0 downto 0),
-          o_sw_value        => bit_field_value(0 downto 0),
+          i_sw_write_mask   => bit_field_write_mask(32 downto 32),
+          i_sw_write_data   => bit_field_write_data(32 downto 32),
+          o_sw_read_data    => bit_field_read_data(32 downto 32),
+          o_sw_value        => bit_field_value(32 downto 32),
           o_write_trigger   => open,
           o_read_trigger    => open,
           i_hw_write_enable => "0",
@@ -2669,12 +2669,12 @@ begin
           i_hw_clear        => (others => '0'),
           i_value           => (others => '0'),
           i_mask            => (others => '1'),
-          o_value           => o_register_13_bit_field_0,
+          o_value           => o_register_12_bit_field_1,
           o_value_unmasked  => open
         );
     end block;
   end block;
-  g_register_15: block
+  g_register_14: block
   begin
     u_register: entity work.rggen_external_register
       generic map (
@@ -2691,19 +2691,19 @@ begin
         i_register_address    => register_address,
         i_register_write_data => register_write_data,
         i_register_strobe     => register_strobe,
-        o_register_active     => register_active(24),
-        o_register_ready      => register_ready(24),
-        o_register_status     => register_status(49 downto 48),
-        o_register_read_data  => register_read_data(799 downto 768),
-        o_register_value      => register_value(1567 downto 1536),
-        o_external_valid      => o_register_15_valid,
-        o_external_access     => o_register_15_access,
-        o_external_address    => o_register_15_address,
-        o_external_data       => o_register_15_data,
-        o_external_strobe     => o_register_15_strobe,
-        i_external_ready      => i_register_15_ready,
-        i_external_status     => i_register_15_status,
-        i_external_data       => i_register_15_data
+        o_register_active     => register_active(23),
+        o_register_ready      => register_ready(23),
+        o_register_status     => register_status(47 downto 46),
+        o_register_read_data  => register_read_data(767 downto 736),
+        o_register_value      => register_value(1503 downto 1472),
+        o_external_valid      => o_register_14_valid,
+        o_external_access     => o_register_14_access,
+        o_external_address    => o_register_14_address,
+        o_external_data       => o_register_14_data,
+        o_external_strobe     => o_register_14_strobe,
+        i_external_ready      => i_register_14_ready,
+        i_external_status     => i_register_14_status,
+        i_external_data       => i_register_14_data
       );
   end block;
 end rtl;

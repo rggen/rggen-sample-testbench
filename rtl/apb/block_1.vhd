@@ -241,13 +241,13 @@ begin
     g_register_0: block
     begin
       g: for i in 0 to 1 generate
-        signal indirect_match: std_logic_vector(1 downto 0);
         signal bit_field_valid: std_logic;
         signal bit_field_read_mask: std_logic_vector(31 downto 0);
         signal bit_field_write_mask: std_logic_vector(31 downto 0);
         signal bit_field_write_data: std_logic_vector(31 downto 0);
         signal bit_field_read_data: std_logic_vector(31 downto 0);
         signal bit_field_value: std_logic_vector(31 downto 0);
+        signal indirect_match: std_logic_vector(1 downto 0);
       begin
         \g_tie_off\: for \__i\ in 0 to 31 generate
           g: if (bit_slice(x"000000ff", \__i\) = '0') generate
@@ -324,13 +324,13 @@ begin
     g_register_1: block
     begin
       g: for i in 0 to 1 generate
-        signal indirect_match: std_logic_vector(1 downto 0);
         signal bit_field_valid: std_logic;
         signal bit_field_read_mask: std_logic_vector(31 downto 0);
         signal bit_field_write_mask: std_logic_vector(31 downto 0);
         signal bit_field_write_data: std_logic_vector(31 downto 0);
         signal bit_field_read_data: std_logic_vector(31 downto 0);
         signal bit_field_value: std_logic_vector(31 downto 0);
+        signal indirect_match: std_logic_vector(1 downto 0);
       begin
         \g_tie_off\: for \__i\ in 0 to 31 generate
           g: if (bit_slice(x"000000ff", \__i\) = '0') generate

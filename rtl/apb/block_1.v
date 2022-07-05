@@ -206,13 +206,13 @@ module block_1 #(
     if (1) begin : g_register_0
       genvar i;
       for (i = 0;i < 2;i = i + 1) begin : g
-        wire [15:0] w_indirect_index;
         wire w_bit_field_valid;
         wire [31:0] w_bit_field_read_mask;
         wire [31:0] w_bit_field_write_mask;
         wire [31:0] w_bit_field_write_data;
         wire [31:0] w_bit_field_read_data;
         wire [31:0] w_bit_field_value;
+        wire [15:0] w_indirect_index;
         `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
         assign w_indirect_index = {w_register_value[0+:8], w_register_value[32+:8]};
         rggen_indirect_register #(
@@ -278,13 +278,13 @@ module block_1 #(
     if (1) begin : g_register_1
       genvar i;
       for (i = 0;i < 2;i = i + 1) begin : g
-        wire [15:0] w_indirect_index;
         wire w_bit_field_valid;
         wire [31:0] w_bit_field_read_mask;
         wire [31:0] w_bit_field_write_mask;
         wire [31:0] w_bit_field_write_data;
         wire [31:0] w_bit_field_read_data;
         wire [31:0] w_bit_field_value;
+        wire [15:0] w_indirect_index;
         `rggen_tie_off_unused_signals(32, 32'h000000ff, w_bit_field_read_data, w_bit_field_value)
         assign w_indirect_index = {w_register_value[0+:8], w_register_value[32+:8]};
         rggen_indirect_register #(
