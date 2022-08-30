@@ -117,31 +117,33 @@ module top;
     rst_n = 1;
   end
 
-  assign  register_2_bit_field_0        = register_0_bit_field_0;
-  assign  register_2_bit_field_1        = register_0_bit_field_1;
-  assign  register_4_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_4_bit_field_1_set    = register_3_bit_field_3_trigger;
-  assign  register_4_bit_field_3_clear  = register_3_bit_field_2_trigger;
-  assign  register_5_bit_field_0_clear  = register_3_bit_field_2_trigger[0];
-  assign  register_5_bit_field_2_set    = register_3_bit_field_3_trigger[0];
-  assign  register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
-  assign  register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
-  assign  register_5_bit_field_4_enable = register_0_bit_field_2;
-  assign  register_5_bit_field_7_lock   = register_0_bit_field_2;
-  assign  register_6_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_1_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_3_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
-  assign  register_8_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_8_bit_field_1_clear  = register_3_bit_field_2_trigger;
-  assign  register_8_bit_field_2_set    = register_3_bit_field_3_trigger;
-  assign  register_8_bit_field_3_clear  = register_3_bit_field_2_trigger;
-  assign  register_9_bit_field_1        = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_3[1]     = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_4        = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_5        = register_0_bit_field_0[1:0];
+  always_comb begin
+    register_2_bit_field_0        = register_0_bit_field_0;
+    register_2_bit_field_1        = register_0_bit_field_1;
+    register_4_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_4_bit_field_1_set    = register_3_bit_field_3_trigger;
+    register_4_bit_field_3_clear  = register_3_bit_field_2_trigger;
+    register_5_bit_field_0_clear  = register_3_bit_field_2_trigger[0];
+    register_5_bit_field_2_set    = register_3_bit_field_3_trigger[0];
+    register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
+    register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
+    register_5_bit_field_4_enable = register_0_bit_field_2;
+    register_5_bit_field_7_lock   = register_0_bit_field_2;
+    register_6_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_1_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_3_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
+    register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
+    register_8_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_8_bit_field_1_clear  = register_3_bit_field_2_trigger;
+    register_8_bit_field_2_set    = register_3_bit_field_3_trigger;
+    register_8_bit_field_3_clear  = register_3_bit_field_2_trigger;
+    register_9_bit_field_1        = register_0_bit_field_0[1:0];
+    register_9_bit_field_3[1]     = register_0_bit_field_0[1:0];
+    register_9_bit_field_4        = register_0_bit_field_0[1:0];
+    register_9_bit_field_5        = register_0_bit_field_0[1:0];
+  end
 
   block_0 #(
     .ADDRESS_WIDTH                          (16                       ),
@@ -378,29 +380,31 @@ module top;
   );
 
   tvip_axi_if vip_axi_if(clk, rst_n);
-  assign  axi4lite_if[0].awvalid  = vip_axi_if.awvalid;
-  assign  vip_axi_if.awready      = axi4lite_if[0].awready;
-  assign  axi4lite_if[0].awid     = vip_axi_if.awid;
-  assign  axi4lite_if[0].awaddr   = vip_axi_if.awaddr;
-  assign  axi4lite_if[0].awprot   = vip_axi_if.awprot;
-  assign  axi4lite_if[0].wvalid   = vip_axi_if.wvalid;
-  assign  vip_axi_if.wready       = axi4lite_if[0].wready;
-  assign  axi4lite_if[0].wdata    = vip_axi_if.wdata;
-  assign  axi4lite_if[0].wstrb    = vip_axi_if.wstrb;
-  assign  vip_axi_if.bvalid       = axi4lite_if[0].bvalid;
-  assign  axi4lite_if[0].bready   = vip_axi_if.bready;
-  assign  vip_axi_if.bid          = axi4lite_if[0].bid;
-  assign  vip_axi_if.bresp        = tvip_axi_response'(axi4lite_if[0].bresp);
-  assign  axi4lite_if[0].arvalid  = vip_axi_if.arvalid;
-  assign  vip_axi_if.arready      = axi4lite_if[0].arready;
-  assign  axi4lite_if[0].arid     = vip_axi_if.arid;
-  assign  axi4lite_if[0].araddr   = vip_axi_if.araddr;
-  assign  axi4lite_if[0].arprot   = vip_axi_if.arprot;
-  assign  vip_axi_if.rvalid       = axi4lite_if[0].rvalid;
-  assign  axi4lite_if[0].rready   = vip_axi_if.rready;
-  assign  vip_axi_if.rid          = axi4lite_if[0].rid;
-  assign  vip_axi_if.rdata        = axi4lite_if[0].rdata;
-  assign  vip_axi_if.rresp        = tvip_axi_response'(axi4lite_if[0].rresp);
+  always @* begin
+    axi4lite_if[0].awvalid  = vip_axi_if.awvalid;
+    vip_axi_if.awready      = axi4lite_if[0].awready;
+    axi4lite_if[0].awid     = vip_axi_if.awid;
+    axi4lite_if[0].awaddr   = vip_axi_if.awaddr;
+    axi4lite_if[0].awprot   = vip_axi_if.awprot;
+    axi4lite_if[0].wvalid   = vip_axi_if.wvalid;
+    vip_axi_if.wready       = axi4lite_if[0].wready;
+    axi4lite_if[0].wdata    = vip_axi_if.wdata;
+    axi4lite_if[0].wstrb    = vip_axi_if.wstrb;
+    vip_axi_if.bvalid       = axi4lite_if[0].bvalid;
+    axi4lite_if[0].bready   = vip_axi_if.bready;
+    vip_axi_if.bid          = axi4lite_if[0].bid;
+    vip_axi_if.bresp        = tvip_axi_response'(axi4lite_if[0].bresp);
+    axi4lite_if[0].arvalid  = vip_axi_if.arvalid;
+    vip_axi_if.arready      = axi4lite_if[0].arready;
+    axi4lite_if[0].arid     = vip_axi_if.arid;
+    axi4lite_if[0].araddr   = vip_axi_if.araddr;
+    axi4lite_if[0].arprot   = vip_axi_if.arprot;
+    vip_axi_if.rvalid       = axi4lite_if[0].rvalid;
+    axi4lite_if[0].rready   = vip_axi_if.rready;
+    vip_axi_if.rid          = axi4lite_if[0].rid;
+    vip_axi_if.rdata        = axi4lite_if[0].rdata;
+    vip_axi_if.rresp        = tvip_axi_response'(axi4lite_if[0].rresp);
+  end
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_axi_if axi_vif);
     uvm_factory                 factory;

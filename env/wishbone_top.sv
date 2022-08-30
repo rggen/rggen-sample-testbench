@@ -117,31 +117,33 @@ module top;
     rst_n = 1;
   end
 
-  assign  register_2_bit_field_0        = register_0_bit_field_0;
-  assign  register_2_bit_field_1        = register_0_bit_field_1;
-  assign  register_4_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_4_bit_field_1_set    = register_3_bit_field_3_trigger;
-  assign  register_4_bit_field_3_clear  = register_3_bit_field_2_trigger;
-  assign  register_5_bit_field_0_clear  = register_3_bit_field_2_trigger[0];
-  assign  register_5_bit_field_2_set    = register_3_bit_field_3_trigger[0];
-  assign  register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
-  assign  register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
-  assign  register_5_bit_field_4_enable = register_0_bit_field_2;
-  assign  register_5_bit_field_7_lock   = register_0_bit_field_2;
-  assign  register_6_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_1_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_3_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
-  assign  register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
-  assign  register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
-  assign  register_8_bit_field_0_set    = register_3_bit_field_3_trigger;
-  assign  register_8_bit_field_1_clear  = register_3_bit_field_2_trigger;
-  assign  register_8_bit_field_2_set    = register_3_bit_field_3_trigger;
-  assign  register_8_bit_field_3_clear  = register_3_bit_field_2_trigger;
-  assign  register_9_bit_field_1        = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_3[1]     = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_4        = register_0_bit_field_0[1:0];
-  assign  register_9_bit_field_5        = register_0_bit_field_0[1:0];
+  always_comb begin
+    register_2_bit_field_0        = register_0_bit_field_0;
+    register_2_bit_field_1        = register_0_bit_field_1;
+    register_4_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_4_bit_field_1_set    = register_3_bit_field_3_trigger;
+    register_4_bit_field_3_clear  = register_3_bit_field_2_trigger;
+    register_5_bit_field_0_clear  = register_3_bit_field_2_trigger[0];
+    register_5_bit_field_2_set    = register_3_bit_field_3_trigger[0];
+    register_5_bit_field_2[0]     = register_0_bit_field_0[1:0];
+    register_5_bit_field_3[0]     = register_0_bit_field_0[1:0];
+    register_5_bit_field_4_enable = register_0_bit_field_2;
+    register_5_bit_field_7_lock   = register_0_bit_field_2;
+    register_6_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_1_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_3_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_4_set    = register_3_bit_field_3_trigger;
+    register_6_bit_field_6_clear  = register_3_bit_field_2_trigger;
+    register_6_bit_field_7_clear  = register_3_bit_field_2_trigger;
+    register_8_bit_field_0_set    = register_3_bit_field_3_trigger;
+    register_8_bit_field_1_clear  = register_3_bit_field_2_trigger;
+    register_8_bit_field_2_set    = register_3_bit_field_3_trigger;
+    register_8_bit_field_3_clear  = register_3_bit_field_2_trigger;
+    register_9_bit_field_1        = register_0_bit_field_0[1:0];
+    register_9_bit_field_3[1]     = register_0_bit_field_0[1:0];
+    register_9_bit_field_4        = register_0_bit_field_0[1:0];
+    register_9_bit_field_5        = register_0_bit_field_0[1:0];
+  end
 
   apb2wishbone_bridge u_apb2wishbone_bridge (
     .i_clk        (clk            ),
@@ -348,16 +350,18 @@ module top;
   );
 
   tvip_apb_if vip_apb_if(clk, rst_n);
-  assign  apb_if.psel         = vip_apb_if.psel;
-  assign  apb_if.penable      = vip_apb_if.penable;
-  assign  apb_if.paddr        = vip_apb_if.paddr;
-  assign  apb_if.pprot        = vip_apb_if.pprot;
-  assign  apb_if.pwrite       = vip_apb_if.pwrite;
-  assign  apb_if.pstrb        = vip_apb_if.pstrb;
-  assign  apb_if.pwdata       = vip_apb_if.pwdata;
-  assign  vip_apb_if.pready   = apb_if.pready;
-  assign  vip_apb_if.prdata   = apb_if.prdata;
-  assign  vip_apb_if.pslverr  = apb_if.pslverr;
+  always @* begin
+    apb_if.psel         = vip_apb_if.psel;
+    apb_if.penable      = vip_apb_if.penable;
+    apb_if.paddr        = vip_apb_if.paddr;
+    apb_if.pprot        = vip_apb_if.pprot;
+    apb_if.pwrite       = vip_apb_if.pwrite;
+    apb_if.pstrb        = vip_apb_if.pstrb;
+    apb_if.pwdata       = vip_apb_if.pwdata;
+    vip_apb_if.pready   = apb_if.pready;
+    vip_apb_if.prdata   = apb_if.prdata;
+    vip_apb_if.pslverr  = apb_if.pslverr;
+  end
 
   task automatic run_ral_test(uvm_event reset_event, virtual tvip_apb_if apb_vif);
     uvm_factory             factory;
