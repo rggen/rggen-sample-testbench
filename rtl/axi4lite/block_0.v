@@ -44,7 +44,11 @@ module block_0 #(
   input [1:0] i_register_0_bit_field_6,
   output o_register_1,
   input [3:0] i_register_2_bit_field_0,
-  input [3:0] i_register_2_bit_field_1,
+  input i_register_2_bit_field_2_latch,
+  input [3:0] i_register_2_bit_field_2,
+  output [3:0] o_register_2_bit_field_2,
+  input [3:0] i_register_2_bit_field_3,
+  output [3:0] o_register_2_bit_field_3,
   output [3:0] o_register_3_bit_field_0,
   output [3:0] o_register_3_bit_field_1,
   output [3:0] o_register_3_bit_field_2_trigger,
@@ -124,31 +128,46 @@ module block_0 #(
   output [255:0] o_register_11_bit_field_1,
   output o_register_12_bit_field_0,
   output o_register_12_bit_field_1,
-  output o_register_14_valid,
-  output [1:0] o_register_14_access,
-  output [7:0] o_register_14_address,
-  output [31:0] o_register_14_data,
-  output [3:0] o_register_14_strobe,
-  input i_register_14_ready,
-  input [1:0] i_register_14_status,
-  input [31:0] i_register_14_data
+  output [1:0] o_register_13_bit_field_0,
+  input [1:0] i_register_13_bit_field_1,
+  output [1:0] o_register_13_bit_field_2,
+  output [1:0] o_register_13_bit_field_3,
+  output o_register_13_bit_field_3_write_trigger,
+  output o_register_13_bit_field_3_read_trigger,
+  output [1:0] o_register_13_bit_field_4,
+  output [1:0] o_register_13_bit_field_5,
+  output [1:0] o_register_13_bit_field_6,
+  input [1:0] i_register_13_bit_field_6_hw_clear,
+  output [1:0] o_register_13_bit_field_7,
+  input [1:0] i_register_13_bit_field_7_hw_set,
+  output [1:0] o_register_13_bit_field_8,
+  input i_register_13_bit_field_8_hw_write_enable,
+  input [1:0] i_register_13_bit_field_8_hw_write_data,
+  output o_register_15_valid,
+  output [1:0] o_register_15_access,
+  output [7:0] o_register_15_address,
+  output [31:0] o_register_15_data,
+  output [3:0] o_register_15_strobe,
+  input i_register_15_ready,
+  input [1:0] i_register_15_status,
+  input [31:0] i_register_15_data
 );
   wire w_register_valid;
   wire [1:0] w_register_access;
   wire [7:0] w_register_address;
   wire [31:0] w_register_write_data;
   wire [3:0] w_register_strobe;
-  wire [23:0] w_register_active;
-  wire [23:0] w_register_ready;
-  wire [47:0] w_register_status;
-  wire [767:0] w_register_read_data;
-  wire [1535:0] w_register_value;
+  wire [24:0] w_register_active;
+  wire [24:0] w_register_ready;
+  wire [49:0] w_register_status;
+  wire [799:0] w_register_read_data;
+  wire [1599:0] w_register_value;
   rggen_axi4lite_adapter #(
     .ID_WIDTH             (ID_WIDTH),
     .ADDRESS_WIDTH        (ADDRESS_WIDTH),
     .LOCAL_ADDRESS_WIDTH  (8),
     .BUS_WIDTH            (32),
-    .REGISTERS            (24),
+    .REGISTERS            (25),
     .PRE_DECODE           (PRE_DECODE),
     .BASE_ADDRESS         (BASE_ADDRESS),
     .BYTE_SIZE            (256),
@@ -494,7 +513,7 @@ module block_0 #(
     wire [31:0] w_bit_field_write_data;
     wire [31:0] w_bit_field_read_data;
     wire [31:0] w_bit_field_value;
-    `rggen_tie_off_unused_signals(32, 32'h00ff0f0f, w_bit_field_read_data, w_bit_field_value)
+    `rggen_tie_off_unused_signals(32, 32'h00ffff0f, w_bit_field_read_data, w_bit_field_value)
     rggen_default_register #(
       .READABLE       (1),
       .WRITABLE       (0),
@@ -553,34 +572,6 @@ module block_0 #(
     end
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
-        .WIDTH              (4),
-        .STORAGE            (0),
-        .EXTERNAL_READ_DATA (1),
-        .TRIGGER            (0)
-      ) u_bit_field (
-        .i_clk              (i_clk),
-        .i_rst_n            (i_rst_n),
-        .i_sw_valid         (w_bit_field_valid),
-        .i_sw_read_mask     (w_bit_field_read_mask[8+:4]),
-        .i_sw_write_enable  (1'b0),
-        .i_sw_write_mask    (w_bit_field_write_mask[8+:4]),
-        .i_sw_write_data    (w_bit_field_write_data[8+:4]),
-        .o_sw_read_data     (w_bit_field_read_data[8+:4]),
-        .o_sw_value         (w_bit_field_value[8+:4]),
-        .o_write_trigger    (),
-        .o_read_trigger     (),
-        .i_hw_write_enable  (1'b0),
-        .i_hw_write_data    ({4{1'b0}}),
-        .i_hw_set           ({4{1'b0}}),
-        .i_hw_clear         ({4{1'b0}}),
-        .i_value            (i_register_2_bit_field_1),
-        .i_mask             ({4{1'b1}}),
-        .o_value            (),
-        .o_value_unmasked   ()
-      );
-    end
-    if (1) begin : g_bit_field_2
-      rggen_bit_field #(
         .WIDTH              (8),
         .STORAGE            (0),
         .EXTERNAL_READ_DATA (1)
@@ -588,12 +579,12 @@ module block_0 #(
         .i_clk              (1'b0),
         .i_rst_n            (1'b0),
         .i_sw_valid         (w_bit_field_valid),
-        .i_sw_read_mask     (w_bit_field_read_mask[16+:8]),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:8]),
         .i_sw_write_enable  (1'b0),
-        .i_sw_write_mask    (w_bit_field_write_mask[16+:8]),
-        .i_sw_write_data    (w_bit_field_write_data[16+:8]),
-        .o_sw_read_data     (w_bit_field_read_data[16+:8]),
-        .o_sw_value         (w_bit_field_value[16+:8]),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:8]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:8]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:8]),
+        .o_sw_value         (w_bit_field_value[8+:8]),
         .o_write_trigger    (),
         .o_read_trigger     (),
         .i_hw_write_enable  (1'b0),
@@ -603,6 +594,60 @@ module block_0 #(
         .i_value            (`rggen_slice(8'hab, 8, 0)),
         .i_mask             ({8{1'b1}}),
         .o_value            (),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_2
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:4]),
+        .o_sw_value         (w_bit_field_value[16+:4]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (i_register_2_bit_field_2_latch),
+        .i_hw_write_data    (i_register_2_bit_field_2),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_2_bit_field_2),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_3
+      rggen_bit_field #(
+        .WIDTH            (4),
+        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[20+:4]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[20+:4]),
+        .i_sw_write_data    (w_bit_field_write_data[20+:4]),
+        .o_sw_read_data     (w_bit_field_read_data[20+:4]),
+        .o_sw_value         (w_bit_field_value[20+:4]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (w_register_value[208+:1]),
+        .i_hw_write_data    (i_register_2_bit_field_3),
+        .i_hw_set           ({4{1'b0}}),
+        .i_hw_clear         ({4{1'b0}}),
+        .i_value            ({4{1'b0}}),
+        .i_mask             ({4{1'b1}}),
+        .o_value            (o_register_2_bit_field_3),
         .o_value_unmasked   ()
       );
     end
@@ -2386,12 +2431,22 @@ module block_0 #(
       );
     end
   end endgenerate
-  generate if (1) begin : g_register_14
-    rggen_external_register #(
+  generate if (1) begin : g_register_13
+    wire w_bit_field_valid;
+    wire [31:0] w_bit_field_read_mask;
+    wire [31:0] w_bit_field_write_mask;
+    wire [31:0] w_bit_field_write_data;
+    wire [31:0] w_bit_field_read_data;
+    wire [31:0] w_bit_field_value;
+    `rggen_tie_off_unused_signals(32, 32'h0003ffff, w_bit_field_read_data, w_bit_field_value)
+    rggen_default_register #(
+      .READABLE       (1),
+      .WRITABLE       (1),
       .ADDRESS_WIDTH  (8),
+      .OFFSET_ADDRESS (8'h60),
       .BUS_WIDTH      (32),
-      .START_ADDRESS  (8'h80),
-      .END_ADDRESS    (8'hff)
+      .DATA_WIDTH     (32),
+      .REGISTER_INDEX (0)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -2405,14 +2460,329 @@ module block_0 #(
       .o_register_status      (w_register_status[46+:2]),
       .o_register_read_data   (w_register_read_data[736+:32]),
       .o_register_value       (w_register_value[1472+:32]),
-      .o_external_valid       (o_register_14_valid),
-      .o_external_access      (o_register_14_access),
-      .o_external_address     (o_register_14_address),
-      .o_external_data        (o_register_14_data),
-      .o_external_strobe      (o_register_14_strobe),
-      .i_external_ready       (i_register_14_ready),
-      .i_external_status      (i_register_14_status),
-      .i_external_data        (i_register_14_data)
+      .o_bit_field_valid      (w_bit_field_valid),
+      .o_bit_field_read_mask  (w_bit_field_read_mask),
+      .o_bit_field_write_mask (w_bit_field_write_mask),
+      .o_bit_field_write_data (w_bit_field_write_data),
+      .i_bit_field_read_data  (w_bit_field_read_data),
+      .i_bit_field_value      (w_bit_field_value)
+    );
+    if (1) begin : g_bit_field_0
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[0+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[0+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:2]),
+        .o_sw_value         (w_bit_field_value[0+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_0),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_1
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      ({2{1'b0}}),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_NONE),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[2+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[2+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[2+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[2+:2]),
+        .o_sw_value         (w_bit_field_value[2+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            (i_register_13_bit_field_1),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_2
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
+        .SW_WRITE_ONCE      (1),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[4+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[4+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[4+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[4+:2]),
+        .o_sw_value         (w_bit_field_value[4+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_2),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_3
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (1)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[6+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[6+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[6+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[6+:2]),
+        .o_sw_value         (w_bit_field_value[6+:2]),
+        .o_write_trigger    (o_register_13_bit_field_3_write_trigger),
+        .o_read_trigger     (o_register_13_bit_field_3_read_trigger),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_3),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_4
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_CLEAR),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_1_SET),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[8+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[8+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[8+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[8+:2]),
+        .o_sw_value         (w_bit_field_value[8+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_4),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_5
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_SET),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_1_CLEAR),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[10+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[10+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[10+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[10+:2]),
+        .o_sw_value         (w_bit_field_value[10+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_5),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_6
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_1_SET),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[12+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[12+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[12+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[12+:2]),
+        .o_sw_value         (w_bit_field_value[12+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         (i_register_13_bit_field_6_hw_clear),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_6),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_7
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_1_CLEAR),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[14+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[14+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[14+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[14+:2]),
+        .o_sw_value         (w_bit_field_value[14+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({2{1'b0}}),
+        .i_hw_set           (i_register_13_bit_field_7_hw_set),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_7),
+        .o_value_unmasked   ()
+      );
+    end
+    if (1) begin : g_bit_field_8
+      rggen_bit_field #(
+        .WIDTH              (2),
+        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
+        .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
+        .SW_WRITE_ONCE      (0),
+        .STORAGE            (1),
+        .EXTERNAL_READ_DATA (0),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_valid         (w_bit_field_valid),
+        .i_sw_read_mask     (w_bit_field_read_mask[16+:2]),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_write_mask    (w_bit_field_write_mask[16+:2]),
+        .i_sw_write_data    (w_bit_field_write_data[16+:2]),
+        .o_sw_read_data     (w_bit_field_read_data[16+:2]),
+        .o_sw_value         (w_bit_field_value[16+:2]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (i_register_13_bit_field_8_hw_write_enable),
+        .i_hw_write_data    (i_register_13_bit_field_8_hw_write_data),
+        .i_hw_set           ({2{1'b0}}),
+        .i_hw_clear         ({2{1'b0}}),
+        .i_value            ({2{1'b0}}),
+        .i_mask             ({2{1'b1}}),
+        .o_value            (o_register_13_bit_field_8),
+        .o_value_unmasked   ()
+      );
+    end
+  end endgenerate
+  generate if (1) begin : g_register_15
+    rggen_external_register #(
+      .ADDRESS_WIDTH  (8),
+      .BUS_WIDTH      (32),
+      .START_ADDRESS  (8'h80),
+      .END_ADDRESS    (8'hff)
+    ) u_register (
+      .i_clk                  (i_clk),
+      .i_rst_n                (i_rst_n),
+      .i_register_valid       (w_register_valid),
+      .i_register_access      (w_register_access),
+      .i_register_address     (w_register_address),
+      .i_register_write_data  (w_register_write_data),
+      .i_register_strobe      (w_register_strobe),
+      .o_register_active      (w_register_active[24+:1]),
+      .o_register_ready       (w_register_ready[24+:1]),
+      .o_register_status      (w_register_status[48+:2]),
+      .o_register_read_data   (w_register_read_data[768+:32]),
+      .o_register_value       (w_register_value[1536+:32]),
+      .o_external_valid       (o_register_15_valid),
+      .o_external_access      (o_register_15_access),
+      .o_external_address     (o_register_15_address),
+      .o_external_data        (o_register_15_data),
+      .o_external_strobe      (o_register_15_strobe),
+      .i_external_ready       (i_register_15_ready),
+      .i_external_status      (i_register_15_status),
+      .i_external_data        (i_register_15_data)
     );
   end endgenerate
 endmodule

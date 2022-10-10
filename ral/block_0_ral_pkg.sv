@@ -37,13 +37,15 @@ package block_0_ral_pkg;
     rand rggen_ral_field bit_field_0;
     rand rggen_ral_field bit_field_1;
     rand rggen_ral_field bit_field_2;
+    rand rggen_ral_field bit_field_3;
     function new(string name);
       super.new(name, 32, 0);
     endfunction
     function void build();
       `rggen_ral_create_field(bit_field_0, 0, 4, "RO", 1, 4'h0, 0, -1, "")
-      `rggen_ral_create_field(bit_field_1, 8, 4, "RO", 1, 4'h0, 0, -1, "")
-      `rggen_ral_create_field(bit_field_2, 16, 8, "RO", 0, 8'hab, 1, -1, "")
+      `rggen_ral_create_field(bit_field_1, 8, 8, "RO", 0, 8'hab, 1, -1, "")
+      `rggen_ral_create_field(bit_field_2, 16, 4, "RO", 1, 4'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_3, 20, 4, "RO", 1, 4'h0, 1, -1, "register_3.bit_field_3")
     endfunction
   endclass
   class register_3_reg_model extends rggen_ral_reg;
@@ -241,9 +243,34 @@ package block_0_ral_pkg;
       setup_index_field("register_0.bit_field_2", 1'h1);
     endfunction
   endclass
+  class register_13_reg_model extends rggen_ral_reg;
+    rand rggen_ral_custom_field #("DEFAULT", "DEFAULT", 0, 0) bit_field_0;
+    rand rggen_ral_custom_field #("DEFAULT", "NONE", 0, 0) bit_field_1;
+    rand rggen_ral_custom_field #("DEFAULT", "DEFAULT", 1, 0) bit_field_2;
+    rand rggen_ral_custom_field #("DEFAULT", "DEFAULT", 0, 0) bit_field_3;
+    rand rggen_ral_custom_field #("CLEAR", "SET_1", 0, 0) bit_field_4;
+    rand rggen_ral_custom_field #("SET", "CLEAR_1", 0, 0) bit_field_5;
+    rand rggen_ral_custom_field #("DEFAULT", "SET_1", 0, 1) bit_field_6;
+    rand rggen_ral_custom_field #("DEFAULT", "CLEAR_1", 0, 1) bit_field_7;
+    rand rggen_ral_custom_field #("DEFAULT", "DEFAULT", 0, 1) bit_field_8;
+    function new(string name);
+      super.new(name, 32, 0);
+    endfunction
+    function void build();
+      `rggen_ral_create_field(bit_field_0, 0, 2, "CUSTOM", 0, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_1, 2, 2, "CUSTOM", 1, 2'h0, 0, -1, "")
+      `rggen_ral_create_field(bit_field_2, 4, 2, "CUSTOM", 0, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_3, 6, 2, "CUSTOM", 0, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_4, 8, 2, "CUSTOM", 0, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_5, 10, 2, "CUSTOM", 0, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_6, 12, 2, "CUSTOM", 1, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_7, 14, 2, "CUSTOM", 1, 2'h0, 1, -1, "")
+      `rggen_ral_create_field(bit_field_8, 16, 2, "CUSTOM", 1, 2'h0, 1, -1, "")
+    endfunction
+  endclass
   class block_0_block_model #(
-    type REGISTER_14 = rggen_ral_block,
-    bit INTEGRATE_REGISTER_14 = 1
+    type REGISTER_15 = rggen_ral_block,
+    bit INTEGRATE_REGISTER_15 = 1
   ) extends rggen_ral_block;
     rand register_0_reg_model register_0;
     rand register_1_reg_model register_1;
@@ -258,7 +285,8 @@ package block_0_ral_pkg;
     rand register_10_reg_model register_10[4];
     rand register_11_reg_model register_11[2][4];
     rand register_12_reg_model register_12;
-    rand REGISTER_14 register_14;
+    rand register_13_reg_model register_13;
+    rand REGISTER_15 register_15;
     function new(string name);
       super.new(name, 4, 0);
     endfunction
@@ -286,7 +314,8 @@ package block_0_ral_pkg;
       `rggen_ral_create_reg(register_11[1][2], '{1, 2}, 8'h50, "RW", "g_register_11.g[1].g[2].u_register")
       `rggen_ral_create_reg(register_11[1][3], '{1, 3}, 8'h50, "RW", "g_register_11.g[1].g[3].u_register")
       `rggen_ral_create_reg(register_12, '{}, 8'h50, "RW", "g_register_12.u_register")
-      `rggen_ral_create_block(register_14, 8'h80, this, INTEGRATE_REGISTER_14)
+      `rggen_ral_create_reg(register_13, '{}, 8'h60, "RW", "g_register_13.u_register")
+      `rggen_ral_create_block(register_15, 8'h80, this, INTEGRATE_REGISTER_15)
     endfunction
   endclass
 endpackage
