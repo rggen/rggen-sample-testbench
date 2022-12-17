@@ -1,14 +1,3 @@
-TVIP_APB_HOME	?= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/tvip-apb
-export TVIP_APB_HOME
-
 PROTOCOL	= wishbone
 ENV_TYPE	= apb_env
-LANGURAGE	= vhdl
-
-ENV_FILE_LISTS	+= $(TVIP_APB_HOME)/compile.f
-DUT_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/wishbone/block_0.vhd
-DUT_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/wishbone/block_1.vhd
-ENV_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/apb_env_pkg.sv
-ENV_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/rggen-sv-rtl/rggen_apb_if.sv
-ENV_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/apb2wishbone_bridge.sv
-ENV_SOURCE_FILES	+= $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/wishbone_top.sv
+LANGUAGE	= vhdl

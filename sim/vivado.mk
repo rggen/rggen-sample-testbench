@@ -9,27 +9,16 @@ XVLOG_ENV_ARGS += -sv
 XVLOG_ENV_ARGS += -log xvlog_env.log
 XVLOG_ENV_ARGS += -L uvm
 XVLOG_ENV_ARGS += -verbose 2
-XVLOG_ENV_ARGS += -i $(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
-XVLOG_ENV_ARGS += -d RGGEN_ENABLE_BACKDOOR
-XVLOG_ENV_ARGS += -d RGGEN_ENABLE_ENHANCED_RAL
-XVLOG_ENV_ARGS += -d RGGEN_$(shell echo $(LANGURAGE) | tr a-z A-Z)
-XVLOG_ENV_ARGS += $(subst +incdir+, -i , $(shell cat $(ENV_FILE_LISTS) | grep +incdir+))
-XVLOG_ENV_ARGS += $(if $(findstring systemverilog, $(LANGURAGE)), $(shell cat $(RGGEN_SV_RTL_ROOT)/compile_backdoor.f), )
-XVLOG_ENV_ARGS += $(shell cat $(ENV_FILE_LISTS) | grep -v +incdir+)
-XVLOG_ENV_ARGS += $(ENV_SOURCE_FILES)
+XVLOG_ENV_ARGS += -f env.f
 
-XVLOG_DUT_ARGS += $(if $(findstring systemverilog, $(LANGURAGE)), -sv, )
+XVLOG_DUT_ARGS += $(if $(findstring systemverilog, $(LANGUAGE)), -sv, )
 XVLOG_DUT_ARGS += -verbose 2
 XVLOG_DUT_ARGS += -log xvlog_dut.log
-XVLOG_DUT_ARGS += -d RGGEN_ENABLE_BACKDOOR
-XVLOG_DUT_ARGS += $(subst +incdir+, -i , $(shell cat $(DUT_FILE_LISTS) | grep +incdir+))
-XVLOG_DUT_ARGS += $(shell cat $(DUT_FILE_LISTS) | grep -v +incdir+ | grep -v compile_backdoor)
-XVLOG_DUT_ARGS += $(DUT_SOURCE_FILES)
+XVLOG_DUT_ARGS += -f dut.f
 
 XVHDL_DUT_ARGS += -verbose 2
 XVHDL_DUT_ARGS += -log xvhdl_dut.log
-XVHDL_DUT_ARGS += $(shell cat $(DUT_FILE_LISTS))
-XVHDL_DUT_ARGS += $(DUT_SOURCE_FILES)
+XVHDL_DUT_ARGS += -f dut.f
 
 XELAB_ARGS += -log xelab.log
 XELAB_ARGS += -verbose 2
@@ -56,10 +45,15 @@ sim_vivado:
 	xsim $(XSIM_ARGS)
 
 compile_vivado:
-	xvlog $(XVLOG_ENV_ARGS)
-ifeq ($(strip $(LANGURAGE)), vhdl)
+ifeq ($(strip $(LANGUAGE)), vhdl)
+	$(MAKE) dut_vhdl.f
 	xvhdl $(XVHDL_DUT_ARGS)
 else
+	$(MAKE) dut.f
+	sed -i -e 's/+define+/-d /g' -e 's/+incdir+/-i /g' dut.f
 	xvlog $(XVLOG_DUT_ARGS)
 endif
+	$(MAKE) env.f
+	sed -i -e 's/+define+/-d /g' -e 's/+incdir+/-i /g' env.f
+	xvlog $(XVLOG_ENV_ARGS)
 	xelab $(XELAB_ARGS)

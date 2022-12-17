@@ -9,11 +9,6 @@ XRUN_COMPILE_ARGS	+= -l compile.log
 XRUN_COMPILE_ARGS	+= -elaborate
 XRUN_COMPILE_ARGS	+= -timescale '1ns/1ps'
 XRUN_COMPILE_ARGS	+= -uvmhome CDNS-1.2
-XRUN_COMPILE_ARGS	+= +incdir+$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env
-XRUN_COMPILE_ARGS	+= +define+RGGEN_ENABLE_BACKDOOR
-XRUN_COMPILE_ARGS	+= +define+RGGEN_ENABLE_SVA
-XRUN_COMPILE_ARGS	+= +define+RGGEN_ENABLE_ENHANCED_RAL
-XRUN_COMPILE_ARGS	+= +define+RGGEN_$(shell echo $(LANGURAGE) | tr a-z A-Z)
 XRUN_COMPILE_ARGS	+= -plusperf
 XRUN_COMPILE_ARGS	+= -newperf
 XRUN_COMPILE_ARGS	+= -mccodegen
@@ -40,10 +35,8 @@ else
 	XRUN_SIMULATION_ARGS	+= -run
 endif
 
-XRUN_COMPILE_ARGS	+= $(addprefix -f , $(DUT_FILE_LISTS))
-XRUN_COMPILE_ARGS	+= $(addprefix -f , $(ENV_FILE_LISTS))
-XRUN_COMPILE_ARGS	+= $(DUT_SOURCE_FILES)
-XRUN_COMPILE_ARGS	+= $(ENV_SOURCE_FILES)
+XRUN_COMPILE_ARGS	+= -f dut.f
+XRUN_COMPILE_ARGS	+= -f env.f
 
 .PHONY: sim_xcelium compile_xcelium
 
@@ -53,4 +46,10 @@ sim_xcelium:
 	cd $(TEST); xrun $(XRUN_COMMON_ARGS) $(XRUN_SIMULATION_ARGS)
 
 compile_xcelium:
+	$(MAKE) env.f
+ifeq ($(strip $(LANGUAGE)), vhdl)
+	$(MAKE) dut_vhdl.f
+else
+	$(MAKE) dut.f
+endif
 	xrun $(XRUN_COMMON_ARGS) $(XRUN_COMPILE_ARGS)
