@@ -27,6 +27,7 @@ module block_1
   parameter bit [ADDRESS_WIDTH-1:0] BASE_ADDRESS = '0,
   parameter bit ERROR_STATUS = 0,
   parameter bit [31:0] DEFAULT_READ_DATA = '0,
+  parameter bit INSERT_SLICER = 0,
   parameter bit USE_STALL = 1
 )(
   input logic i_clk,
@@ -52,6 +53,7 @@ module block_1
     .BYTE_SIZE            (128),
     .ERROR_STATUS         (ERROR_STATUS),
     .DEFAULT_READ_DATA    (DEFAULT_READ_DATA),
+    .INSERT_SLICER        (INSERT_SLICER),
     .USE_STALL            (USE_STALL)
   ) u_adapter (
     .i_clk        (i_clk),
@@ -69,8 +71,7 @@ module block_1
         .ADDRESS_WIDTH  (7),
         .OFFSET_ADDRESS (7'h00),
         .BUS_WIDTH      (32),
-        .DATA_WIDTH     (32),
-        .REGISTER_INDEX (0)
+        .DATA_WIDTH     (32)
       ) u_register (
         .i_clk        (i_clk),
         .i_rst_n      (i_rst_n),
@@ -113,8 +114,7 @@ module block_1
         .ADDRESS_WIDTH  (7),
         .OFFSET_ADDRESS (7'h04),
         .BUS_WIDTH      (32),
-        .DATA_WIDTH     (32),
-        .REGISTER_INDEX (0)
+        .DATA_WIDTH     (32)
       ) u_register (
         .i_clk        (i_clk),
         .i_rst_n      (i_rst_n),
@@ -268,14 +268,13 @@ module block_1
                 .READABLE       (1),
                 .WRITABLE       (1),
                 .ADDRESS_WIDTH  (7),
-                .OFFSET_ADDRESS (7'h20+28*(i)),
+                .OFFSET_ADDRESS (7'h20+32*i+4*(3*j+k)),
                 .BUS_WIDTH      (32),
-                .DATA_WIDTH     (32),
-                .REGISTER_INDEX (3*j+k)
+                .DATA_WIDTH     (32)
               ) u_register (
                 .i_clk        (i_clk),
                 .i_rst_n      (i_rst_n),
-                .register_if  (register_if[6+7*(i)+3*j+k]),
+                .register_if  (register_if[6+7*i+3*j+k]),
                 .bit_field_if (bit_field_if)
               );
               if (1) begin : g_bit_field_0
@@ -351,7 +350,7 @@ module block_1
                     .bit_field_if       (bit_field_sub_if),
                     .o_write_trigger    (),
                     .o_read_trigger     (),
-                    .i_sw_write_enable  (register_if[6+7*(i)+6].value[0+1*l+:1]),
+                    .i_sw_write_enable  (register_if[6+7*i+6].value[0+1*l+:1]),
                     .i_hw_write_enable  ('0),
                     .i_hw_write_data    ('0),
                     .i_hw_set           ('0),
@@ -373,14 +372,13 @@ module block_1
             .READABLE       (1),
             .WRITABLE       (1),
             .ADDRESS_WIDTH  (7),
-            .OFFSET_ADDRESS (7'h20+28*(i)+7'h18),
+            .OFFSET_ADDRESS (7'h20+32*i+7'h18),
             .BUS_WIDTH      (32),
-            .DATA_WIDTH     (32),
-            .REGISTER_INDEX (0)
+            .DATA_WIDTH     (32)
           ) u_register (
             .i_clk        (i_clk),
             .i_rst_n      (i_rst_n),
-            .register_if  (register_if[6+7*(i)+6]),
+            .register_if  (register_if[6+7*i+6]),
             .bit_field_if (bit_field_if)
           );
           if (1) begin : g_bit_field_0

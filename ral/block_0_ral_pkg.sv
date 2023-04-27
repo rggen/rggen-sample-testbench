@@ -190,21 +190,21 @@ package block_0_ral_pkg;
     rand rggen_ral_field bit_field_1[4];
     rand rggen_ral_field bit_field_2[4];
     function new(string name);
-      super.new(name, 64, 0);
+      super.new(name, 32, 0);
     endfunction
     function void build();
-      `rggen_ral_create_field(bit_field_0[0], 0, 4, "RW", 0, 4'h0, 1, 0, "")
-      `rggen_ral_create_field(bit_field_0[1], 16, 4, "RW", 0, 4'h0, 1, 1, "")
-      `rggen_ral_create_field(bit_field_0[2], 32, 4, "RW", 0, 4'h0, 1, 2, "")
-      `rggen_ral_create_field(bit_field_0[3], 48, 4, "RW", 0, 4'h0, 1, 3, "")
-      `rggen_ral_create_field(bit_field_1[0], 4, 4, "RW", 0, 4'h0, 1, 0, "")
-      `rggen_ral_create_field(bit_field_1[1], 20, 4, "RW", 0, 4'h0, 1, 1, "")
-      `rggen_ral_create_field(bit_field_1[2], 36, 4, "RW", 0, 4'h0, 1, 2, "")
-      `rggen_ral_create_field(bit_field_1[3], 52, 4, "RW", 0, 4'h0, 1, 3, "")
-      `rggen_ral_create_field(bit_field_2[0], 8, 4, "RW", 0, 4'h0, 1, 0, "")
-      `rggen_ral_create_field(bit_field_2[1], 24, 4, "RW", 0, 4'h1, 1, 1, "")
-      `rggen_ral_create_field(bit_field_2[2], 40, 4, "RW", 0, 4'h2, 1, 2, "")
-      `rggen_ral_create_field(bit_field_2[3], 56, 4, "RW", 0, 4'h3, 1, 3, "")
+      `rggen_ral_create_field(bit_field_0[0], 0, 2, "RW", 0, 2'h0, 1, 0, "")
+      `rggen_ral_create_field(bit_field_0[1], 8, 2, "RW", 0, 2'h0, 1, 1, "")
+      `rggen_ral_create_field(bit_field_0[2], 16, 2, "RW", 0, 2'h0, 1, 2, "")
+      `rggen_ral_create_field(bit_field_0[3], 24, 2, "RW", 0, 2'h0, 1, 3, "")
+      `rggen_ral_create_field(bit_field_1[0], 2, 2, "RW", 0, 2'h0, 1, 0, "")
+      `rggen_ral_create_field(bit_field_1[1], 10, 2, "RW", 0, 2'h0, 1, 1, "")
+      `rggen_ral_create_field(bit_field_1[2], 18, 2, "RW", 0, 2'h0, 1, 2, "")
+      `rggen_ral_create_field(bit_field_1[3], 26, 2, "RW", 0, 2'h0, 1, 3, "")
+      `rggen_ral_create_field(bit_field_2[0], 4, 2, "RW", 0, 2'h0, 1, 0, "")
+      `rggen_ral_create_field(bit_field_2[1], 12, 2, "RW", 0, 2'h1, 1, 1, "")
+      `rggen_ral_create_field(bit_field_2[2], 20, 2, "RW", 0, 2'h2, 1, 2, "")
+      `rggen_ral_create_field(bit_field_2[3], 28, 2, "RW", 0, 2'h3, 1, 3, "")
     endfunction
   endclass
   class register_11_reg_model extends rggen_ral_indirect_reg;

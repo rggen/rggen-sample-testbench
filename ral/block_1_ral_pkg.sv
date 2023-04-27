@@ -133,7 +133,7 @@ package block_1_ral_pkg;
       `rggen_ral_create_reg_file(register_file_0, '{}, 7'h00, "g_register_file_0")
       `rggen_ral_create_reg_file(register_file_1, '{}, 7'h10, "g_register_file_1")
       `rggen_ral_create_reg_file(register_file_2[0], '{0}, 7'h20, "g_register_file_2.g[0]")
-      `rggen_ral_create_reg_file(register_file_2[1], '{1}, 7'h3c, "g_register_file_2.g[1]")
+      `rggen_ral_create_reg_file(register_file_2[1], '{1}, 7'h40, "g_register_file_2.g[1]")
     endfunction
   endclass
 endpackage
