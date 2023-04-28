@@ -10,7 +10,8 @@ entity block_0 is
     PRE_DECODE: boolean := false;
     BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
-    REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(15 downto 0) := repeat(x"0", 4, 4)
+    INSERT_SLICER: boolean := false;
+    REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(7 downto 0) := repeat(x"0", 2, 4)
   );
   port (
     i_clk: in std_logic;
@@ -112,9 +113,9 @@ entity block_0 is
     o_register_9_bit_field_4_trigger: out std_logic_vector(1 downto 0);
     i_register_9_bit_field_5: in std_logic_vector(1 downto 0);
     o_register_9_bit_field_5_trigger: out std_logic_vector(1 downto 0);
-    o_register_10_bit_field_0: out std_logic_vector(63 downto 0);
-    o_register_10_bit_field_1: out std_logic_vector(63 downto 0);
-    o_register_10_bit_field_2: out std_logic_vector(63 downto 0);
+    o_register_10_bit_field_0: out std_logic_vector(31 downto 0);
+    o_register_10_bit_field_1: out std_logic_vector(31 downto 0);
+    o_register_10_bit_field_2: out std_logic_vector(31 downto 0);
     o_register_11_bit_field_0: out std_logic_vector(255 downto 0);
     o_register_11_bit_field_1: out std_logic_vector(255 downto 0);
     o_register_12_bit_field_0: out std_logic_vector(0 downto 0);
@@ -166,7 +167,8 @@ begin
       PRE_DECODE          => PRE_DECODE,
       BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
-      ERROR_STATUS        => ERROR_STATUS
+      ERROR_STATUS        => ERROR_STATUS,
+      INSERT_SLICER       => INSERT_SLICER
     )
     port map (
       i_clk                 => i_clk,
@@ -212,8 +214,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"00",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -472,8 +473,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"04",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -548,8 +548,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"08",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -714,8 +713,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"08",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -865,8 +863,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"0c",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -1037,8 +1034,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"10",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -1380,8 +1376,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"14",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 64,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 64
       )
       port map (
         i_clk                   => i_clk,
@@ -1739,8 +1734,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"1c",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -1908,8 +1902,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"20",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 64,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 64
       )
       port map (
         i_clk                   => i_clk,
@@ -2143,8 +2136,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"28",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,
@@ -2338,14 +2330,14 @@ begin
   begin
     g: for i in 0 to 3 generate
       signal bit_field_valid: std_logic;
-      signal bit_field_read_mask: std_logic_vector(63 downto 0);
-      signal bit_field_write_mask: std_logic_vector(63 downto 0);
-      signal bit_field_write_data: std_logic_vector(63 downto 0);
-      signal bit_field_read_data: std_logic_vector(63 downto 0);
-      signal bit_field_value: std_logic_vector(63 downto 0);
+      signal bit_field_read_mask: std_logic_vector(31 downto 0);
+      signal bit_field_write_mask: std_logic_vector(31 downto 0);
+      signal bit_field_write_data: std_logic_vector(31 downto 0);
+      signal bit_field_read_data: std_logic_vector(31 downto 0);
+      signal bit_field_value: std_logic_vector(31 downto 0);
     begin
-      \g_tie_off\: for \__i\ in 0 to 63 generate
-        g: if (bit_slice(x"0fff0fff0fff0fff", \__i\) = '0') generate
+      \g_tie_off\: for \__i\ in 0 to 31 generate
+        g: if (bit_slice(x"3f3f3f3f", \__i\) = '0') generate
           bit_field_read_data(\__i\) <= '0';
           bit_field_value(\__i\) <= '0';
         end generate;
@@ -2355,10 +2347,9 @@ begin
           READABLE        => true,
           WRITABLE        => true,
           ADDRESS_WIDTH   => 8,
-          OFFSET_ADDRESS  => x"30",
+          OFFSET_ADDRESS  => x"30"+8*i,
           BUS_WIDTH       => 32,
-          DATA_WIDTH      => 64,
-          REGISTER_INDEX  => i
+          DATA_WIDTH      => 32
         )
         port map (
           i_clk                   => i_clk,
@@ -2372,7 +2363,7 @@ begin
           o_register_ready        => register_ready(10+i),
           o_register_status       => register_status(2*(10+i)+1 downto 2*(10+i)),
           o_register_read_data    => register_read_data(32*(10+i)+31 downto 32*(10+i)),
-          o_register_value        => register_value(64*(10+i)+0+63 downto 64*(10+i)+0),
+          o_register_value        => register_value(64*(10+i)+0+31 downto 64*(10+i)+0),
           o_bit_field_valid       => bit_field_valid,
           o_bit_field_read_mask   => bit_field_read_mask,
           o_bit_field_write_mask  => bit_field_write_mask,
@@ -2386,8 +2377,8 @@ begin
         begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
-              WIDTH           => 4,
-              INITIAL_VALUE   => slice(x"0", 4, 0),
+              WIDTH           => 2,
+              INITIAL_VALUE   => slice(x"0", 2, 0),
               SW_WRITE_ONCE   => false,
               TRIGGER         => false
             )
@@ -2395,12 +2386,12 @@ begin
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
               i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(0+16*j+3 downto 0+16*j),
+              i_sw_read_mask    => bit_field_read_mask(0+8*j+1 downto 0+8*j),
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(0+16*j+3 downto 0+16*j),
-              i_sw_write_data   => bit_field_write_data(0+16*j+3 downto 0+16*j),
-              o_sw_read_data    => bit_field_read_data(0+16*j+3 downto 0+16*j),
-              o_sw_value        => bit_field_value(0+16*j+3 downto 0+16*j),
+              i_sw_write_mask   => bit_field_write_mask(0+8*j+1 downto 0+8*j),
+              i_sw_write_data   => bit_field_write_data(0+8*j+1 downto 0+8*j),
+              o_sw_read_data    => bit_field_read_data(0+8*j+1 downto 0+8*j),
+              o_sw_value        => bit_field_value(0+8*j+1 downto 0+8*j),
               o_write_trigger   => open,
               o_read_trigger    => open,
               i_hw_write_enable => "0",
@@ -2409,7 +2400,7 @@ begin
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_10_bit_field_0(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_0(2*(4*i+j)+1 downto 2*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
@@ -2420,8 +2411,8 @@ begin
         begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
-              WIDTH           => 4,
-              INITIAL_VALUE   => slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 4, j),
+              WIDTH           => 2,
+              INITIAL_VALUE   => slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 2, j),
               SW_WRITE_ONCE   => false,
               TRIGGER         => false
             )
@@ -2429,12 +2420,12 @@ begin
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
               i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(4+16*j+3 downto 4+16*j),
+              i_sw_read_mask    => bit_field_read_mask(2+8*j+1 downto 2+8*j),
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(4+16*j+3 downto 4+16*j),
-              i_sw_write_data   => bit_field_write_data(4+16*j+3 downto 4+16*j),
-              o_sw_read_data    => bit_field_read_data(4+16*j+3 downto 4+16*j),
-              o_sw_value        => bit_field_value(4+16*j+3 downto 4+16*j),
+              i_sw_write_mask   => bit_field_write_mask(2+8*j+1 downto 2+8*j),
+              i_sw_write_data   => bit_field_write_data(2+8*j+1 downto 2+8*j),
+              o_sw_read_data    => bit_field_read_data(2+8*j+1 downto 2+8*j),
+              o_sw_value        => bit_field_value(2+8*j+1 downto 2+8*j),
               o_write_trigger   => open,
               o_read_trigger    => open,
               i_hw_write_enable => "0",
@@ -2443,7 +2434,7 @@ begin
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_10_bit_field_1(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_1(2*(4*i+j)+1 downto 2*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
@@ -2454,8 +2445,8 @@ begin
         begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
-              WIDTH           => 4,
-              INITIAL_VALUE   => slice(x"3210", 4, j),
+              WIDTH           => 2,
+              INITIAL_VALUE   => slice(x"e4", 2, j),
               SW_WRITE_ONCE   => false,
               TRIGGER         => false
             )
@@ -2463,12 +2454,12 @@ begin
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
               i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(8+16*j+3 downto 8+16*j),
+              i_sw_read_mask    => bit_field_read_mask(4+8*j+1 downto 4+8*j),
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(8+16*j+3 downto 8+16*j),
-              i_sw_write_data   => bit_field_write_data(8+16*j+3 downto 8+16*j),
-              o_sw_read_data    => bit_field_read_data(8+16*j+3 downto 8+16*j),
-              o_sw_value        => bit_field_value(8+16*j+3 downto 8+16*j),
+              i_sw_write_mask   => bit_field_write_mask(4+8*j+1 downto 4+8*j),
+              i_sw_write_data   => bit_field_write_data(4+8*j+1 downto 4+8*j),
+              o_sw_read_data    => bit_field_read_data(4+8*j+1 downto 4+8*j),
+              o_sw_value        => bit_field_value(4+8*j+1 downto 4+8*j),
               o_write_trigger   => open,
               o_read_trigger    => open,
               i_hw_write_enable => "0",
@@ -2477,7 +2468,7 @@ begin
               i_hw_clear        => (others => '0'),
               i_value           => (others => '0'),
               i_mask            => (others => '1'),
-              o_value           => o_register_10_bit_field_2(4*(4*i+j)+3 downto 4*(4*i+j)),
+              o_value           => o_register_10_bit_field_2(2*(4*i+j)+1 downto 2*(4*i+j)),
               o_value_unmasked  => open
             );
         end generate;
@@ -2739,8 +2730,7 @@ begin
         ADDRESS_WIDTH   => 8,
         OFFSET_ADDRESS  => x"60",
         BUS_WIDTH       => 32,
-        DATA_WIDTH      => 32,
-        REGISTER_INDEX  => 0
+        DATA_WIDTH      => 32
       )
       port map (
         i_clk                   => i_clk,

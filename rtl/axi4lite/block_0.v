@@ -5,9 +5,10 @@ module block_0 #(
   parameter [ADDRESS_WIDTH-1:0] BASE_ADDRESS = 0,
   parameter ERROR_STATUS = 0,
   parameter [31:0] DEFAULT_READ_DATA = 0,
+  parameter INSERT_SLICER = 0,
   parameter ID_WIDTH = 0,
   parameter WRITE_FIRST = 1,
-  parameter [15:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{4'h0}}
+  parameter [7:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}}
 )(
   input i_clk,
   input i_rst_n,
@@ -121,9 +122,9 @@ module block_0 #(
   output [1:0] o_register_9_bit_field_4_trigger,
   input [1:0] i_register_9_bit_field_5,
   output [1:0] o_register_9_bit_field_5_trigger,
-  output [63:0] o_register_10_bit_field_0,
-  output [63:0] o_register_10_bit_field_1,
-  output [63:0] o_register_10_bit_field_2,
+  output [31:0] o_register_10_bit_field_0,
+  output [31:0] o_register_10_bit_field_1,
+  output [31:0] o_register_10_bit_field_2,
   output [255:0] o_register_11_bit_field_0,
   output [255:0] o_register_11_bit_field_1,
   output o_register_12_bit_field_0,
@@ -173,6 +174,7 @@ module block_0 #(
     .BYTE_SIZE            (256),
     .ERROR_STATUS         (ERROR_STATUS),
     .DEFAULT_READ_DATA    (DEFAULT_READ_DATA),
+    .INSERT_SLICER        (INSERT_SLICER),
     .WRITE_FIRST          (WRITE_FIRST)
   ) u_adapter (
     .i_clk                  (i_clk),
@@ -224,8 +226,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -455,8 +456,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h04),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -520,8 +520,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -666,8 +665,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -797,8 +795,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h0c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -946,8 +943,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h10),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -1251,8 +1247,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h14),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (64)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -1566,8 +1561,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h1c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -1715,8 +1709,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h20),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (64)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -1920,8 +1913,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h28),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -2096,20 +2088,19 @@ module block_0 #(
     genvar i;
     for (i = 0;i < 4;i = i + 1) begin : g
       wire w_bit_field_valid;
-      wire [63:0] w_bit_field_read_mask;
-      wire [63:0] w_bit_field_write_mask;
-      wire [63:0] w_bit_field_write_data;
-      wire [63:0] w_bit_field_read_data;
-      wire [63:0] w_bit_field_value;
-      `rggen_tie_off_unused_signals(64, 64'h0fff0fff0fff0fff, w_bit_field_read_data, w_bit_field_value)
+      wire [31:0] w_bit_field_read_mask;
+      wire [31:0] w_bit_field_write_mask;
+      wire [31:0] w_bit_field_write_data;
+      wire [31:0] w_bit_field_read_data;
+      wire [31:0] w_bit_field_value;
+      `rggen_tie_off_unused_signals(32, 32'h3f3f3f3f, w_bit_field_read_data, w_bit_field_value)
       rggen_default_register #(
         .READABLE       (1),
         .WRITABLE       (1),
         .ADDRESS_WIDTH  (8),
-        .OFFSET_ADDRESS (8'h30),
+        .OFFSET_ADDRESS (8'h30+8*i),
         .BUS_WIDTH      (32),
-        .DATA_WIDTH     (64),
-        .REGISTER_INDEX (i)
+        .DATA_WIDTH     (32)
       ) u_register (
         .i_clk                  (i_clk),
         .i_rst_n                (i_rst_n),
@@ -2122,7 +2113,7 @@ module block_0 #(
         .o_register_ready       (w_register_ready[1*(10+i)+:1]),
         .o_register_status      (w_register_status[2*(10+i)+:2]),
         .o_register_read_data   (w_register_read_data[32*(10+i)+:32]),
-        .o_register_value       (w_register_value[64*(10+i)+0+:64]),
+        .o_register_value       (w_register_value[64*(10+i)+0+:32]),
         .o_bit_field_valid      (w_bit_field_valid),
         .o_bit_field_read_mask  (w_bit_field_read_mask),
         .o_bit_field_write_mask (w_bit_field_write_mask),
@@ -2134,29 +2125,29 @@ module block_0 #(
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
-            .WIDTH          (4),
-            .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
+            .WIDTH          (2),
+            .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
             .i_clk              (i_clk),
             .i_rst_n            (i_rst_n),
             .i_sw_valid         (w_bit_field_valid),
-            .i_sw_read_mask     (w_bit_field_read_mask[0+16*j+:4]),
+            .i_sw_read_mask     (w_bit_field_read_mask[0+8*j+:2]),
             .i_sw_write_enable  (1'b1),
-            .i_sw_write_mask    (w_bit_field_write_mask[0+16*j+:4]),
-            .i_sw_write_data    (w_bit_field_write_data[0+16*j+:4]),
-            .o_sw_read_data     (w_bit_field_read_data[0+16*j+:4]),
-            .o_sw_value         (w_bit_field_value[0+16*j+:4]),
+            .i_sw_write_mask    (w_bit_field_write_mask[0+8*j+:2]),
+            .i_sw_write_data    (w_bit_field_write_data[0+8*j+:2]),
+            .o_sw_read_data     (w_bit_field_read_data[0+8*j+:2]),
+            .o_sw_value         (w_bit_field_value[0+8*j+:2]),
             .o_write_trigger    (),
             .o_read_trigger     (),
             .i_hw_write_enable  (1'b0),
-            .i_hw_write_data    ({4{1'b0}}),
-            .i_hw_set           ({4{1'b0}}),
-            .i_hw_clear         ({4{1'b0}}),
-            .i_value            ({4{1'b0}}),
-            .i_mask             ({4{1'b1}}),
-            .o_value            (o_register_10_bit_field_0[4*(4*i+j)+:4]),
+            .i_hw_write_data    ({2{1'b0}}),
+            .i_hw_set           ({2{1'b0}}),
+            .i_hw_clear         ({2{1'b0}}),
+            .i_value            ({2{1'b0}}),
+            .i_mask             ({2{1'b1}}),
+            .o_value            (o_register_10_bit_field_0[2*(4*i+j)+:2]),
             .o_value_unmasked   ()
           );
         end
@@ -2165,29 +2156,29 @@ module block_0 #(
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
-            .WIDTH          (4),
-            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 4, j)),
+            .WIDTH          (2),
+            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 2, j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
             .i_clk              (i_clk),
             .i_rst_n            (i_rst_n),
             .i_sw_valid         (w_bit_field_valid),
-            .i_sw_read_mask     (w_bit_field_read_mask[4+16*j+:4]),
+            .i_sw_read_mask     (w_bit_field_read_mask[2+8*j+:2]),
             .i_sw_write_enable  (1'b1),
-            .i_sw_write_mask    (w_bit_field_write_mask[4+16*j+:4]),
-            .i_sw_write_data    (w_bit_field_write_data[4+16*j+:4]),
-            .o_sw_read_data     (w_bit_field_read_data[4+16*j+:4]),
-            .o_sw_value         (w_bit_field_value[4+16*j+:4]),
+            .i_sw_write_mask    (w_bit_field_write_mask[2+8*j+:2]),
+            .i_sw_write_data    (w_bit_field_write_data[2+8*j+:2]),
+            .o_sw_read_data     (w_bit_field_read_data[2+8*j+:2]),
+            .o_sw_value         (w_bit_field_value[2+8*j+:2]),
             .o_write_trigger    (),
             .o_read_trigger     (),
             .i_hw_write_enable  (1'b0),
-            .i_hw_write_data    ({4{1'b0}}),
-            .i_hw_set           ({4{1'b0}}),
-            .i_hw_clear         ({4{1'b0}}),
-            .i_value            ({4{1'b0}}),
-            .i_mask             ({4{1'b1}}),
-            .o_value            (o_register_10_bit_field_1[4*(4*i+j)+:4]),
+            .i_hw_write_data    ({2{1'b0}}),
+            .i_hw_set           ({2{1'b0}}),
+            .i_hw_clear         ({2{1'b0}}),
+            .i_value            ({2{1'b0}}),
+            .i_mask             ({2{1'b1}}),
+            .o_value            (o_register_10_bit_field_1[2*(4*i+j)+:2]),
             .o_value_unmasked   ()
           );
         end
@@ -2196,29 +2187,29 @@ module block_0 #(
         genvar j;
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
-            .WIDTH          (4),
-            .INITIAL_VALUE  (`rggen_slice(16'h3210, 4, j)),
+            .WIDTH          (2),
+            .INITIAL_VALUE  (`rggen_slice(8'he4, 2, j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
             .i_clk              (i_clk),
             .i_rst_n            (i_rst_n),
             .i_sw_valid         (w_bit_field_valid),
-            .i_sw_read_mask     (w_bit_field_read_mask[8+16*j+:4]),
+            .i_sw_read_mask     (w_bit_field_read_mask[4+8*j+:2]),
             .i_sw_write_enable  (1'b1),
-            .i_sw_write_mask    (w_bit_field_write_mask[8+16*j+:4]),
-            .i_sw_write_data    (w_bit_field_write_data[8+16*j+:4]),
-            .o_sw_read_data     (w_bit_field_read_data[8+16*j+:4]),
-            .o_sw_value         (w_bit_field_value[8+16*j+:4]),
+            .i_sw_write_mask    (w_bit_field_write_mask[4+8*j+:2]),
+            .i_sw_write_data    (w_bit_field_write_data[4+8*j+:2]),
+            .o_sw_read_data     (w_bit_field_read_data[4+8*j+:2]),
+            .o_sw_value         (w_bit_field_value[4+8*j+:2]),
             .o_write_trigger    (),
             .o_read_trigger     (),
             .i_hw_write_enable  (1'b0),
-            .i_hw_write_data    ({4{1'b0}}),
-            .i_hw_set           ({4{1'b0}}),
-            .i_hw_clear         ({4{1'b0}}),
-            .i_value            ({4{1'b0}}),
-            .i_mask             ({4{1'b1}}),
-            .o_value            (o_register_10_bit_field_2[4*(4*i+j)+:4]),
+            .i_hw_write_data    ({2{1'b0}}),
+            .i_hw_set           ({2{1'b0}}),
+            .i_hw_clear         ({2{1'b0}}),
+            .i_value            ({2{1'b0}}),
+            .i_mask             ({2{1'b1}}),
+            .o_value            (o_register_10_bit_field_2[2*(4*i+j)+:2]),
             .o_value_unmasked   ()
           );
         end
@@ -2445,8 +2436,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h60),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),

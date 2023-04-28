@@ -24,10 +24,10 @@ class env_ral_monitor #(
     model.build();
 
     foreach (model.register_10[i]) begin
-      model.register_10[i].bit_field_1[0].set_reset(4'hC);
-      model.register_10[i].bit_field_1[1].set_reset(4'hD);
-      model.register_10[i].bit_field_1[2].set_reset(4'hE);
-      model.register_10[i].bit_field_1[3].set_reset(4'hF);
+      model.register_10[i].bit_field_1[0].set_reset(2'h0);
+      model.register_10[i].bit_field_1[1].set_reset(2'h1);
+      model.register_10[i].bit_field_1[2].set_reset(2'h2);
+      model.register_10[i].bit_field_1[3].set_reset(2'h3);
     end
 
     model.set_hdl_path_root("top.u_block_0");

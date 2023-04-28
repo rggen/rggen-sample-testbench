@@ -27,9 +27,10 @@ module block_0
   parameter bit [ADDRESS_WIDTH-1:0] BASE_ADDRESS = '0,
   parameter bit ERROR_STATUS = 0,
   parameter bit [31:0] DEFAULT_READ_DATA = '0,
+  parameter bit INSERT_SLICER = 0,
   parameter int ID_WIDTH = 0,
   parameter bit WRITE_FIRST = 1,
-  parameter bit [3:0][3:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{4'h0}}
+  parameter bit [3:0][1:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}}
 )(
   input logic i_clk,
   input logic i_rst_n,
@@ -121,9 +122,9 @@ module block_0
   output logic [1:0] o_register_9_bit_field_4_trigger,
   input logic [1:0] i_register_9_bit_field_5,
   output logic [1:0] o_register_9_bit_field_5_trigger,
-  output logic [3:0][3:0][3:0] o_register_10_bit_field_0,
-  output logic [3:0][3:0][3:0] o_register_10_bit_field_1,
-  output logic [3:0][3:0][3:0] o_register_10_bit_field_2,
+  output logic [3:0][3:0][1:0] o_register_10_bit_field_0,
+  output logic [3:0][3:0][1:0] o_register_10_bit_field_1,
+  output logic [3:0][3:0][1:0] o_register_10_bit_field_2,
   output logic [1:0][3:0][3:0][7:0] o_register_11_bit_field_0,
   output logic [1:0][3:0][3:0][7:0] o_register_11_bit_field_1,
   output logic o_register_12_bit_field_0,
@@ -157,6 +158,7 @@ module block_0
     .BYTE_SIZE            (256),
     .ERROR_STATUS         (ERROR_STATUS),
     .DEFAULT_READ_DATA    (DEFAULT_READ_DATA),
+    .INSERT_SLICER        (INSERT_SLICER),
     .WRITE_FIRST          (WRITE_FIRST)
   ) u_adapter (
     .i_clk        (i_clk),
@@ -173,8 +175,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -371,8 +372,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h04),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -415,8 +415,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -533,8 +532,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -633,8 +631,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h0c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -754,8 +751,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h10),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1020,8 +1016,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h14),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1294,8 +1289,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h1c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1416,8 +1410,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h20),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1590,8 +1583,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h28),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1734,16 +1726,15 @@ module block_0
   generate if (1) begin : g_register_10
     genvar i;
     for (i = 0;i < 4;++i) begin : g
-      rggen_bit_field_if #(64) bit_field_if();
-      `rggen_tie_off_unused_signals(64, 64'h0fff0fff0fff0fff, bit_field_if)
+      rggen_bit_field_if #(32) bit_field_if();
+      `rggen_tie_off_unused_signals(32, 32'h3f3f3f3f, bit_field_if)
       rggen_default_register #(
         .READABLE       (1),
         .WRITABLE       (1),
         .ADDRESS_WIDTH  (8),
-        .OFFSET_ADDRESS (8'h30),
+        .OFFSET_ADDRESS (8'h30+8*i),
         .BUS_WIDTH      (32),
-        .DATA_WIDTH     (64),
-        .REGISTER_INDEX (i)
+        .DATA_WIDTH     (32)
       ) u_register (
         .i_clk        (i_clk),
         .i_rst_n      (i_rst_n),
@@ -1753,11 +1744,11 @@ module block_0
       if (1) begin : g_bit_field_0
         genvar j;
         for (j = 0;j < 4;++j) begin : g
-          localparam bit [3:0] INITIAL_VALUE = 4'h0;
-          rggen_bit_field_if #(4) bit_field_sub_if();
-          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0+16*j, 4)
+          localparam bit [1:0] INITIAL_VALUE = 2'h0;
+          rggen_bit_field_if #(2) bit_field_sub_if();
+          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0+8*j, 2)
           rggen_bit_field #(
-            .WIDTH          (4),
+            .WIDTH          (2),
             .INITIAL_VALUE  (INITIAL_VALUE),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
@@ -1782,10 +1773,10 @@ module block_0
       if (1) begin : g_bit_field_1
         genvar j;
         for (j = 0;j < 4;++j) begin : g
-          rggen_bit_field_if #(4) bit_field_sub_if();
-          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 4+16*j, 4)
+          rggen_bit_field_if #(2) bit_field_sub_if();
+          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 2+8*j, 2)
           rggen_bit_field #(
-            .WIDTH          (4),
+            .WIDTH          (2),
             .INITIAL_VALUE  (REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[j]),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
@@ -1810,11 +1801,11 @@ module block_0
       if (1) begin : g_bit_field_2
         genvar j;
         for (j = 0;j < 4;++j) begin : g
-          localparam bit [3:0] INITIAL_VALUE[4] = '{4'h0, 4'h1, 4'h2, 4'h3};
-          rggen_bit_field_if #(4) bit_field_sub_if();
-          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8+16*j, 4)
+          localparam bit [1:0] INITIAL_VALUE[4] = '{2'h0, 2'h1, 2'h2, 2'h3};
+          rggen_bit_field_if #(2) bit_field_sub_if();
+          `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 4+8*j, 2)
           rggen_bit_field #(
-            .WIDTH          (4),
+            .WIDTH          (2),
             .INITIAL_VALUE  (INITIAL_VALUE[j]),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
@@ -2007,8 +1998,7 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h60),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32),
-      .REGISTER_INDEX (0)
+      .DATA_WIDTH     (32)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),

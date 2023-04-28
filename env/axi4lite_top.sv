@@ -84,9 +84,9 @@ module top;
   logic [1:0][1:0]                register_9_bit_field_3;
   logic [1:0]                     register_9_bit_field_4;
   logic [1:0]                     register_9_bit_field_5;
-  logic [3:0][3:0][3:0]           register_10_bit_field_0;
-  logic [3:0][3:0][3:0]           register_10_bit_field_1;
-  logic [3:0][3:0][3:0]           register_10_bit_field_2;
+  logic [3:0][3:0][1:0]           register_10_bit_field_0;
+  logic [3:0][3:0][1:0]           register_10_bit_field_1;
+  logic [3:0][3:0][1:0]           register_10_bit_field_2;
   logic [1:0][3:0][3:0][7:0]      register_11_bit_field_0;
   logic [1:0][3:0][3:0][7:0]      register_11_bit_field_1;
   logic                           register_12_bit_field_0;
@@ -173,13 +173,14 @@ module top;
     .ADDRESS_WIDTH                          (16                       ),
     .ID_WIDTH                               (2                        ),
     .PRE_DECODE                             (1                        ),
+    .INSERT_SLICER                          (1                        ),
 `ifndef RGGEN_VHDL
     .BASE_ADDRESS                           (16'h1000                 ),
     .DEFAULT_READ_DATA                      (32'hDEAD_BEAF            ),
-    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({4'hF, 4'hE, 4'hD, 4'hC} )
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
 `else
     .BASE_ADDRESS                           ("0001000000000000"       ),
-    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ("1111111011011100"       )
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ("11100100"               )
 `endif
   ) u_block_0 (
     .i_clk                                      (clk                              ),
