@@ -12,7 +12,7 @@
   if (1) begin : __g_tie_off \
     genvar  __i; \
     for (__i = 0;__i < WIDTH;++__i) begin : g \
-      if (!(((VALID_BITS) >> __i) & 1'b1)) begin : g \
+      if ((((VALID_BITS) >> __i) % 2) == 0) begin : g \
         assign  RIF.read_data[__i]  = 1'b0; \
         assign  RIF.value[__i]      = 1'b0; \
       end \
@@ -175,7 +175,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h00),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -372,7 +373,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h04),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -415,7 +417,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -532,7 +535,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h08),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -631,7 +635,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h0c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -751,7 +756,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h10),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1016,7 +1022,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h14),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64)
+      .DATA_WIDTH     (64),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1289,7 +1296,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h1c),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1410,7 +1418,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h20),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (64)
+      .DATA_WIDTH     (64),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1583,7 +1592,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h28),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -1732,9 +1742,10 @@ module block_0
         .READABLE       (1),
         .WRITABLE       (1),
         .ADDRESS_WIDTH  (8),
-        .OFFSET_ADDRESS (8'h30+8*i),
+        .OFFSET_ADDRESS (8'h30+8'(8*i)),
         .BUS_WIDTH      (32),
-        .DATA_WIDTH     (32)
+        .DATA_WIDTH     (32),
+        .VALUE_WIDTH    (64)
       ) u_register (
         .i_clk        (i_clk),
         .i_rst_n      (i_rst_n),
@@ -1845,6 +1856,7 @@ module block_0
           .OFFSET_ADDRESS       (8'h50),
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (64),
+          .VALUE_WIDTH          (64),
           .INDIRECT_INDEX_WIDTH (9),
           .INDIRECT_INDEX_VALUE ({i[0+:4], j[0+:4], 1'h0})
         ) u_register (
@@ -1927,6 +1939,7 @@ module block_0
       .OFFSET_ADDRESS       (8'h50),
       .BUS_WIDTH            (32),
       .DATA_WIDTH           (64),
+      .VALUE_WIDTH          (64),
       .INDIRECT_INDEX_WIDTH (1),
       .INDIRECT_INDEX_VALUE ({1'h1})
     ) u_register (
@@ -1998,7 +2011,8 @@ module block_0
       .ADDRESS_WIDTH  (8),
       .OFFSET_ADDRESS (8'h60),
       .BUS_WIDTH      (32),
-      .DATA_WIDTH     (32)
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
@@ -2279,8 +2293,9 @@ module block_0
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
+      .VALUE_WIDTH    (64),
       .START_ADDRESS  (8'h80),
-      .END_ADDRESS    (8'hff)
+      .BYTE_SIZE      (128)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),

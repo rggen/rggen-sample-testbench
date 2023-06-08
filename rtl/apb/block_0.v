@@ -220,7 +220,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE  (4'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -248,7 +248,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE  (4'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -276,7 +276,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH          (1),
-        .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
+        .INITIAL_VALUE  (1'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -304,7 +304,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .SW_WRITE_ONCE  (1),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -332,7 +332,7 @@ module block_0 #(
     if (1) begin : g_bit_field_4
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .SW_READ_ACTION (`RGGEN_READ_CLEAR)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -359,7 +359,7 @@ module block_0 #(
     if (1) begin : g_bit_field_5
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .SW_READ_ACTION (`RGGEN_READ_SET)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -386,7 +386,7 @@ module block_0 #(
     if (1) begin : g_bit_field_6
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .EXTERNAL_READ_DATA (1),
         .TRIGGER            (0)
       ) u_bit_field (
@@ -450,7 +450,7 @@ module block_0 #(
     if (1) begin : g_register_1
       rggen_bit_field #(
         .WIDTH          (1),
-        .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
+        .INITIAL_VALUE  (1'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -560,7 +560,7 @@ module block_0 #(
         .i_hw_write_data    ({8{1'b0}}),
         .i_hw_set           ({8{1'b0}}),
         .i_hw_clear         ({8{1'b0}}),
-        .i_value            (`rggen_slice(8'hab, 8, 0)),
+        .i_value            (8'hab),
         .i_mask             ({8{1'b1}}),
         .o_value            (),
         .o_value_unmasked   ()
@@ -569,7 +569,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -596,7 +596,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -659,7 +659,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE  (4'h0),
         .SW_READ_ACTION (`RGGEN_READ_NONE),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
@@ -688,7 +688,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH          (4),
-        .INITIAL_VALUE  (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE  (4'h0),
         .SW_READ_ACTION (`RGGEN_READ_NONE),
         .SW_WRITE_ONCE  (1),
         .TRIGGER        (0)
@@ -789,7 +789,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
@@ -817,7 +817,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
@@ -873,7 +873,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_SET),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_NONE)
       ) u_bit_field (
@@ -937,7 +937,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -964,7 +964,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -991,7 +991,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (2'h0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1017,7 +1017,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0))
+        .INITIAL_VALUE  (2'h0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1043,7 +1043,7 @@ module block_0 #(
     if (1) begin : g_bit_field_4
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1070,7 +1070,7 @@ module block_0 #(
     if (1) begin : g_bit_field_5
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1097,7 +1097,7 @@ module block_0 #(
     if (1) begin : g_bit_field_6
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1124,7 +1124,7 @@ module block_0 #(
     if (1) begin : g_bit_field_7
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1151,7 +1151,7 @@ module block_0 #(
     if (1) begin : g_bit_field_8
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1178,7 +1178,7 @@ module block_0 #(
     if (1) begin : g_bit_field_9
       rggen_bit_field #(
         .WIDTH                    (2),
-        .INITIAL_VALUE            (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE            (2'h0),
         .SW_WRITE_ENABLE_POLARITY (`RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1241,7 +1241,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
@@ -1269,7 +1269,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
@@ -1325,7 +1325,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
@@ -1353,7 +1353,7 @@ module block_0 #(
     if (1) begin : g_bit_field_4
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
@@ -1409,7 +1409,7 @@ module block_0 #(
     if (1) begin : g_bit_field_6
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_SET)
       ) u_bit_field (
@@ -1437,7 +1437,7 @@ module block_0 #(
     if (1) begin : g_bit_field_7
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_SET)
       ) u_bit_field (
@@ -1465,7 +1465,7 @@ module block_0 #(
     if (1) begin : g_bit_field_8
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_TOGGLE)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1492,7 +1492,7 @@ module block_0 #(
     if (1) begin : g_bit_field_9
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_TOGGLE)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1555,7 +1555,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_SET),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_CLEAR)
       ) u_bit_field (
@@ -1583,7 +1583,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_SET),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_CLEAR)
       ) u_bit_field (
@@ -1611,7 +1611,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_0_SET)
       ) u_bit_field (
@@ -1639,7 +1639,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_1_SET)
       ) u_bit_field (
@@ -1703,7 +1703,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
@@ -1731,7 +1731,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
@@ -1759,7 +1759,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_NONE),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
@@ -1787,7 +1787,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_NONE),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
@@ -1815,7 +1815,7 @@ module block_0 #(
     if (1) begin : g_bit_field_4
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_SET),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_CLEAR)
       ) u_bit_field (
@@ -1843,7 +1843,7 @@ module block_0 #(
     if (1) begin : g_bit_field_5
       rggen_bit_field #(
         .WIDTH            (4),
-        .INITIAL_VALUE    (`rggen_slice(4'h0, 4, 0)),
+        .INITIAL_VALUE    (4'h0),
         .SW_READ_ACTION   (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION  (`RGGEN_WRITE_SET)
       ) u_bit_field (
@@ -1907,7 +1907,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (1)
       ) u_bit_field (
@@ -1963,7 +1963,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE  (2'h0),
         .SW_READ_ACTION (`RGGEN_READ_NONE),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (1)
@@ -1992,7 +1992,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .EXTERNAL_READ_DATA (1),
         .TRIGGER            (1)
       ) u_bit_field (
@@ -2096,7 +2096,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (`rggen_slice(2'h0, 2, 0)),
+            .INITIAL_VALUE  (2'h0),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
@@ -2127,7 +2127,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 2, j)),
+            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 8, 2, j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
@@ -2158,7 +2158,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (`rggen_slice(8'he4, 2, j)),
+            .INITIAL_VALUE  (`rggen_slice(8'he4, 8, 2, j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
@@ -2235,7 +2235,7 @@ module block_0 #(
           for (k = 0;k < 4;k = k + 1) begin : g
             rggen_bit_field #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (`rggen_slice(8'h00, 8, 0)),
+              .INITIAL_VALUE  (8'h00),
               .SW_WRITE_ONCE  (0),
               .TRIGGER        (0)
             ) u_bit_field (
@@ -2266,7 +2266,7 @@ module block_0 #(
           for (k = 0;k < 4;k = k + 1) begin : g
             rggen_bit_field #(
               .WIDTH          (8),
-              .INITIAL_VALUE  (`rggen_slice(8'h00, 8, 0)),
+              .INITIAL_VALUE  (8'h00),
               .SW_WRITE_ONCE  (0),
               .TRIGGER        (0)
             ) u_bit_field (
@@ -2338,7 +2338,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH          (1),
-        .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
+        .INITIAL_VALUE  (1'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -2366,7 +2366,7 @@ module block_0 #(
     if (1) begin : g_bit_field_1
       rggen_bit_field #(
         .WIDTH          (1),
-        .INITIAL_VALUE  (`rggen_slice(1'h0, 1, 0)),
+        .INITIAL_VALUE  (1'h0),
         .SW_WRITE_ONCE  (0),
         .TRIGGER        (0)
       ) u_bit_field (
@@ -2430,7 +2430,7 @@ module block_0 #(
     if (1) begin : g_bit_field_0
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
@@ -2494,7 +2494,7 @@ module block_0 #(
     if (1) begin : g_bit_field_2
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (1),
@@ -2526,7 +2526,7 @@ module block_0 #(
     if (1) begin : g_bit_field_3
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
@@ -2558,7 +2558,7 @@ module block_0 #(
     if (1) begin : g_bit_field_4
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_1_SET),
         .SW_WRITE_ONCE      (0),
@@ -2590,7 +2590,7 @@ module block_0 #(
     if (1) begin : g_bit_field_5
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_SET),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_1_CLEAR),
         .SW_WRITE_ONCE      (0),
@@ -2622,7 +2622,7 @@ module block_0 #(
     if (1) begin : g_bit_field_6
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_1_SET),
         .SW_WRITE_ONCE      (0),
@@ -2654,7 +2654,7 @@ module block_0 #(
     if (1) begin : g_bit_field_7
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_1_CLEAR),
         .SW_WRITE_ONCE      (0),
@@ -2686,7 +2686,7 @@ module block_0 #(
     if (1) begin : g_bit_field_8
       rggen_bit_field #(
         .WIDTH              (2),
-        .INITIAL_VALUE      (`rggen_slice(2'h0, 2, 0)),
+        .INITIAL_VALUE      (2'h0),
         .SW_READ_ACTION     (`RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (`RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
@@ -2721,7 +2721,7 @@ module block_0 #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
       .START_ADDRESS  (8'h80),
-      .END_ADDRESS    (8'hff)
+      .BYTE_SIZE      (128)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
