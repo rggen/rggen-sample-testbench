@@ -30,7 +30,8 @@ module block_0
   parameter bit INSERT_SLICER = 0,
   parameter int ID_WIDTH = 0,
   parameter bit WRITE_FIRST = 1,
-  parameter bit [3:0][1:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}}
+  parameter bit [3:0][1:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}},
+  parameter int REGISTER_17_STROBE_WIDTH = 4
 )(
   input logic i_clk,
   input logic i_rst_n,
@@ -144,15 +145,17 @@ module block_0
   output logic [1:0] o_register_13_bit_field_8,
   input logic i_register_13_bit_field_8_hw_write_enable,
   input logic [1:0] i_register_13_bit_field_8_hw_write_data,
-  rggen_bus_if.master register_15_bus_if
+  input logic i_register_14_bit_field_0,
+  output logic o_register_15_bit_field_0,
+  rggen_bus_if.master register_17_bus_if
 );
-  rggen_register_if #(8, 32, 64) register_if[25]();
+  rggen_register_if #(8, 32, 64) register_if[27]();
   rggen_axi4lite_adapter #(
     .ID_WIDTH             (ID_WIDTH),
     .ADDRESS_WIDTH        (ADDRESS_WIDTH),
     .LOCAL_ADDRESS_WIDTH  (8),
     .BUS_WIDTH            (32),
-    .REGISTERS            (25),
+    .REGISTERS            (27),
     .PRE_DECODE           (PRE_DECODE),
     .BASE_ADDRESS         (BASE_ADDRESS),
     .BYTE_SIZE            (256),
@@ -2289,18 +2292,107 @@ module block_0
       );
     end
   end endgenerate
+  generate if (1) begin : g_register_14
+    rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00000001, bit_field_if)
+    rggen_default_register #(
+      .READABLE       (1),
+      .WRITABLE       (1),
+      .ADDRESS_WIDTH  (8),
+      .OFFSET_ADDRESS (8'h70),
+      .BUS_WIDTH      (32),
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
+    ) u_register (
+      .i_clk        (i_clk),
+      .i_rst_n      (i_rst_n),
+      .register_if  (register_if[24]),
+      .bit_field_if (bit_field_if)
+    );
+    if (1) begin : g_bit_field_0
+      rggen_bit_field_if #(1) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0, 1)
+      rggen_bit_field #(
+        .WIDTH              (1),
+        .STORAGE            (0),
+        .EXTERNAL_READ_DATA (1),
+        .TRIGGER            (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .bit_field_if       (bit_field_sub_if),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_sw_write_enable  ('0),
+        .i_hw_write_enable  ('0),
+        .i_hw_write_data    ('0),
+        .i_hw_set           ('0),
+        .i_hw_clear         ('0),
+        .i_value            (i_register_14_bit_field_0),
+        .i_mask             ('1),
+        .o_value            (),
+        .o_value_unmasked   ()
+      );
+    end
+  end endgenerate
   generate if (1) begin : g_register_15
+    rggen_bit_field_if #(32) bit_field_if();
+    `rggen_tie_off_unused_signals(32, 32'h00000001, bit_field_if)
+    rggen_default_register #(
+      .READABLE       (1),
+      .WRITABLE       (1),
+      .ADDRESS_WIDTH  (8),
+      .OFFSET_ADDRESS (8'h74),
+      .BUS_WIDTH      (32),
+      .DATA_WIDTH     (32),
+      .VALUE_WIDTH    (64)
+    ) u_register (
+      .i_clk        (i_clk),
+      .i_rst_n      (i_rst_n),
+      .register_if  (register_if[25]),
+      .bit_field_if (bit_field_if)
+    );
+    if (1) begin : g_bit_field_0
+      localparam bit INITIAL_VALUE = 1'h0;
+      rggen_bit_field_if #(1) bit_field_sub_if();
+      `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 0, 1)
+      rggen_bit_field #(
+        .WIDTH          (1),
+        .INITIAL_VALUE  (INITIAL_VALUE),
+        .SW_READ_ACTION (RGGEN_READ_NONE),
+        .SW_WRITE_ONCE  (0),
+        .TRIGGER        (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .bit_field_if       (bit_field_sub_if),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_sw_write_enable  ('1),
+        .i_hw_write_enable  ('0),
+        .i_hw_write_data    ('0),
+        .i_hw_set           ('0),
+        .i_hw_clear         ('0),
+        .i_value            ('0),
+        .i_mask             ('1),
+        .o_value            (o_register_15_bit_field_0),
+        .o_value_unmasked   ()
+      );
+    end
+  end endgenerate
+  generate if (1) begin : g_register_17
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
       .VALUE_WIDTH    (64),
+      .STROBE_WIDTH   (REGISTER_17_STROBE_WIDTH),
       .START_ADDRESS  (8'h80),
       .BYTE_SIZE      (128)
     ) u_register (
       .i_clk        (i_clk),
       .i_rst_n      (i_rst_n),
-      .register_if  (register_if[24]),
-      .bus_if       (register_15_bus_if)
+      .register_if  (register_if[26]),
+      .bus_if       (register_17_bus_if)
     );
   end endgenerate
 endmodule

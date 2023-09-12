@@ -106,17 +106,19 @@ module top;
   logic [1:0]                 register_13_bit_field_8;
   logic                       register_13_bit_field_8_hw_write_enable;
   logic [1:0]                 register_13_bit_field_8_hw_write_data;
+  logic                       register_14_bit_field_0;
+  logic                       register_15_bit_field_0;
 `ifdef RGGEN_SYSTEMVERILOG
-  rggen_bus_if #(8, 32)       register_15_bus_if();
+  rggen_bus_if #(8, 32)       register_17_bus_if();
 `else
-  logic                       register_15_valid;
-  logic [1:0]                 register_15_access;
-  logic [7:0]                 register_15_address;
-  logic [31:0]                register_15_write_data;
-  logic [3:0]                 register_15_strobe;
-  logic                       register_15_ready;
-  logic [1:0]                 register_15_status;
-  logic [31:0]                register_15_read_data;
+  logic                       register_17_valid;
+  logic [1:0]                 register_17_access;
+  logic [7:0]                 register_17_address;
+  logic [31:0]                register_17_write_data;
+  logic [3:0]                 register_17_strobe;
+  logic                       register_17_ready;
+  logic [1:0]                 register_17_status;
+  logic [31:0]                register_17_read_data;
 `endif
 
   initial begin
@@ -167,6 +169,7 @@ module top;
     register_13_bit_field_7_hw_set          = register_13_bit_field_3_read_trigger;
     register_13_bit_field_8_hw_write_enable = register_13_bit_field_3_write_trigger;
     register_13_bit_field_8_hw_write_data   = register_13_bit_field_3;
+    register_14_bit_field_0                 = register_0_bit_field_0[0];
   end
 
   apb2wishbone_bridge u_apb2wishbone_bridge (
@@ -315,17 +318,19 @@ module top;
     .o_register_13_bit_field_8                  (register_13_bit_field_8                  ),
     .i_register_13_bit_field_8_hw_write_enable  (register_13_bit_field_8_hw_write_enable  ),
     .i_register_13_bit_field_8_hw_write_data    (register_13_bit_field_8_hw_write_data    ),
+    .i_register_14_bit_field_0                  (register_14_bit_field_0                  ),
+    .o_register_15_bit_field_0                  (register_15_bit_field_0                  ),
 `ifdef RGGEN_SYSTEMVERILOG
-    .register_15_bus_if                         (register_15_bus_if                       )
+    .register_17_bus_if                         (register_17_bus_if                       )
 `else
-    .o_register_15_valid                        (register_15_valid                        ),
-    .o_register_15_access                       (register_15_access                       ),
-    .o_register_15_address                      (register_15_address                      ),
-    .o_register_15_data                         (register_15_write_data                   ),
-    .o_register_15_strobe                       (register_15_strobe                       ),
-    .i_register_15_ready                        (register_15_ready                        ),
-    .i_register_15_status                       (register_15_status                       ),
-    .i_register_15_data                         (register_15_read_data                    )
+    .o_register_17_valid                        (register_17_valid                        ),
+    .o_register_17_access                       (register_17_access                       ),
+    .o_register_17_address                      (register_17_address                      ),
+    .o_register_17_data                         (register_17_write_data                   ),
+    .o_register_17_strobe                       (register_17_strobe                       ),
+    .i_register_17_ready                        (register_17_ready                        ),
+    .i_register_17_status                       (register_17_status                       ),
+    .i_register_17_data                         (register_17_read_data                    )
 `endif
   );
 
@@ -333,7 +338,7 @@ module top;
   rggen_wishbone_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_15_bus_if ),
+    .bus_if       (register_17_bus_if ),
     .wishbone_if  (wishbone_if[1]     )
   );
 `else
@@ -343,14 +348,14 @@ module top;
   ) u_bridge (
     .i_clk            (clk                      ),
     .i_rst_n          (rst_n                    ),
-    .i_bus_valid      (register_15_valid        ),
-    .i_bus_access     (register_15_access       ),
-    .i_bus_address    (register_15_address      ),
-    .i_bus_write_data (register_15_write_data   ),
-    .i_bus_strobe     (register_15_strobe       ),
-    .o_bus_ready      (register_15_ready        ),
-    .o_bus_status     (register_15_status       ),
-    .o_bus_read_data  (register_15_read_data    ),
+    .i_bus_valid      (register_17_valid        ),
+    .i_bus_access     (register_17_access       ),
+    .i_bus_address    (register_17_address      ),
+    .i_bus_write_data (register_17_write_data   ),
+    .i_bus_strobe     (register_17_strobe       ),
+    .o_bus_ready      (register_17_ready        ),
+    .o_bus_status     (register_17_status       ),
+    .o_bus_read_data  (register_17_read_data    ),
     .o_wb_cyc         (wishbone_if[1].cyc       ),
     .o_wb_stb         (wishbone_if[1].stb       ),
     .i_wb_stall       (wishbone_if[1].stall     ),

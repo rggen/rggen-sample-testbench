@@ -32,7 +32,7 @@ module block_1 #(
   wire [1:0] w_register_access;
   wire [6:0] w_register_address;
   wire [31:0] w_register_write_data;
-  wire [3:0] w_register_strobe;
+  wire [31:0] w_register_strobe;
   wire [19:0] w_register_active;
   wire [19:0] w_register_ready;
   wire [39:0] w_register_status;
