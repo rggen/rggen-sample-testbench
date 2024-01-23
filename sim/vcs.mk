@@ -8,7 +8,7 @@ CLEAN_TARGETS	+= vc_hdrs.h
 VLOGAN_UVM_ARGS	+= -full64
 VLOGAN_UVM_ARGS	+= -sverilog
 VLOGAN_UVM_ARGS	+= -timescale=1ns/1ps
-VLOGAN_UVM_ARGS	+= -ntb_opts uvm-1.2
+VLOGAN_UVM_ARGS	+= -ntb_opts uvm-$(UVM_VERSION)
 VLOGAN_UVM_ARGS	+= -l vlogan_uvm.log
 
 VLOGAN_DUT_ARGS	+= -full64
@@ -24,12 +24,12 @@ VHDLAN_DUT_ARGS += -f dut.f
 VLOGAN_ENV_ARGS	+= -full64
 VLOGAN_ENV_ARGS	+= -sverilog
 VLOGAN_ENV_ARGS	+= -timescale=1ns/1ps
-VLOGAN_ENV_ARGS	+= -ntb_opts uvm-1.2
+VLOGAN_ENV_ARGS	+= -ntb_opts uvm-$(UVM_VERSION)
 VLOGAN_ENV_ARGS	+= -l vlogan_env.log
 VLOGAN_ENV_ARGS += -f env.f
 
 VCS_ARGS	+= -full64
-VCS_ARGS	+= -ntb_opts uvm-1.2
+VCS_ARGS	+= -ntb_opts uvm-$(UVM_VERSION)
 VCS_ARGS	+= -l vcs.log
 VCS_ARGS	+= -top top
 

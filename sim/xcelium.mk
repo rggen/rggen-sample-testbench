@@ -8,7 +8,7 @@ XRUN_COMMON_ARGS	+= -status
 XRUN_COMPILE_ARGS	+= -l compile.log
 XRUN_COMPILE_ARGS	+= -elaborate
 XRUN_COMPILE_ARGS	+= -timescale '1ns/1ps'
-XRUN_COMPILE_ARGS	+= -uvmhome CDNS-1.2
+XRUN_COMPILE_ARGS	+= -uvmhome CDNS-$(UVM_VERSION)
 XRUN_COMPILE_ARGS	+= -plusperf
 XRUN_COMPILE_ARGS	+= -newperf
 XRUN_COMPILE_ARGS	+= -mccodegen
@@ -19,7 +19,7 @@ XRUN_SIMULATION_ARGS	+= -l simulation.log
 XRUN_SIMULATION_ARGS	+= -R
 XRUN_SIMULATION_ARGS	+= -xmlibdirname ../xcelium.d
 XRUN_SIMULATION_ARGS	+= -xceligen on
-XRUN_SIMULATION_ARGS	+= -uvmhome CDNS-1.2
+XRUN_SIMULATION_ARGS	+= -uvmhome CDNS-$(UVM_VERSION)
 XRUN_SIMULATION_ARGS	+= +UVM_TESTNAME=$(TEST)
 
 ifeq ($(strip $(GUI)), indago)

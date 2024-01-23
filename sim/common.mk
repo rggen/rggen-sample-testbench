@@ -2,6 +2,7 @@ RGGEN_SAMPLE_TESTBENCH_ROOT	= $(shell git rev-parse --show-toplevel)
 export RGGEN_SAMPLE_TESTBENCH_ROOT
 
 LANGUAGE ?= systemverilog
+UVM_VERSION ?= 1.2
 SIMULATOR ?= vcs
 PROTOCOL	?= apb
 ENV_TYPE	?= $(PROTOCOL)_env
