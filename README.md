@@ -93,6 +93,12 @@ By default, all sample testcases will be execluted by VCS simulator. If you want
 $ make SIMULATOR=xcelium
 ```
 
+* For DSim
+
+```
+$ make SIMULATOR=dsim
+```
+
 * For Vivado:
 
 ```

@@ -7,6 +7,7 @@ SIMULATOR ?= vcs
 PROTOCOL	?= apb
 ENV_TYPE	?= $(PROTOCOL)_env
 GUI	?= off
+DUMP ?= off
 TR_DEBUG	?= off
 
 include local.mk
@@ -50,4 +51,5 @@ env.f:
 
 include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/vcs.mk
 include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/xcelium.mk
+include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/dsim.mk
 include $(RGGEN_SAMPLE_TESTBENCH_ROOT)/sim/vivado.mk
