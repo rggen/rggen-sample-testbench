@@ -177,8 +177,8 @@ module top;
 
   block_0 #(
     .ADDRESS_WIDTH                          (16                       ),
-    .PRE_DECODE                             (1                        ),
-    .INSERT_SLICER                          (1                        ),
+    .PRE_DECODE                             (1'b1                     ),
+    .INSERT_SLICER                          (1'b1                     ),
 `ifndef RGGEN_VHDL
     .BASE_ADDRESS                           (16'h1000                 ),
     .DEFAULT_READ_DATA                      (32'hDEAD_BEAF            ),
