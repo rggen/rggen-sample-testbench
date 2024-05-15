@@ -12,6 +12,9 @@ class env_ral_monitor #(
   protected PREDICTOR     predictor;
 
   function void build_phase(uvm_phase phase);
+    bit dsim  = `ifdef  DSIM        1 `else 0 `endif;
+    bit vhdl  = `ifdef  RGGEN_VHDL  1 `else 0 `endif;
+
     super.build_phase(phase);
 
     bus_in    = new("bus_in", this);
@@ -20,7 +23,11 @@ class env_ral_monitor #(
 
     model = env_ral_model::type_id::create("model");
     model.configure(null);
-    model.default_map.set_base_addr('h1000);
+    //  see
+    //  https://github.com/rggen/rggen-sample-testbench/issues/11#issuecomment-2111832008
+    if (!(dsim && vhdl)) begin
+      model.default_map.set_base_addr('h1000);
+    end
     model.build();
 
     foreach (model.register_10[i]) begin

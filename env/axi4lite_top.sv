@@ -186,8 +186,12 @@ module top;
     .DEFAULT_READ_DATA                      (32'hDEAD_BEAF            ),
     .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
 `else
+  `ifdef DSIM
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
+  `else
     .BASE_ADDRESS                           ("0001000000000000"       ),
     .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ("11100100"               )
+  `endif
 `endif
   ) u_block_0 (
     .i_clk                                      (clk                              ),
