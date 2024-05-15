@@ -7,6 +7,7 @@ SIMULATOR ?= vcs
 PROTOCOL	?= apb
 ENV_TYPE	?= $(PROTOCOL)_env
 GUI	?= off
+DUMP ?= off
 TR_DEBUG	?= off
 
 include local.mk

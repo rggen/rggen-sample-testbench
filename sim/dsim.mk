@@ -28,6 +28,11 @@ DSIM_SIM_ARGS += -timescale 1ns/1ps
 DSIM_SIM_ARGS += -l dsim_sim.log
 DSIM_SIM_ARGS += +UVM_TESTNAME=$(TEST)
 
+ifeq ($(strip $(DUMP)), vcd)
+	DSIM_ELAB_ARGS += +acc
+	DSIM_SIM_ARGS += -waves dump.vcd
+endif
+
 .PHONY: sim_dsim compile_dsim
 
 sim_dsim:
