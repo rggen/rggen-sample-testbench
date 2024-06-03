@@ -193,6 +193,7 @@ module top;
     .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
 `else
   `ifdef DSIM
+    .BASE_ADDRESS                           (16'h1000                 ),
     .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
   `else
     .BASE_ADDRESS                           ("0001000000000000"       ),
