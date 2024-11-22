@@ -2257,9 +2257,11 @@ module block_0 #(
         wire [63:0] w_bit_field_write_data;
         wire [63:0] w_bit_field_read_data;
         wire [63:0] w_bit_field_value;
-        wire [8:0] w_indirect_index;
+        wire [2:0] w_indirect_match;
         `rggen_tie_off_unused_signals(64, 64'hffffffffffffffff, w_bit_field_read_data, w_bit_field_value)
-        assign w_indirect_index = {w_register_value[0+:4], w_register_value[4+:4], w_register_value[8+:1]};
+        assign w_indirect_match[0] = w_register_value[0+:4] == i[0+:4];
+        assign w_indirect_match[1] = w_register_value[4+:4] == j[0+:4];
+        assign w_indirect_match[2] = w_register_value[8+:1] == 1'h0;
         rggen_indirect_register #(
           .READABLE             (1),
           .WRITABLE             (1),
@@ -2267,8 +2269,7 @@ module block_0 #(
           .OFFSET_ADDRESS       (8'h50),
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (64),
-          .INDIRECT_INDEX_WIDTH (9),
-          .INDIRECT_INDEX_VALUE ({i[0+:4], j[0+:4], 1'h0})
+          .INDIRECT_MATCH_WIDTH (3)
         ) u_register (
           .i_clk                  (i_clk),
           .i_rst_n                (i_rst_n),
@@ -2282,7 +2283,7 @@ module block_0 #(
           .o_register_status      (w_register_status[2*(14+4*i+j)+:2]),
           .o_register_read_data   (w_register_read_data[32*(14+4*i+j)+:32]),
           .o_register_value       (w_register_value[64*(14+4*i+j)+0+:64]),
-          .i_indirect_index       (w_indirect_index),
+          .i_indirect_match       (w_indirect_match),
           .o_bit_field_valid      (w_bit_field_valid),
           .o_bit_field_read_mask  (w_bit_field_read_mask),
           .o_bit_field_write_mask (w_bit_field_write_mask),
@@ -2362,9 +2363,9 @@ module block_0 #(
     wire [63:0] w_bit_field_write_data;
     wire [63:0] w_bit_field_read_data;
     wire [63:0] w_bit_field_value;
-    wire w_indirect_index;
+    wire w_indirect_match;
     `rggen_tie_off_unused_signals(64, 64'h0000000100000001, w_bit_field_read_data, w_bit_field_value)
-    assign w_indirect_index = {w_register_value[8+:1]};
+    assign w_indirect_match = w_register_value[8+:1] == 1'h1;
     rggen_indirect_register #(
       .READABLE             (1),
       .WRITABLE             (1),
@@ -2372,8 +2373,7 @@ module block_0 #(
       .OFFSET_ADDRESS       (8'h50),
       .BUS_WIDTH            (32),
       .DATA_WIDTH           (64),
-      .INDIRECT_INDEX_WIDTH (1),
-      .INDIRECT_INDEX_VALUE ({1'h1})
+      .INDIRECT_MATCH_WIDTH (1)
     ) u_register (
       .i_clk                  (i_clk),
       .i_rst_n                (i_rst_n),
@@ -2387,7 +2387,7 @@ module block_0 #(
       .o_register_status      (w_register_status[44+:2]),
       .o_register_read_data   (w_register_read_data[704+:32]),
       .o_register_value       (w_register_value[1408+:64]),
-      .i_indirect_index       (w_indirect_index),
+      .i_indirect_match       (w_indirect_match),
       .o_bit_field_valid      (w_bit_field_valid),
       .o_bit_field_read_mask  (w_bit_field_read_mask),
       .o_bit_field_write_mask (w_bit_field_write_mask),

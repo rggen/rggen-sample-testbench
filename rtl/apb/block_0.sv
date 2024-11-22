@@ -1898,9 +1898,11 @@ module block_0
     for (i = 0;i < 2;++i) begin : g
       for (j = 0;j < 4;++j) begin : g
         rggen_bit_field_if #(64) bit_field_if();
-        logic [8:0] indirect_index;
+        logic [2:0] indirect_match;
         `rggen_tie_off_unused_signals(64, 64'hffffffffffffffff, bit_field_if)
-        assign indirect_index = {register_if[0].value[0+:4], register_if[0].value[4+:4], register_if[0].value[8+:1]};
+        assign indirect_match[0] = register_if[0].value[0+:4] == 4'(i);
+        assign indirect_match[1] = register_if[0].value[4+:4] == 4'(j);
+        assign indirect_match[2] = register_if[0].value[8+:1] == 1'h0;
         rggen_indirect_register #(
           .READABLE             (1),
           .WRITABLE             (1),
@@ -1909,13 +1911,12 @@ module block_0
           .BUS_WIDTH            (32),
           .DATA_WIDTH           (64),
           .VALUE_WIDTH          (64),
-          .INDIRECT_INDEX_WIDTH (9),
-          .INDIRECT_INDEX_VALUE ({i[0+:4], j[0+:4], 1'h0})
+          .INDIRECT_MATCH_WIDTH (3)
         ) u_register (
           .i_clk            (i_clk),
           .i_rst_n          (i_rst_n),
           .register_if      (register_if[14+4*i+j]),
-          .i_indirect_index (indirect_index),
+          .i_indirect_match (indirect_match),
           .bit_field_if     (bit_field_if)
         );
         if (1) begin : g_bit_field_0
@@ -1981,9 +1982,9 @@ module block_0
   end endgenerate
   generate if (1) begin : g_register_12
     rggen_bit_field_if #(64) bit_field_if();
-    logic indirect_index;
+    logic indirect_match;
     `rggen_tie_off_unused_signals(64, 64'h0000000100000001, bit_field_if)
-    assign indirect_index = {register_if[0].value[8+:1]};
+    assign indirect_match = register_if[0].value[8+:1] == 1'h1;
     rggen_indirect_register #(
       .READABLE             (1),
       .WRITABLE             (1),
@@ -1992,13 +1993,12 @@ module block_0
       .BUS_WIDTH            (32),
       .DATA_WIDTH           (64),
       .VALUE_WIDTH          (64),
-      .INDIRECT_INDEX_WIDTH (1),
-      .INDIRECT_INDEX_VALUE ({1'h1})
+      .INDIRECT_MATCH_WIDTH (1)
     ) u_register (
       .i_clk            (i_clk),
       .i_rst_n          (i_rst_n),
       .register_if      (register_if[22]),
-      .i_indirect_index (indirect_index),
+      .i_indirect_match (indirect_match),
       .bit_field_if     (bit_field_if)
     );
     if (1) begin : g_bit_field_0
