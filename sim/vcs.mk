@@ -13,6 +13,7 @@ VLOGAN_UVM_ARGS	+= -l vlogan_uvm.log
 
 VLOGAN_DUT_ARGS	+= -full64
 VLOGAN_DUT_ARGS	+= $(if $(findstring systemverilog, $(LANGUAGE)), -sverilog, )
+VLOGAN_DUT_ARGS	+= $(if $(findstring veryl, $(LANGUAGE)), -sverilog, )
 VLOGAN_DUT_ARGS	+= -timescale=1ns/1ps
 VLOGAN_DUT_ARGS	+= -l vlogan_dut.log
 VLOGAN_DUT_ARGS += -f dut.f
@@ -66,6 +67,9 @@ sim_vcs:
 	cd $(TEST); ../simv $(SIMV_ARGS)
 
 compile_vcs:
+ifeq ($(strip $(LANGUAGE)), veryl)
+	$(MAKE) gen_veryl
+endif
 	vlogan $(VLOGAN_UVM_ARGS)
 ifeq ($(strip $(LANGUAGE)), vhdl)
 	$(MAKE) dut_vhdl.f

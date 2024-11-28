@@ -41,6 +41,9 @@ sim_dsim:
 	cd $(TEST); dsim $(DSIM_SIM_ARGS)
 
 compile_dsim:
+ifeq ($(strip $(LANGUAGE)), veryl)
+	$(MAKE) gen_veryl
+endif
 ifeq ($(strip $(LANGUAGE)), vhdl)
 	$(MAKE) dut_vhdl.f
 	-dlib map -lib ieee ${STD_LIBS}/ieee93

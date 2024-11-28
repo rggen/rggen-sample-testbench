@@ -1,0 +1,3 @@
+
+PROTOCOL	= apb
+LANGUAGE	= veryl

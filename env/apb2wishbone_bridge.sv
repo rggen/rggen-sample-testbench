@@ -1,10 +1,10 @@
 module apb2wishbone_bridge #(
   parameter bit USE_STALL = 1
 )(
-  input var                 i_clk,
-  input var                 i_rst_n,
-  rggen_apb_if.slave        apb_if,
-  rggen_wishbone_if.master  wishbone_if
+  input var         i_clk,
+  input var         i_rst_n,
+  interface.slave   apb_if,
+  interface.master  wishbone_if
 );
   logic request_done;
 

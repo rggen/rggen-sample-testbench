@@ -47,6 +47,9 @@ sim_xcelium:
 
 compile_xcelium:
 	$(MAKE) env.f
+ifeq ($(strip $(LANGUAGE)), veryl)
+	$(MAKE) gen_veryl
+endif
 ifeq ($(strip $(LANGUAGE)), vhdl)
 	$(MAKE) dut_vhdl.f
 else

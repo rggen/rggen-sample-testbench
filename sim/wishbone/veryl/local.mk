@@ -1,0 +1,3 @@
+
+PROTOCOL	= wishbone
+LANGUAGE	= veryl

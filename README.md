@@ -63,20 +63,23 @@ $ export RGGEN_VHDL_RTL_ROOT=`pwd`/rggen-vhdl-rtl
 
 ### Run Simulation
 
-Synopsys VCS simulator and Cadence Xcelium simulator are supported.
+Synopsys VCS simulator, Cadence Xcelium simulator, Metrics DSim simulator and AMD Vivado simulator are supported.
 
 1. Move to the work directry
     * for DUT with AMBA APB interfac
         * `sim/apb/systemverilog`
         * `sim/apb/verilog`
+        * `sim/apb/veryl`
         * `sim/apb/vhdl`
     * for DUT with AMBA AXI4-Lite interface
         * `sim/axi4lite/systemverilog`
         * `sim/axi4lite/verilog`
+        * `sim/axi4lite/veryl`
         * `sim/axi4lite/vhdl`
     * for DUT with wishbone interface
         * `sim/wishbone/systemverilog`
         * `sim/wishbone/verilog`
+        * `sim/wishbone/veryl`
         * `sim/wishbone/vhdl`
 
 2. Hit `make` command on the work directry
@@ -85,7 +88,8 @@ Synopsys VCS simulator and Cadence Xcelium simulator are supported.
 $ make
 ```
 
-By default, all sample testcases will be execluted by VCS simulator. If you want to use Xcelium or Vivado simulator, add `SIMULATOR` option to `makefile` command.
+By default, all sample testcases will be execluted by VCS simulator.
+If you want to use Xcelium, DSim or Vivado simulator, add `SIMULATOR` option to `makefile` command.
 
 * For Xcelium:
 

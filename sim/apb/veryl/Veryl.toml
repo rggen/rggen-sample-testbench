@@ -1,0 +1,15 @@
+[project]
+name        = "rggen_sample_testbench"
+version     = "0.1.0"
+authors     = ["Taichi Ishitani <taichi730@gmail.com>"]
+license     = "MIT"
+repository  = "https://github.com/rggen/rggen-sample-testbench"
+
+[build]
+target              = {type = "directory", path = "target"}
+filelist_type       = "flgen"
+omit_project_prefix = true
+reset_low_suffix    = "_n"
+
+[dependencies]
+"https://github.com/rggen/rggen-veryl-rtl" = "0.1.0"

@@ -1,4 +1,10 @@
 module top;
+`ifdef  RGGEN_SYSTEMVERILOG
+  `define SV_OR_VERYL
+`elsif RGGEN_VERYL
+  `define SV_OR_VERYL
+`endif
+
   timeunit  1ns/1ps;
 
   import  uvm_pkg::*;
@@ -7,121 +13,127 @@ module top;
   import  tvip_apb_pkg::*;
   import  apb_env_pkg::*;
 
-  logic                       clk;
-  logic                       rst_n;
-  rggen_apb_if #(16, 32)      apb_if();
-  rggen_wishbone_if #(16, 32) wishbone_if[2]();
-  logic [3:0]                 register_0_bit_field_0;
-  logic [3:0]                 register_0_bit_field_1;
-  logic                       register_0_bit_field_2;
-  logic [1:0]                 register_0_bit_field_3;
-  logic [1:0]                 register_0_bit_field_4;
-  logic [1:0]                 register_0_bit_field_5;
-  logic [1:0]                 register_0_bit_field_6;
-  logic                       register_1;
-  logic [3:0]                 register_2_bit_field_0;
-  logic                       register_2_bit_field_2_valid;
-  logic [1:0][3:0]            register_2_bit_field_2;
-  logic [1:0][3:0]            register_2_bit_field_3;
-  logic [3:0]                 register_3_bit_field_0;
-  logic [3:0]                 register_3_bit_field_1;
-  logic [3:0]                 register_3_bit_field_2_trigger;
-  logic [3:0]                 register_3_bit_field_3_trigger;
-  logic [3:0]                 register_4_bit_field_0_set;
-  logic [3:0]                 register_4_bit_field_0;
-  logic [3:0]                 register_4_bit_field_1_set;
-  logic [3:0]                 register_4_bit_field_1;
-  logic [3:0]                 register_4_bit_field_1_unmasked;
-  logic [3:0]                 register_4_bit_field_3_clear;
-  logic [3:0]                 register_4_bit_field_3;
-  logic                       register_5_bit_field_0_clear;
-  logic [1:0]                 register_5_bit_field_0;
-  logic [1:0]                 register_5_bit_field_1;
-  logic                       register_5_bit_field_2_set;
-  logic [1:0]                 register_5_bit_field_2;
-  logic [1:0]                 register_5_bit_field_3;
-  logic                       register_5_bit_field_4_valid;
-  logic [1:0]                 register_5_bit_field_4[2];
-  logic [1:0]                 register_5_bit_field_5[2];
-  logic                       register_5_bit_field_6_enable;
-  logic [1:0]                 register_5_bit_field_6;
-  logic [1:0]                 register_5_bit_field_7;
-  logic [1:0]                 register_5_bit_field_8;
-  logic                       register_5_bit_field_9_lock;
-  logic [1:0]                 register_5_bit_field_9;
-  logic [1:0]                 register_5_bit_field_10;
-  logic [1:0]                 register_5_bit_field_11;
-  logic [3:0]                 register_6_bit_field_0_set;
-  logic [3:0]                 register_6_bit_field_0;
-  logic [3:0]                 register_6_bit_field_1_set;
-  logic [3:0]                 register_6_bit_field_1;
-  logic [3:0]                 register_6_bit_field_1_unmasked;
-  logic [3:0]                 register_6_bit_field_3_set;
-  logic [3:0]                 register_6_bit_field_3;
-  logic [3:0]                 register_6_bit_field_4_set;
-  logic [3:0]                 register_6_bit_field_4;
-  logic [3:0]                 register_6_bit_field_4_unmasked;
-  logic [3:0]                 register_6_bit_field_6_clear;
-  logic [3:0]                 register_6_bit_field_6;
-  logic [3:0]                 register_6_bit_field_7_clear;
-  logic [3:0]                 register_6_bit_field_7;
-  logic [3:0]                 register_6_bit_field_8;
-  logic [3:0]                 register_6_bit_field_9;
-  logic [3:0]                 register_7_bit_field_0;
-  logic [3:0]                 register_7_bit_field_1;
-  logic [3:0]                 register_7_bit_field_2;
-  logic [3:0]                 register_7_bit_field_3;
-  logic [3:0]                 register_8_bit_field_0_set;
-  logic [3:0]                 register_8_bit_field_0;
-  logic [3:0]                 register_8_bit_field_1_clear;
-  logic [3:0]                 register_8_bit_field_1;
-  logic [3:0]                 register_8_bit_field_2_set;
-  logic [3:0]                 register_8_bit_field_2;
-  logic [3:0]                 register_8_bit_field_3_clear;
-  logic [3:0]                 register_8_bit_field_3;
-  logic [3:0]                 register_8_bit_field_4;
-  logic [3:0]                 register_8_bit_field_5;
-  logic [1:0]                 register_9_bit_field_0;
-  logic [1:0]                 register_9_bit_field_1;
-  logic [1:0]                 register_9_bit_field_2;
-  logic [1:0][1:0]            register_9_bit_field_3;
-  logic [1:0]                 register_9_bit_field_4;
-  logic [1:0]                 register_9_bit_field_5;
-  logic [3:0][3:0][1:0]       register_10_bit_field_0;
-  logic [3:0][3:0][1:0]       register_10_bit_field_1;
-  logic [3:0][3:0][1:0]       register_10_bit_field_2;
-  logic [1:0][3:0][3:0][7:0]  register_11_bit_field_0;
-  logic [1:0][3:0][3:0][7:0]  register_11_bit_field_1;
-  logic                       register_12_bit_field_0;
-  logic                       register_12_bit_field_1;
-  logic [1:0]                 register_13_bit_field_0;
-  logic [1:0]                 register_13_bit_field_1;
-  logic [1:0]                 register_13_bit_field_2;
-  logic [1:0]                 register_13_bit_field_3;
-  logic                       register_13_bit_field_3_write_trigger;
-  logic                       register_13_bit_field_3_read_trigger;
-  logic [1:0]                 register_13_bit_field_4;
-  logic [1:0]                 register_13_bit_field_5;
-  logic [1:0]                 register_13_bit_field_6;
-  logic [1:0]                 register_13_bit_field_6_hw_clear;
-  logic [1:0]                 register_13_bit_field_7;
-  logic [1:0]                 register_13_bit_field_7_hw_set;
-  logic [1:0]                 register_13_bit_field_8;
-  logic                       register_13_bit_field_8_hw_write_enable;
-  logic [1:0]                 register_13_bit_field_8_hw_write_data;
-  logic                       register_14_bit_field_0;
-  logic                       register_15_bit_field_0;
-`ifdef RGGEN_SYSTEMVERILOG
-  rggen_bus_if #(8, 32)       register_17_bus_if();
+  logic                             clk;
+  logic                             rst_n;
+`ifdef RGGEN_VERYL
+  rggen_rggen_wishbone_if #(16, 32) wishbone_if[2]();
 `else
-  logic                       register_17_valid;
-  logic [1:0]                 register_17_access;
-  logic [7:0]                 register_17_address;
-  logic [31:0]                register_17_write_data;
-  logic [3:0]                 register_17_strobe;
-  logic                       register_17_ready;
-  logic [1:0]                 register_17_status;
-  logic [31:0]                register_17_read_data;
+  rggen_wishbone_if #(16, 32)       wishbone_if[2]();
+`endif
+  rggen_apb_if #(16, 32)            apb_if();
+  logic [3:0]                       register_0_bit_field_0;
+  logic [3:0]                       register_0_bit_field_1;
+  logic                             register_0_bit_field_2;
+  logic [1:0]                       register_0_bit_field_3;
+  logic [1:0]                       register_0_bit_field_4;
+  logic [1:0]                       register_0_bit_field_5;
+  logic [1:0]                       register_0_bit_field_6;
+  logic                             register_1;
+  logic [3:0]                       register_2_bit_field_0;
+  logic                             register_2_bit_field_2_valid;
+  logic [1:0][3:0]                  register_2_bit_field_2;
+  logic [1:0][3:0]                  register_2_bit_field_3;
+  logic [3:0]                       register_3_bit_field_0;
+  logic [3:0]                       register_3_bit_field_1;
+  logic [3:0]                       register_3_bit_field_2_trigger;
+  logic [3:0]                       register_3_bit_field_3_trigger;
+  logic [3:0]                       register_4_bit_field_0_set;
+  logic [3:0]                       register_4_bit_field_0;
+  logic [3:0]                       register_4_bit_field_1_set;
+  logic [3:0]                       register_4_bit_field_1;
+  logic [3:0]                       register_4_bit_field_1_unmasked;
+  logic [3:0]                       register_4_bit_field_3_clear;
+  logic [3:0]                       register_4_bit_field_3;
+  logic                             register_5_bit_field_0_clear;
+  logic [1:0]                       register_5_bit_field_0;
+  logic [1:0]                       register_5_bit_field_1;
+  logic                             register_5_bit_field_2_set;
+  logic [1:0]                       register_5_bit_field_2;
+  logic [1:0]                       register_5_bit_field_3;
+  logic                             register_5_bit_field_4_valid;
+  logic [1:0]                       register_5_bit_field_4[2];
+  logic [1:0]                       register_5_bit_field_5[2];
+  logic                             register_5_bit_field_6_enable;
+  logic [1:0]                       register_5_bit_field_6;
+  logic [1:0]                       register_5_bit_field_7;
+  logic [1:0]                       register_5_bit_field_8;
+  logic                             register_5_bit_field_9_lock;
+  logic [1:0]                       register_5_bit_field_9;
+  logic [1:0]                       register_5_bit_field_10;
+  logic [1:0]                       register_5_bit_field_11;
+  logic [3:0]                       register_6_bit_field_0_set;
+  logic [3:0]                       register_6_bit_field_0;
+  logic [3:0]                       register_6_bit_field_1_set;
+  logic [3:0]                       register_6_bit_field_1;
+  logic [3:0]                       register_6_bit_field_1_unmasked;
+  logic [3:0]                       register_6_bit_field_3_set;
+  logic [3:0]                       register_6_bit_field_3;
+  logic [3:0]                       register_6_bit_field_4_set;
+  logic [3:0]                       register_6_bit_field_4;
+  logic [3:0]                       register_6_bit_field_4_unmasked;
+  logic [3:0]                       register_6_bit_field_6_clear;
+  logic [3:0]                       register_6_bit_field_6;
+  logic [3:0]                       register_6_bit_field_7_clear;
+  logic [3:0]                       register_6_bit_field_7;
+  logic [3:0]                       register_6_bit_field_8;
+  logic [3:0]                       register_6_bit_field_9;
+  logic [3:0]                       register_7_bit_field_0;
+  logic [3:0]                       register_7_bit_field_1;
+  logic [3:0]                       register_7_bit_field_2;
+  logic [3:0]                       register_7_bit_field_3;
+  logic [3:0]                       register_8_bit_field_0_set;
+  logic [3:0]                       register_8_bit_field_0;
+  logic [3:0]                       register_8_bit_field_1_clear;
+  logic [3:0]                       register_8_bit_field_1;
+  logic [3:0]                       register_8_bit_field_2_set;
+  logic [3:0]                       register_8_bit_field_2;
+  logic [3:0]                       register_8_bit_field_3_clear;
+  logic [3:0]                       register_8_bit_field_3;
+  logic [3:0]                       register_8_bit_field_4;
+  logic [3:0]                       register_8_bit_field_5;
+  logic [1:0]                       register_9_bit_field_0;
+  logic [1:0]                       register_9_bit_field_1;
+  logic [1:0]                       register_9_bit_field_2;
+  logic [1:0][1:0]                  register_9_bit_field_3;
+  logic [1:0]                       register_9_bit_field_4;
+  logic [1:0]                       register_9_bit_field_5;
+  logic [3:0][3:0][1:0]             register_10_bit_field_0;
+  logic [3:0][3:0][1:0]             register_10_bit_field_1;
+  logic [3:0][3:0][1:0]             register_10_bit_field_2;
+  logic [1:0][3:0][3:0][7:0]        register_11_bit_field_0;
+  logic [1:0][3:0][3:0][7:0]        register_11_bit_field_1;
+  logic                             register_12_bit_field_0;
+  logic                             register_12_bit_field_1;
+  logic [1:0]                       register_13_bit_field_0;
+  logic [1:0]                       register_13_bit_field_1;
+  logic [1:0]                       register_13_bit_field_2;
+  logic [1:0]                       register_13_bit_field_3;
+  logic                             register_13_bit_field_3_write_trigger;
+  logic                             register_13_bit_field_3_read_trigger;
+  logic [1:0]                       register_13_bit_field_4;
+  logic [1:0]                       register_13_bit_field_5;
+  logic [1:0]                       register_13_bit_field_6;
+  logic [1:0]                       register_13_bit_field_6_hw_clear;
+  logic [1:0]                       register_13_bit_field_7;
+  logic [1:0]                       register_13_bit_field_7_hw_set;
+  logic [1:0]                       register_13_bit_field_8;
+  logic                             register_13_bit_field_8_hw_write_enable;
+  logic [1:0]                       register_13_bit_field_8_hw_write_data;
+  logic                             register_14_bit_field_0;
+  logic                             register_15_bit_field_0;
+`ifdef RGGEN_VERYL
+  rggen_rggen_bus_if #(8, 32)       register_17_bus_if();
+`elsif RGGEN_SYSTEMVERILOG
+  rggen_bus_if #(8, 32)             register_17_bus_if();
+`else
+  logic                             register_17_valid;
+  logic [1:0]                       register_17_access;
+  logic [7:0]                       register_17_address;
+  logic [31:0]                      register_17_write_data;
+  logic [3:0]                       register_17_strobe;
+  logic                             register_17_ready;
+  logic [1:0]                       register_17_status;
+  logic [31:0]                      register_17_read_data;
 `endif
 
   initial begin
@@ -203,7 +215,7 @@ module top;
   ) u_block_0 (
     .i_clk                                      (clk                              ),
     .i_rst_n                                    (rst_n                            ),
-`ifdef RGGEN_SYSTEMVERILOG
+`ifdef SV_OR_VERYL
     .wishbone_if                                (wishbone_if[0]                   ),
 `else
     .i_wb_cyc                                   (wishbone_if[0].cyc               ),
@@ -332,7 +344,7 @@ module top;
     .i_register_13_bit_field_8_hw_write_data    (register_13_bit_field_8_hw_write_data    ),
     .i_register_14_bit_field_0                  (register_14_bit_field_0                  ),
     .o_register_15_bit_field_0                  (register_15_bit_field_0                  ),
-`ifdef RGGEN_SYSTEMVERILOG
+`ifdef SV_OR_VERYL
     .register_17_bus_if                         (register_17_bus_if                       )
 `else
     .o_register_17_valid                        (register_17_valid                        ),
@@ -346,7 +358,14 @@ module top;
 `endif
   );
 
-`ifdef RGGEN_SYSTEMVERILOG
+`ifdef RGGEN_VERYL
+  wishbone_bridge u_bridge (
+    .i_clk        (clk                ),
+    .i_rst_n      (rst_n              ),
+    .bus_if       (register_17_bus_if ),
+    .wishbone_if  (wishbone_if[1]     )
+  );
+`elsif RGGEN_SYSTEMVERILOG
   rggen_wishbone_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
@@ -385,7 +404,7 @@ module top;
   block_1 u_block_1 (
     .i_clk                                                    (clk                      ),
     .i_rst_n                                                  (rst_n                    ),
-`ifdef RGGEN_SYSTEMVERILOG
+`ifdef SV_OR_VERYL
     .wishbone_if                                              (wishbone_if[1]           ),
 `else
     .i_wb_cyc                                                 (wishbone_if[1].cyc       ),

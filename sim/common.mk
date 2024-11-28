@@ -25,8 +25,12 @@ TEST_LIST	+= ral_bit_bash_test
 TEST_LIST	+= ral_access_test
 
 CLEAN_TARGETS	+= *.f
+CLEAN_TARGETS += Veryl.lock
+CLEAN_TARGETS += dependencies
+CLEAN_TARGETS += target
+CLEAN_TARGETS += *.rb
 
-.PHONY: all $(TEST_LIST) clean clean_all dut.f dut_vhdl.f env.f
+.PHONY: all $(TEST_LIST) clean clean_all gen_veryl dut.f dut_vhdl.f env.f
 
 all: $(TEST_LIST)
 
@@ -39,6 +43,11 @@ clean:
 clean_all:
 	$(MAKE) clean
 	rm -rf $(TEST_LIST) *.log
+
+gen_veryl:
+	veryl build \
+		$(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/$(PROTOCOL)/*.veryl \
+		$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/$(PROTOCOL)_bridge.veryl
 
 dut.f:
 	flgen --output=dut.f $(addprefix --define-macro=,$(DEFINES)) $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/compile.rb

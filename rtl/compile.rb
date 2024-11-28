@@ -11,4 +11,6 @@ when 'vhdl'
   file_list   'rggen-vhdl-rtl/compile.rb', from: :current
   source_file "#{ENV['PROTOCOL']}/block_0.vhd"
   source_file "#{ENV['PROTOCOL']}/block_1.vhd"
+when 'veryl'
+  file_list 'rggen_sample_testbench.list.rb', from: :cwd
 end
