@@ -11,7 +11,7 @@ if ['verilog', 'vhdl', 'veryl'].include? ENV['LANGUAGE']
   file_list   'rtl/rggen-sv-rtl/compile_backdoor.rb', from: :root
 end
 
-if ['verilog', 'vhdl'].include? ENV['LANGUAGE']
+if ['verilog', 'vhdl'].include? ENV['LANGUAGE'] && ENV['PROTOCOL'] != 'native'
   source_file 'rtl/rggen-sv-rtl/rggen_rtl_pkg.sv', from: :root
   source_file "rtl/rggen-sv-rtl/rggen_#{ENV['PROTOCOL']}_if.sv", from: :root
 end
@@ -29,6 +29,8 @@ if ENV['PROTOCOL'] == 'wishbone'
   if ENV['LANGUAGE'] != 'systemverilog'
     source_file "rtl/rggen-sv-rtl/rggen_apb_if.sv", from: :root
   end
+elsif ENV['PROTOCOL'] == 'native'
+  source_file 'apb_env_pkg.sv'
 else
   source_file "#{ENV['PROTOCOL']}_env_pkg.sv"
 end

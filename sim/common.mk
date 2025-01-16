@@ -45,9 +45,14 @@ clean_all:
 	rm -rf $(TEST_LIST) *.log
 
 gen_veryl:
+ifeq ($(PROTOCOL), native)
+	veryl build \
+		$(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/$(PROTOCOL)/*.veryl
+else
 	veryl build \
 		$(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/$(PROTOCOL)/*.veryl \
 		$(RGGEN_SAMPLE_TESTBENCH_ROOT)/env/$(PROTOCOL)_bridge.veryl
+endif
 
 dut.f:
 	flgen --output=dut.f $(addprefix --define-macro=,$(DEFINES)) $(RGGEN_SAMPLE_TESTBENCH_ROOT)/rtl/compile.rb
