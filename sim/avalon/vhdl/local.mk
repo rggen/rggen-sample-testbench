@@ -1,0 +1,3 @@
+
+PROTOCOL	= avalon
+LANGUAGE	= vhdl

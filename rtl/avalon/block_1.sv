@@ -27,13 +27,11 @@ module block_1
   parameter bit [ADDRESS_WIDTH-1:0] BASE_ADDRESS = '0,
   parameter bit ERROR_STATUS = 0,
   parameter bit [31:0] DEFAULT_READ_DATA = '0,
-  parameter bit INSERT_SLICER = 0,
-  parameter int STROBE_WIDTH = 4,
-  parameter bit USE_READ_STROBE = 0
+  parameter bit INSERT_SLICER = 0
 )(
   input logic i_clk,
   input logic i_rst_n,
-  rggen_bus_if.slave csrbus_if,
+  rggen_avalon_if.agent avalon_if,
   output logic [7:0] o_register_file_0_register_0_bit_field_0,
   output logic [7:0] o_register_file_0_register_1_bit_field_0,
   output logic [1:0][7:0] o_register_file_1_register_0_bit_field_0,
@@ -44,23 +42,21 @@ module block_1
   output logic [1:0][1:0] o_register_file_2_register_file_0_register_1_bit_field_0
 );
   rggen_register_if #(7, 32, 32) register_if[20]();
-  rggen_native_adapter #(
+  rggen_avalon_adapter #(
     .ADDRESS_WIDTH        (ADDRESS_WIDTH),
     .LOCAL_ADDRESS_WIDTH  (7),
     .BUS_WIDTH            (32),
-    .STROBE_WIDTH         (STROBE_WIDTH),
     .REGISTERS            (20),
     .PRE_DECODE           (PRE_DECODE),
     .BASE_ADDRESS         (BASE_ADDRESS),
     .BYTE_SIZE            (128),
-    .USE_READ_STROBE      (USE_READ_STROBE),
     .ERROR_STATUS         (ERROR_STATUS),
     .DEFAULT_READ_DATA    (DEFAULT_READ_DATA),
     .INSERT_SLICER        (INSERT_SLICER)
   ) u_adapter (
     .i_clk        (i_clk),
     .i_rst_n      (i_rst_n),
-    .csrbus_if    (csrbus_if),
+    .avalon_if    (avalon_if),
     .register_if  (register_if)
   );
   generate if (1) begin : g_register_file_0

@@ -11,22 +11,22 @@ entity block_0 is
     BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
     INSERT_SLICER: boolean := false;
-    STROBE_WIDTH: positive := 4;
-    USE_READ_STROBE: boolean := false;
     REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(7 downto 0) := repeat(x"0", 2, 4);
     REGISTER_17_STROBE_WIDTH: positive := 4
   );
   port (
     i_clk: in std_logic;
     i_rst_n: in std_logic;
-    i_csrbus_valid: in std_logic;
-    i_csrbus_access: in std_logic_vector(1 downto 0);
-    i_csrbus_address: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
-    i_csrbus_write_data: in std_logic_vector(31 downto 0);
-    i_csrbus_strobe: in std_logic_vector(STROBE_WIDTH-1 downto 0);
-    o_csrbus_ready: out std_logic;
-    o_csrbus_status: out std_logic_vector(1 downto 0);
-    o_csrbus_read_data: out std_logic_vector(31 downto 0);
+    i_read: in std_logic;
+    i_write: in std_logic;
+    i_address: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
+    i_byteenable: in std_logic_vector(3 downto 0);
+    i_writedata: in std_logic_vector(31 downto 0);
+    o_waitrequest: out std_logic;
+    o_readdatavalid: out std_logic;
+    o_writeresponsevalid: out std_logic;
+    o_response: out std_logic_vector(1 downto 0);
+    o_readdata: out std_logic_vector(31 downto 0);
     o_register_0_bit_field_0: out std_logic_vector(3 downto 0);
     o_register_0_bit_field_1: out std_logic_vector(3 downto 0);
     o_register_0_bit_field_2: out std_logic_vector(0 downto 0);
@@ -164,31 +164,31 @@ architecture rtl of block_0 is
   signal register_read_data: std_logic_vector(863 downto 0);
   signal register_value: std_logic_vector(1727 downto 0);
 begin
-  u_adapter: entity work.rggen_native_adapter
+  u_adapter: entity work.rggen_avalon_adapter
     generic map (
       ADDRESS_WIDTH       => ADDRESS_WIDTH,
       LOCAL_ADDRESS_WIDTH => 8,
       BUS_WIDTH           => 32,
-      STROBE_WIDTH        => STROBE_WIDTH,
       REGISTERS           => 27,
       PRE_DECODE          => PRE_DECODE,
       BASE_ADDRESS        => BASE_ADDRESS,
       BYTE_SIZE           => 256,
-      USE_READ_STROBE     => USE_READ_STROBE,
       ERROR_STATUS        => ERROR_STATUS,
       INSERT_SLICER       => INSERT_SLICER
     )
     port map (
       i_clk                 => i_clk,
       i_rst_n               => i_rst_n,
-      i_csrbus_valid        => i_csrbus_valid,
-      i_csrbus_access       => i_csrbus_access,
-      i_csrbus_address      => i_csrbus_address,
-      i_csrbus_write_data   => i_csrbus_write_data,
-      i_csrbus_strobe       => i_csrbus_strobe,
-      o_csrbus_ready        => o_csrbus_ready,
-      o_csrbus_status       => o_csrbus_status,
-      o_csrbus_read_data    => o_csrbus_read_data,
+      i_read                => i_read,
+      i_write               => i_write,
+      i_address             => i_address,
+      i_byteenable          => i_byteenable,
+      i_writedata           => i_writedata,
+      o_waitrequest         => o_waitrequest,
+      o_readdatavalid       => o_readdatavalid,
+      o_writeresponsevalid  => o_writeresponsevalid,
+      o_response            => o_response,
+      o_readdata            => o_readdata,
       o_register_valid      => register_valid,
       o_register_access     => register_access,
       o_register_address    => register_address,
