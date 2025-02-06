@@ -182,20 +182,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_0_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -215,20 +207,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_0_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -248,20 +232,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_2,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_0_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -281,20 +257,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  1,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_0_bit_field_3
       );
     }
     :g_bit_field_4 {
@@ -313,20 +281,10 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_4,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_0_bit_field_4
       );
     }
     :g_bit_field_5 {
@@ -345,20 +303,10 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_5,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_0_bit_field_5
       );
     }
     :g_bit_field_6 {
@@ -378,20 +326,13 @@ pub module block_0 #(
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            i_register_0_bit_field_6,
-        i_mask:             '1,
-        o_value:            o_register_0_bit_field_6,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        i_value:          i_register_0_bit_field_6,
+        o_value:          o_register_0_bit_field_6
       );
     }
   }
@@ -429,20 +370,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_1,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_1
       );
     }
   }
@@ -475,24 +408,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            i_register_2_bit_field_0,
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: _,
+        i_value:        i_register_2_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -508,23 +433,14 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              8,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1
       )(
-        i_clk:              '0,
-        i_rst:              '0,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            INITIAL_VALUE,
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:        '0,
+        i_rst:        '0,
+        bit_field_if: bit_field_sub_if,
+        i_value:      INITIAL_VALUE
       );
     }
     :g_bit_field_2 {
@@ -546,17 +462,9 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
         i_hw_write_enable:  i_register_2_bit_field_2_valid,
         i_hw_write_data:    i_register_2_bit_field_2,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_2_bit_field_2,
-        o_value_unmasked:   _
+        o_value:            o_register_2_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -578,17 +486,9 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
         i_hw_write_enable:  register_if[3].value[16+:1],
         i_hw_write_data:    i_register_2_bit_field_3,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_2_bit_field_3,
-        o_value_unmasked:   _
+        o_value:            o_register_2_bit_field_3
       );
     }
   }
@@ -627,20 +527,11 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_3_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_value:          o_register_3_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -661,20 +552,11 @@ pub module block_0 #(
         SW_WRITE_ONCE:  1,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_3_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_value:          o_register_3_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -694,7 +576,6 @@ pub module block_0 #(
         i_clk:        i_clk,
         i_rst:        i_rst,
         bit_field_if: bit_field_sub_if,
-        i_value:      '0,
         o_trigger:    o_register_3_bit_field_2_trigger
       );
     }
@@ -715,7 +596,6 @@ pub module block_0 #(
         i_clk:        i_clk,
         i_rst:        i_rst,
         bit_field_if: bit_field_sub_if,
-        i_value:      '0,
         o_trigger:    o_register_3_bit_field_3_trigger
       );
     }
@@ -754,20 +634,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_NONE
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_4_bit_field_0_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_4_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_4_bit_field_0_set,
+        i_mask:           '1,
+        o_value:          o_register_4_bit_field_0,
+        o_value_unmasked: _
       );
     }
     :g_bit_field_1 {
@@ -787,20 +660,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_NONE
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_4_bit_field_1_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             register_if[0].value[0+:4],
-        o_value:            o_register_4_bit_field_1,
-        o_value_unmasked:   o_register_4_bit_field_1_unmasked
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_4_bit_field_1_set,
+        i_mask:           register_if[0].value[0+:4],
+        o_value:          o_register_4_bit_field_1,
+        o_value_unmasked: o_register_4_bit_field_1_unmasked
       );
     }
     :g_bit_field_2 {
@@ -815,24 +681,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            register_if[4].value[8+:4],
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: _,
+        i_value:        register_if[4].value[8+:4]
       );
     }
     :g_bit_field_3 {
@@ -852,20 +710,11 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_SET,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_NONE
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_4_bit_field_3_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_4_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_4_bit_field_3_clear,
+        o_value:      o_register_4_bit_field_3
       );
     }
   }
@@ -902,20 +751,11 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         HW_CLEAR_WIDTH: 1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_5_bit_field_0_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_5_bit_field_0_clear,
+        o_value:      o_register_5_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -934,20 +774,11 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         HW_CLEAR_WIDTH: 1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         register_if[3].value[8+:1],
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   register_if[3].value[8+:1],
+        o_value:      o_register_5_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -966,20 +797,11 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         HW_SET_WIDTH:   1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_5_bit_field_2_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_2,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_set:     i_register_5_bit_field_2_set,
+        o_value:      o_register_5_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -998,20 +820,11 @@ pub module block_0 #(
         INITIAL_VALUE:  INITIAL_VALUE,
         HW_SET_WIDTH:   1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           register_if[3].value[8+:1],
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_set:     register_if[3].value[8+:1],
+        o_value:      o_register_5_bit_field_3
       );
     }
     :g_bit_field_4 {
@@ -1032,17 +845,9 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  i_register_5_bit_field_4_valid,
         i_hw_write_data:    i_register_5_bit_field_4,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_4,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_4
       );
     }
     :g_bit_field_5 {
@@ -1063,17 +868,9 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  register_if[3].value[16+:1],
         i_hw_write_data:    i_register_5_bit_field_5,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_5,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_5
       );
     }
     :g_bit_field_6 {
@@ -1095,17 +892,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  i_register_5_bit_field_6_enable,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_6,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_6
       );
     }
     :g_bit_field_7 {
@@ -1127,17 +915,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  register_if[0].value[8+:1],
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_7,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_7
       );
     }
     :g_bit_field_8 {
@@ -1159,17 +938,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  register_if[1].value[0+:1],
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_8,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_8
       );
     }
     :g_bit_field_9 {
@@ -1191,17 +961,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  i_register_5_bit_field_9_lock,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_9,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_9
       );
     }
     :g_bit_field_10 {
@@ -1223,17 +984,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  register_if[0].value[8+:1],
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_10,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_10
       );
     }
     :g_bit_field_11 {
@@ -1255,17 +1007,8 @@ pub module block_0 #(
         i_clk:              i_clk,
         i_rst:              i_rst,
         bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
         i_sw_write_enable:  register_if[1].value[0+:1],
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_5_bit_field_11,
-        o_value_unmasked:   _
+        o_value:            o_register_5_bit_field_11
       );
     }
   }
@@ -1303,20 +1046,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_6_bit_field_0_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_6_bit_field_0_set,
+        i_mask:           '1,
+        o_value:          o_register_6_bit_field_0,
+        o_value_unmasked: _
       );
     }
     :g_bit_field_1 {
@@ -1336,20 +1072,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_6_bit_field_1_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             register_if[0].value[0+:4],
-        o_value:            o_register_6_bit_field_1,
-        o_value_unmasked:   o_register_6_bit_field_1_unmasked
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_6_bit_field_1_set,
+        i_mask:           register_if[0].value[0+:4],
+        o_value:          o_register_6_bit_field_1,
+        o_value_unmasked: o_register_6_bit_field_1_unmasked
       );
     }
     :g_bit_field_2 {
@@ -1364,24 +1093,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            register_if[6].value[4+:4],
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: _,
+        i_value:        register_if[6].value[4+:4]
       );
     }
     :g_bit_field_3 {
@@ -1401,20 +1122,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_6_bit_field_3_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_6_bit_field_3_set,
+        i_mask:           '1,
+        o_value:          o_register_6_bit_field_3,
+        o_value_unmasked: _
       );
     }
     :g_bit_field_4 {
@@ -1434,20 +1148,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_6_bit_field_4_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             register_if[0].value[0+:4],
-        o_value:            o_register_6_bit_field_4,
-        o_value_unmasked:   o_register_6_bit_field_4_unmasked
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_6_bit_field_4_set,
+        i_mask:           register_if[0].value[0+:4],
+        o_value:          o_register_6_bit_field_4,
+        o_value_unmasked: o_register_6_bit_field_4_unmasked
       );
     }
     :g_bit_field_5 {
@@ -1462,24 +1169,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            register_if[6].value[16+:4],
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: _,
+        i_value:        register_if[6].value[16+:4]
       );
     }
     :g_bit_field_6 {
@@ -1499,20 +1198,11 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_6_bit_field_6_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_6,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_6_bit_field_6_clear,
+        o_value:      o_register_6_bit_field_6
       );
     }
     :g_bit_field_7 {
@@ -1532,20 +1222,11 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_6_bit_field_7_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_7,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_6_bit_field_7_clear,
+        o_value:      o_register_6_bit_field_7
       );
     }
     :g_bit_field_8 {
@@ -1564,20 +1245,10 @@ pub module block_0 #(
         INITIAL_VALUE:    INITIAL_VALUE,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_TOGGLE
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_8,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_6_bit_field_8
       );
     }
     :g_bit_field_9 {
@@ -1596,20 +1267,10 @@ pub module block_0 #(
         INITIAL_VALUE:    INITIAL_VALUE,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_TOGGLE
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_6_bit_field_9,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_6_bit_field_9
       );
     }
   }
@@ -1647,20 +1308,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_SET,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_7_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_7_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -1680,20 +1331,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_SET,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_7_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_7_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -1713,20 +1354,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_0_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_7_bit_field_2,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_7_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -1746,20 +1377,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_1_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_7_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_7_bit_field_3
       );
     }
   }
@@ -1797,20 +1418,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_8_bit_field_0_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_8_bit_field_0_set,
+        i_mask:           '1,
+        o_value:          o_register_8_bit_field_0,
+        o_value_unmasked: _
       );
     }
     :g_bit_field_1 {
@@ -1830,20 +1444,11 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_8_bit_field_1_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_8_bit_field_1_clear,
+        o_value:      o_register_8_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -1863,20 +1468,13 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_NONE,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           i_register_8_bit_field_2_set,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_2,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        i_hw_set:         i_register_8_bit_field_2_set,
+        i_mask:           '1,
+        o_value:          o_register_8_bit_field_2,
+        o_value_unmasked: _
       );
     }
     :g_bit_field_3 {
@@ -1896,20 +1494,11 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_NONE,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         i_register_8_bit_field_3_clear,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_hw_clear:   i_register_8_bit_field_3_clear,
+        o_value:      o_register_8_bit_field_3
       );
     }
     :g_bit_field_4 {
@@ -1929,20 +1518,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_SET,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_CLEAR
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_4,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_8_bit_field_4
       );
     }
     :g_bit_field_5 {
@@ -1962,20 +1541,10 @@ pub module block_0 #(
         SW_READ_ACTION:   rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:  rggen_sw_action::WRITE_SET
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_8_bit_field_5,
-        o_value_unmasked:   _
+        i_clk:        i_clk,
+        i_rst:        i_rst,
+        bit_field_if: bit_field_sub_if,
+        o_value:      o_register_8_bit_field_5
       );
     }
   }
@@ -2013,20 +1582,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    o_register_9_bit_field_0_write_trigger,
-        o_read_trigger:     o_register_9_bit_field_0_read_trigger,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_9_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  o_register_9_bit_field_0_write_trigger,
+        o_read_trigger:   o_register_9_bit_field_0_read_trigger,
+        o_value:          o_register_9_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -2041,24 +1602,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              2,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     o_register_9_bit_field_1_read_trigger,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            i_register_9_bit_field_1,
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: o_register_9_bit_field_1_read_trigger,
+        i_value:        i_register_9_bit_field_1
       );
     }
     :g_bit_field_2 {
@@ -2079,20 +1632,11 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    o_register_9_bit_field_2_write_trigger,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_9_bit_field_2,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  o_register_9_bit_field_2_write_trigger,
+        o_value:          o_register_9_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -2112,20 +1656,13 @@ pub module block_0 #(
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            1
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    o_register_9_bit_field_3_write_trigger,
-        o_read_trigger:     o_register_9_bit_field_3_read_trigger,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            i_register_9_bit_field_3,
-        i_mask:             '1,
-        o_value:            o_register_9_bit_field_3,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  o_register_9_bit_field_3_write_trigger,
+        o_read_trigger:   o_register_9_bit_field_3_read_trigger,
+        i_value:          i_register_9_bit_field_3,
+        o_value:          o_register_9_bit_field_3
       );
     }
     :g_bit_field_4 {
@@ -2207,20 +1744,12 @@ pub module block_0 #(
             SW_WRITE_ONCE:  0,
             TRIGGER:        0
           )(
-            i_clk:              i_clk,
-            i_rst:              i_rst,
-            bit_field_if:       bit_field_sub_if,
-            o_write_trigger:    _,
-            o_read_trigger:     _,
-            i_sw_write_enable:  '1,
-            i_hw_write_enable:  '0,
-            i_hw_write_data:    '0,
-            i_hw_set:           '0,
-            i_hw_clear:         '0,
-            i_value:            '0,
-            i_mask:             '1,
-            o_value:            o_register_10_bit_field_0[i][j],
-            o_value_unmasked:   _
+            i_clk:            i_clk,
+            i_rst:            i_rst,
+            bit_field_if:     bit_field_sub_if,
+            o_write_trigger:  _,
+            o_read_trigger:   _,
+            o_value:          o_register_10_bit_field_0[i][j]
           );
         }
       }
@@ -2241,20 +1770,12 @@ pub module block_0 #(
             SW_WRITE_ONCE:  0,
             TRIGGER:        0
           )(
-            i_clk:              i_clk,
-            i_rst:              i_rst,
-            bit_field_if:       bit_field_sub_if,
-            o_write_trigger:    _,
-            o_read_trigger:     _,
-            i_sw_write_enable:  '1,
-            i_hw_write_enable:  '0,
-            i_hw_write_data:    '0,
-            i_hw_set:           '0,
-            i_hw_clear:         '0,
-            i_value:            '0,
-            i_mask:             '1,
-            o_value:            o_register_10_bit_field_1[i][j],
-            o_value_unmasked:   _
+            i_clk:            i_clk,
+            i_rst:            i_rst,
+            bit_field_if:     bit_field_sub_if,
+            o_write_trigger:  _,
+            o_read_trigger:   _,
+            o_value:          o_register_10_bit_field_1[i][j]
           );
         }
       }
@@ -2276,20 +1797,12 @@ pub module block_0 #(
             SW_WRITE_ONCE:  0,
             TRIGGER:        0
           )(
-            i_clk:              i_clk,
-            i_rst:              i_rst,
-            bit_field_if:       bit_field_sub_if,
-            o_write_trigger:    _,
-            o_read_trigger:     _,
-            i_sw_write_enable:  '1,
-            i_hw_write_enable:  '0,
-            i_hw_write_data:    '0,
-            i_hw_set:           '0,
-            i_hw_clear:         '0,
-            i_value:            '0,
-            i_mask:             '1,
-            o_value:            o_register_10_bit_field_2[i][j],
-            o_value_unmasked:   _
+            i_clk:            i_clk,
+            i_rst:            i_rst,
+            bit_field_if:     bit_field_sub_if,
+            o_write_trigger:  _,
+            o_read_trigger:   _,
+            o_value:          o_register_10_bit_field_2[i][j]
           );
         }
       }
@@ -2338,20 +1851,12 @@ pub module block_0 #(
               SW_WRITE_ONCE:  0,
               TRIGGER:        0
             )(
-              i_clk:              i_clk,
-              i_rst:              i_rst,
-              bit_field_if:       bit_field_sub_if,
-              o_write_trigger:    _,
-              o_read_trigger:     _,
-              i_sw_write_enable:  '1,
-              i_hw_write_enable:  '0,
-              i_hw_write_data:    '0,
-              i_hw_set:           '0,
-              i_hw_clear:         '0,
-              i_value:            '0,
-              i_mask:             '1,
-              o_value:            o_register_11_bit_field_0[i][j][k],
-              o_value_unmasked:   _
+              i_clk:            i_clk,
+              i_rst:            i_rst,
+              bit_field_if:     bit_field_sub_if,
+              o_write_trigger:  _,
+              o_read_trigger:   _,
+              o_value:          o_register_11_bit_field_0[i][j][k]
             );
           }
         }
@@ -2373,20 +1878,12 @@ pub module block_0 #(
               SW_WRITE_ONCE:  0,
               TRIGGER:        0
             )(
-              i_clk:              i_clk,
-              i_rst:              i_rst,
-              bit_field_if:       bit_field_sub_if,
-              o_write_trigger:    _,
-              o_read_trigger:     _,
-              i_sw_write_enable:  '1,
-              i_hw_write_enable:  '0,
-              i_hw_write_data:    '0,
-              i_hw_set:           '0,
-              i_hw_clear:         '0,
-              i_value:            '0,
-              i_mask:             '1,
-              o_value:            o_register_11_bit_field_1[i][j][k],
-              o_value_unmasked:   _
+              i_clk:            i_clk,
+              i_rst:            i_rst,
+              bit_field_if:     bit_field_sub_if,
+              o_write_trigger:  _,
+              o_read_trigger:   _,
+              o_value:          o_register_11_bit_field_1[i][j][k]
             );
           }
         }
@@ -2431,20 +1928,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_12_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_12_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -2464,20 +1953,12 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_12_bit_field_1,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_read_trigger:   _,
+        o_value:          o_register_12_bit_field_1
       );
     }
   }
@@ -2524,15 +2005,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_0,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_0
       );
     }
     :g_bit_field_1 {
@@ -2560,15 +2038,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            i_register_13_bit_field_1,
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        o_value:            _
       );
     }
     :g_bit_field_2 {
@@ -2597,15 +2072,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_2,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_2
       );
     }
     :g_bit_field_3 {
@@ -2634,15 +2106,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    o_register_13_bit_field_3_write_trigger,
         o_read_trigger:     o_register_13_bit_field_3_read_trigger,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_3,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_3
       );
     }
     :g_bit_field_4 {
@@ -2671,15 +2140,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_4,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_4
       );
     }
     :g_bit_field_5 {
@@ -2708,15 +2174,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_5,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_5
       );
     }
     :g_bit_field_6 {
@@ -2745,15 +2208,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           '0,
         i_hw_clear:         i_register_13_bit_field_6_hw_clear,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_6,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_6
       );
     }
     :g_bit_field_7 {
@@ -2782,15 +2242,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  '0,
         i_hw_write_data:    '0,
         i_hw_set:           i_register_13_bit_field_7_hw_set,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_7,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_7
       );
     }
     :g_bit_field_8 {
@@ -2819,15 +2276,12 @@ pub module block_0 #(
         bit_field_if:       bit_field_sub_if,
         o_write_trigger:    _,
         o_read_trigger:     _,
-        i_sw_write_enable:  '1,
         i_hw_write_enable:  i_register_13_bit_field_8_hw_write_enable,
         i_hw_write_data:    i_register_13_bit_field_8_hw_write_data,
         i_hw_set:           '0,
         i_hw_clear:         '0,
         i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_13_bit_field_8,
-        o_value_unmasked:   _
+        o_value:            o_register_13_bit_field_8
       );
     }
   }
@@ -2860,24 +2314,16 @@ pub module block_0 #(
       }
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              1,
+        SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
         STORAGE:            0,
         EXTERNAL_READ_DATA: 1,
         TRIGGER:            0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '0,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            i_register_14_bit_field_0,
-        i_mask:             '1,
-        o_value:            _,
-        o_value_unmasked:   _
+        i_clk:          i_clk,
+        i_rst:          i_rst,
+        bit_field_if:   bit_field_sub_if,
+        o_read_trigger: _,
+        i_value:        i_register_14_bit_field_0
       );
     }
   }
@@ -2916,20 +2362,11 @@ pub module block_0 #(
         SW_WRITE_ONCE:  0,
         TRIGGER:        0
       )(
-        i_clk:              i_clk,
-        i_rst:              i_rst,
-        bit_field_if:       bit_field_sub_if,
-        o_write_trigger:    _,
-        o_read_trigger:     _,
-        i_sw_write_enable:  '1,
-        i_hw_write_enable:  '0,
-        i_hw_write_data:    '0,
-        i_hw_set:           '0,
-        i_hw_clear:         '0,
-        i_value:            '0,
-        i_mask:             '1,
-        o_value:            o_register_15_bit_field_0,
-        o_value_unmasked:   _
+        i_clk:            i_clk,
+        i_rst:            i_rst,
+        bit_field_if:     bit_field_sub_if,
+        o_write_trigger:  _,
+        o_value:          o_register_15_bit_field_0
       );
     }
   }
