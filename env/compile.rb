@@ -1,7 +1,7 @@
 file_list 'tue/compile.rb', from: :current
 file_list 'tvip-common/compile.rb', from: :current
 
-if ['axi4lite', 'avalon'].include?(ENV['PROTOCOL'])
+if ENV['PROTOCOL'] == 'axi4lite'
   file_list 'tvip-axi/compile.rb', from: :current
 else
   file_list 'tvip-apb/compile.rb', from: :current
@@ -24,7 +24,7 @@ include_directory '.'
 source_file 'env_pkg.sv'
 
 if ENV['PROTOCOL'] == 'avalon'
-  source_file 'axi4lite_env_pkg.sv'
+  source_file 'apb_env_pkg.sv'
   if ['verilog', 'vhdl'].include? ENV['LANGUAGE']
     source_file "rtl/rggen-sv-rtl/rggen_avalon_if.sv", from: :root
   end

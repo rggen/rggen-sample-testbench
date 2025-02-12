@@ -1,16 +1,12 @@
 pub module avalon_bridge #(
   param ADDRESS_WIDTH:  u32 = 8
 )(
-  i_clk:      input   clock,
-  i_rst:      input   reset,
   bus_if:     modport rggen::rggen_bus_if::slave,
   avalon_if:  modport rggen::rggen_avalon_if::host
 ){
   inst u_bridge: rggen::rggen_avalon_bridge #(
     ADDRESS_WIDTH:  ADDRESS_WIDTH
   )(
-    i_clk:      i_clk,
-    i_rst:      i_rst,
     bus_if:     bus_if,
     avalon_if:  avalon_if
   );

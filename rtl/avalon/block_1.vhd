@@ -21,8 +21,6 @@ entity block_1 is
     i_byteenable: in std_logic_vector(3 downto 0);
     i_writedata: in std_logic_vector(31 downto 0);
     o_waitrequest: out std_logic;
-    o_readdatavalid: out std_logic;
-    o_writeresponsevalid: out std_logic;
     o_response: out std_logic_vector(1 downto 0);
     o_readdata: out std_logic_vector(31 downto 0);
     o_register_file_0_register_0_bit_field_0: out std_logic_vector(7 downto 0);
@@ -69,8 +67,6 @@ begin
       i_byteenable          => i_byteenable,
       i_writedata           => i_writedata,
       o_waitrequest         => o_waitrequest,
-      o_readdatavalid       => o_readdatavalid,
-      o_writeresponsevalid  => o_writeresponsevalid,
       o_response            => o_response,
       o_readdata            => o_readdata,
       o_register_valid      => register_valid,

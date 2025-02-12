@@ -10,9 +10,8 @@ module top;
   import  uvm_pkg::*;
   import  tue_pkg::*;
   import  env_pkg::*;
-  import  tvip_axi_pkg::*;
-  import  tvip_axi_types_pkg::*;
-  import  axi4lite_env_pkg::*;
+  import  tvip_apb_pkg::*;
+  import  apb_env_pkg::*;
 
   logic                           clk;
   logic                           rst_n;
@@ -206,21 +205,19 @@ module top;
   `endif
 `endif
   ) u_block_0 (
-    .i_clk                                      (clk                              ),
-    .i_rst_n                                    (rst_n                            ),
+    .i_clk                                      (clk                                      ),
+    .i_rst_n                                    (rst_n                                    ),
 `ifdef SV_OR_VERYL
-    .avalon_if                                  (avalon_if[0]                     ),
+    .avalon_if                                  (avalon_if[0]                             ),
 `else
-    .i_read                                     (avalon_if[0].read                ),
-    .i_write                                    (avalon_if[0].write               ),
-    .i_address                                  (avalon_if[0].address             ),
-    .i_byteenable                               (avalon_if[0].byteenable          ),
-    .i_writedata                                (avalon_if[0].writedata           ),
-    .o_waitrequest                              (avalon_if[0].waitrequest         ),
-    .o_readdatavalid                            (avalon_if[0].readdatavalid       ),
-    .o_writeresponsevalid                       (avalon_if[0].writeresponsevalid  ),
-    .o_response                                 (avalon_if[0].response            ),
-    .o_readdata                                 (avalon_if[0].readdata            ),
+    .i_read                                     (avalon_if[0].read                        ),
+    .i_write                                    (avalon_if[0].write                       ),
+    .i_address                                  (avalon_if[0].address                     ),
+    .i_byteenable                               (avalon_if[0].byteenable                  ),
+    .i_writedata                                (avalon_if[0].writedata                   ),
+    .o_waitrequest                              (avalon_if[0].waitrequest                 ),
+    .o_response                                 (avalon_if[0].response                    ),
+    .o_readdata                                 (avalon_if[0].readdata                    ),
 `endif
     .o_register_0_bit_field_0                   (register_0_bit_field_0                   ),
     .o_register_0_bit_field_1                   (register_0_bit_field_1                   ),
@@ -352,15 +349,11 @@ module top;
 
 `ifdef RGGEN_VERYL
   avalon_bridge u_bridge (
-    .i_clk      (clk                ),
-    .i_rst_n    (rst_n              ),
     .bus_if     (register_17_bus_if ),
     .avalon_if  (avalon_if[1]       )
   );
 `elsif RGGEN_SYSTEMVERILOG
   rggen_avalon_bridge u_bridge (
-    .i_clk      (clk                ),
-    .i_rst_n    (rst_n              ),
     .bus_if     (register_17_bus_if ),
     .avalon_if  (avalon_if[1]       )
   );
@@ -369,26 +362,22 @@ module top;
     .ADDRESS_WIDTH  (8  ),
     .BUS_WIDTH      (32 )
   ) u_bridge (
-    .i_clk                (clk                              ),
-    .i_rst_n              (rst_n                            ),
-    .i_bus_valid          (register_17_valid                ),
-    .i_bus_access         (register_17_access               ),
-    .i_bus_address        (register_17_address              ),
-    .i_bus_write_data     (register_17_write_data           ),
-    .i_bus_strobe         (register_17_strobe               ),
-    .o_bus_ready          (register_17_ready                ),
-    .o_bus_status         (register_17_status               ),
-    .o_bus_read_data      (register_17_read_data            ),
-    .o_read               (avalon_if[1].read                ),
-    .o_write              (avalon_if[1].write               ),
-    .o_address            (avalon_if[1].address[7:0]        ),
-    .o_byteenable         (avalon_if[1].byteenable          ),
-    .o_writedata          (avalon_if[1].writedata           ),
-    .i_waitrequest        (avalon_if[1].waitrequest         ),
-    .i_readdatavalid      (avalon_if[1].readdatavalid       ),
-    .i_writeresponsevalid (avalon_if[1].writeresponsevalid  ),
-    .i_response           (avalon_if[1].response            ),
-    .i_readdata           (avalon_if[1].readdata            )
+    .i_bus_valid      (register_17_valid                ),
+    .i_bus_access     (register_17_access               ),
+    .i_bus_address    (register_17_address              ),
+    .i_bus_write_data (register_17_write_data           ),
+    .i_bus_strobe     (register_17_strobe               ),
+    .o_bus_ready      (register_17_ready                ),
+    .o_bus_status     (register_17_status               ),
+    .o_bus_read_data  (register_17_read_data            ),
+    .o_read           (avalon_if[1].read                ),
+    .o_write          (avalon_if[1].write               ),
+    .o_address        (avalon_if[1].address[7:0]        ),
+    .o_byteenable     (avalon_if[1].byteenable          ),
+    .o_writedata      (avalon_if[1].writedata           ),
+    .i_waitrequest    (avalon_if[1].waitrequest         ),
+    .i_response       (avalon_if[1].response            ),
+    .i_readdata       (avalon_if[1].readdata            )
   );
 `endif
 
@@ -404,8 +393,6 @@ module top;
     .i_byteenable                                             (avalon_if[1].byteenable          ),
     .i_writedata                                              (avalon_if[1].writedata           ),
     .o_waitrequest                                            (avalon_if[1].waitrequest         ),
-    .o_readdatavalid                                          (avalon_if[1].readdatavalid       ),
-    .o_writeresponsevalid                                     (avalon_if[1].writeresponsevalid  ),
     .o_response                                               (avalon_if[1].response            ),
     .o_readdata                                               (avalon_if[1].readdata            ),
 `endif
@@ -419,71 +406,39 @@ module top;
     .o_register_file_2_register_file_0_register_1_bit_field_0 ()
   );
 
-  tvip_axi_if vip_axi_if(clk, rst_n);
+  tvip_apb_if vip_apb_if(clk, rst_n);
   always @* begin
-    if (vip_axi_if.arvalid) begin
-      avalon_if[0].read       = vip_axi_if.arvalid;
-      avalon_if[0].write      = '0;
-      avalon_if[0].address    = vip_axi_if.araddr;
-      avalon_if[0].byteenable = '1;
-      avalon_if[0].writedata  = '0;
-      vip_axi_if.arready      = !avalon_if[0].waitrequest;
-      vip_axi_if.awready      = '0;
-      vip_axi_if.wready       = '0;
-    end
-    else begin
-      avalon_if[0].read       = '0;
-      avalon_if[0].write      = vip_axi_if.awvalid && vip_axi_if.wvalid;
-      avalon_if[0].address    = vip_axi_if.awaddr;
-      avalon_if[0].byteenable = vip_axi_if.wstrb;
-      avalon_if[0].writedata  = vip_axi_if.wdata;
-      vip_axi_if.arready      = '0;
-      vip_axi_if.awready      = (!avalon_if[0].waitrequest) && vip_axi_if.wvalid;
-      vip_axi_if.wready       = (!avalon_if[0].waitrequest) && vip_axi_if.awvalid;
-    end
+    avalon_if[0].read       = vip_apb_if.psel && (vip_apb_if.pwrite == '0);
+    avalon_if[0].write      = vip_apb_if.psel && (vip_apb_if.pwrite == '1);
+    avalon_if[0].address    = vip_apb_if.paddr;
+    avalon_if[0].byteenable = (vip_apb_if.pwrite) ? vip_apb_if.pstrb : '1;
+    avalon_if[0].writedata  = vip_apb_if.pwdata;
   end
 
   always @* begin
-    vip_axi_if.rvalid = avalon_if[0].readdatavalid;
-    vip_axi_if.rresp  = tvip_axi_response'(avalon_if[0].response);
-    vip_axi_if.rdata  = avalon_if[0].readdata;
-    vip_axi_if.bvalid = avalon_if[0].writeresponsevalid;
-    vip_axi_if.bresp  = tvip_axi_response'(avalon_if[0].response);
+    vip_apb_if.pready   = vip_apb_if.penable && (!avalon_if[0].waitrequest);
+    vip_apb_if.pslverr  = avalon_if[0].response[1];
+    vip_apb_if.prdata   = avalon_if[0].readdata;
   end
 
-  always @(posedge clk) begin
-    if (vip_axi_if.arvalid && vip_axi_if.arready) begin
-      vip_axi_if.rid  <= vip_axi_if.arid;
-    end
-    if (vip_axi_if.awvalid && vip_axi_if.awready) begin
-      vip_axi_if.bid  <= vip_axi_if.awid;
-    end
-  end
-
-  task automatic run_ral_test(uvm_event reset_event, virtual tvip_axi_if axi_vif);
-    uvm_factory                 factory;
-    tvip_axi_configuration      axi4lite_configuration;
-    axi4lite_env_configuration  configuration;
+  task automatic run_ral_test(uvm_event reset_event, virtual tvip_apb_if apb_vif);
+    uvm_factory             factory;
+    tvip_apb_configuration  apb_configuration;
+    apb_env_configuration   configuration;
 
     factory = uvm_factory::get();
-    factory.set_type_override_by_type(env_base::type_id::get(), axi4lite_env::type_id::get());
+    factory.set_type_override_by_type(env_base::type_id::get(), apb_env::type_id::get());
 
-    axi4lite_configuration                        = new("axi4lite_configuration");
-    axi4lite_configuration.vif                    = axi_vif;
-    axi4lite_configuration.protocol               = TVIP_AXI4LITE;
-    axi4lite_configuration.id_width               = 2;
-    axi4lite_configuration.address_width          = 16;
-    axi4lite_configuration.data_width             = 32;
-    axi4lite_configuration.default_bready         = 1;
-    axi4lite_configuration.bready_delay.min_delay = 0;
-    axi4lite_configuration.bready_delay.max_delay = 0;
-    axi4lite_configuration.default_rready         = 1;
-    axi4lite_configuration.rready_delay.min_delay = 0;
-    axi4lite_configuration.rready_delay.max_delay = 0;
+    apb_configuration     = new("apb_configuration");
+    apb_configuration.vif = apb_vif;
+    void'(apb_configuration.randomize() with {
+      address_width == 16;
+      data_width    == 32;
+    });
 
-    configuration                         = new("configuration");
-    configuration.reset_event             = reset_event;
-    configuration.axi4lite_configuration  = axi4lite_configuration;
+    configuration                   = new("configuration");
+    configuration.reset_event       = reset_event;
+    configuration.apb_configuration = apb_configuration;
     uvm_config_db #(env_configuration)::set(null, "", "configuration", configuration);
 
     run_test();
@@ -501,6 +456,6 @@ module top;
     fork
       monitor_reset(reset_event);
     join_none
-    run_ral_test(reset_event, vip_axi_if);
+    run_ral_test(reset_event, vip_apb_if);
   end
 endmodule
