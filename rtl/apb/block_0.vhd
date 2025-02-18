@@ -11,7 +11,7 @@ entity block_0 is
     BASE_ADDRESS: unsigned := x"0";
     ERROR_STATUS: boolean := false;
     INSERT_SLICER: boolean := false;
-    REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(7 downto 0) := repeat(x"0", 2, 4);
+    REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: unsigned(31 downto 0) := repeat(x"0", 2, 16);
     REGISTER_17_STROBE_WIDTH: positive := 4
   );
   port (
@@ -2478,7 +2478,7 @@ begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
               WIDTH           => 2,
-              INITIAL_VALUE   => slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 2, j),
+              INITIAL_VALUE   => slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 2, 4*i+j),
               SW_WRITE_ONCE   => false,
               TRIGGER         => false
             )
@@ -2512,7 +2512,7 @@ begin
           u_bit_field: entity work.rggen_bit_field
             generic map (
               WIDTH           => 2,
-              INITIAL_VALUE   => slice(x"e4", 2, j),
+              INITIAL_VALUE   => slice(x"934e39e4", 2, 4*i+j),
               SW_WRITE_ONCE   => false,
               TRIGGER         => false
             )

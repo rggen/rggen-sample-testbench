@@ -30,9 +30,9 @@ CLEAN_TARGETS += dependencies
 CLEAN_TARGETS += target
 CLEAN_TARGETS += *.rb
 
-.PHONY: all $(TEST_LIST) clean clean_all gen_veryl dut.f dut_vhdl.f env.f
+.PHONY: all $(TEST_LIST) clean clean_all gen_veryl check_log dut.f dut_vhdl.f env.f
 
-all: $(TEST_LIST)
+all: $(TEST_LIST) check_log
 
 $(TEST_LIST):
 	$(MAKE) sim_$(SIMULATOR) TEST=$@
@@ -43,6 +43,10 @@ clean:
 clean_all:
 	$(MAKE) clean
 	rm -rf $(TEST_LIST) *.log
+
+check_log:
+	grep UVM_ERROR */*.log
+	grep UVM_FATAL */*.log
 
 gen_veryl:
 ifeq ($(PROTOCOL), native)

@@ -6,7 +6,7 @@ pub module block_0 #(
   param ERROR_STATUS: bit = 0,
   param DEFAULT_READ_DATA: bit<32> = '0,
   param INSERT_SLICER: bit = 0,
-  param REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: bit<4, 2> = {2'h0 repeat 4},
+  param REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: bit<4, 4, 2> = {2'h0 repeat 16},
   param REGISTER_17_STROBE_WIDTH: u32 = 4
 )(
   i_clk: input clock,
@@ -1764,7 +1764,7 @@ pub module block_0 #(
           }
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          2,
-            INITIAL_VALUE:  REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[j],
+            INITIAL_VALUE:  REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[i][j],
             SW_WRITE_ONCE:  0,
             TRIGGER:        0
           )(
@@ -1779,7 +1779,7 @@ pub module block_0 #(
       }
       :g_bit_field_2 {
         for j in 0..4 :g {
-          const INITIAL_VALUE: bit<4, 2> = {2'h3, 2'h2, 2'h1, 2'h0};
+          const INITIAL_VALUE: bit<4, 4, 2> = {2'h2, 2'h1, 2'h0, 2'h3, 2'h1, 2'h0, 2'h3, 2'h2, 2'h0, 2'h3, 2'h2, 2'h1, 2'h3, 2'h2, 2'h1, 2'h0};
           inst bit_field_sub_if: rggen::rggen_bit_field_if#(WIDTH: 2);
           always_comb {
             bit_field_sub_if.valid = bit_field_if.valid;
@@ -1791,7 +1791,7 @@ pub module block_0 #(
           }
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          2,
-            INITIAL_VALUE:  INITIAL_VALUE[j],
+            INITIAL_VALUE:  INITIAL_VALUE[i][j],
             SW_WRITE_ONCE:  0,
             TRIGGER:        0
           )(

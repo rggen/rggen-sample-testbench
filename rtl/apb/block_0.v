@@ -6,7 +6,7 @@ module block_0 #(
   parameter ERROR_STATUS = 0,
   parameter [31:0] DEFAULT_READ_DATA = 0,
   parameter INSERT_SLICER = 0,
-  parameter [7:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}},
+  parameter [31:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {16{2'h0}},
   parameter REGISTER_17_STROBE_WIDTH = 4
 )(
   input i_clk,
@@ -2187,7 +2187,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 8, 2, j)),
+            .INITIAL_VALUE  (`rggen_slice(REGISTER_10_BIT_FIELD_1_INITIAL_VALUE, 32, 2, 4*i+j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
@@ -2218,7 +2218,7 @@ module block_0 #(
         for (j = 0;j < 4;j = j + 1) begin : g
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (`rggen_slice(8'he4, 8, 2, j)),
+            .INITIAL_VALUE  (`rggen_slice(32'h934e39e4, 32, 2, 4*i+j)),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (

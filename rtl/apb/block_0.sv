@@ -28,7 +28,7 @@ module block_0
   parameter bit ERROR_STATUS = 0,
   parameter bit [31:0] DEFAULT_READ_DATA = '0,
   parameter bit INSERT_SLICER = 0,
-  parameter bit [3:0][1:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {4{2'h0}},
+  parameter bit [3:0][3:0][1:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {16{2'h0}},
   parameter int REGISTER_17_STROBE_WIDTH = 4
 )(
   input logic i_clk,
@@ -1840,7 +1840,7 @@ module block_0
           `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 2+8*j, 2)
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[j]),
+            .INITIAL_VALUE  (REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[i][j]),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (
@@ -1864,12 +1864,12 @@ module block_0
       if (1) begin : g_bit_field_2
         genvar j;
         for (j = 0;j < 4;++j) begin : g
-          localparam bit [1:0] INITIAL_VALUE[4] = '{2'h0, 2'h1, 2'h2, 2'h3};
+          localparam bit [3:0][3:0][1:0] INITIAL_VALUE = {2'h2, 2'h1, 2'h0, 2'h3, 2'h1, 2'h0, 2'h3, 2'h2, 2'h0, 2'h3, 2'h2, 2'h1, 2'h3, 2'h2, 2'h1, 2'h0};
           rggen_bit_field_if #(2) bit_field_sub_if();
           `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 4+8*j, 2)
           rggen_bit_field #(
             .WIDTH          (2),
-            .INITIAL_VALUE  (INITIAL_VALUE[j]),
+            .INITIAL_VALUE  (INITIAL_VALUE[i][j]),
             .SW_WRITE_ONCE  (0),
             .TRIGGER        (0)
           ) u_bit_field (

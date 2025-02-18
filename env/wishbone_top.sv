@@ -196,20 +196,20 @@ module top;
   );
 
   block_0 #(
-    .ADDRESS_WIDTH                          (16                       ),
-    .PRE_DECODE                             (1'b1                     ),
-    .INSERT_SLICER                          (1'b1                     ),
+    .ADDRESS_WIDTH                          (16                                                                                               ),
+    .PRE_DECODE                             (1'b1                                                                                             ),
+    .INSERT_SLICER                          (1'b1                                                                                             ),
 `ifndef RGGEN_VHDL
-    .BASE_ADDRESS                           (16'h1000                 ),
-    .DEFAULT_READ_DATA                      (32'hDEAD_BEAF            ),
-    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
+    .BASE_ADDRESS                           (16'h1000                                                                                         ),
+    .DEFAULT_READ_DATA                      (32'hDEAD_BEAF                                                                                    ),
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0} )
 `else
   `ifdef DSIM
-    .BASE_ADDRESS                           (16'h1000                 ),
-    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0} )
+    .BASE_ADDRESS                           (16'h1000                                                                                         ),
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ({2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0, 2'h3, 2'h2, 2'h1, 2'h0} )
   `else
-    .BASE_ADDRESS                           ("0001000000000000"       ),
-    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ("11100100"               )
+    .BASE_ADDRESS                           ("0001000000000000"                                                                               ),
+    .REGISTER_10_BIT_FIELD_1_INITIAL_VALUE  ("11100100111001001110010011100100"                                                               )
   `endif
 `endif
   ) u_block_0 (
