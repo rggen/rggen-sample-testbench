@@ -27,6 +27,7 @@ TEST_LIST	+= ral_access_test
 CLEAN_TARGETS	+= *.f
 CLEAN_TARGETS += Veryl.lock
 CLEAN_TARGETS += dependencies
+CLEAN_TARGETS += .build
 CLEAN_TARGETS += target
 CLEAN_TARGETS += *.rb
 

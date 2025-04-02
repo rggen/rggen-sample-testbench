@@ -1,11 +1,11 @@
 import rggen::rggen_rtl_pkg::*;
 pub module block_1 #(
   param ADDRESS_WIDTH: u32 = 7,
-  param PRE_DECODE: bit = 0,
+  param PRE_DECODE: bool = false,
   param BASE_ADDRESS: bit<ADDRESS_WIDTH> = '0,
-  param ERROR_STATUS: bit = 0,
+  param ERROR_STATUS: bool = false,
   param DEFAULT_READ_DATA: bit<32> = '0,
-  param INSERT_SLICER: bit = 0
+  param INSERT_SLICER: bool = false
 )(
   i_clk: input clock,
   i_rst: input reset,
@@ -41,8 +41,8 @@ pub module block_1 #(
     :g_register_0 {
       inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
       inst u_register: rggen::rggen_default_register #(
-        READABLE:       1,
-        WRITABLE:       1,
+        READABLE:       true,
+        WRITABLE:       true,
         ADDRESS_WIDTH:  7,
         OFFSET_ADDRESS: 7'h00,
         BUS_WIDTH:      32,
@@ -69,8 +69,8 @@ pub module block_1 #(
         inst u_bit_field: rggen::rggen_bit_field #(
           WIDTH:          8,
           INITIAL_VALUE:  INITIAL_VALUE,
-          SW_WRITE_ONCE:  0,
-          TRIGGER:        0
+          SW_WRITE_ONCE:  false,
+          TRIGGER:        false
         )(
           i_clk:            i_clk,
           i_rst:            i_rst,
@@ -84,8 +84,8 @@ pub module block_1 #(
     :g_register_1 {
       inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
       inst u_register: rggen::rggen_default_register #(
-        READABLE:       1,
-        WRITABLE:       1,
+        READABLE:       true,
+        WRITABLE:       true,
         ADDRESS_WIDTH:  7,
         OFFSET_ADDRESS: 7'h04,
         BUS_WIDTH:      32,
@@ -112,8 +112,8 @@ pub module block_1 #(
         inst u_bit_field: rggen::rggen_bit_field #(
           WIDTH:          8,
           INITIAL_VALUE:  INITIAL_VALUE,
-          SW_WRITE_ONCE:  0,
-          TRIGGER:        0
+          SW_WRITE_ONCE:  false,
+          TRIGGER:        false
         )(
           i_clk:            i_clk,
           i_rst:            i_rst,
@@ -133,8 +133,8 @@ pub module block_1 #(
         assign indirect_match[0] = register_if[0].value[0+:8] == (i as 8);
         assign indirect_match[1] = register_if[1].value[0+:8] == 8'h00;
         inst u_register: rggen::rggen_indirect_register #(
-          READABLE:             1,
-          WRITABLE:             1,
+          READABLE:             true,
+          WRITABLE:             true,
           ADDRESS_WIDTH:        7,
           OFFSET_ADDRESS:       7'h10,
           BUS_WIDTH:            32,
@@ -163,8 +163,8 @@ pub module block_1 #(
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          8,
             INITIAL_VALUE:  INITIAL_VALUE,
-            SW_WRITE_ONCE:  0,
-            TRIGGER:        0
+            SW_WRITE_ONCE:  false,
+            TRIGGER:        false
           )(
             i_clk:            i_clk,
             i_rst:            i_rst,
@@ -183,8 +183,8 @@ pub module block_1 #(
         assign indirect_match[0] = register_if[0].value[0+:8] == (i as 8);
         assign indirect_match[1] = register_if[1].value[0+:8] == 8'h01;
         inst u_register: rggen::rggen_indirect_register #(
-          READABLE:             1,
-          WRITABLE:             1,
+          READABLE:             true,
+          WRITABLE:             true,
           ADDRESS_WIDTH:        7,
           OFFSET_ADDRESS:       7'h10,
           BUS_WIDTH:            32,
@@ -213,8 +213,8 @@ pub module block_1 #(
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          8,
             INITIAL_VALUE:  INITIAL_VALUE,
-            SW_WRITE_ONCE:  0,
-            TRIGGER:        0
+            SW_WRITE_ONCE:  false,
+            TRIGGER:        false
           )(
             i_clk:            i_clk,
             i_rst:            i_rst,
@@ -235,8 +235,8 @@ pub module block_1 #(
             for k in 0..3 :g {
               inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
               inst u_register: rggen::rggen_default_register #(
-                READABLE:       1,
-                WRITABLE:       1,
+                READABLE:       true,
+                WRITABLE:       true,
                 ADDRESS_WIDTH:  7,
                 OFFSET_ADDRESS: 7'h20+(32*i as 7)+(4*(3*j+k) as 7),
                 BUS_WIDTH:      32,
@@ -264,8 +264,8 @@ pub module block_1 #(
                   inst u_bit_field: rggen::rggen_bit_field #(
                     WIDTH:          4,
                     INITIAL_VALUE:  INITIAL_VALUE,
-                    SW_WRITE_ONCE:  0,
-                    TRIGGER:        0
+                    SW_WRITE_ONCE:  false,
+                    TRIGGER:        false
                   )(
                     i_clk:            i_clk,
                     i_rst:            i_rst,
@@ -332,8 +332,8 @@ pub module block_1 #(
         :g_register_1 {
           inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
           inst u_register: rggen::rggen_default_register #(
-            READABLE:       1,
-            WRITABLE:       1,
+            READABLE:       true,
+            WRITABLE:       true,
             ADDRESS_WIDTH:  7,
             OFFSET_ADDRESS: 7'h20+(32*i as 7)+7'h18,
             BUS_WIDTH:      32,
@@ -361,8 +361,8 @@ pub module block_1 #(
               inst u_bit_field: rggen::rggen_bit_field #(
                 WIDTH:          1,
                 INITIAL_VALUE:  INITIAL_VALUE,
-                SW_WRITE_ONCE:  0,
-                TRIGGER:        0
+                SW_WRITE_ONCE:  false,
+                TRIGGER:        false
               )(
                 i_clk:            i_clk,
                 i_rst:            i_rst,

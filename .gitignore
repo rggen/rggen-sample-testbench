@@ -1,4 +1,5 @@
 Veryl.lock
 rggen_sample_testbench.list.rb
+.build/
 dependencies/
 target/

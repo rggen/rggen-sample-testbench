@@ -1,13 +1,13 @@
 import rggen::rggen_rtl_pkg::*;
 pub module block_0 #(
   param ADDRESS_WIDTH: u32 = 8,
-  param PRE_DECODE: bit = 0,
+  param PRE_DECODE: bool = false,
   param BASE_ADDRESS: bit<ADDRESS_WIDTH> = '0,
-  param ERROR_STATUS: bit = 0,
+  param ERROR_STATUS: bool = false,
   param DEFAULT_READ_DATA: bit<32> = '0,
-  param INSERT_SLICER: bit = 0,
+  param INSERT_SLICER: bool = false,
   param ID_WIDTH: u32 = 0,
-  param WRITE_FIRST: bit = 1,
+  param WRITE_FIRST: bool = true,
   param REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: bit<4, 4, 2> = {2'h0 repeat 16},
   param REGISTER_17_STROBE_WIDTH: u32 = 4
 )(
@@ -153,8 +153,8 @@ pub module block_0 #(
   :g_register_0 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h00,
       BUS_WIDTH:      32,
@@ -181,8 +181,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          4,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -206,8 +206,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          4,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -231,8 +231,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          1,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -256,8 +256,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          2,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  1,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  true,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -325,8 +325,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              2,
         INITIAL_VALUE:      INITIAL_VALUE,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -341,8 +341,8 @@ pub module block_0 #(
   :g_register_1 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h04,
       BUS_WIDTH:      32,
@@ -369,8 +369,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          1,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -384,8 +384,8 @@ pub module block_0 #(
   :g_register_2 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       0,
+      READABLE:       true,
+      WRITABLE:       false,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h08,
       BUS_WIDTH:      32,
@@ -411,9 +411,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -436,11 +436,11 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              8,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true
       )(
-        i_clk:        '0,
-        i_rst:        '0,
+        i_clk:        i_clk,
+        i_rst:        i_rst,
         bit_field_if: bit_field_sub_if,
         i_value:      INITIAL_VALUE
       );
@@ -497,8 +497,8 @@ pub module block_0 #(
   :g_register_3 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       0,
-      WRITABLE:       1,
+      READABLE:       false,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h08,
       BUS_WIDTH:      32,
@@ -526,8 +526,8 @@ pub module block_0 #(
         WIDTH:          4,
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_NONE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -551,8 +551,8 @@ pub module block_0 #(
         WIDTH:          4,
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_NONE,
-        SW_WRITE_ONCE:  1,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  true,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -605,8 +605,8 @@ pub module block_0 #(
   :g_register_4 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       0,
+      READABLE:       true,
+      WRITABLE:       false,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h0c,
       BUS_WIDTH:      32,
@@ -684,9 +684,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -723,8 +723,8 @@ pub module block_0 #(
   :g_register_5 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h10,
       BUS_WIDTH:      32,
@@ -1017,8 +1017,8 @@ pub module block_0 #(
   :g_register_6 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 64);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h14,
       BUS_WIDTH:      32,
@@ -1096,9 +1096,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -1172,9 +1172,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              4,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -1279,8 +1279,8 @@ pub module block_0 #(
   :g_register_7 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h1c,
       BUS_WIDTH:      32,
@@ -1389,8 +1389,8 @@ pub module block_0 #(
   :g_register_8 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 64);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h20,
       BUS_WIDTH:      32,
@@ -1553,8 +1553,8 @@ pub module block_0 #(
   :g_register_9 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h28,
       BUS_WIDTH:      32,
@@ -1581,8 +1581,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          2,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        1
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        true
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -1605,9 +1605,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              2,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            1
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            true
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -1631,8 +1631,8 @@ pub module block_0 #(
         WIDTH:          2,
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_NONE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        1
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        true
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -1655,8 +1655,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              2,
         INITIAL_VALUE:      INITIAL_VALUE,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            1
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            true
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -1714,8 +1714,8 @@ pub module block_0 #(
     for i in 0..4 :g {
       inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
       inst u_register: rggen::rggen_default_register #(
-        READABLE:       1,
-        WRITABLE:       1,
+        READABLE:       true,
+        WRITABLE:       true,
         ADDRESS_WIDTH:  8,
         OFFSET_ADDRESS: 8'h30+(8*i as 8),
         BUS_WIDTH:      32,
@@ -1743,8 +1743,8 @@ pub module block_0 #(
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          2,
             INITIAL_VALUE:  INITIAL_VALUE,
-            SW_WRITE_ONCE:  0,
-            TRIGGER:        0
+            SW_WRITE_ONCE:  false,
+            TRIGGER:        false
           )(
             i_clk:            i_clk,
             i_rst:            i_rst,
@@ -1769,8 +1769,8 @@ pub module block_0 #(
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          2,
             INITIAL_VALUE:  REGISTER_10_BIT_FIELD_1_INITIAL_VALUE[i][j],
-            SW_WRITE_ONCE:  0,
-            TRIGGER:        0
+            SW_WRITE_ONCE:  false,
+            TRIGGER:        false
           )(
             i_clk:            i_clk,
             i_rst:            i_rst,
@@ -1796,8 +1796,8 @@ pub module block_0 #(
           inst u_bit_field: rggen::rggen_bit_field #(
             WIDTH:          2,
             INITIAL_VALUE:  INITIAL_VALUE[i][j],
-            SW_WRITE_ONCE:  0,
-            TRIGGER:        0
+            SW_WRITE_ONCE:  false,
+            TRIGGER:        false
           )(
             i_clk:            i_clk,
             i_rst:            i_rst,
@@ -1819,8 +1819,8 @@ pub module block_0 #(
         assign indirect_match[1] = register_if[0].value[4+:4] == (j as 4);
         assign indirect_match[2] = register_if[0].value[8+:1] == 1'h0;
         inst u_register: rggen::rggen_indirect_register #(
-          READABLE:             1,
-          WRITABLE:             1,
+          READABLE:             true,
+          WRITABLE:             true,
           ADDRESS_WIDTH:        8,
           OFFSET_ADDRESS:       8'h50,
           BUS_WIDTH:            32,
@@ -1850,8 +1850,8 @@ pub module block_0 #(
             inst u_bit_field: rggen::rggen_bit_field #(
               WIDTH:          8,
               INITIAL_VALUE:  INITIAL_VALUE,
-              SW_WRITE_ONCE:  0,
-              TRIGGER:        0
+              SW_WRITE_ONCE:  false,
+              TRIGGER:        false
             )(
               i_clk:            i_clk,
               i_rst:            i_rst,
@@ -1877,8 +1877,8 @@ pub module block_0 #(
             inst u_bit_field: rggen::rggen_bit_field #(
               WIDTH:          8,
               INITIAL_VALUE:  INITIAL_VALUE,
-              SW_WRITE_ONCE:  0,
-              TRIGGER:        0
+              SW_WRITE_ONCE:  false,
+              TRIGGER:        false
             )(
               i_clk:            i_clk,
               i_rst:            i_rst,
@@ -1897,8 +1897,8 @@ pub module block_0 #(
     var indirect_match: logic;
     assign indirect_match = register_if[0].value[8+:1] == 1'h1;
     inst u_register: rggen::rggen_indirect_register #(
-      READABLE:             1,
-      WRITABLE:             1,
+      READABLE:             true,
+      WRITABLE:             true,
       ADDRESS_WIDTH:        8,
       OFFSET_ADDRESS:       8'h50,
       BUS_WIDTH:            32,
@@ -1927,8 +1927,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          1,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -1952,8 +1952,8 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:          1,
         INITIAL_VALUE:  INITIAL_VALUE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
@@ -1967,8 +1967,8 @@ pub module block_0 #(
   :g_register_13 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h60,
       BUS_WIDTH:      32,
@@ -1997,10 +1997,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_DEFAULT,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2030,10 +2030,10 @@ pub module block_0 #(
         INITIAL_VALUE:      '0,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2064,10 +2064,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_DEFAULT,
-        SW_WRITE_ONCE:      1,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      true,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2098,10 +2098,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_DEFAULT,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            1
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            true
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2132,10 +2132,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_CLEAR,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_1_SET,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2166,10 +2166,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_SET,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_1_CLEAR,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2200,10 +2200,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_1_SET,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2234,10 +2234,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_1_CLEAR,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2268,10 +2268,10 @@ pub module block_0 #(
         INITIAL_VALUE:      INITIAL_VALUE,
         SW_READ_ACTION:     rggen_sw_action::READ_DEFAULT,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_DEFAULT,
-        SW_WRITE_ONCE:      0,
-        STORAGE:            1,
-        EXTERNAL_READ_DATA: 0,
-        TRIGGER:            0
+        SW_WRITE_ONCE:      false,
+        STORAGE:            true,
+        EXTERNAL_READ_DATA: false,
+        TRIGGER:            false
       )(
         i_clk:              i_clk,
         i_rst:              i_rst,
@@ -2290,8 +2290,8 @@ pub module block_0 #(
   :g_register_14 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h70,
       BUS_WIDTH:      32,
@@ -2317,9 +2317,9 @@ pub module block_0 #(
       inst u_bit_field: rggen::rggen_bit_field #(
         WIDTH:              1,
         SW_WRITE_ACTION:    rggen_sw_action::WRITE_NONE,
-        STORAGE:            0,
-        EXTERNAL_READ_DATA: 1,
-        TRIGGER:            0
+        STORAGE:            false,
+        EXTERNAL_READ_DATA: true,
+        TRIGGER:            false
       )(
         i_clk:          i_clk,
         i_rst:          i_rst,
@@ -2332,8 +2332,8 @@ pub module block_0 #(
   :g_register_15 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
-      READABLE:       1,
-      WRITABLE:       1,
+      READABLE:       true,
+      WRITABLE:       true,
       ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h74,
       BUS_WIDTH:      32,
@@ -2361,8 +2361,8 @@ pub module block_0 #(
         WIDTH:          1,
         INITIAL_VALUE:  INITIAL_VALUE,
         SW_READ_ACTION: rggen_sw_action::READ_NONE,
-        SW_WRITE_ONCE:  0,
-        TRIGGER:        0
+        SW_WRITE_ONCE:  false,
+        TRIGGER:        false
       )(
         i_clk:            i_clk,
         i_rst:            i_rst,
