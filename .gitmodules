@@ -1,24 +1,24 @@
 [submodule "env/tue"]
 	path = env/tue
-	url = git@github.com:taichi-ishitani/tue.git
+	url = https://github.com/taichi-ishitani/tue.git
 [submodule "env/tvip-apb"]
 	path = env/tvip-apb
-	url = git@github.com:taichi-ishitani/tvip-apb.git
+	url = https://github.com/taichi-ishitani/tvip-apb.git
 [submodule "ral/rggen-sv-ral"]
 	path = ral/rggen-sv-ral
-	url = git@github.com:rggen/rggen-sv-ral.git
+	url = https://github.com/rggen/rggen-sv-ral.git
 [submodule "rtl/rggen-sv-rtl"]
 	path = rtl/rggen-sv-rtl
-	url = git@github.com:rggen/rggen-sv-rtl.git
+	url = https://github.com/rggen/rggen-sv-rtl.git
 [submodule "env/tvip-axi"]
 	path = env/tvip-axi
-	url = git@github.com:taichi-ishitani/tvip-axi.git
+	url = https://github.com/taichi-ishitani/tvip-axi.git
 [submodule "env/tvip-common"]
 	path = env/tvip-common
-	url = git@github.com:taichi-ishitani/tvip-common.git
+	url = https://github.com/taichi-ishitani/tvip-common.git
 [submodule "rtl/rggen-verilog-rtl"]
 	path = rtl/rggen-verilog-rtl
-	url = git@github.com:rggen/rggen-verilog-rtl.git
+	url = https://github.com/rggen/rggen-verilog-rtl.git
 [submodule "rtl/rggen-vhdl-rtl"]
 	path = rtl/rggen-vhdl-rtl
-	url = git@github.com:rggen/rggen-vhdl-rtl.git
+	url = https://github.com/rggen/rggen-vhdl-rtl.git
