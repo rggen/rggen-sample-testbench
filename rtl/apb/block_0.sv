@@ -1,11 +1,13 @@
 `ifndef rggen_connect_bit_field_if
   `define rggen_connect_bit_field_if(RIF, FIF, LSB, WIDTH) \
-  assign  FIF.valid                 = RIF.valid; \
-  assign  FIF.read_mask             = RIF.read_mask[LSB+:WIDTH]; \
-  assign  FIF.write_mask            = RIF.write_mask[LSB+:WIDTH]; \
-  assign  FIF.write_data            = RIF.write_data[LSB+:WIDTH]; \
-  assign  RIF.read_data[LSB+:WIDTH] = FIF.read_data; \
-  assign  RIF.value[LSB+:WIDTH]     = FIF.value;
+  always_comb begin \
+    FIF.write_valid           = RIF.write_valid; \
+    FIF.read_valid            = RIF.read_valid; \
+    FIF.mask                  = RIF.mask[LSB+:WIDTH]; \
+    FIF.write_data            = RIF.write_data[LSB+:WIDTH]; \
+    RIF.read_data[LSB+:WIDTH] = FIF.read_data; \
+    RIF.value[LSB+:WIDTH]     = FIF.value; \
+  end
 `endif
 `ifndef rggen_tie_off_unused_signals
   `define rggen_tie_off_unused_signals(WIDTH, VALID_BITS, RIF) \
@@ -13,8 +15,10 @@
     genvar  __i; \
     for (__i = 0;__i < WIDTH;++__i) begin : g \
       if ((((VALID_BITS) >> __i) % 2) == 0) begin : g \
-        assign  RIF.read_data[__i]  = 1'b0; \
-        assign  RIF.value[__i]      = 1'b0; \
+        always_comb begin \
+          RIF.read_data[__i]  = '0; \
+          RIF.value[__i]      = '0; \
+        end \
       end \
     end \
   end
@@ -484,7 +488,8 @@ module block_0
       rggen_bit_field #(
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE),
+        .HW_ACCESS        (3'b001)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -509,7 +514,8 @@ module block_0
       rggen_bit_field #(
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE),
+        .HW_ACCESS        (3'b001)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -653,14 +659,16 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_CLEAR),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
         .bit_field_if       (bit_field_sub_if),
         .o_write_trigger    (),
         .o_read_trigger     (),
-        .i_sw_write_enable  ('0),
+        .i_sw_write_enable  ('1),
         .i_hw_write_enable  ('0),
         .i_hw_write_data    ('0),
         .i_hw_set           (i_register_4_bit_field_0_set),
@@ -679,14 +687,16 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_CLEAR),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (1)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
         .bit_field_if       (bit_field_sub_if),
         .o_write_trigger    (),
         .o_read_trigger     (),
-        .i_sw_write_enable  ('0),
+        .i_sw_write_enable  ('1),
         .i_hw_write_enable  ('0),
         .i_hw_write_data    ('0),
         .i_hw_set           (i_register_4_bit_field_1_set),
@@ -730,14 +740,15 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_SET),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_NONE),
+        .HW_ACCESS        (3'b100)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
         .bit_field_if       (bit_field_sub_if),
         .o_write_trigger    (),
         .o_read_trigger     (),
-        .i_sw_write_enable  ('0),
+        .i_sw_write_enable  ('1),
         .i_hw_write_enable  ('0),
         .i_hw_write_data    ('0),
         .i_hw_set           ('0),
@@ -773,6 +784,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b100),
         .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -798,6 +810,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b100),
         .HW_CLEAR_WIDTH (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -823,6 +836,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b010),
         .HW_SET_WIDTH   (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -848,6 +862,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH          (2),
         .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b010),
         .HW_SET_WIDTH   (1)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -872,7 +887,8 @@ module block_0
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 8, 2)
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (INITIAL_VALUE)
+        .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b001)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -896,7 +912,8 @@ module block_0
       `rggen_connect_bit_field_if(bit_field_if, bit_field_sub_if, 10, 2)
       rggen_bit_field #(
         .WIDTH          (2),
-        .INITIAL_VALUE  (INITIAL_VALUE)
+        .INITIAL_VALUE  (INITIAL_VALUE),
+        .HW_ACCESS      (3'b001)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -921,6 +938,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -946,6 +964,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -971,6 +990,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_HIGH)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -996,6 +1016,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1021,6 +1042,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1046,6 +1068,7 @@ module block_0
       rggen_bit_field #(
         .WIDTH                    (2),
         .INITIAL_VALUE            (INITIAL_VALUE),
+        .SW_WRITE_CONTROL         (1),
         .SW_WRITE_ENABLE_POLARITY (RGGEN_ACTIVE_LOW)
       ) u_bit_field (
         .i_clk              (i_clk),
@@ -1090,7 +1113,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_0_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_0_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1116,7 +1141,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_0_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_0_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (1)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1167,7 +1194,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_1_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_1_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1193,7 +1222,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_1_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_1_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (1)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1244,7 +1275,8 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_0_SET)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_0_SET),
+        .HW_ACCESS        (3'b100)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1270,7 +1302,8 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_1_SET)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_1_SET),
+        .HW_ACCESS        (3'b100)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1486,7 +1519,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1512,7 +1547,8 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_DEFAULT),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_SET)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_SET),
+        .HW_ACCESS        (3'b100)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1538,7 +1574,9 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_NONE),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_CLEAR)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_CLEAR),
+        .HW_ACCESS        (3'b010),
+        .EXTERNAL_MASK    (0)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -1564,7 +1602,8 @@ module block_0
         .WIDTH            (4),
         .INITIAL_VALUE    (INITIAL_VALUE),
         .SW_READ_ACTION   (RGGEN_READ_NONE),
-        .SW_WRITE_ACTION  (RGGEN_WRITE_SET)
+        .SW_WRITE_ACTION  (RGGEN_WRITE_SET),
+        .HW_ACCESS        (3'b100)
       ) u_bit_field (
         .i_clk              (i_clk),
         .i_rst_n            (i_rst_n),
@@ -2081,6 +2120,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2110,6 +2150,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_NONE),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (0),
         .EXTERNAL_READ_DATA (1),
         .TRIGGER            (0)
@@ -2140,6 +2181,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (1),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2170,6 +2212,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (1)
@@ -2200,6 +2243,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_CLEAR),
         .SW_WRITE_ACTION    (RGGEN_WRITE_1_SET),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2230,6 +2274,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_SET),
         .SW_WRITE_ACTION    (RGGEN_WRITE_1_CLEAR),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b000),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2260,6 +2305,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_1_SET),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b100),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2290,6 +2336,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_1_CLEAR),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b010),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)
@@ -2320,6 +2367,7 @@ module block_0
         .SW_READ_ACTION     (RGGEN_READ_DEFAULT),
         .SW_WRITE_ACTION    (RGGEN_WRITE_DEFAULT),
         .SW_WRITE_ONCE      (0),
+        .HW_ACCESS          (3'b001),
         .STORAGE            (1),
         .EXTERNAL_READ_DATA (0),
         .TRIGGER            (0)

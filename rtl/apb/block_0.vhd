@@ -200,9 +200,9 @@ begin
       i_register_read_data  => register_read_data
     );
   g_register_0: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -235,9 +235,9 @@ begin
         o_register_status       => register_status(1 downto 0),
         o_register_read_data    => register_read_data(31 downto 0),
         o_register_value        => register_value(31 downto 0),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -254,10 +254,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -285,10 +285,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 4),
+          i_sw_mask         => bit_field_mask(7 downto 4),
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
@@ -316,10 +316,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(8 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(8 downto 8),
+          i_sw_mask         => bit_field_mask(8 downto 8),
           i_sw_write_data   => bit_field_write_data(8 downto 8),
           o_sw_read_data    => bit_field_read_data(8 downto 8),
           o_sw_value        => bit_field_value(8 downto 8),
@@ -347,10 +347,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(10 downto 9),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(10 downto 9),
+          i_sw_mask         => bit_field_mask(10 downto 9),
           i_sw_write_data   => bit_field_write_data(10 downto 9),
           o_sw_read_data    => bit_field_read_data(10 downto 9),
           o_sw_value        => bit_field_value(10 downto 9),
@@ -377,10 +377,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(12 downto 11),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(12 downto 11),
+          i_sw_mask         => bit_field_mask(12 downto 11),
           i_sw_write_data   => bit_field_write_data(12 downto 11),
           o_sw_read_data    => bit_field_read_data(12 downto 11),
           o_sw_value        => bit_field_value(12 downto 11),
@@ -407,10 +407,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(14 downto 13),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(14 downto 13),
+          i_sw_mask         => bit_field_mask(14 downto 13),
           i_sw_write_data   => bit_field_write_data(14 downto 13),
           o_sw_read_data    => bit_field_read_data(14 downto 13),
           o_sw_value        => bit_field_value(14 downto 13),
@@ -438,10 +438,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(16 downto 15),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(16 downto 15),
+          i_sw_mask         => bit_field_mask(16 downto 15),
           i_sw_write_data   => bit_field_write_data(16 downto 15),
           o_sw_read_data    => bit_field_read_data(16 downto 15),
           o_sw_value        => bit_field_value(16 downto 15),
@@ -459,9 +459,9 @@ begin
     end block;
   end block;
   g_register_1: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -494,9 +494,9 @@ begin
         o_register_status       => register_status(3 downto 2),
         o_register_read_data    => register_read_data(63 downto 32),
         o_register_value        => register_value(95 downto 64),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -513,10 +513,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
+          i_sw_mask         => bit_field_mask(0 downto 0),
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
@@ -534,9 +534,9 @@ begin
     end block;
   end block;
   g_register_2: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -569,9 +569,9 @@ begin
         o_register_status       => register_status(5 downto 4),
         o_register_read_data    => register_read_data(95 downto 64),
         o_register_value        => register_value(159 downto 128),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -588,10 +588,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -618,10 +618,10 @@ begin
         port map (
           i_clk             => '0',
           i_rst_n           => '0',
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(15 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(15 downto 8),
+          i_sw_mask         => bit_field_mask(15 downto 8),
           i_sw_write_data   => bit_field_write_data(15 downto 8),
           o_sw_read_data    => bit_field_read_data(15 downto 8),
           o_sw_value        => bit_field_value(15 downto 8),
@@ -643,15 +643,16 @@ begin
         generic map (
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
-          SW_WRITE_ACTION => RGGEN_WRITE_NONE
+          SW_WRITE_ACTION => RGGEN_WRITE_NONE,
+          HW_WRITE        => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -673,15 +674,16 @@ begin
         generic map (
           WIDTH           => 4,
           INITIAL_VALUE   => slice(x"0", 4, 0),
-          SW_WRITE_ACTION => RGGEN_WRITE_NONE
+          SW_WRITE_ACTION => RGGEN_WRITE_NONE,
+          HW_WRITE        => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(23 downto 20),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(23 downto 20),
+          i_sw_mask         => bit_field_mask(23 downto 20),
           i_sw_write_data   => bit_field_write_data(23 downto 20),
           o_sw_read_data    => bit_field_read_data(23 downto 20),
           o_sw_value        => bit_field_value(23 downto 20),
@@ -699,9 +701,9 @@ begin
     end block;
   end block;
   g_register_3: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -734,9 +736,9 @@ begin
         o_register_status       => register_status(7 downto 6),
         o_register_read_data    => register_read_data(127 downto 96),
         o_register_value        => register_value(223 downto 192),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -754,10 +756,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -786,10 +788,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 4),
+          i_sw_mask         => bit_field_mask(7 downto 4),
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
@@ -815,10 +817,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_mask         => bit_field_mask(11 downto 8),
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
@@ -836,10 +838,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -849,9 +851,9 @@ begin
     end block;
   end block;
   g_register_4: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -884,9 +886,9 @@ begin
         o_register_status       => register_status(9 downto 8),
         o_register_read_data    => register_read_data(159 downto 128),
         o_register_value        => register_value(287 downto 256),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -899,15 +901,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_CLEAR,
           SW_WRITE_ACTION => RGGEN_WRITE_NONE,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => false
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
-          i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
+          i_sw_write_enable => "1",
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -931,15 +935,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_CLEAR,
           SW_WRITE_ACTION => RGGEN_WRITE_NONE,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
-          i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
+          i_sw_write_enable => "1",
+          i_sw_mask         => bit_field_mask(11 downto 8),
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
@@ -967,10 +973,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(15 downto 12),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(15 downto 12),
+          i_sw_mask         => bit_field_mask(15 downto 12),
           i_sw_write_data   => bit_field_write_data(15 downto 12),
           o_sw_read_data    => bit_field_read_data(15 downto 12),
           o_sw_value        => bit_field_value(15 downto 12),
@@ -994,15 +1000,16 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_SET,
           SW_WRITE_ACTION => RGGEN_WRITE_NONE,
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 4
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
-          i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
+          i_sw_write_enable => "1",
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -1020,9 +1027,9 @@ begin
     end block;
   end block;
   g_register_5: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -1055,9 +1062,9 @@ begin
         o_register_status       => register_status(11 downto 10),
         o_register_read_data    => register_read_data(191 downto 160),
         o_register_value        => register_value(351 downto 320),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -1068,15 +1075,16 @@ begin
         generic map (
           WIDTH           => 2,
           INITIAL_VALUE   => slice(x"0", 2, 0),
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 1
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(1 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(1 downto 0),
+          i_sw_mask         => bit_field_mask(1 downto 0),
           i_sw_write_data   => bit_field_write_data(1 downto 0),
           o_sw_read_data    => bit_field_read_data(1 downto 0),
           o_sw_value        => bit_field_value(1 downto 0),
@@ -1098,15 +1106,16 @@ begin
         generic map (
           WIDTH           => 2,
           INITIAL_VALUE   => slice(x"0", 2, 0),
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 1
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 2),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 2),
+          i_sw_mask         => bit_field_mask(3 downto 2),
           i_sw_write_data   => bit_field_write_data(3 downto 2),
           o_sw_read_data    => bit_field_read_data(3 downto 2),
           o_sw_value        => bit_field_value(3 downto 2),
@@ -1128,15 +1137,16 @@ begin
         generic map (
           WIDTH         => 2,
           INITIAL_VALUE => slice(x"0", 2, 0),
+          HW_SET        => true,
           HW_SET_WIDTH  => 1
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(5 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(5 downto 4),
+          i_sw_mask         => bit_field_mask(5 downto 4),
           i_sw_write_data   => bit_field_write_data(5 downto 4),
           o_sw_read_data    => bit_field_read_data(5 downto 4),
           o_sw_value        => bit_field_value(5 downto 4),
@@ -1158,15 +1168,16 @@ begin
         generic map (
           WIDTH         => 2,
           INITIAL_VALUE => slice(x"0", 2, 0),
+          HW_SET        => true,
           HW_SET_WIDTH  => 1
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 6),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 6),
+          i_sw_mask         => bit_field_mask(7 downto 6),
           i_sw_write_data   => bit_field_write_data(7 downto 6),
           o_sw_read_data    => bit_field_read_data(7 downto 6),
           o_sw_value        => bit_field_value(7 downto 6),
@@ -1187,15 +1198,16 @@ begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
           WIDTH         => 2,
-          INITIAL_VALUE => slice(x"0", 2, 0)
+          INITIAL_VALUE => slice(x"0", 2, 0),
+          HW_WRITE      => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(9 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(9 downto 8),
+          i_sw_mask         => bit_field_mask(9 downto 8),
           i_sw_write_data   => bit_field_write_data(9 downto 8),
           o_sw_read_data    => bit_field_read_data(9 downto 8),
           o_sw_value        => bit_field_value(9 downto 8),
@@ -1216,15 +1228,16 @@ begin
       u_bit_field: entity work.rggen_bit_field
         generic map (
           WIDTH         => 2,
-          INITIAL_VALUE => slice(x"0", 2, 0)
+          INITIAL_VALUE => slice(x"0", 2, 0),
+          HW_WRITE      => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 10),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 10),
+          i_sw_mask         => bit_field_mask(11 downto 10),
           i_sw_write_data   => bit_field_write_data(11 downto 10),
           o_sw_read_data    => bit_field_read_data(11 downto 10),
           o_sw_value        => bit_field_value(11 downto 10),
@@ -1246,15 +1259,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_HIGH
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(13 downto 12),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => i_register_5_bit_field_6_enable,
-          i_sw_write_mask   => bit_field_write_mask(13 downto 12),
+          i_sw_mask         => bit_field_mask(13 downto 12),
           i_sw_write_data   => bit_field_write_data(13 downto 12),
           o_sw_read_data    => bit_field_read_data(13 downto 12),
           o_sw_value        => bit_field_value(13 downto 12),
@@ -1276,15 +1290,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_HIGH
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(15 downto 14),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => register_value(8 downto 8),
-          i_sw_write_mask   => bit_field_write_mask(15 downto 14),
+          i_sw_mask         => bit_field_mask(15 downto 14),
           i_sw_write_data   => bit_field_write_data(15 downto 14),
           o_sw_read_data    => bit_field_read_data(15 downto 14),
           o_sw_value        => bit_field_value(15 downto 14),
@@ -1306,15 +1321,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_HIGH
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(17 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => register_value(64 downto 64),
-          i_sw_write_mask   => bit_field_write_mask(17 downto 16),
+          i_sw_mask         => bit_field_mask(17 downto 16),
           i_sw_write_data   => bit_field_write_data(17 downto 16),
           o_sw_read_data    => bit_field_read_data(17 downto 16),
           o_sw_value        => bit_field_value(17 downto 16),
@@ -1336,15 +1352,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_LOW
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(21 downto 20),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => i_register_5_bit_field_9_lock,
-          i_sw_write_mask   => bit_field_write_mask(21 downto 20),
+          i_sw_mask         => bit_field_mask(21 downto 20),
           i_sw_write_data   => bit_field_write_data(21 downto 20),
           o_sw_read_data    => bit_field_read_data(21 downto 20),
           o_sw_value        => bit_field_value(21 downto 20),
@@ -1366,15 +1383,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_LOW
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(23 downto 22),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => register_value(8 downto 8),
-          i_sw_write_mask   => bit_field_write_mask(23 downto 22),
+          i_sw_mask         => bit_field_mask(23 downto 22),
           i_sw_write_data   => bit_field_write_data(23 downto 22),
           o_sw_read_data    => bit_field_read_data(23 downto 22),
           o_sw_value        => bit_field_value(23 downto 22),
@@ -1396,15 +1414,16 @@ begin
         generic map (
           WIDTH                     => 2,
           INITIAL_VALUE             => slice(x"0", 2, 0),
+          SW_WRITE_CONTROL          => true,
           SW_WRITE_ENABLE_POLARITY  => RGGEN_ACTIVE_LOW
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(25 downto 24),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => register_value(64 downto 64),
-          i_sw_write_mask   => bit_field_write_mask(25 downto 24),
+          i_sw_mask         => bit_field_mask(25 downto 24),
           i_sw_write_data   => bit_field_write_data(25 downto 24),
           o_sw_read_data    => bit_field_read_data(25 downto 24),
           o_sw_value        => bit_field_value(25 downto 24),
@@ -1422,9 +1441,9 @@ begin
     end block;
   end block;
   g_register_6: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(63 downto 0);
-    signal bit_field_write_mask: std_logic_vector(63 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(63 downto 0);
     signal bit_field_write_data: std_logic_vector(63 downto 0);
     signal bit_field_read_data: std_logic_vector(63 downto 0);
     signal bit_field_value: std_logic_vector(63 downto 0);
@@ -1457,9 +1476,9 @@ begin
         o_register_status       => register_status(13 downto 12),
         o_register_read_data    => register_read_data(223 downto 192),
         o_register_value        => register_value(447 downto 384),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -1472,15 +1491,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_0_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => false
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -1504,15 +1525,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_0_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 4),
+          i_sw_mask         => bit_field_mask(7 downto 4),
           i_sw_write_data   => bit_field_write_data(7 downto 4),
           o_sw_read_data    => bit_field_read_data(7 downto 4),
           o_sw_value        => bit_field_value(7 downto 4),
@@ -1540,10 +1563,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_mask         => bit_field_mask(11 downto 8),
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
@@ -1567,15 +1590,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_1_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => false
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(15 downto 12),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(15 downto 12),
+          i_sw_mask         => bit_field_mask(15 downto 12),
           i_sw_write_data   => bit_field_write_data(15 downto 12),
           o_sw_read_data    => bit_field_read_data(15 downto 12),
           o_sw_value        => bit_field_value(15 downto 12),
@@ -1599,15 +1624,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_1_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => true
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -1635,10 +1662,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(23 downto 20),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(23 downto 20),
+          i_sw_mask         => bit_field_mask(23 downto 20),
           i_sw_write_data   => bit_field_write_data(23 downto 20),
           o_sw_read_data    => bit_field_read_data(23 downto 20),
           o_sw_value        => bit_field_value(23 downto 20),
@@ -1662,15 +1689,16 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_0_SET,
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 4
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(27 downto 24),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(27 downto 24),
+          i_sw_mask         => bit_field_mask(27 downto 24),
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
@@ -1694,15 +1722,16 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_1_SET,
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 4
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(31 downto 28),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(31 downto 28),
+          i_sw_mask         => bit_field_mask(31 downto 28),
           i_sw_write_data   => bit_field_write_data(31 downto 28),
           o_sw_read_data    => bit_field_read_data(31 downto 28),
           o_sw_value        => bit_field_value(31 downto 28),
@@ -1729,10 +1758,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(35 downto 32),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(35 downto 32),
+          i_sw_mask         => bit_field_mask(35 downto 32),
           i_sw_write_data   => bit_field_write_data(35 downto 32),
           o_sw_read_data    => bit_field_read_data(35 downto 32),
           o_sw_value        => bit_field_value(35 downto 32),
@@ -1759,10 +1788,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(39 downto 36),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(39 downto 36),
+          i_sw_mask         => bit_field_mask(39 downto 36),
           i_sw_write_data   => bit_field_write_data(39 downto 36),
           o_sw_read_data    => bit_field_read_data(39 downto 36),
           o_sw_value        => bit_field_value(39 downto 36),
@@ -1780,9 +1809,9 @@ begin
     end block;
   end block;
   g_register_7: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -1815,9 +1844,9 @@ begin
         o_register_status       => register_status(15 downto 14),
         o_register_read_data    => register_read_data(255 downto 224),
         o_register_value        => register_value(479 downto 448),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -1834,10 +1863,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -1865,10 +1894,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_mask         => bit_field_mask(11 downto 8),
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
@@ -1896,10 +1925,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -1927,10 +1956,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(27 downto 24),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(27 downto 24),
+          i_sw_mask         => bit_field_mask(27 downto 24),
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
@@ -1948,9 +1977,9 @@ begin
     end block;
   end block;
   g_register_8: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(63 downto 0);
-    signal bit_field_write_mask: std_logic_vector(63 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(63 downto 0);
     signal bit_field_write_data: std_logic_vector(63 downto 0);
     signal bit_field_read_data: std_logic_vector(63 downto 0);
     signal bit_field_value: std_logic_vector(63 downto 0);
@@ -1983,9 +2012,9 @@ begin
         o_register_status       => register_status(17 downto 16),
         o_register_read_data    => register_read_data(287 downto 256),
         o_register_value        => register_value(575 downto 512),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -1998,15 +2027,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => false
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 0),
+          i_sw_mask         => bit_field_mask(3 downto 0),
           i_sw_write_data   => bit_field_write_data(3 downto 0),
           o_sw_read_data    => bit_field_read_data(3 downto 0),
           o_sw_value        => bit_field_value(3 downto 0),
@@ -2030,15 +2061,16 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION => RGGEN_WRITE_SET,
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 4
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 8),
+          i_sw_mask         => bit_field_mask(11 downto 8),
           i_sw_write_data   => bit_field_write_data(11 downto 8),
           o_sw_read_data    => bit_field_read_data(11 downto 8),
           o_sw_value        => bit_field_value(11 downto 8),
@@ -2062,15 +2094,17 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_NONE,
           SW_WRITE_ACTION => RGGEN_WRITE_CLEAR,
-          HW_SET_WIDTH    => 4
+          HW_SET          => true,
+          HW_SET_WIDTH    => 4,
+          EXTERNAL_MASK   => false
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(19 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(19 downto 16),
+          i_sw_mask         => bit_field_mask(19 downto 16),
           i_sw_write_data   => bit_field_write_data(19 downto 16),
           o_sw_read_data    => bit_field_read_data(19 downto 16),
           o_sw_value        => bit_field_value(19 downto 16),
@@ -2094,15 +2128,16 @@ begin
           INITIAL_VALUE   => slice(x"0", 4, 0),
           SW_READ_ACTION  => RGGEN_READ_NONE,
           SW_WRITE_ACTION => RGGEN_WRITE_SET,
+          HW_CLEAR        => true,
           HW_CLEAR_WIDTH  => 4
         )
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(27 downto 24),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(27 downto 24),
+          i_sw_mask         => bit_field_mask(27 downto 24),
           i_sw_write_data   => bit_field_write_data(27 downto 24),
           o_sw_read_data    => bit_field_read_data(27 downto 24),
           o_sw_value        => bit_field_value(27 downto 24),
@@ -2130,10 +2165,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(35 downto 32),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(35 downto 32),
+          i_sw_mask         => bit_field_mask(35 downto 32),
           i_sw_write_data   => bit_field_write_data(35 downto 32),
           o_sw_read_data    => bit_field_read_data(35 downto 32),
           o_sw_value        => bit_field_value(35 downto 32),
@@ -2161,10 +2196,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(43 downto 40),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(43 downto 40),
+          i_sw_mask         => bit_field_mask(43 downto 40),
           i_sw_write_data   => bit_field_write_data(43 downto 40),
           o_sw_read_data    => bit_field_read_data(43 downto 40),
           o_sw_value        => bit_field_value(43 downto 40),
@@ -2182,9 +2217,9 @@ begin
     end block;
   end block;
   g_register_9: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -2217,9 +2252,9 @@ begin
         o_register_status       => register_status(19 downto 18),
         o_register_read_data    => register_read_data(319 downto 288),
         o_register_value        => register_value(607 downto 576),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -2236,10 +2271,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(1 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(1 downto 0),
+          i_sw_mask         => bit_field_mask(1 downto 0),
           i_sw_write_data   => bit_field_write_data(1 downto 0),
           o_sw_read_data    => bit_field_read_data(1 downto 0),
           o_sw_value        => bit_field_value(1 downto 0),
@@ -2267,10 +2302,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 2),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 2),
+          i_sw_mask         => bit_field_mask(3 downto 2),
           i_sw_write_data   => bit_field_write_data(3 downto 2),
           o_sw_read_data    => bit_field_read_data(3 downto 2),
           o_sw_value        => bit_field_value(3 downto 2),
@@ -2299,10 +2334,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(5 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(5 downto 4),
+          i_sw_mask         => bit_field_mask(5 downto 4),
           i_sw_write_data   => bit_field_write_data(5 downto 4),
           o_sw_read_data    => bit_field_read_data(5 downto 4),
           o_sw_value        => bit_field_value(5 downto 4),
@@ -2330,10 +2365,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 6),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 6),
+          i_sw_mask         => bit_field_mask(7 downto 6),
           i_sw_write_data   => bit_field_write_data(7 downto 6),
           o_sw_read_data    => bit_field_read_data(7 downto 6),
           o_sw_value        => bit_field_value(7 downto 6),
@@ -2359,10 +2394,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(9 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(9 downto 8),
+          i_sw_mask         => bit_field_mask(9 downto 8),
           i_sw_write_data   => bit_field_write_data(9 downto 8),
           o_sw_read_data    => bit_field_read_data(9 downto 8),
           o_sw_value        => bit_field_value(9 downto 8),
@@ -2380,10 +2415,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 10),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 10),
+          i_sw_mask         => bit_field_mask(11 downto 10),
           i_sw_write_data   => bit_field_write_data(11 downto 10),
           o_sw_read_data    => bit_field_read_data(11 downto 10),
           o_sw_value        => bit_field_value(11 downto 10),
@@ -2395,9 +2430,9 @@ begin
   g_register_10: block
   begin
     g: for i in 0 to 3 generate
-      signal bit_field_valid: std_logic;
-      signal bit_field_read_mask: std_logic_vector(31 downto 0);
-      signal bit_field_write_mask: std_logic_vector(31 downto 0);
+      signal bit_field_read_valid: std_logic;
+      signal bit_field_write_valid: std_logic;
+      signal bit_field_mask: std_logic_vector(31 downto 0);
       signal bit_field_write_data: std_logic_vector(31 downto 0);
       signal bit_field_read_data: std_logic_vector(31 downto 0);
       signal bit_field_value: std_logic_vector(31 downto 0);
@@ -2430,9 +2465,9 @@ begin
           o_register_status       => register_status(2*(10+i)+1 downto 2*(10+i)),
           o_register_read_data    => register_read_data(32*(10+i)+31 downto 32*(10+i)),
           o_register_value        => register_value(64*(10+i)+0+31 downto 64*(10+i)+0),
-          o_bit_field_valid       => bit_field_valid,
-          o_bit_field_read_mask   => bit_field_read_mask,
-          o_bit_field_write_mask  => bit_field_write_mask,
+          o_bit_field_read_valid  => bit_field_read_valid,
+          o_bit_field_write_valid => bit_field_write_valid,
+          o_bit_field_mask        => bit_field_mask,
           o_bit_field_write_data  => bit_field_write_data,
           i_bit_field_read_data   => bit_field_read_data,
           i_bit_field_value       => bit_field_value
@@ -2451,10 +2486,10 @@ begin
             port map (
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
-              i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(0+8*j+1 downto 0+8*j),
+              i_sw_read_valid   => bit_field_read_valid,
+              i_sw_write_valid  => bit_field_write_valid,
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(0+8*j+1 downto 0+8*j),
+              i_sw_mask         => bit_field_mask(0+8*j+1 downto 0+8*j),
               i_sw_write_data   => bit_field_write_data(0+8*j+1 downto 0+8*j),
               o_sw_read_data    => bit_field_read_data(0+8*j+1 downto 0+8*j),
               o_sw_value        => bit_field_value(0+8*j+1 downto 0+8*j),
@@ -2485,10 +2520,10 @@ begin
             port map (
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
-              i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(2+8*j+1 downto 2+8*j),
+              i_sw_read_valid   => bit_field_read_valid,
+              i_sw_write_valid  => bit_field_write_valid,
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(2+8*j+1 downto 2+8*j),
+              i_sw_mask         => bit_field_mask(2+8*j+1 downto 2+8*j),
               i_sw_write_data   => bit_field_write_data(2+8*j+1 downto 2+8*j),
               o_sw_read_data    => bit_field_read_data(2+8*j+1 downto 2+8*j),
               o_sw_value        => bit_field_value(2+8*j+1 downto 2+8*j),
@@ -2519,10 +2554,10 @@ begin
             port map (
               i_clk             => i_clk,
               i_rst_n           => i_rst_n,
-              i_sw_valid        => bit_field_valid,
-              i_sw_read_mask    => bit_field_read_mask(4+8*j+1 downto 4+8*j),
+              i_sw_read_valid   => bit_field_read_valid,
+              i_sw_write_valid  => bit_field_write_valid,
               i_sw_write_enable => "1",
-              i_sw_write_mask   => bit_field_write_mask(4+8*j+1 downto 4+8*j),
+              i_sw_mask         => bit_field_mask(4+8*j+1 downto 4+8*j),
               i_sw_write_data   => bit_field_write_data(4+8*j+1 downto 4+8*j),
               o_sw_read_data    => bit_field_read_data(4+8*j+1 downto 4+8*j),
               o_sw_value        => bit_field_value(4+8*j+1 downto 4+8*j),
@@ -2546,9 +2581,9 @@ begin
     g: for i in 0 to 1 generate
     begin
       g: for j in 0 to 3 generate
-        signal bit_field_valid: std_logic;
-        signal bit_field_read_mask: std_logic_vector(63 downto 0);
-        signal bit_field_write_mask: std_logic_vector(63 downto 0);
+        signal bit_field_read_valid: std_logic;
+        signal bit_field_write_valid: std_logic;
+        signal bit_field_mask: std_logic_vector(63 downto 0);
         signal bit_field_write_data: std_logic_vector(63 downto 0);
         signal bit_field_read_data: std_logic_vector(63 downto 0);
         signal bit_field_value: std_logic_vector(63 downto 0);
@@ -2587,9 +2622,9 @@ begin
             o_register_read_data    => register_read_data(32*(14+4*i+j)+31 downto 32*(14+4*i+j)),
             o_register_value        => register_value(64*(14+4*i+j)+0+63 downto 64*(14+4*i+j)+0),
             i_indirect_match        => indirect_match,
-            o_bit_field_valid       => bit_field_valid,
-            o_bit_field_read_mask   => bit_field_read_mask,
-            o_bit_field_write_mask  => bit_field_write_mask,
+            o_bit_field_read_valid  => bit_field_read_valid,
+            o_bit_field_write_valid => bit_field_write_valid,
+            o_bit_field_mask        => bit_field_mask,
             o_bit_field_write_data  => bit_field_write_data,
             i_bit_field_read_data   => bit_field_read_data,
             i_bit_field_value       => bit_field_value
@@ -2608,10 +2643,10 @@ begin
               port map (
                 i_clk             => i_clk,
                 i_rst_n           => i_rst_n,
-                i_sw_valid        => bit_field_valid,
-                i_sw_read_mask    => bit_field_read_mask(0+16*k+7 downto 0+16*k),
+                i_sw_read_valid   => bit_field_read_valid,
+                i_sw_write_valid  => bit_field_write_valid,
                 i_sw_write_enable => "1",
-                i_sw_write_mask   => bit_field_write_mask(0+16*k+7 downto 0+16*k),
+                i_sw_mask         => bit_field_mask(0+16*k+7 downto 0+16*k),
                 i_sw_write_data   => bit_field_write_data(0+16*k+7 downto 0+16*k),
                 o_sw_read_data    => bit_field_read_data(0+16*k+7 downto 0+16*k),
                 o_sw_value        => bit_field_value(0+16*k+7 downto 0+16*k),
@@ -2642,10 +2677,10 @@ begin
               port map (
                 i_clk             => i_clk,
                 i_rst_n           => i_rst_n,
-                i_sw_valid        => bit_field_valid,
-                i_sw_read_mask    => bit_field_read_mask(8+16*k+7 downto 8+16*k),
+                i_sw_read_valid   => bit_field_read_valid,
+                i_sw_write_valid  => bit_field_write_valid,
                 i_sw_write_enable => "1",
-                i_sw_write_mask   => bit_field_write_mask(8+16*k+7 downto 8+16*k),
+                i_sw_mask         => bit_field_mask(8+16*k+7 downto 8+16*k),
                 i_sw_write_data   => bit_field_write_data(8+16*k+7 downto 8+16*k),
                 o_sw_read_data    => bit_field_read_data(8+16*k+7 downto 8+16*k),
                 o_sw_value        => bit_field_value(8+16*k+7 downto 8+16*k),
@@ -2666,9 +2701,9 @@ begin
     end generate;
   end block;
   g_register_12: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(63 downto 0);
-    signal bit_field_write_mask: std_logic_vector(63 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(63 downto 0);
     signal bit_field_write_data: std_logic_vector(63 downto 0);
     signal bit_field_read_data: std_logic_vector(63 downto 0);
     signal bit_field_value: std_logic_vector(63 downto 0);
@@ -2705,9 +2740,9 @@ begin
         o_register_read_data    => register_read_data(735 downto 704),
         o_register_value        => register_value(1471 downto 1408),
         i_indirect_match        => indirect_match,
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -2724,10 +2759,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
+          i_sw_mask         => bit_field_mask(0 downto 0),
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
@@ -2755,10 +2790,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(32 downto 32),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(32 downto 32),
+          i_sw_mask         => bit_field_mask(32 downto 32),
           i_sw_write_data   => bit_field_write_data(32 downto 32),
           o_sw_read_data    => bit_field_read_data(32 downto 32),
           o_sw_value        => bit_field_value(32 downto 32),
@@ -2776,9 +2811,9 @@ begin
     end block;
   end block;
   g_register_13: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -2811,9 +2846,9 @@ begin
         o_register_status       => register_status(47 downto 46),
         o_register_read_data    => register_read_data(767 downto 736),
         o_register_value        => register_value(1503 downto 1472),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -2827,7 +2862,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_DEFAULT,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -2836,10 +2874,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(1 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(1 downto 0),
+          i_sw_mask         => bit_field_mask(1 downto 0),
           i_sw_write_data   => bit_field_write_data(1 downto 0),
           o_sw_read_data    => bit_field_read_data(1 downto 0),
           o_sw_value        => bit_field_value(1 downto 0),
@@ -2864,7 +2902,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_NONE,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => false,
           EXTERNAL_READ_DATA  => true,
@@ -2873,10 +2914,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(3 downto 2),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(3 downto 2),
+          i_sw_mask         => bit_field_mask(3 downto 2),
           i_sw_write_data   => bit_field_write_data(3 downto 2),
           o_sw_read_data    => bit_field_read_data(3 downto 2),
           o_sw_value        => bit_field_value(3 downto 2),
@@ -2901,7 +2942,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_DEFAULT,
           SW_WRITE_ONCE       => true,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -2910,10 +2954,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(5 downto 4),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(5 downto 4),
+          i_sw_mask         => bit_field_mask(5 downto 4),
           i_sw_write_data   => bit_field_write_data(5 downto 4),
           o_sw_read_data    => bit_field_read_data(5 downto 4),
           o_sw_value        => bit_field_value(5 downto 4),
@@ -2938,7 +2982,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_DEFAULT,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -2947,10 +2994,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(7 downto 6),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(7 downto 6),
+          i_sw_mask         => bit_field_mask(7 downto 6),
           i_sw_write_data   => bit_field_write_data(7 downto 6),
           o_sw_read_data    => bit_field_read_data(7 downto 6),
           o_sw_value        => bit_field_value(7 downto 6),
@@ -2975,7 +3022,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_CLEAR,
           SW_WRITE_ACTION     => RGGEN_WRITE_1_SET,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -2984,10 +3034,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(9 downto 8),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(9 downto 8),
+          i_sw_mask         => bit_field_mask(9 downto 8),
           i_sw_write_data   => bit_field_write_data(9 downto 8),
           o_sw_read_data    => bit_field_read_data(9 downto 8),
           o_sw_value        => bit_field_value(9 downto 8),
@@ -3012,7 +3062,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_SET,
           SW_WRITE_ACTION     => RGGEN_WRITE_1_CLEAR,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -3021,10 +3074,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(11 downto 10),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(11 downto 10),
+          i_sw_mask         => bit_field_mask(11 downto 10),
           i_sw_write_data   => bit_field_write_data(11 downto 10),
           o_sw_read_data    => bit_field_read_data(11 downto 10),
           o_sw_value        => bit_field_value(11 downto 10),
@@ -3049,7 +3102,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_1_SET,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => true,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -3058,10 +3114,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(13 downto 12),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(13 downto 12),
+          i_sw_mask         => bit_field_mask(13 downto 12),
           i_sw_write_data   => bit_field_write_data(13 downto 12),
           o_sw_read_data    => bit_field_read_data(13 downto 12),
           o_sw_value        => bit_field_value(13 downto 12),
@@ -3086,7 +3142,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_1_CLEAR,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => false,
+          HW_SET              => true,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -3095,10 +3154,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(15 downto 14),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(15 downto 14),
+          i_sw_mask         => bit_field_mask(15 downto 14),
           i_sw_write_data   => bit_field_write_data(15 downto 14),
           o_sw_read_data    => bit_field_read_data(15 downto 14),
           o_sw_value        => bit_field_value(15 downto 14),
@@ -3123,7 +3182,10 @@ begin
           SW_READ_ACTION      => RGGEN_READ_DEFAULT,
           SW_WRITE_ACTION     => RGGEN_WRITE_DEFAULT,
           SW_WRITE_ONCE       => false,
+          HW_WRITE            => true,
+          HW_SET              => false,
           HW_SET_WIDTH        => 2,
+          HW_CLEAR            => false,
           HW_CLEAR_WIDTH      => 2,
           STORAGE             => true,
           EXTERNAL_READ_DATA  => false,
@@ -3132,10 +3194,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(17 downto 16),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(17 downto 16),
+          i_sw_mask         => bit_field_mask(17 downto 16),
           i_sw_write_data   => bit_field_write_data(17 downto 16),
           o_sw_read_data    => bit_field_read_data(17 downto 16),
           o_sw_value        => bit_field_value(17 downto 16),
@@ -3153,9 +3215,9 @@ begin
     end block;
   end block;
   g_register_14: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -3188,9 +3250,9 @@ begin
         o_register_status       => register_status(49 downto 48),
         o_register_read_data    => register_read_data(799 downto 768),
         o_register_value        => register_value(1567 downto 1536),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -3207,10 +3269,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "0",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
+          i_sw_mask         => bit_field_mask(0 downto 0),
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
@@ -3228,9 +3290,9 @@ begin
     end block;
   end block;
   g_register_15: block
-    signal bit_field_valid: std_logic;
-    signal bit_field_read_mask: std_logic_vector(31 downto 0);
-    signal bit_field_write_mask: std_logic_vector(31 downto 0);
+    signal bit_field_read_valid: std_logic;
+    signal bit_field_write_valid: std_logic;
+    signal bit_field_mask: std_logic_vector(31 downto 0);
     signal bit_field_write_data: std_logic_vector(31 downto 0);
     signal bit_field_read_data: std_logic_vector(31 downto 0);
     signal bit_field_value: std_logic_vector(31 downto 0);
@@ -3263,9 +3325,9 @@ begin
         o_register_status       => register_status(51 downto 50),
         o_register_read_data    => register_read_data(831 downto 800),
         o_register_value        => register_value(1631 downto 1600),
-        o_bit_field_valid       => bit_field_valid,
-        o_bit_field_read_mask   => bit_field_read_mask,
-        o_bit_field_write_mask  => bit_field_write_mask,
+        o_bit_field_read_valid  => bit_field_read_valid,
+        o_bit_field_write_valid => bit_field_write_valid,
+        o_bit_field_mask        => bit_field_mask,
         o_bit_field_write_data  => bit_field_write_data,
         i_bit_field_read_data   => bit_field_read_data,
         i_bit_field_value       => bit_field_value
@@ -3283,10 +3345,10 @@ begin
         port map (
           i_clk             => i_clk,
           i_rst_n           => i_rst_n,
-          i_sw_valid        => bit_field_valid,
-          i_sw_read_mask    => bit_field_read_mask(0 downto 0),
+          i_sw_read_valid   => bit_field_read_valid,
+          i_sw_write_valid  => bit_field_write_valid,
           i_sw_write_enable => "1",
-          i_sw_write_mask   => bit_field_write_mask(0 downto 0),
+          i_sw_mask         => bit_field_mask(0 downto 0),
           i_sw_write_data   => bit_field_write_data(0 downto 0),
           o_sw_read_data    => bit_field_read_data(0 downto 0),
           o_sw_value        => bit_field_value(0 downto 0),
