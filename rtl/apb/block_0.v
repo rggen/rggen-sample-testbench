@@ -7,7 +7,7 @@ module block_0 #(
   parameter [31:0] DEFAULT_READ_DATA = 0,
   parameter INSERT_SLICER = 0,
   parameter [31:0] REGISTER_10_BIT_FIELD_1_INITIAL_VALUE = {16{2'h0}},
-  parameter REGISTER_17_STROBE_WIDTH = 4
+  parameter REGISTER_18_STROBE_WIDTH = 4
 )(
   input i_clk,
   input i_rst_n,
@@ -135,30 +135,31 @@ module block_0 #(
   input [1:0] i_register_13_bit_field_8_hw_write_data,
   input i_register_14_bit_field_0,
   output o_register_15_bit_field_0,
-  output o_register_17_valid,
-  output [1:0] o_register_17_access,
-  output [7:0] o_register_17_address,
-  output [31:0] o_register_17_data,
-  output [REGISTER_17_STROBE_WIDTH-1:0] o_register_17_strobe,
-  input i_register_17_ready,
-  input [1:0] i_register_17_status,
-  input [31:0] i_register_17_data
+  output [15:0] o_register_16_bit_field_0,
+  output o_register_18_valid,
+  output [1:0] o_register_18_access,
+  output [7:0] o_register_18_address,
+  output [31:0] o_register_18_data,
+  output [REGISTER_18_STROBE_WIDTH-1:0] o_register_18_strobe,
+  input i_register_18_ready,
+  input [1:0] i_register_18_status,
+  input [31:0] i_register_18_data
 );
   wire w_register_valid;
   wire [1:0] w_register_access;
   wire [7:0] w_register_address;
   wire [31:0] w_register_write_data;
   wire [31:0] w_register_strobe;
-  wire [26:0] w_register_active;
-  wire [26:0] w_register_ready;
-  wire [53:0] w_register_status;
-  wire [863:0] w_register_read_data;
-  wire [1727:0] w_register_value;
+  wire [27:0] w_register_active;
+  wire [27:0] w_register_ready;
+  wire [55:0] w_register_status;
+  wire [895:0] w_register_read_data;
+  wire [1791:0] w_register_value;
   rggen_apb_adapter #(
     .ADDRESS_WIDTH        (ADDRESS_WIDTH),
     .LOCAL_ADDRESS_WIDTH  (8),
     .BUS_WIDTH            (32),
-    .REGISTERS            (27),
+    .REGISTERS            (28),
     .PRE_DECODE           (PRE_DECODE),
     .BASE_ADDRESS         (BASE_ADDRESS),
     .BYTE_SIZE            (256),
@@ -2949,11 +2950,75 @@ module block_0 #(
       );
     end
   end endgenerate
-  generate if (1) begin : g_register_17
+  generate if (1) begin : g_register_16
+    wire w_bit_field_read_valid;
+    wire w_bit_field_write_valid;
+    wire [31:0] w_bit_field_mask;
+    wire [31:0] w_bit_field_write_data;
+    wire [31:0] w_bit_field_read_data;
+    wire [31:0] w_bit_field_value;
+    `rggen_tie_off_unused_signals(32, 32'h0000ffff, w_bit_field_read_data, w_bit_field_value)
+    rggen_maskable_register #(
+      .READABLE       (1),
+      .WRITABLE       (1),
+      .ADDRESS_WIDTH  (8),
+      .OFFSET_ADDRESS (8'h78),
+      .BUS_WIDTH      (32),
+      .DATA_WIDTH     (32)
+    ) u_register (
+      .i_clk                    (i_clk),
+      .i_rst_n                  (i_rst_n),
+      .i_register_valid         (w_register_valid),
+      .i_register_access        (w_register_access),
+      .i_register_address       (w_register_address),
+      .i_register_write_data    (w_register_write_data),
+      .i_register_strobe        (w_register_strobe),
+      .o_register_active        (w_register_active[26+:1]),
+      .o_register_ready         (w_register_ready[26+:1]),
+      .o_register_status        (w_register_status[52+:2]),
+      .o_register_read_data     (w_register_read_data[832+:32]),
+      .o_register_value         (w_register_value[1664+:32]),
+      .o_bit_field_read_valid   (w_bit_field_read_valid),
+      .o_bit_field_write_valid  (w_bit_field_write_valid),
+      .o_bit_field_mask         (w_bit_field_mask),
+      .o_bit_field_write_data   (w_bit_field_write_data),
+      .i_bit_field_read_data    (w_bit_field_read_data),
+      .i_bit_field_value        (w_bit_field_value)
+    );
+    if (1) begin : g_bit_field_0
+      rggen_bit_field #(
+        .WIDTH          (16),
+        .INITIAL_VALUE  (16'h0000),
+        .SW_WRITE_ONCE  (0),
+        .TRIGGER        (0)
+      ) u_bit_field (
+        .i_clk              (i_clk),
+        .i_rst_n            (i_rst_n),
+        .i_sw_read_valid    (w_bit_field_read_valid),
+        .i_sw_write_valid   (w_bit_field_write_valid),
+        .i_sw_write_enable  (1'b1),
+        .i_sw_mask          (w_bit_field_mask[0+:16]),
+        .i_sw_write_data    (w_bit_field_write_data[0+:16]),
+        .o_sw_read_data     (w_bit_field_read_data[0+:16]),
+        .o_sw_value         (w_bit_field_value[0+:16]),
+        .o_write_trigger    (),
+        .o_read_trigger     (),
+        .i_hw_write_enable  (1'b0),
+        .i_hw_write_data    ({16{1'b0}}),
+        .i_hw_set           ({16{1'b0}}),
+        .i_hw_clear         ({16{1'b0}}),
+        .i_value            ({16{1'b0}}),
+        .i_mask             ({16{1'b1}}),
+        .o_value            (o_register_16_bit_field_0),
+        .o_value_unmasked   ()
+      );
+    end
+  end endgenerate
+  generate if (1) begin : g_register_18
     rggen_external_register #(
       .ADDRESS_WIDTH  (8),
       .BUS_WIDTH      (32),
-      .STROBE_WIDTH   (REGISTER_17_STROBE_WIDTH),
+      .STROBE_WIDTH   (REGISTER_18_STROBE_WIDTH),
       .START_ADDRESS  (8'h80),
       .BYTE_SIZE      (128)
     ) u_register (
@@ -2964,19 +3029,19 @@ module block_0 #(
       .i_register_address     (w_register_address),
       .i_register_write_data  (w_register_write_data),
       .i_register_strobe      (w_register_strobe),
-      .o_register_active      (w_register_active[26+:1]),
-      .o_register_ready       (w_register_ready[26+:1]),
-      .o_register_status      (w_register_status[52+:2]),
-      .o_register_read_data   (w_register_read_data[832+:32]),
-      .o_register_value       (w_register_value[1664+:32]),
-      .o_external_valid       (o_register_17_valid),
-      .o_external_access      (o_register_17_access),
-      .o_external_address     (o_register_17_address),
-      .o_external_data        (o_register_17_data),
-      .o_external_strobe      (o_register_17_strobe),
-      .i_external_ready       (i_register_17_ready),
-      .i_external_status      (i_register_17_status),
-      .i_external_data        (i_register_17_data)
+      .o_register_active      (w_register_active[27+:1]),
+      .o_register_ready       (w_register_ready[27+:1]),
+      .o_register_status      (w_register_status[54+:2]),
+      .o_register_read_data   (w_register_read_data[864+:32]),
+      .o_register_value       (w_register_value[1728+:32]),
+      .o_external_valid       (o_register_18_valid),
+      .o_external_access      (o_register_18_access),
+      .o_external_address     (o_register_18_address),
+      .o_external_data        (o_register_18_data),
+      .o_external_strobe      (o_register_18_strobe),
+      .i_external_ready       (i_register_18_ready),
+      .i_external_status      (i_register_18_status),
+      .i_external_data        (i_register_18_data)
     );
   end endgenerate
 endmodule
