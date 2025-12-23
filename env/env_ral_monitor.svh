@@ -31,7 +31,7 @@ class env_ral_monitor #(
     end
 
     model.set_hdl_path_root("top.u_block_0");
-    model.register_18.set_hdl_path_root("top.u_block_1");
+    model.register_19.set_hdl_path_root("top.u_block_1");
 
     model.lock_model();
   endfunction

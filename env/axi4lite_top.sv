@@ -119,22 +119,24 @@ module top;
   logic [1:0]                           register_13_bit_field_8;
   logic                                 register_13_bit_field_8_hw_write_enable;
   logic [1:0]                           register_13_bit_field_8_hw_write_data;
-  logic                                 register_14_bit_field_0;
+  logic [7:0]                           register_14_bit_field_0;
+  logic [7:0]                           register_14_bit_field_1;
   logic                                 register_15_bit_field_0;
-  logic [15:0]                          register_16_bit_field_0;
+  logic                                 register_16_bit_field_0;
+  logic [15:0]                          register_17_bit_field_0;
 `ifdef RGGEN_VERYL
-  rggen_rggen_bus_if #(8, 32)           register_18_bus_if();
+  rggen_rggen_bus_if #(8, 32)           register_19_bus_if();
 `elsif RGGEN_SYSTEMVERILOG
-  rggen_bus_if #(8, 32)                 register_18_bus_if();
+  rggen_bus_if #(8, 32)                 register_19_bus_if();
 `else
-  logic                                 register_18_valid;
-  logic [1:0]                           register_18_access;
-  logic [7:0]                           register_18_address;
-  logic [31:0]                          register_18_write_data;
-  logic [3:0]                           register_18_strobe;
-  logic                                 register_18_ready;
-  logic [1:0]                           register_18_status;
-  logic [31:0]                          register_18_read_data;
+  logic                                 register_19_valid;
+  logic [1:0]                           register_19_access;
+  logic [7:0]                           register_19_address;
+  logic [31:0]                          register_19_write_data;
+  logic [3:0]                           register_19_strobe;
+  logic                                 register_19_ready;
+  logic [1:0]                           register_19_status;
+  logic [31:0]                          register_19_read_data;
 `endif
 
   initial begin
@@ -186,7 +188,7 @@ module top;
     register_13_bit_field_7_hw_set          = register_13_bit_field_3_read_trigger;
     register_13_bit_field_8_hw_write_enable = register_13_bit_field_3_write_trigger;
     register_13_bit_field_8_hw_write_data   = register_13_bit_field_3;
-    register_14_bit_field_0                 = register_0_bit_field_0[0];
+    register_15_bit_field_0                 = register_0_bit_field_0[0];
   end
 
   block_0 #(
@@ -208,132 +210,132 @@ module top;
   `endif
 `endif
   ) u_block_0 (
-    .i_clk                                      (clk                              ),
-    .i_rst_n                                    (rst_n                            ),
+    .i_clk                                      (clk                                      ),
+    .i_rst_n                                    (rst_n                                    ),
 `ifdef SV_OR_VERYL
-    .axi4lite_if                                (axi4lite_if[0]                   ),
+    .axi4lite_if                                (axi4lite_if[0]                           ),
 `else
-    .i_awvalid                                  (axi4lite_if[0].awvalid           ),
-    .o_awready                                  (axi4lite_if[0].awready           ),
-    .i_awid                                     (axi4lite_if[0].awid              ),
-    .i_awaddr                                   (axi4lite_if[0].awaddr            ),
-    .i_awprot                                   (axi4lite_if[0].awprot            ),
-    .i_wvalid                                   (axi4lite_if[0].wvalid            ),
-    .o_wready                                   (axi4lite_if[0].wready            ),
-    .i_wdata                                    (axi4lite_if[0].wdata             ),
-    .i_wstrb                                    (axi4lite_if[0].wstrb             ),
-    .o_bvalid                                   (axi4lite_if[0].bvalid            ),
-    .i_bready                                   (axi4lite_if[0].bready            ),
-    .o_bid                                      (axi4lite_if[0].bid               ),
-    .o_bresp                                    (axi4lite_if[0].bresp             ),
-    .i_arvalid                                  (axi4lite_if[0].arvalid           ),
-    .o_arready                                  (axi4lite_if[0].arready           ),
-    .i_araddr                                   (axi4lite_if[0].araddr            ),
-    .i_arid                                     (axi4lite_if[0].arid              ),
-    .i_arprot                                   (axi4lite_if[0].arprot            ),
-    .o_rvalid                                   (axi4lite_if[0].rvalid            ),
-    .i_rready                                   (axi4lite_if[0].rready            ),
-    .o_rid                                      (axi4lite_if[0].rid               ),
-    .o_rresp                                    (axi4lite_if[0].rresp             ),
-    .o_rdata                                    (axi4lite_if[0].rdata             ),
+    .i_awvalid                                  (axi4lite_if[0].awvalid                   ),
+    .o_awready                                  (axi4lite_if[0].awready                   ),
+    .i_awid                                     (axi4lite_if[0].awid                      ),
+    .i_awaddr                                   (axi4lite_if[0].awaddr                    ),
+    .i_awprot                                   (axi4lite_if[0].awprot                    ),
+    .i_wvalid                                   (axi4lite_if[0].wvalid                    ),
+    .o_wready                                   (axi4lite_if[0].wready                    ),
+    .i_wdata                                    (axi4lite_if[0].wdata                     ),
+    .i_wstrb                                    (axi4lite_if[0].wstrb                     ),
+    .o_bvalid                                   (axi4lite_if[0].bvalid                    ),
+    .i_bready                                   (axi4lite_if[0].bready                    ),
+    .o_bid                                      (axi4lite_if[0].bid                       ),
+    .o_bresp                                    (axi4lite_if[0].bresp                     ),
+    .i_arvalid                                  (axi4lite_if[0].arvalid                   ),
+    .o_arready                                  (axi4lite_if[0].arready                   ),
+    .i_araddr                                   (axi4lite_if[0].araddr                    ),
+    .i_arid                                     (axi4lite_if[0].arid                      ),
+    .i_arprot                                   (axi4lite_if[0].arprot                    ),
+    .o_rvalid                                   (axi4lite_if[0].rvalid                    ),
+    .i_rready                                   (axi4lite_if[0].rready                    ),
+    .o_rid                                      (axi4lite_if[0].rid                       ),
+    .o_rresp                                    (axi4lite_if[0].rresp                     ),
+    .o_rdata                                    (axi4lite_if[0].rdata                     ),
 `endif
-    .o_register_0_bit_field_0                   (register_0_bit_field_0           ),
-    .o_register_0_bit_field_1                   (register_0_bit_field_1           ),
-    .o_register_0_bit_field_2                   (register_0_bit_field_2           ),
-    .o_register_0_bit_field_3                   (register_0_bit_field_3           ),
-    .o_register_0_bit_field_4                   (register_0_bit_field_4           ),
-    .o_register_0_bit_field_5                   (register_0_bit_field_5           ),
-    .o_register_0_bit_field_6                   (register_0_bit_field_6           ),
-    .i_register_0_bit_field_6                   (register_0_bit_field_6           ),
-    .o_register_1                               (register_1                       ),
-    .i_register_2_bit_field_0                   (register_2_bit_field_0           ),
-    .i_register_2_bit_field_2_valid             (register_2_bit_field_2_valid     ),
-    .i_register_2_bit_field_2                   (register_2_bit_field_2[0]        ),
-    .o_register_2_bit_field_2                   (register_2_bit_field_2[1]        ),
-    .i_register_2_bit_field_3                   (register_2_bit_field_3[0]        ),
-    .o_register_2_bit_field_3                   (register_2_bit_field_3[1]        ),
-    .o_register_3_bit_field_0                   (register_3_bit_field_0           ),
-    .o_register_3_bit_field_1                   (register_3_bit_field_1           ),
-    .o_register_3_bit_field_2_trigger           (register_3_bit_field_2_trigger   ),
-    .o_register_3_bit_field_3_trigger           (register_3_bit_field_3_trigger   ),
-    .i_register_4_bit_field_0_set               (register_4_bit_field_0_set       ),
-    .o_register_4_bit_field_0                   (register_4_bit_field_0           ),
-    .i_register_4_bit_field_1_set               (register_4_bit_field_1_set       ),
-    .o_register_4_bit_field_1                   (register_4_bit_field_1           ),
-    .o_register_4_bit_field_1_unmasked          (register_4_bit_field_1_unmasked  ),
-    .i_register_4_bit_field_3_clear             (register_4_bit_field_3_clear     ),
-    .o_register_4_bit_field_3                   (register_4_bit_field_3           ),
-    .i_register_5_bit_field_0_clear             (register_5_bit_field_0_clear     ),
-    .o_register_5_bit_field_0                   (register_5_bit_field_0           ),
-    .o_register_5_bit_field_1                   (register_5_bit_field_1           ),
-    .i_register_5_bit_field_2_set               (register_5_bit_field_2_set       ),
-    .o_register_5_bit_field_2                   (register_5_bit_field_2           ),
-    .o_register_5_bit_field_3                   (register_5_bit_field_3           ),
-    .i_register_5_bit_field_4_valid             (register_5_bit_field_4_valid     ),
-    .i_register_5_bit_field_4                   (register_5_bit_field_4[0]        ),
-    .o_register_5_bit_field_4                   (register_5_bit_field_4[1]        ),
-    .i_register_5_bit_field_5                   (register_5_bit_field_5[0]        ),
-    .o_register_5_bit_field_5                   (register_5_bit_field_5[1]        ),
-    .i_register_5_bit_field_6_enable            (register_5_bit_field_6_enable    ),
-    .o_register_5_bit_field_6                   (register_5_bit_field_6           ),
-    .o_register_5_bit_field_7                   (register_5_bit_field_7           ),
-    .o_register_5_bit_field_8                   (register_5_bit_field_8           ),
-    .i_register_5_bit_field_9_lock              (register_5_bit_field_9_lock      ),
-    .o_register_5_bit_field_9                   (register_5_bit_field_9           ),
-    .o_register_5_bit_field_10                  (register_5_bit_field_10          ),
-    .o_register_5_bit_field_11                  (register_5_bit_field_11          ),
-    .i_register_6_bit_field_0_set               (register_6_bit_field_0_set       ),
-    .o_register_6_bit_field_0                   (register_6_bit_field_0           ),
-    .i_register_6_bit_field_1_set               (register_6_bit_field_1_set       ),
-    .o_register_6_bit_field_1                   (register_6_bit_field_1           ),
-    .o_register_6_bit_field_1_unmasked          (register_6_bit_field_1_unmasked  ),
-    .i_register_6_bit_field_3_set               (register_6_bit_field_3_set       ),
-    .o_register_6_bit_field_3                   (register_6_bit_field_3           ),
-    .i_register_6_bit_field_4_set               (register_6_bit_field_4_set       ),
-    .o_register_6_bit_field_4                   (register_6_bit_field_4           ),
-    .o_register_6_bit_field_4_unmasked          (register_6_bit_field_4_unmasked  ),
-    .i_register_6_bit_field_6_clear             (register_6_bit_field_6_clear     ),
-    .o_register_6_bit_field_6                   (register_6_bit_field_6           ),
-    .i_register_6_bit_field_7_clear             (register_6_bit_field_7_clear     ),
-    .o_register_6_bit_field_7                   (register_6_bit_field_7           ),
-    .o_register_6_bit_field_8                   (register_6_bit_field_8           ),
-    .o_register_6_bit_field_9                   (register_6_bit_field_9           ),
-    .o_register_7_bit_field_0                   (register_7_bit_field_0           ),
-    .o_register_7_bit_field_1                   (register_7_bit_field_1           ),
-    .o_register_7_bit_field_2                   (register_7_bit_field_2           ),
-    .o_register_7_bit_field_3                   (register_7_bit_field_3           ),
-    .i_register_8_bit_field_0_set               (register_8_bit_field_0_set       ),
-    .o_register_8_bit_field_0                   (register_8_bit_field_0           ),
-    .i_register_8_bit_field_1_clear             (register_8_bit_field_1_clear     ),
-    .o_register_8_bit_field_1                   (register_8_bit_field_1           ),
-    .i_register_8_bit_field_2_set               (register_8_bit_field_2_set       ),
-    .o_register_8_bit_field_2                   (register_8_bit_field_2           ),
-    .i_register_8_bit_field_3_clear             (register_8_bit_field_3_clear     ),
-    .o_register_8_bit_field_3                   (register_8_bit_field_3           ),
-    .o_register_8_bit_field_4                   (register_8_bit_field_4           ),
-    .o_register_8_bit_field_5                   (register_8_bit_field_5           ),
-    .o_register_9_bit_field_0                   (register_9_bit_field_0           ),
+    .o_register_0_bit_field_0                   (register_0_bit_field_0                   ),
+    .o_register_0_bit_field_1                   (register_0_bit_field_1                   ),
+    .o_register_0_bit_field_2                   (register_0_bit_field_2                   ),
+    .o_register_0_bit_field_3                   (register_0_bit_field_3                   ),
+    .o_register_0_bit_field_4                   (register_0_bit_field_4                   ),
+    .o_register_0_bit_field_5                   (register_0_bit_field_5                   ),
+    .o_register_0_bit_field_6                   (register_0_bit_field_6                   ),
+    .i_register_0_bit_field_6                   (register_0_bit_field_6                   ),
+    .o_register_1                               (register_1                               ),
+    .i_register_2_bit_field_0                   (register_2_bit_field_0                   ),
+    .i_register_2_bit_field_2_valid             (register_2_bit_field_2_valid             ),
+    .i_register_2_bit_field_2                   (register_2_bit_field_2[0]                ),
+    .o_register_2_bit_field_2                   (register_2_bit_field_2[1]                ),
+    .i_register_2_bit_field_3                   (register_2_bit_field_3[0]                ),
+    .o_register_2_bit_field_3                   (register_2_bit_field_3[1]                ),
+    .o_register_3_bit_field_0                   (register_3_bit_field_0                   ),
+    .o_register_3_bit_field_1                   (register_3_bit_field_1                   ),
+    .o_register_3_bit_field_2_trigger           (register_3_bit_field_2_trigger           ),
+    .o_register_3_bit_field_3_trigger           (register_3_bit_field_3_trigger           ),
+    .i_register_4_bit_field_0_set               (register_4_bit_field_0_set               ),
+    .o_register_4_bit_field_0                   (register_4_bit_field_0                   ),
+    .i_register_4_bit_field_1_set               (register_4_bit_field_1_set               ),
+    .o_register_4_bit_field_1                   (register_4_bit_field_1                   ),
+    .o_register_4_bit_field_1_unmasked          (register_4_bit_field_1_unmasked          ),
+    .i_register_4_bit_field_3_clear             (register_4_bit_field_3_clear             ),
+    .o_register_4_bit_field_3                   (register_4_bit_field_3                   ),
+    .i_register_5_bit_field_0_clear             (register_5_bit_field_0_clear             ),
+    .o_register_5_bit_field_0                   (register_5_bit_field_0                   ),
+    .o_register_5_bit_field_1                   (register_5_bit_field_1                   ),
+    .i_register_5_bit_field_2_set               (register_5_bit_field_2_set               ),
+    .o_register_5_bit_field_2                   (register_5_bit_field_2                   ),
+    .o_register_5_bit_field_3                   (register_5_bit_field_3                   ),
+    .i_register_5_bit_field_4_valid             (register_5_bit_field_4_valid             ),
+    .i_register_5_bit_field_4                   (register_5_bit_field_4[0]                ),
+    .o_register_5_bit_field_4                   (register_5_bit_field_4[1]                ),
+    .i_register_5_bit_field_5                   (register_5_bit_field_5[0]                ),
+    .o_register_5_bit_field_5                   (register_5_bit_field_5[1]                ),
+    .i_register_5_bit_field_6_enable            (register_5_bit_field_6_enable            ),
+    .o_register_5_bit_field_6                   (register_5_bit_field_6                   ),
+    .o_register_5_bit_field_7                   (register_5_bit_field_7                   ),
+    .o_register_5_bit_field_8                   (register_5_bit_field_8                   ),
+    .i_register_5_bit_field_9_lock              (register_5_bit_field_9_lock              ),
+    .o_register_5_bit_field_9                   (register_5_bit_field_9                   ),
+    .o_register_5_bit_field_10                  (register_5_bit_field_10                  ),
+    .o_register_5_bit_field_11                  (register_5_bit_field_11                  ),
+    .i_register_6_bit_field_0_set               (register_6_bit_field_0_set               ),
+    .o_register_6_bit_field_0                   (register_6_bit_field_0                   ),
+    .i_register_6_bit_field_1_set               (register_6_bit_field_1_set               ),
+    .o_register_6_bit_field_1                   (register_6_bit_field_1                   ),
+    .o_register_6_bit_field_1_unmasked          (register_6_bit_field_1_unmasked          ),
+    .i_register_6_bit_field_3_set               (register_6_bit_field_3_set               ),
+    .o_register_6_bit_field_3                   (register_6_bit_field_3                   ),
+    .i_register_6_bit_field_4_set               (register_6_bit_field_4_set               ),
+    .o_register_6_bit_field_4                   (register_6_bit_field_4                   ),
+    .o_register_6_bit_field_4_unmasked          (register_6_bit_field_4_unmasked          ),
+    .i_register_6_bit_field_6_clear             (register_6_bit_field_6_clear             ),
+    .o_register_6_bit_field_6                   (register_6_bit_field_6                   ),
+    .i_register_6_bit_field_7_clear             (register_6_bit_field_7_clear             ),
+    .o_register_6_bit_field_7                   (register_6_bit_field_7                   ),
+    .o_register_6_bit_field_8                   (register_6_bit_field_8                   ),
+    .o_register_6_bit_field_9                   (register_6_bit_field_9                   ),
+    .o_register_7_bit_field_0                   (register_7_bit_field_0                   ),
+    .o_register_7_bit_field_1                   (register_7_bit_field_1                   ),
+    .o_register_7_bit_field_2                   (register_7_bit_field_2                   ),
+    .o_register_7_bit_field_3                   (register_7_bit_field_3                   ),
+    .i_register_8_bit_field_0_set               (register_8_bit_field_0_set               ),
+    .o_register_8_bit_field_0                   (register_8_bit_field_0                   ),
+    .i_register_8_bit_field_1_clear             (register_8_bit_field_1_clear             ),
+    .o_register_8_bit_field_1                   (register_8_bit_field_1                   ),
+    .i_register_8_bit_field_2_set               (register_8_bit_field_2_set               ),
+    .o_register_8_bit_field_2                   (register_8_bit_field_2                   ),
+    .i_register_8_bit_field_3_clear             (register_8_bit_field_3_clear             ),
+    .o_register_8_bit_field_3                   (register_8_bit_field_3                   ),
+    .o_register_8_bit_field_4                   (register_8_bit_field_4                   ),
+    .o_register_8_bit_field_5                   (register_8_bit_field_5                   ),
+    .o_register_9_bit_field_0                   (register_9_bit_field_0                   ),
     .o_register_9_bit_field_0_write_trigger     (),
     .o_register_9_bit_field_0_read_trigger      (),
-    .i_register_9_bit_field_1                   (register_9_bit_field_1           ),
+    .i_register_9_bit_field_1                   (register_9_bit_field_1                   ),
     .o_register_9_bit_field_1_read_trigger      (),
-    .o_register_9_bit_field_2                   (register_9_bit_field_2           ),
+    .o_register_9_bit_field_2                   (register_9_bit_field_2                   ),
     .o_register_9_bit_field_2_write_trigger     (),
-    .o_register_9_bit_field_3                   (register_9_bit_field_3[0]        ),
-    .i_register_9_bit_field_3                   (register_9_bit_field_3[1]        ),
+    .o_register_9_bit_field_3                   (register_9_bit_field_3[0]                ),
+    .i_register_9_bit_field_3                   (register_9_bit_field_3[1]                ),
     .o_register_9_bit_field_3_write_trigger     (),
     .o_register_9_bit_field_3_read_trigger      (),
-    .i_register_9_bit_field_4                   (register_9_bit_field_4           ),
+    .i_register_9_bit_field_4                   (register_9_bit_field_4                   ),
     .o_register_9_bit_field_4_trigger           (),
-    .i_register_9_bit_field_5                   (register_9_bit_field_5           ),
+    .i_register_9_bit_field_5                   (register_9_bit_field_5                   ),
     .o_register_9_bit_field_5_trigger           (),
-    .o_register_10_bit_field_0                  (register_10_bit_field_0          ),
-    .o_register_10_bit_field_1                  (register_10_bit_field_1          ),
-    .o_register_10_bit_field_2                  (register_10_bit_field_2          ),
-    .o_register_11_bit_field_0                  (register_11_bit_field_0          ),
-    .o_register_11_bit_field_1                  (register_11_bit_field_1          ),
-    .o_register_12_bit_field_0                  (register_12_bit_field_0          ),
-    .o_register_12_bit_field_1                  (register_12_bit_field_1          ),
+    .o_register_10_bit_field_0                  (register_10_bit_field_0                  ),
+    .o_register_10_bit_field_1                  (register_10_bit_field_1                  ),
+    .o_register_10_bit_field_2                  (register_10_bit_field_2                  ),
+    .o_register_11_bit_field_0                  (register_11_bit_field_0                  ),
+    .o_register_11_bit_field_1                  (register_11_bit_field_1                  ),
+    .o_register_12_bit_field_0                  (register_12_bit_field_0                  ),
+    .o_register_12_bit_field_1                  (register_12_bit_field_1                  ),
     .o_register_13_bit_field_0                  (register_13_bit_field_0                  ),
     .i_register_13_bit_field_1                  (register_13_bit_field_1                  ),
     .o_register_13_bit_field_2                  (register_13_bit_field_2                  ),
@@ -349,20 +351,27 @@ module top;
     .o_register_13_bit_field_8                  (register_13_bit_field_8                  ),
     .i_register_13_bit_field_8_hw_write_enable  (register_13_bit_field_8_hw_write_enable  ),
     .i_register_13_bit_field_8_hw_write_data    (register_13_bit_field_8_hw_write_data    ),
-    .i_register_14_bit_field_0                  (register_14_bit_field_0                  ),
-    .o_register_15_bit_field_0                  (register_15_bit_field_0                  ),
+    .i_register_15_bit_field_0                  (register_15_bit_field_0                  ),
+    .i_register_14_bit_field_0_up               (register_0_bit_field_0[0]                ),
+    .i_register_14_bit_field_0_down             (register_0_bit_field_1[0]                ),
+    .i_register_14_bit_field_0_clear            (register_3_bit_field_3_trigger[0]        ),
+    .o_register_14_bit_field_0                  (register_14_bit_field_0                  ),
+    .i_register_14_bit_field_1_up               (register_0_bit_field_0[0]                ),
+    .i_register_14_bit_field_1_down             (register_0_bit_field_1[0]                ),
+    .o_register_14_bit_field_1                  (register_14_bit_field_1                  ),
     .o_register_16_bit_field_0                  (register_16_bit_field_0                  ),
+    .o_register_17_bit_field_0                  (register_17_bit_field_0                  ),
 `ifdef SV_OR_VERYL
-    .register_18_bus_if                         (register_18_bus_if               )
+    .register_19_bus_if                         (register_19_bus_if                       )
 `else
-    .o_register_18_valid                        (register_18_valid                ),
-    .o_register_18_access                       (register_18_access               ),
-    .o_register_18_address                      (register_18_address              ),
-    .o_register_18_data                         (register_18_write_data           ),
-    .o_register_18_strobe                       (register_18_strobe               ),
-    .i_register_18_ready                        (register_18_ready                ),
-    .i_register_18_status                       (register_18_status               ),
-    .i_register_18_data                         (register_18_read_data            )
+    .o_register_19_valid                        (register_19_valid                        ),
+    .o_register_19_access                       (register_19_access                       ),
+    .o_register_19_address                      (register_19_address                      ),
+    .o_register_19_data                         (register_19_write_data                   ),
+    .o_register_19_strobe                       (register_19_strobe                       ),
+    .i_register_19_ready                        (register_19_ready                        ),
+    .i_register_19_status                       (register_19_status                       ),
+    .i_register_19_data                         (register_19_read_data                    )
 `endif
   );
 
@@ -370,14 +379,14 @@ module top;
   axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_18_bus_if ),
+    .bus_if       (register_19_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
 `elsif RGGEN_SYSTEMVERILOG
   rggen_axi4lite_bridge u_bridge (
     .i_clk        (clk                ),
     .i_rst_n      (rst_n              ),
-    .bus_if       (register_18_bus_if ),
+    .bus_if       (register_19_bus_if ),
     .axi4lite_if  (axi4lite_if[1]     )
   );
 `else
@@ -387,14 +396,14 @@ module top;
   ) u_bridge (
     .i_clk            (clk                        ),
     .i_rst_n          (rst_n                      ),
-    .i_bus_valid      (register_18_valid          ),
-    .i_bus_access     (register_18_access         ),
-    .i_bus_address    (register_18_address        ),
-    .i_bus_write_data (register_18_write_data     ),
-    .i_bus_strobe     (register_18_strobe         ),
-    .o_bus_ready      (register_18_ready          ),
-    .o_bus_status     (register_18_status         ),
-    .o_bus_read_data  (register_18_read_data      ),
+    .i_bus_valid      (register_19_valid          ),
+    .i_bus_access     (register_19_access         ),
+    .i_bus_address    (register_19_address        ),
+    .i_bus_write_data (register_19_write_data     ),
+    .i_bus_strobe     (register_19_strobe         ),
+    .o_bus_ready      (register_19_ready          ),
+    .o_bus_status     (register_19_status         ),
+    .o_bus_read_data  (register_19_read_data      ),
     .o_awvalid        (axi4lite_if[1].awvalid     ),
     .i_awready        (axi4lite_if[1].awready     ),
     .o_awid           (axi4lite_if[1].awid[0]     ),

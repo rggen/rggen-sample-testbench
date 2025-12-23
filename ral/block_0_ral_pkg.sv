@@ -274,11 +274,13 @@ package block_0_ral_pkg;
   endclass
   class register_14_reg_model extends rggen_ral_reg;
     rand rggen_ral_field bit_field_0;
+    rand rggen_ral_field bit_field_1;
     function new(string name);
       super.new(name, 32, 0);
     endfunction
     function void build();
-      `rggen_ral_create_field(bit_field_0, 0, 1, "RO", 1, 1'h0, '{}, 0, 0, 0, "")
+      `rggen_ral_create_field(bit_field_0, 0, 8, "RW", 1, 8'h00, '{}, 1, 0, 0, "")
+      `rggen_ral_create_field(bit_field_1, 8, 8, "RW", 1, 8'h00, '{}, 1, 0, 0, "register_3.bit_field_3")
     endfunction
   endclass
   class register_15_reg_model extends rggen_ral_reg;
@@ -287,10 +289,19 @@ package block_0_ral_pkg;
       super.new(name, 32, 0);
     endfunction
     function void build();
+      `rggen_ral_create_field(bit_field_0, 0, 1, "RO", 1, 1'h0, '{}, 0, 0, 0, "")
+    endfunction
+  endclass
+  class register_16_reg_model extends rggen_ral_reg;
+    rand rggen_ral_field bit_field_0;
+    function new(string name);
+      super.new(name, 32, 0);
+    endfunction
+    function void build();
       `rggen_ral_create_field(bit_field_0, 0, 1, "WO", 0, 1'h0, '{}, 1, 0, 0, "")
     endfunction
   endclass
-  class register_16_reg_model extends rggen_ral_maskable_reg;
+  class register_17_reg_model extends rggen_ral_maskable_reg;
     rand rggen_ral_field bit_field_0;
     function new(string name);
       super.new(name, 32, 0);
@@ -300,8 +311,8 @@ package block_0_ral_pkg;
     endfunction
   endclass
   class block_0_block_model #(
-    type REGISTER_18 = rggen_ral_block,
-    bit INTEGRATE_REGISTER_18 = 1
+    type REGISTER_19 = rggen_ral_block,
+    bit INTEGRATE_REGISTER_19 = 1
   ) extends rggen_ral_block;
     rand register_0_reg_model register_0;
     rand register_1_reg_model register_1;
@@ -320,7 +331,8 @@ package block_0_ral_pkg;
     rand register_14_reg_model register_14;
     rand register_15_reg_model register_15;
     rand register_16_reg_model register_16;
-    rand REGISTER_18 register_18;
+    rand register_17_reg_model register_17;
+    rand REGISTER_19 register_19;
     function new(string name);
       super.new(name, 4, 0);
     endfunction
@@ -349,10 +361,11 @@ package block_0_ral_pkg;
       `rggen_ral_create_reg(register_11[1][3], '{1, 3}, '{2, 4}, 8'h50, "RW", "g_register_11.g[1].g[3].u_register")
       `rggen_ral_create_reg(register_12, '{}, '{}, 8'h50, "RW", "g_register_12.u_register")
       `rggen_ral_create_reg(register_13, '{}, '{}, 8'h60, "RW", "g_register_13.u_register")
-      `rggen_ral_create_reg(register_14, '{}, '{}, 8'h70, "RW", "g_register_14.u_register")
-      `rggen_ral_create_reg(register_15, '{}, '{}, 8'h74, "RW", "g_register_15.u_register")
-      `rggen_ral_create_reg(register_16, '{}, '{}, 8'h78, "RW", "g_register_16.u_register")
-      `rggen_ral_create_block(register_18, 8'h80, this, INTEGRATE_REGISTER_18)
+      `rggen_ral_create_reg(register_14, '{}, '{}, 8'h64, "RW", "g_register_14.u_register")
+      `rggen_ral_create_reg(register_15, '{}, '{}, 8'h70, "RW", "g_register_15.u_register")
+      `rggen_ral_create_reg(register_16, '{}, '{}, 8'h74, "RW", "g_register_16.u_register")
+      `rggen_ral_create_reg(register_17, '{}, '{}, 8'h78, "RW", "g_register_17.u_register")
+      `rggen_ral_create_block(register_19, 8'h80, this, INTEGRATE_REGISTER_19)
     endfunction
   endclass
 endpackage

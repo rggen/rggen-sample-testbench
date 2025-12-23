@@ -7,7 +7,14 @@ pub module block_0 #(
   param DEFAULT_READ_DATA: bit<32> = '0,
   param INSERT_SLICER: bool = false,
   param REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: bit<4, 4, 2> = {2'h0 repeat 16},
-  param REGISTER_18_STROBE_WIDTH: u32 = 4
+  param REGISTER_14_BIT_FIELD_0_UP_WIDTH: u32 = 1,
+  param REGISTER_14_BIT_FIELD_0_DOWN_WIDTH: u32 = 1,
+  param REGISTER_14_BIT_FIELD_0_WRAP_AROUND: bool = false,
+  param REGISTER_14_BIT_FIELD_0_USE_CLEAR: bool = true,
+  param REGISTER_14_BIT_FIELD_1_UP_WIDTH: u32 = 1,
+  param REGISTER_14_BIT_FIELD_1_DOWN_WIDTH: u32 = 1,
+  param REGISTER_14_BIT_FIELD_1_WRAP_AROUND: bool = false,
+  param REGISTER_19_STROBE_WIDTH: u32 = 4
 )(
   i_clk: input clock,
   i_rst: input reset,
@@ -124,18 +131,25 @@ pub module block_0 #(
   o_register_13_bit_field_8: output logic<2>,
   i_register_13_bit_field_8_hw_write_enable: input logic,
   i_register_13_bit_field_8_hw_write_data: input logic<2>,
-  i_register_14_bit_field_0: input logic,
-  o_register_15_bit_field_0: output logic,
-  o_register_16_bit_field_0: output logic<16>,
-  register_18_bus_if: modport rggen::rggen_bus_if::master
+  i_register_14_bit_field_0_up: input logic<clip_width(REGISTER_14_BIT_FIELD_0_UP_WIDTH)>,
+  i_register_14_bit_field_0_down: input logic<clip_width(REGISTER_14_BIT_FIELD_0_DOWN_WIDTH)>,
+  i_register_14_bit_field_0_clear: input logic,
+  o_register_14_bit_field_0: output logic<8>,
+  i_register_14_bit_field_1_up: input logic<clip_width(REGISTER_14_BIT_FIELD_1_UP_WIDTH)>,
+  i_register_14_bit_field_1_down: input logic<clip_width(REGISTER_14_BIT_FIELD_1_DOWN_WIDTH)>,
+  o_register_14_bit_field_1: output logic<8>,
+  i_register_15_bit_field_0: input logic,
+  o_register_16_bit_field_0: output logic,
+  o_register_17_bit_field_0: output logic<16>,
+  register_19_bus_if: modport rggen::rggen_bus_if::master
 ){
   import rggen::rggen_rtl_pkg::*;
-  inst register_if: rggen::rggen_register_if[28]#(ADDRESS_WIDTH: 8, BUS_WIDTH: 32, VALUE_WIDTH: 64);
+  inst register_if: rggen::rggen_register_if[29]#(ADDRESS_WIDTH: 8, BUS_WIDTH: 32, VALUE_WIDTH: 64);
   inst u_adapter: rggen::rggen_apb_adapter #(
     ADDRESS_WIDTH:        ADDRESS_WIDTH,
     LOCAL_ADDRESS_WIDTH:  8,
     BUS_WIDTH:            32,
-    REGISTERS:            28,
+    REGISTERS:            29,
     PRE_DECODE:           PRE_DECODE,
     BASE_ADDRESS:         BASE_ADDRESS,
     BYTE_SIZE:            256,
@@ -2353,6 +2367,80 @@ pub module block_0 #(
       READABLE:       true,
       WRITABLE:       true,
       ADDRESS_WIDTH:  8,
+      OFFSET_ADDRESS: 8'h64,
+      BUS_WIDTH:      32,
+      DATA_WIDTH:     32,
+      VALUE_WIDTH:    64,
+      VALID_BITS:     32'h0000ffff
+    )(
+      i_clk:        i_clk,
+      i_rst:        i_rst,
+      register_if:  register_if[24],
+      bit_field_if: bit_field_if
+    );
+    :g_bit_field_0 {
+      const INITIAL_VALUE: bit<8> = 8'h00;
+      inst bit_field_sub_if: rggen::rggen_bit_field_if#(WIDTH: 8);
+      always_comb {
+        bit_field_sub_if.read_valid = bit_field_if.read_valid;
+        bit_field_sub_if.write_valid = bit_field_if.write_valid;
+        bit_field_sub_if.mask = bit_field_if.mask[0+:8];
+        bit_field_sub_if.write_data = bit_field_if.write_data[0+:8];
+        bit_field_if.read_data[0+:8] = bit_field_sub_if.read_data;
+        bit_field_if.value[0+:8] = bit_field_sub_if.value;
+      }
+      inst u_bit_field: rggen::rggen_bit_field_counter #(
+        WIDTH        : 8,
+        INITIAL_VALUE: INITIAL_VALUE,
+        UP_WIDTH     : REGISTER_14_BIT_FIELD_0_UP_WIDTH,
+        DOWN_WIDTH   : REGISTER_14_BIT_FIELD_0_DOWN_WIDTH,
+        WRAP_AROUND  : REGISTER_14_BIT_FIELD_0_WRAP_AROUND,
+        USE_CLEAR    : REGISTER_14_BIT_FIELD_0_USE_CLEAR,
+      )(
+        i_clk       : i_clk,
+        i_rst       : i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_clear     : i_register_14_bit_field_0_clear,
+        i_up        : i_register_14_bit_field_0_up,
+        i_down      : i_register_14_bit_field_0_down,
+        o_count     : o_register_14_bit_field_0,
+      );
+    }
+    :g_bit_field_1 {
+      const INITIAL_VALUE: bit<8> = 8'h00;
+      inst bit_field_sub_if: rggen::rggen_bit_field_if#(WIDTH: 8);
+      always_comb {
+        bit_field_sub_if.read_valid = bit_field_if.read_valid;
+        bit_field_sub_if.write_valid = bit_field_if.write_valid;
+        bit_field_sub_if.mask = bit_field_if.mask[8+:8];
+        bit_field_sub_if.write_data = bit_field_if.write_data[8+:8];
+        bit_field_if.read_data[8+:8] = bit_field_sub_if.read_data;
+        bit_field_if.value[8+:8] = bit_field_sub_if.value;
+      }
+      inst u_bit_field: rggen::rggen_bit_field_counter #(
+        WIDTH        : 8,
+        INITIAL_VALUE: INITIAL_VALUE,
+        UP_WIDTH     : REGISTER_14_BIT_FIELD_1_UP_WIDTH,
+        DOWN_WIDTH   : REGISTER_14_BIT_FIELD_1_DOWN_WIDTH,
+        WRAP_AROUND  : REGISTER_14_BIT_FIELD_1_WRAP_AROUND,
+        USE_CLEAR    : true,
+      )(
+        i_clk       : i_clk,
+        i_rst       : i_rst,
+        bit_field_if: bit_field_sub_if,
+        i_clear     : register_if[3].value[16+:1],
+        i_up        : i_register_14_bit_field_1_up,
+        i_down      : i_register_14_bit_field_1_down,
+        o_count     : o_register_14_bit_field_1,
+      );
+    }
+  }
+  :g_register_15 {
+    inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
+    inst u_register: rggen::rggen_default_register #(
+      READABLE:       true,
+      WRITABLE:       true,
+      ADDRESS_WIDTH:  8,
       OFFSET_ADDRESS: 8'h70,
       BUS_WIDTH:      32,
       DATA_WIDTH:     32,
@@ -2361,7 +2449,7 @@ pub module block_0 #(
     )(
       i_clk:        i_clk,
       i_rst:        i_rst,
-      register_if:  register_if[24],
+      register_if:  register_if[25],
       bit_field_if: bit_field_if
     );
     :g_bit_field_0 {
@@ -2385,11 +2473,11 @@ pub module block_0 #(
         i_rst:          i_rst,
         bit_field_if:   bit_field_sub_if,
         o_read_trigger: _,
-        i_value:        i_register_14_bit_field_0
+        i_value:        i_register_15_bit_field_0
       );
     }
   }
-  :g_register_15 {
+  :g_register_16 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_default_register #(
       READABLE:       true,
@@ -2403,7 +2491,7 @@ pub module block_0 #(
     )(
       i_clk:        i_clk,
       i_rst:        i_rst,
-      register_if:  register_if[25],
+      register_if:  register_if[26],
       bit_field_if: bit_field_if
     );
     :g_bit_field_0 {
@@ -2428,11 +2516,11 @@ pub module block_0 #(
         i_rst:            i_rst,
         bit_field_if:     bit_field_sub_if,
         o_write_trigger:  _,
-        o_value:          o_register_15_bit_field_0
+        o_value:          o_register_16_bit_field_0
       );
     }
   }
-  :g_register_16 {
+  :g_register_17 {
     inst bit_field_if: rggen::rggen_bit_field_if#(WIDTH: 32);
     inst u_register: rggen::rggen_maskable_register #(
       READABLE:       true,
@@ -2446,7 +2534,7 @@ pub module block_0 #(
     )(
       i_clk:        i_clk,
       i_rst:        i_rst,
-      register_if:  register_if[26],
+      register_if:  register_if[27],
       bit_field_if: bit_field_if
     );
     :g_bit_field_0 {
@@ -2471,23 +2559,23 @@ pub module block_0 #(
         bit_field_if:     bit_field_sub_if,
         o_write_trigger:  _,
         o_read_trigger:   _,
-        o_value:          o_register_16_bit_field_0
+        o_value:          o_register_17_bit_field_0
       );
     }
   }
-  :g_register_18 {
+  :g_register_19 {
     inst u_register: rggen::rggen_external_register #(
       ADDRESS_WIDTH:  8,
       BUS_WIDTH:      32,
       VALUE_WIDTH:    64,
-      STROBE_WIDTH:   REGISTER_18_STROBE_WIDTH,
+      STROBE_WIDTH:   REGISTER_19_STROBE_WIDTH,
       START_ADDRESS:  8'h80,
       BYTE_SIZE:      128
     )(
       i_clk:        i_clk,
       i_rst:        i_rst,
-      register_if:  register_if[27],
-      bus_if:       register_18_bus_if
+      register_if:  register_if[28],
+      bus_if:       register_19_bus_if
     );
   }
 }

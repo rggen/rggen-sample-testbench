@@ -19,7 +19,7 @@ entity block_1 is
     i_rst_n: in std_logic;
     i_awvalid: in std_logic;
     o_awready: out std_logic;
-    i_awid: in std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    i_awid: in std_logic_vector(clip_width(ID_WIDTH)-1 downto 0);
     i_awaddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
     i_awprot: in std_logic_vector(2 downto 0);
     i_wvalid: in std_logic;
@@ -28,16 +28,16 @@ entity block_1 is
     i_wstrb: in std_logic_vector(3 downto 0);
     o_bvalid: out std_logic;
     i_bready: in std_logic;
-    o_bid: out std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    o_bid: out std_logic_vector(clip_width(ID_WIDTH)-1 downto 0);
     o_bresp: out std_logic_vector(1 downto 0);
     i_arvalid: in std_logic;
     o_arready: out std_logic;
-    i_arid: in std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    i_arid: in std_logic_vector(clip_width(ID_WIDTH)-1 downto 0);
     i_araddr: in std_logic_vector(ADDRESS_WIDTH-1 downto 0);
     i_arprot: in std_logic_vector(2 downto 0);
     o_rvalid: out std_logic;
     i_rready: in std_logic;
-    o_rid: out std_logic_vector(clip_id_width(ID_WIDTH)-1 downto 0);
+    o_rid: out std_logic_vector(clip_width(ID_WIDTH)-1 downto 0);
     o_rdata: out std_logic_vector(31 downto 0);
     o_rresp: out std_logic_vector(1 downto 0);
     o_register_file_0_register_0_bit_field_0: out std_logic_vector(7 downto 0);
