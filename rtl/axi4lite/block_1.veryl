@@ -1,13 +1,14 @@
 #[fmt(skip)]
+#[allow(unassign_variable)]
 pub module block_1 #(
   param ADDRESS_WIDTH: u32 = 7,
-  param PRE_DECODE: bool = false,
+  param PRE_DECODE: bbool = false,
   param BASE_ADDRESS: bit<ADDRESS_WIDTH> = '0,
-  param ERROR_STATUS: bool = false,
+  param ERROR_STATUS: bbool = false,
   param DEFAULT_READ_DATA: bit<32> = '0,
-  param INSERT_SLICER: bool = false,
+  param INSERT_SLICER: bbool = false,
   param ID_WIDTH: u32 = 0,
-  param WRITE_FIRST: bool = true
+  param WRITE_FIRST: bbool = true
 )(
   i_clk: input clock,
   i_rst: input reset,

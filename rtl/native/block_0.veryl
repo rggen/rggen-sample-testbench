@@ -1,21 +1,22 @@
 #[fmt(skip)]
+#[allow(unassign_variable)]
 pub module block_0 #(
   param ADDRESS_WIDTH: u32 = 8,
-  param PRE_DECODE: bool = false,
+  param PRE_DECODE: bbool = false,
   param BASE_ADDRESS: bit<ADDRESS_WIDTH> = '0,
-  param ERROR_STATUS: bool = false,
+  param ERROR_STATUS: bbool = false,
   param DEFAULT_READ_DATA: bit<32> = '0,
-  param INSERT_SLICER: bool = false,
+  param INSERT_SLICER: bbool = false,
   param STROBE_WIDTH: u32 = 4,
-  param USE_READ_STROBE: bool = false,
+  param USE_READ_STROBE: bbool = false,
   param REGISTER_10_BIT_FIELD_1_INITIAL_VALUE: bit<4, 4, 2> = {2'h0 repeat 16},
   param REGISTER_14_BIT_FIELD_0_UP_WIDTH: u32 = 1,
   param REGISTER_14_BIT_FIELD_0_DOWN_WIDTH: u32 = 1,
-  param REGISTER_14_BIT_FIELD_0_WRAP_AROUND: bool = false,
-  param REGISTER_14_BIT_FIELD_0_USE_CLEAR: bool = true,
+  param REGISTER_14_BIT_FIELD_0_WRAP_AROUND: bbool = false,
+  param REGISTER_14_BIT_FIELD_0_USE_CLEAR: bbool = true,
   param REGISTER_14_BIT_FIELD_1_UP_WIDTH: u32 = 1,
   param REGISTER_14_BIT_FIELD_1_DOWN_WIDTH: u32 = 1,
-  param REGISTER_14_BIT_FIELD_1_WRAP_AROUND: bool = false,
+  param REGISTER_14_BIT_FIELD_1_WRAP_AROUND: bbool = false,
   param REGISTER_19_STROBE_WIDTH: u32 = 4
 )(
   i_clk: input clock,
