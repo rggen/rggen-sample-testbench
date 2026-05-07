@@ -1,6 +1,5 @@
 [project]
 name        = "rggen_sample_testbench"
-version     = "0.1.0"
 authors     = ["Taichi Ishitani <taichi730@gmail.com>"]
 license     = "MIT"
 repository  = "https://github.com/rggen/rggen-sample-testbench"
@@ -12,4 +11,4 @@ omit_project_prefix = true
 reset_low_suffix    = "_n"
 
 [dependencies]
-"rggen" = { github = "rggen/rggen-veryl-rtl", version = "0.7.0" }
+"rggen" = { github = "rggen/rggen-veryl-rtl", version = "0.8.0" }
