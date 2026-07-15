@@ -11,4 +11,4 @@ omit_project_prefix = true
 reset_low_suffix    = "_n"
 
 [dependencies]
-"rggen" = { github = "rggen/rggen-veryl-rtl", version = "0.8.0" }
+"rggen" = { github = "rggen/rggen-veryl-rtl", version = "0.8.1" }
